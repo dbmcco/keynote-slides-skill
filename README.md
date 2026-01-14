@@ -13,9 +13,9 @@ skills/keynote-slides/scripts/new-deck.sh lfw-pitch-2026 --entity lightforgework
 
 Preview locally:
 ```bash
-skills/keynote-slides/scripts/serve-decks.sh 8000
+skills/keynote-slides/scripts/serve-decks.sh 8000 0.0.0.0
 ```
-Open `http://localhost:8000/decks/lfw-pitch-2026/index.html`.
+Open `http://<tailscale-ip>:8000/decks/lfw-pitch-2026/index.html`.
 
 ## Deck Structure
 

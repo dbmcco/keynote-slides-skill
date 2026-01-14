@@ -29,6 +29,7 @@ Build Keynote-style decks in a single HTML file per deck with strong brand adher
 
 - Use Chrome Devtools MCP tools to capture snapshots/screenshots.
 - Check hierarchy, spacing, contrast, and pacing before generating visuals.
+- When serving locally for review, bind to `0.0.0.0` for Tailscale access.
 
 ## Media Generation
 
