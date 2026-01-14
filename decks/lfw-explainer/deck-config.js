@@ -2,7 +2,7 @@
 // ABOUTME: Loaded before the main deck script.
 window.KEYNOTE_DECK = {
   "id": "lfw-explainer",
-  "title": "Lightforge Works Explainer",
+  "title": "LightForge Works Explainer",
   "entity": "lightforgeworks",
   "deckType": "pitch",
   "audience": "",

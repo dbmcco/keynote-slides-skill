@@ -1,26 +1,27 @@
 # Slides
 
 1. Title
-   - Upside-down software delivery.
-   - Fixed time, fixed price, flexible scope.
+   - Single Purpose Applications for integrated workflows.
+   - Fixed time + fixed price, integration over replacement, 30/60/90.
 2. Who We Are
-   - Product studio; align vision, roadmap, execution.
+   - Business experts + AI-accelerated delivery; no handoffs.
 3. The Problem
-   - Time + cost as variables create chaos.
+   - Multi-SaaS chaos and manual handoffs.
 4. The Model
-   - Flip the variables; value-led scope.
-5. The SPA
-   - Product accelerator; fixed window; shipped path.
-6. Outcomes
-   - Alignment, momentum, confidence.
-7. Process
-   - Diagnose → Blueprint → Build → Launch + transfer.
+   - Inverted model: fixed time/cost, scope bounded by value.
+5. What Is a SPA
+   - Production-grade micro-app; fixed boundary; integration-first.
+6. Where SPAs Fit
+   - Too complex for spreadsheets; too specific for platforms; connects existing systems.
+7. 30/60/90
+   - 30 discovery, 60 delivery, 90 ROI.
 8. Collaboration
-   - Workshops, async visibility, shared ownership.
+   - Business experts first; no handoffs; weekly checkpoints.
 9. Impact
-   - Predictable, focused, shippable.
+   - Predictable, bounded scope, ROI in 90 days.
 10. Close
-   - Call to action: start with the SPA.
+   - Start with one workflow; build a portfolio.
 
 Notes
-- Confirm what SPA stands for and whether to expand it on slide 5.
+- SPA = Single Purpose Application (production-grade micro-app).
+- Sources: LFW messaging framework, client process framework, SPA deck outline.

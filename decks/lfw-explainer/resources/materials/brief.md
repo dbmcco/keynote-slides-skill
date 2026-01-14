@@ -1,24 +1,25 @@
 # Brief
 
 ## Goals
-- Introduce Lightforge Works as a product studio and delivery partner.
-- Explain the upside-down model: fixed price + fixed time with flexible scope.
-- Define the SPA and show how it creates tangible outcomes.
-- Emphasize impact, value, and why this model reduces risk.
+- Introduce LightForge Works as an integrated business-software delivery team.
+- Explain the inverted model: fixed time + fixed price with scope bounded by value.
+- Define the SPA (Single Purpose Application) and how it integrates existing systems.
+- Explain the 30/60/90 framework from discovery to ROI.
+- Emphasize impact, value, and reduced delivery risk.
 
 ## Audience
 - Prospective customers evaluating a software delivery partner.
 
 ## Narrative
-- Traditional software delivery makes time and cost variable.
-- Lightforge Works flips the variables to protect value.
-- The SPA accelerates clarity into a shippable product path.
-- The process and collaboration model drive predictable outcomes.
+- Multi-SaaS workflows break at handoffs and create manual work.
+- LightForge Works flips the variables to protect time and cost.
+- SPAs are production-grade micro-apps with fixed boundaries and integration-first design.
+- 30/60/90 provides discovery, delivery, and ROI validation.
 
 ## Key proof points
-- Fixed investment and fixed window.
-- Weekly artifacts and decisions.
-- Clear handoff and roadmap for what comes next.
+- Fixed time + fixed price with boundary discipline.
+- Integration over replacement with clear inputs/outputs.
+- 30/60/90 framework with ROI validation by day 90.
 
 ## Must-include slides
 - Who we are.
@@ -28,5 +29,5 @@
 - Impact/value.
 
 ## Risks / constraints
-- Confirm what SPA stands for before finalizing language.
-- Avoid fabricated metrics until real numbers are provided.
+- Avoid price figures unless explicitly requested.
+- Keep SPA vs micro-app terminology consistent across slides.
