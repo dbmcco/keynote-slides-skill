@@ -124,6 +124,13 @@
         color: var(--brand-accent);
       }
 
+      .logo {
+        height: 32px;
+        width: auto;
+        max-width: 240px;
+        display: block;
+      }
+
       .title {
         font-family: var(--font-display);
         font-size: clamp(2.8rem, 5vw, 4.4rem);
@@ -519,7 +526,12 @@
     <main class="deck" id="deck" aria-live="polite">
       <section class="slide theme-ivory is-active" data-title="Title">
         <div class="slide-inner layout-title">
-          <div class="eyebrow reveal" style="--reveal-index: 1">LightForge Works</div>
+          <img
+            class="logo reveal"
+            style="--reveal-index: 1"
+            src="resources/assets/lfw-logo.png"
+            alt="LightForge Works"
+          />
           <h1 class="title reveal" style="--reveal-index: 2">Single Purpose Applications for integrated workflows.</h1>
           <p class="subtitle reveal" style="--reveal-index: 3">
             Bespoke business micro-apps that solve one workflow, connect your systems, and deliver predictable ROI.

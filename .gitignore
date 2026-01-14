@@ -1,3 +1,4 @@
 # ABOUTME: Repo ignore rules for local tooling artifacts.
 # ABOUTME: Keeps beads database out of version control.
 .beads/
+.DS_Store

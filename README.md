@@ -17,6 +17,25 @@ skills/keynote-slides/scripts/serve-decks.sh
 ```
 Open `http://<tailscale-ip>:8921/decks/lfw-pitch-2026/index.html`.
 
+## Serving over Tailscale
+
+The preview server is plain HTTP (`python3 -m http.server`). For remote access, bind to all interfaces and pick a port:
+```bash
+skills/keynote-slides/scripts/serve-decks.sh 5200 0.0.0.0
+```
+Open `http://<tailscale-ip>:5200/decks/<deck-id>/index.html` using the Tailscale IP or MagicDNS name
+(`*.ts.net`). Use `http://` (not `https://`) unless you add a separate proxy.
+
+Keep it running in the background:
+```bash
+nohup skills/keynote-slides/scripts/serve-decks.sh 5200 0.0.0.0 > /tmp/serve-decks.log 2>&1 &
+```
+
+Stop the server:
+```bash
+pkill -f "http.server 5200"
+```
+
 ## Deck Structure
 
 ```
