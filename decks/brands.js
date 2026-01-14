@@ -21,6 +21,17 @@ window.KEYNOTE_BRANDS = {
     },
     fontLabel: "Display: System sans. Body: System sans.",
     mediaPromptPrefix: "warm parchment palette, refined brass accents, minimal editorial lighting",
+    defaultDeckType: "pitch",
+    deckPreferences: {
+      pitch: {
+        voice: "confident, concise, design-led",
+        headlineStyle: "short, verb-led, outcome first",
+        narrative: ["Context", "Problem", "Solution", "Proof", "Ask"],
+        density: "low",
+        visualFocus: "hero visual + single insight per slide",
+        avoid: ["dense paragraphs", "multi-idea slides"],
+      },
+    },
   },
   synthyra: {
     label: "Synthyra",
@@ -42,6 +53,17 @@ window.KEYNOTE_BRANDS = {
     },
     fontLabel: "Display: Arial. Body: Arial.",
     mediaPromptPrefix: "clean biotech palette, emerald and cobalt highlights, clinical studio lighting",
+    defaultDeckType: "investor",
+    deckPreferences: {
+      investor: {
+        voice: "credible, scientific, evidence-forward",
+        headlineStyle: "clear claims with quantified proof",
+        narrative: ["Mission", "Science", "Pipeline", "Traction", "Ask"],
+        density: "medium",
+        visualFocus: "diagrams, pipeline graphics, data callouts",
+        avoid: ["marketing fluff", "generic claims without metrics"],
+      },
+    },
   },
   navicyte: {
     label: "Navicyte Biotech",
@@ -63,6 +85,17 @@ window.KEYNOTE_BRANDS = {
     },
     fontLabel: "Display: Avenir Next. Body: Avenir Next.",
     mediaPromptPrefix: "navy biotech palette, teal accents, high-clarity lab lighting",
+    defaultDeckType: "partner",
+    deckPreferences: {
+      partner: {
+        voice: "strategic, collaborative, opportunity-focused",
+        headlineStyle: "mutual value and pathway clarity",
+        narrative: ["Opportunity", "Mechanism", "Validation", "Pathway", "Next steps"],
+        density: "medium-low",
+        visualFocus: "process maps, clinical milestones",
+        avoid: ["overly technical walls of text"],
+      },
+    },
   },
 };
 

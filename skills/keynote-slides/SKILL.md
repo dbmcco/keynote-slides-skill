@@ -16,7 +16,7 @@ description: Build Keynote-style single-file HTML slide decks with brand-ready t
 
 1. Run the deck bootstrap to create a deck folder:
 ```bash
-scripts/new-deck.sh lfw-pitch-2026 --entity lightforgeworks --title "LFW Pitch 2026"
+scripts/new-deck.sh lfw-pitch-2026 --entity lightforgeworks --title "LFW Pitch 2026" --type pitch
 ```
 2. Update `decks/brands.js` when brand tokens change.
 3. Edit `decks/<deck-id>/index.html` and duplicate slides inside `<main id="deck">`, keeping each `data-title` unique.
@@ -36,7 +36,20 @@ scripts/new-deck.sh lfw-pitch-2026 --entity lightforgeworks --title "LFW Pitch 2
 - `decks/<deck-id>/deck-config.js` stores deck metadata (entity, title, resources).
 - `decks/<deck-id>/deck.json` stores the same metadata in JSON form.
 - `decks/<deck-id>/slides.md` is for draft copy and notes.
-- `decks/<deck-id>/resources/` holds images and other assets.
+- `decks/<deck-id>/resources/assets/` holds logos, images, and media inputs.
+- `decks/<deck-id>/resources/materials/` holds briefs, pricing docs, P&L inputs, and outlines.
+
+## Collaboration
+
+- Co-author the narrative: propose headlines, POV, and slide ordering based on `deckType` and entity preferences.
+- Keep the brief in `resources/materials/brief.md` and capture evolving preferences in `deck.json` or `decks/brands.js`.
+- Use concise headline options (3-5 variants) and confirm direction before building slides.
+
+## Review loop
+
+- Use the Chrome Devtools MCP tools to capture a snapshot/screenshot and review layout.
+- Check hierarchy, alignment, spacing rhythm, and contrast; then adjust copy and spacing.
+- Use the generator panel for brand-aware media, then re-check balance and whitespace.
 
 ## Templates
 

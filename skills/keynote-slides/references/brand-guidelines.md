@@ -12,7 +12,7 @@
 
 ## Entity profiles
 
-Add one entry per entity in `decks/brands.js`:
+Add one entry per entity in `decks/brands.js`. Capture deck-type preferences there too:
 
 ```js
 window.KEYNOTE_BRANDS = {
@@ -35,7 +35,15 @@ window.KEYNOTE_BRANDS = {
       body: "\"Space Grotesk\", \"Avenir Next\", \"Gill Sans\", sans-serif"
     },
     fontLabel: "Display: Fraunces. Body: Space Grotesk.",
-    mediaPromptPrefix: "warm parchment palette, editorial linework, soft studio lighting"
+    mediaPromptPrefix: "warm parchment palette, editorial linework, soft studio lighting",
+    defaultDeckType: "pitch",
+    deckPreferences: {
+      pitch: {
+        voice: "confident, concise",
+        headlineStyle: "short, verb-led",
+        narrative: ["Context", "Problem", "Solution", "Proof", "Ask"]
+      }
+    }
   }
 };
 ```

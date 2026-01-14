@@ -9,6 +9,7 @@
 - Added multi-entity brand profiles for LightForge Works, Synthyra, and Navicyte, plus prompt prefixes for brand adherence and nano banana model settings.
 - Added print styles for PDF export.
 - Added deck storage scaffolding, shared brand store, and local preview script.
+- Added resource separation (assets vs materials) plus deck preference scaffolding.
 - Wrote the skill guide plus brand and Gemini media references.
 
 ## Tests
