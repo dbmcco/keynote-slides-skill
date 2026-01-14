@@ -12,10 +12,10 @@
 
 ```bash
 skills/keynote-slides/scripts/new-deck.sh lfw-pitch-2026 --entity lightforgeworks --title "LFW Pitch 2026"
-skills/keynote-slides/scripts/serve-decks.sh 8000 0.0.0.0
+skills/keynote-slides/scripts/serve-decks.sh
 ```
 
-Open `http://<tailscale-ip>:8000/decks/lfw-pitch-2026/index.html`.
+Open `http://<tailscale-ip>:8921/decks/lfw-pitch-2026/index.html`.
 
 ## Deck Structure
 

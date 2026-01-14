@@ -67,9 +67,9 @@ scripts/new-deck.sh lfw-pitch-2026 --entity lightforgeworks --title "LFW Pitch 2
 ## Preview
 
 ```bash
-scripts/serve-decks.sh 8000 0.0.0.0
+scripts/serve-decks.sh
 ```
-Then open `http://<tailscale-ip>:8000/decks/<deck-id>/index.html`.
+Then open `http://<tailscale-ip>:8921/decks/<deck-id>/index.html`.
 
 ## PDF export
 

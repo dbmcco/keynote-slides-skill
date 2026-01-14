@@ -3,7 +3,7 @@
 # ABOUTME: Useful for previewing and printing decks to PDF.
 set -euo pipefail
 
-port="${1:-8000}"
+port="${1:-8921}"
 host="${2:-0.0.0.0}"
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 repo_root="$(cd "${script_dir}/../../.." && pwd)"
