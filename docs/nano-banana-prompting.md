@@ -1,17 +1,24 @@
 # Nano-Banana Image Generation Guide
 
-> Best practices for using Gemini 2.5 Flash (`nano-banana`) to create diagrams, infographics, and supporting visuals for keynote decks.
+> Best practices for using Gemini 2.5 Flash (`nano-banana`) to create **embedded infographics** and supporting visuals for keynote decks.
 
-## Overview
+## Core Philosophy
 
-Nano-banana excels at understanding detailed concepts and translating them into clear visual explanations. Use it for:
-- Infographic-style explanations
-- Workflow and process diagrams
-- Data visualizations
-- Conceptual illustrations
-- Supporting visuals (not full-slide backgrounds)
+**Generate infographics to embed in slides—not full slides themselves.**
 
-**Key principle:** The more detail you provide about the topic, the better the output. Explain the situation thoroughly, give sizing/placement guidance, then let it generate.
+Nano-banana excels at creating discrete visual elements that support your narrative:
+- **Embedded diagrams** — Process flows, system architectures, concept maps
+- **Data visualizations** — Charts, metrics displays, comparison matrices
+- **Conceptual illustrations** — Abstract representations of ideas
+- **Technical diagrams** — Workflows, timelines, network visualizations
+- **Small supporting graphics** — Icons, badges, accent visuals
+
+**What NOT to use it for:**
+- Full slide backgrounds (use CSS gradients and brand tokens instead)
+- Text-heavy layouts (let HTML/CSS handle typography)
+- Simple shapes or UI elements (use SVG or CSS)
+
+**Key principle:** Provide rich context about the *concept*, not just visual instructions. Nano-banana's strength is understanding complex ideas and translating them into clear visual explanations.
 
 ---
 
@@ -260,3 +267,231 @@ Style note: "Warm parchment palette, refined brass accents, minimal editorial li
 - [ ] Content explained in detail (3+ paragraphs)
 - [ ] Key insight/emphasis identified
 - [ ] Desired feeling/understanding stated
+
+---
+
+## Infographic Types & Best Practices
+
+### When to Use Each Type
+
+| Infographic Type | Best For | Avoid When |
+|------------------|----------|------------|
+| **Flowchart** | Linear processes, decision trees, workflows | Showing relationships without clear sequence |
+| **Timeline/Roadmap** | Historical progression, project phases, milestones | Non-sequential information |
+| **Network/Concept Map** | Relationships, ecosystems, interconnected concepts | Simple hierarchies |
+| **Comparison Matrix** | Side-by-side evaluation, feature comparisons | More than 4-5 items |
+| **Funnel** | Conversion processes, filtering stages | Non-narrowing progressions |
+| **Venn Diagram** | Overlapping concepts, shared characteristics | More than 3 categories |
+| **Metrics Dashboard** | KPIs, statistics, quantitative highlights | Narrative-heavy content |
+
+### Prompting by Infographic Type
+
+**Flowchart/Process Diagram:**
+```
+Create a [horizontal/vertical] flowchart showing [process name].
+
+STAGES:
+1. [Stage name] — [what happens, inputs/outputs]
+2. [Stage name] — [what happens, decision points]
+3. [Stage name] — [what happens, outcomes]
+
+VISUAL REQUIREMENTS:
+- Use [geometric shapes: rectangles for actions, diamonds for decisions]
+- Connectors: [arrows, curved lines, right-angle elbows]
+- Each stage visually distinct with [color coding strategy]
+- Decision branches clearly labeled with Yes/No paths
+```
+
+**Timeline/Roadmap:**
+```
+Create a [horizontal/vertical] timeline for [subject].
+
+MILESTONES:
+- [Date/Phase]: [Event/milestone name] — [significance]
+- [Date/Phase]: [Event/milestone name] — [significance]
+- [Date/Phase]: [Event/milestone name] — [significance]
+
+VISUAL REQUIREMENTS:
+- Central axis with markers at each milestone
+- Visual weight emphasizes [current state / key moment]
+- Progressive color gradient showing [past→present→future]
+```
+
+**Comparison/Split-Screen:**
+```
+Create a split-screen comparison: [Option A] vs [Option B].
+
+COMPARISON POINTS:
+| Aspect | [Option A] | [Option B] |
+|--------|------------|------------|
+| [Metric 1] | [Value/description] | [Value/description] |
+| [Metric 2] | [Value/description] | [Value/description] |
+
+VISUAL REQUIREMENTS:
+- Symmetrical layout with clear center divider
+- Left uses [color A], right uses [color B]
+- Icons or small illustrations for each aspect
+- Winner/recommendation subtly highlighted
+```
+
+**Network/Concept Map:**
+```
+Create a network visualization showing [concept/ecosystem].
+
+NODES:
+- Central: [Main concept] — [role/importance]
+- Connected: [Related concept 1] — [relationship type]
+- Connected: [Related concept 2] — [relationship type]
+- Peripheral: [Supporting concepts]
+
+RELATIONSHIPS:
+- [Node A] ↔ [Node B]: [connection type, strength]
+- [Node A] → [Node C]: [directional relationship]
+
+VISUAL REQUIREMENTS:
+- Central node largest/most prominent
+- Connection line weight indicates relationship strength
+- Node clusters for related concepts
+- Minimal labels, rely on visual hierarchy
+```
+
+### Content Density Guidelines
+
+**Low Density (Hero Visuals):**
+- 1-3 key elements
+- Large display size (800px+ width)
+- Minimal text, rely on visual metaphor
+- Use for: Opening slides, key insights, emotional moments
+
+**Medium Density (Supporting Diagrams):**
+- 4-8 elements with labels
+- Medium display size (400-700px width)
+- Concise labels (2-4 words each)
+- Use for: Process explanations, comparisons, feature lists
+
+**High Density (Reference Infographics):**
+- 10+ elements with detailed labels
+- Can be larger for detail
+- More text acceptable if hierarchy clear
+- Use for: Technical deep-dives, comprehensive overviews
+
+### Common Mistakes to Avoid
+
+1. **Overcrowding** — If you need more than 8-10 elements, split into multiple graphics
+2. **Tiny text** — Always specify minimum text size relative to display dimensions
+3. **Photorealism** — Flat vector styles render more clearly at small sizes
+4. **Missing context** — Don't just list elements; explain relationships and significance
+5. **Generic colors** — Always use brand palette hex codes, not vague descriptors
+6. **No emphasis** — Every infographic needs a visual focal point
+
+---
+
+## Claude Code CLI Visual Evaluation
+
+Claude Code can evaluate generated infographics qualitatively by examining them through the Read tool or screenshots. Use this workflow to iterate on visual quality.
+
+### Evaluation Criteria
+
+When reviewing generated images, assess:
+
+**1. Clarity & Readability**
+- Is text legible at the intended display size?
+- Are labels positioned clearly near their referents?
+- Is the visual hierarchy obvious (what's most important)?
+
+**2. Accuracy & Completeness**
+- Does the infographic capture all required elements?
+- Are relationships correctly represented?
+- Is any information missing or misrepresented?
+
+**3. Brand Alignment**
+- Does it use the correct color palette?
+- Is the style consistent with brand guidelines?
+- Would it fit seamlessly into the slide deck?
+
+**4. Visual Balance**
+- Is there appropriate whitespace/negative space?
+- Are elements evenly distributed (unless intentionally asymmetric)?
+- Does the composition guide the eye appropriately?
+
+### Evaluation Workflow
+
+```
+1. Generate infographic with detailed prompt
+2. Read the generated image file with Claude Code
+3. Assess against the criteria above
+4. Document issues found
+5. Refine prompt with specific corrections
+6. Regenerate and compare
+```
+
+### Prompt Refinement Patterns
+
+**If text is illegible:**
+```
+Add to prompt: "Minimum text size 28pt at output resolution.
+Use high-contrast colors for text against backgrounds."
+```
+
+**If layout is cluttered:**
+```
+Add to prompt: "Leave 15% margin on all edges.
+Increase spacing between elements by 50%.
+Remove any decorative elements that don't convey information."
+```
+
+**If hierarchy is unclear:**
+```
+Add to prompt: "Make [primary element] 2× larger than secondary elements.
+Use color saturation to indicate importance: brightest = most important.
+Add subtle drop shadow to lift key elements."
+```
+
+**If brand colors are wrong:**
+```
+Add to prompt: "STRICT COLOR PALETTE — use ONLY these colors:
+- Primary: #[exact hex]
+- Secondary: #[exact hex]
+- Accent: #[exact hex]
+- Background: #[exact hex]
+Do not introduce any colors not in this list."
+```
+
+### Iteration Example
+
+**First attempt prompt:**
+```
+Create a workflow diagram for our data pipeline.
+```
+
+**Claude Code evaluation:**
+"The generated diagram has 6 stages but text is too small to read at 400px display width. The colors are generic blue/gray instead of Synthyra brand. Missing the feedback loop between stages 4 and 2."
+
+**Refined prompt:**
+```
+Create a horizontal workflow diagram for Synthyra's data pipeline.
+
+SIZE: 1200px × 400px (displays at 600px × 200px)
+Text minimum 32pt at output size.
+
+STAGES (left to right):
+1. Data Ingestion — sensors, APIs, manual entry
+2. Validation — schema checks, anomaly detection
+3. Processing — normalization, enrichment
+4. Analysis — ML models, pattern recognition
+5. Storage — data lake, indexed retrieval
+6. Visualization — dashboards, reports
+
+IMPORTANT: Add feedback arrow from stage 4 back to stage 2
+(analysis results improve validation rules)
+
+COLOR PALETTE (Synthyra brand):
+- Background: #fafbfc
+- Primary nodes: #ed8936 (amber)
+- Secondary elements: #00b5d8 (cyan)
+- Connectors: #4a5568 (slate)
+- Text: #1a1a2e (dark)
+
+STYLE: Modern biotech aesthetic, clean flat vector,
+subtle gradients on nodes, no photorealism.
+```
