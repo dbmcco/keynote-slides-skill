@@ -1,0 +1,1420 @@
+<!doctype html>
+<!-- ABOUTME: Single-file Keynote-style slide deck template with brand tokens and Gemini hooks. -->
+<!-- ABOUTME: Includes slide layouts, navigation, and optional media generation controls. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Keynote Style Deck</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400,600,700&family=Space+Grotesk:wght@400;500;600&display=swap");
+
+      :root {
+        --brand-ink: #0d1117;
+        --brand-ink-soft: #18202a;
+        --brand-paper: #f7f1e8;
+        --brand-paper-deep: #efe3d4;
+        --brand-accent: #ff6b35;
+        --brand-accent-strong: #ff4d1a;
+        --brand-sage: #93a77a;
+        --brand-slate: #3a4654;
+        --brand-line: rgba(13, 17, 23, 0.12);
+        --brand-glow: rgba(255, 107, 53, 0.35);
+        --font-display: "Fraunces", "Iowan Old Style", "Palatino", serif;
+        --font-body: "Space Grotesk", "Avenir Next", "Gill Sans", sans-serif;
+        --slide-radius: 28px;
+        --slide-shadow: 0 24px 60px rgba(13, 17, 23, 0.18);
+        --slide-border: 1px solid rgba(13, 17, 23, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: var(--font-body);
+        color: var(--brand-ink);
+        background:
+          radial-gradient(circle at 15% 20%, rgba(255, 107, 53, 0.12), transparent 55%),
+          radial-gradient(circle at 85% 8%, rgba(147, 167, 122, 0.18), transparent 45%),
+          linear-gradient(180deg, #fdf8f0 0%, #f4eadf 45%, #ede0d2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6vh 4vw 10vh;
+      }
+
+      .deck {
+        position: relative;
+        width: min(1200px, 92vw);
+        height: min(720px, 72vh);
+      }
+
+      .slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transform: translateY(12px) scale(0.985);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        pointer-events: none;
+      }
+
+      .slide.is-active {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+      }
+
+      .slide-inner {
+        height: 100%;
+        background: var(--brand-paper);
+        border-radius: var(--slide-radius);
+        box-shadow: var(--slide-shadow);
+        border: var(--slide-border);
+        padding: clamp(28px, 4vw, 56px);
+        display: grid;
+        gap: clamp(16px, 2.4vh, 28px);
+        overflow: hidden;
+      }
+
+      .theme-ink .slide-inner {
+        background: #0f141b;
+        color: #f7f1e8;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .theme-ink .chip,
+      .theme-ink .card,
+      .theme-ink .media-frame {
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+
+      .layout-title {
+        align-content: center;
+        grid-template-rows: auto;
+      }
+
+      .layout-split {
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+      }
+
+      .layout-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-content: start;
+      }
+
+      .layout-metrics {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-content: center;
+      }
+
+      .layout-quote {
+        align-content: center;
+        text-align: center;
+      }
+
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.24em;
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: var(--brand-accent);
+      }
+
+      .title {
+        font-family: var(--font-display);
+        font-size: clamp(2.8rem, 5vw, 4.4rem);
+        line-height: 1.05;
+        margin: 0;
+      }
+
+      .subtitle {
+        font-size: clamp(1rem, 1.6vw, 1.35rem);
+        line-height: 1.5;
+        margin: 0;
+        color: var(--brand-slate);
+        max-width: 70%;
+      }
+
+      .theme-ink .subtitle {
+        color: rgba(247, 241, 232, 0.8);
+      }
+
+      .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .chip {
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--brand-line);
+        font-size: 0.85rem;
+        font-weight: 500;
+        background: rgba(255, 255, 255, 0.6);
+      }
+
+      .theme-ink .chip {
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .section-title {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 3.4vw, 3rem);
+        margin: 0;
+      }
+
+      .body-text {
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: var(--brand-slate);
+      }
+
+      .theme-ink .body-text {
+        color: rgba(247, 241, 232, 0.78);
+      }
+
+      .card {
+        border-radius: 18px;
+        border: 1px solid var(--brand-line);
+        padding: 18px;
+        background: rgba(255, 255, 255, 0.6);
+        display: grid;
+        gap: 10px;
+      }
+
+      .theme-ink .card {
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .card-title {
+        font-weight: 600;
+        font-size: 1rem;
+      }
+
+      .card-caption {
+        font-size: 0.9rem;
+        color: var(--brand-slate);
+      }
+
+      .theme-ink .card-caption {
+        color: rgba(247, 241, 232, 0.72);
+      }
+
+      .metric {
+        border: 1px solid var(--brand-line);
+        border-radius: 18px;
+        padding: 18px;
+        text-align: left;
+        background: rgba(255, 255, 255, 0.65);
+      }
+
+      .metric-number {
+        font-family: var(--font-display);
+        font-size: 2.4rem;
+        margin-bottom: 8px;
+      }
+
+      .metric-label {
+        font-size: 0.9rem;
+        color: var(--brand-slate);
+      }
+
+      .media-frame {
+        border-radius: 22px;
+        border: 1px solid var(--brand-line);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.2));
+        padding: 14px;
+        min-height: 320px;
+        display: grid;
+        place-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .theme-ink .media-frame {
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .media-placeholder {
+        text-align: center;
+        font-size: 0.9rem;
+        color: var(--brand-slate);
+        padding: 16px;
+        z-index: 2;
+      }
+
+      .media-frame[data-ready="true"] .media-placeholder {
+        opacity: 0;
+      }
+
+      .gen-media {
+        width: 100%;
+        height: 100%;
+        border-radius: 16px;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .media-frame[data-ready="true"] .gen-media {
+        opacity: 1;
+      }
+
+      .media-frame video.gen-media {
+        background: #0b0f14;
+      }
+
+      .diagram {
+        width: 100%;
+        height: 100%;
+      }
+
+      .quote {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 3.6vw, 3.4rem);
+        line-height: 1.2;
+        margin: 0;
+      }
+
+      .quote-meta {
+        margin-top: 16px;
+        font-size: 0.95rem;
+        color: var(--brand-slate);
+      }
+
+      .theme-ink .quote-meta {
+        color: rgba(247, 241, 232, 0.7);
+      }
+
+      .swatch-row {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .swatch {
+        border-radius: 14px;
+        padding: 14px;
+        color: #ffffff;
+        min-height: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 0.85rem;
+      }
+
+      .swatch span {
+        font-weight: 600;
+      }
+
+      .deck-nav {
+        position: fixed;
+        bottom: 3vh;
+        right: 4vw;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(13, 17, 23, 0.76);
+        color: #f7f1e8;
+        font-size: 0.9rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+      }
+
+      .deck-nav button {
+        border: none;
+        background: rgba(255, 255, 255, 0.08);
+        color: inherit;
+        padding: 6px 10px;
+        border-radius: 999px;
+        cursor: pointer;
+      }
+
+      .deck-nav button:hover {
+        background: rgba(255, 255, 255, 0.18);
+      }
+
+      .progress {
+        width: 120px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+
+      .progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, var(--brand-accent), var(--brand-sage));
+        width: 0%;
+      }
+
+      .gen-toggle {
+        position: fixed;
+        bottom: 3vh;
+        left: 4vw;
+        border: none;
+        border-radius: 999px;
+        padding: 10px 16px;
+        background: rgba(13, 17, 23, 0.76);
+        color: #f7f1e8;
+        font-size: 0.9rem;
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+      }
+
+      .gen-panel {
+        position: fixed;
+        left: 4vw;
+        bottom: 9vh;
+        width: min(360px, 92vw);
+        background: rgba(13, 17, 23, 0.92);
+        color: #f7f1e8;
+        border-radius: 18px;
+        padding: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 20px 40px rgba(13, 17, 23, 0.4);
+        display: none;
+        gap: 12px;
+      }
+
+      .gen-panel.is-open {
+        display: grid;
+      }
+
+      .gen-panel label {
+        font-size: 0.8rem;
+        display: grid;
+        gap: 6px;
+      }
+
+      .gen-panel input,
+      .gen-panel select {
+        border-radius: 10px;
+        border: none;
+        padding: 8px 10px;
+        font-size: 0.9rem;
+      }
+
+      .gen-actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .gen-actions button {
+        border: none;
+        padding: 8px 12px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.12);
+        color: inherit;
+        cursor: pointer;
+      }
+
+      .gen-status {
+        font-size: 0.8rem;
+        color: rgba(247, 241, 232, 0.72);
+        min-height: 1.1em;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(12px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        transition-delay: calc(var(--reveal-index, 0) * 0.08s);
+      }
+
+      .slide.is-active .reveal {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 900px) {
+        .deck {
+          height: min(640px, 76vh);
+        }
+
+        .layout-split {
+          grid-template-columns: 1fr;
+        }
+
+        .layout-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .layout-metrics {
+          grid-template-columns: 1fr;
+        }
+
+        .subtitle {
+          max-width: 100%;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .slide,
+        .reveal {
+          transition: none;
+        }
+      }
+
+      @page {
+        size: 13.33in 7.5in;
+        margin: 0.35in;
+      }
+
+      @media print {
+        body {
+          background: #ffffff;
+          padding: 0;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        .deck {
+          width: 100%;
+          height: auto;
+        }
+
+        .slide {
+          position: relative;
+          opacity: 1;
+          transform: none;
+          pointer-events: auto;
+          page-break-after: always;
+          break-after: page;
+        }
+
+        .slide:last-child {
+          page-break-after: auto;
+          break-after: auto;
+        }
+
+        .slide-inner {
+          border-radius: 0;
+          box-shadow: none;
+        }
+
+        .deck-nav,
+        .gen-toggle,
+        .gen-panel {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="deck" id="deck" aria-live="polite">
+      <section class="slide theme-ivory is-active" data-title="Title">
+        <div class="slide-inner layout-title">
+          <div class="eyebrow reveal" style="--reveal-index: 1">Keynote Style Deck</div>
+          <h1 class="title reveal" style="--reveal-index: 2">Nano Banana Slidecraft</h1>
+          <p class="subtitle reveal" style="--reveal-index: 3">
+            Single-file HTML slides with brand tokens, templated layouts, and Gemini media hooks.
+          </p>
+          <div class="chip-row reveal" style="--reveal-index: 4">
+            <div class="chip">Minimal navigation</div>
+            <div class="chip">Template-driven</div>
+            <div class="chip">Image and video ready</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide theme-ivory" data-title="Agenda">
+        <div class="slide-inner layout-split">
+          <div>
+            <h2 class="section-title reveal" style="--reveal-index: 1">Deck Flow</h2>
+            <p class="body-text reveal" style="--reveal-index: 2">
+              Keep each section short. Use a single visual idea per slide and rely on the templates for rhythm.
+            </p>
+            <div class="chip-row reveal" style="--reveal-index: 3">
+              <div class="chip">Brand tokens</div>
+              <div class="chip">Media prompts</div>
+              <div class="chip">Keynote spacing</div>
+            </div>
+          </div>
+          <div class="card reveal" style="--reveal-index: 2">
+            <div class="card-title">Sequence</div>
+            <div class="card-caption">1. Title and thesis</div>
+            <div class="card-caption">2. Problem / tension</div>
+            <div class="card-caption">3. Visual proof</div>
+            <div class="card-caption">4. Offer or roadmap</div>
+            <div class="card-caption">5. Close with ask</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide theme-ivory" data-title="Templates">
+        <div class="slide-inner">
+          <h2 class="section-title reveal" style="--reveal-index: 1">Template Grid</h2>
+          <div class="layout-grid">
+            <div class="card reveal" style="--reveal-index: 2">
+              <div class="card-title">Title</div>
+              <div class="card-caption">Single idea, hero headline.</div>
+            </div>
+            <div class="card reveal" style="--reveal-index: 3">
+              <div class="card-title">Split</div>
+              <div class="card-caption">Narrative on the left, media on the right.</div>
+            </div>
+            <div class="card reveal" style="--reveal-index: 4">
+              <div class="card-title">Metrics</div>
+              <div class="card-caption">Highlight outcomes with strong numbers.</div>
+            </div>
+            <div class="card reveal" style="--reveal-index: 5">
+              <div class="card-title">Quote</div>
+              <div class="card-caption">Pause, breathe, and emphasize a belief.</div>
+            </div>
+            <div class="card reveal" style="--reveal-index: 6">
+              <div class="card-title">Diagram</div>
+              <div class="card-caption">Process flow or capability map.</div>
+            </div>
+            <div class="card reveal" style="--reveal-index: 7">
+              <div class="card-title">Gallery</div>
+              <div class="card-caption">Three cards, three points, no fluff.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide theme-ink" data-title="Capability Map">
+        <div class="slide-inner">
+          <h2 class="section-title reveal" style="--reveal-index: 1">Gemini Media Map</h2>
+          <div class="body-text reveal" style="--reveal-index: 2">
+            Use text-to-image for diagrams and moodboards, image-to-image for brand stylization,
+            and Veo for short motion clips.
+          </div>
+          <svg class="diagram reveal" style="--reveal-index: 3" viewBox="0 0 900 360" role="img" aria-label="Capability map">
+            <rect width="900" height="360" rx="28" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" />
+            <circle cx="140" cy="120" r="48" fill="rgba(255,107,53,0.18)" stroke="rgba(255,255,255,0.4)" />
+            <text x="140" y="120" text-anchor="middle" fill="#f7f1e8" font-size="14" font-family="Space Grotesk">Text</text>
+            <text x="140" y="138" text-anchor="middle" fill="#f7f1e8" font-size="12" font-family="Space Grotesk">Prompt</text>
+
+            <circle cx="140" cy="250" r="48" fill="rgba(147,167,122,0.2)" stroke="rgba(255,255,255,0.4)" />
+            <text x="140" y="250" text-anchor="middle" fill="#f7f1e8" font-size="14" font-family="Space Grotesk">Image</text>
+            <text x="140" y="268" text-anchor="middle" fill="#f7f1e8" font-size="12" font-family="Space Grotesk">Base</text>
+
+            <rect x="320" y="60" width="200" height="90" rx="16" fill="rgba(255,255,255,0.08)" />
+            <text x="420" y="100" text-anchor="middle" fill="#f7f1e8" font-size="14" font-family="Space Grotesk">Text to Image</text>
+            <rect x="320" y="200" width="200" height="90" rx="16" fill="rgba(255,255,255,0.08)" />
+            <text x="420" y="240" text-anchor="middle" fill="#f7f1e8" font-size="14" font-family="Space Grotesk">Image to Image</text>
+
+            <rect x="600" y="60" width="200" height="90" rx="16" fill="rgba(255,255,255,0.08)" />
+            <text x="700" y="100" text-anchor="middle" fill="#f7f1e8" font-size="14" font-family="Space Grotesk">Text to Video</text>
+            <rect x="600" y="200" width="200" height="90" rx="16" fill="rgba(255,255,255,0.08)" />
+            <text x="700" y="240" text-anchor="middle" fill="#f7f1e8" font-size="14" font-family="Space Grotesk">Image to Video</text>
+
+            <line x1="188" y1="120" x2="320" y2="105" stroke="rgba(255,255,255,0.45)" stroke-width="2" />
+            <line x1="188" y1="250" x2="320" y2="245" stroke="rgba(255,255,255,0.45)" stroke-width="2" />
+            <line x1="520" y1="105" x2="600" y2="105" stroke="rgba(255,255,255,0.45)" stroke-width="2" />
+            <line x1="520" y1="245" x2="600" y2="245" stroke="rgba(255,255,255,0.45)" stroke-width="2" />
+          </svg>
+        </div>
+      </section>
+
+      <section class="slide theme-ivory" data-title="Text to Image">
+        <div class="slide-inner layout-split">
+          <div>
+            <h2 class="section-title reveal" style="--reveal-index: 1">Text to Image</h2>
+            <p class="body-text reveal" style="--reveal-index: 2">
+              Generate diagrams, texture, and hero art with a prompt that locks brand tone and lighting.
+            </p>
+            <div class="card reveal" style="--reveal-index: 3">
+              <div class="card-title">Prompt</div>
+              <div class="card-caption">
+                Editorial illustration, warm parchment palette, crisp linework, minimal shadows.
+              </div>
+            </div>
+          </div>
+          <div class="media-frame reveal" style="--reveal-index: 2">
+            <div class="media-placeholder">Text to Image preview</div>
+            <img
+              class="gen-media"
+              data-gen="text-to-image"
+              data-prompt="Editorial illustration of a layered keynote slide, warm parchment palette, crisp linework, minimal shadows"
+              alt="Generated text to image"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="slide theme-ivory" data-title="Image to Image">
+        <div class="slide-inner layout-split">
+          <div>
+            <h2 class="section-title reveal" style="--reveal-index: 1">Image to Image</h2>
+            <p class="body-text reveal" style="--reveal-index: 2">
+              Use a base image and restyle it into your brand's visual language. Set a base image in the generator panel.
+            </p>
+            <div class="card reveal" style="--reveal-index: 3">
+              <div class="card-title">Prompt</div>
+              <div class="card-caption">
+                Restyle into a matte collage with warm paper textures and bold orange accents.
+              </div>
+            </div>
+          </div>
+          <div class="media-frame reveal" style="--reveal-index: 2">
+            <div class="media-placeholder">Image to Image preview</div>
+            <img
+              class="gen-media"
+              data-gen="image-to-image"
+              data-prompt="Restyle into a matte collage with warm paper textures and bold orange accents"
+              alt="Generated image to image"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section class="slide theme-ivory" data-title="Text to Video">
+        <div class="slide-inner layout-split">
+          <div>
+            <h2 class="section-title reveal" style="--reveal-index: 1">Text to Video</h2>
+            <p class="body-text reveal" style="--reveal-index: 2">
+              Short cinematic clips that open a section or reinforce a transition. Expect longer generation times.
+            </p>
+            <div class="card reveal" style="--reveal-index: 3">
+              <div class="card-title">Prompt</div>
+              <div class="card-caption">
+                Slow pan across layered paper textures and a glowing brand mark, soft studio lighting.
+              </div>
+            </div>
+          </div>
+          <div class="media-frame reveal" style="--reveal-index: 2">
+            <div class="media-placeholder">Text to Video preview</div>
+            <video
+              class="gen-media"
+              data-gen="text-to-video"
+              data-prompt="Slow pan across layered paper textures and a glowing brand mark, soft studio lighting"
+              muted
+              loop
+              playsinline
+            ></video>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide theme-ivory" data-title="Image to Video">
+        <div class="slide-inner layout-split">
+          <div>
+            <h2 class="section-title reveal" style="--reveal-index: 1">Image to Video</h2>
+            <p class="body-text reveal" style="--reveal-index: 2">
+              Animate a still into a short motion vignette. Provide a base image in the generator panel.
+            </p>
+            <div class="card reveal" style="--reveal-index: 3">
+              <div class="card-title">Prompt</div>
+              <div class="card-caption">
+                Gentle parallax, soft shadow drift, camera push in, warm studio grade.
+              </div>
+            </div>
+          </div>
+          <div class="media-frame reveal" style="--reveal-index: 2">
+            <div class="media-placeholder">Image to Video preview</div>
+            <video
+              class="gen-media"
+              data-gen="image-to-video"
+              data-prompt="Gentle parallax, soft shadow drift, camera push in, warm studio grade"
+              muted
+              loop
+              playsinline
+            ></video>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide theme-ivory" data-title="Brand Tokens">
+        <div class="slide-inner">
+          <h2 class="section-title reveal" style="--reveal-index: 1">Brand Tokens</h2>
+          <div class="body-text reveal" style="--reveal-index: 2">
+            Update the CSS variables to match your brand. Keep contrast high and typography confident.
+          </div>
+          <div class="swatch-row reveal" style="--reveal-index: 3">
+            <div class="swatch" style="background: var(--brand-ink)">
+              <span>Ink</span>
+              <div data-token="brand-ink">#0d1117</div>
+            </div>
+            <div class="swatch" style="background: var(--brand-accent)">
+              <span>Accent</span>
+              <div data-token="brand-accent">#ff6b35</div>
+            </div>
+            <div class="swatch" style="background: var(--brand-sage)">
+              <span>Sage</span>
+              <div data-token="brand-sage">#93a77a</div>
+            </div>
+            <div class="swatch" style="background: var(--brand-slate)">
+              <span>Slate</span>
+              <div data-token="brand-slate">#3a4654</div>
+            </div>
+          </div>
+          <div class="card reveal" style="--reveal-index: 4">
+            <div class="card-title">Typography</div>
+            <div class="card-caption" data-font-label>Display: Fraunces. Body: Space Grotesk.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide theme-ink" data-title="Close">
+        <div class="slide-inner layout-quote">
+          <p class="quote reveal" style="--reveal-index: 1">
+            "Keep one bold idea per slide. Let whitespace do the talking."
+          </p>
+          <div class="quote-meta reveal" style="--reveal-index: 2">Keynote Style Deck Guide</div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="deck-nav" aria-label="Slide navigation">
+      <button id="prev-btn" type="button" aria-label="Previous slide">&larr;</button>
+      <div class="progress" aria-hidden="true">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <div id="progress-count">1 / 10</div>
+      <button id="next-btn" type="button" aria-label="Next slide">&rarr;</button>
+    </nav>
+
+    <button class="gen-toggle" id="gen-toggle" type="button">Gen</button>
+    <aside class="gen-panel" id="gen-panel" aria-hidden="true">
+      <strong>Gemini Media Controls</strong>
+      <label>
+        API key (local only)
+        <input id="gen-key" type="password" placeholder="GEMINI_API_KEY" />
+      </label>
+      <label>
+        Entity profile
+        <select id="gen-entity"></select>
+      </label>
+      <label>
+        Image model (nano banana)
+        <input id="gen-image-model" type="text" inputmode="text" placeholder="gemini-2.5-flash-image" />
+      </label>
+      <label>
+        Base image (optional for i2i/i2v)
+        <input id="gen-base" type="file" accept="image/*" />
+      </label>
+      <label>
+        Video model
+        <select id="gen-video-model">
+          <option value="veo-3.1-generate-preview">veo-3.1-generate-preview</option>
+          <option value="veo-3.0-generate-preview">veo-3.0-generate-preview</option>
+        </select>
+      </label>
+      <div class="gen-actions">
+        <button id="gen-save" type="button">Save settings</button>
+        <button id="gen-slide" type="button">Generate slide</button>
+        <button id="gen-all" type="button">Generate all</button>
+        <button id="gen-close" type="button">Close</button>
+      </div>
+      <div class="gen-status" id="gen-status"></div>
+    </aside>
+
+    <template id="template-title">
+      <section class="slide theme-ivory" data-title="Title">
+        <div class="slide-inner layout-title">
+          <div class="eyebrow">Eyebrow</div>
+          <h1 class="title">Slide Title</h1>
+          <p class="subtitle">Subtitle with a concise thesis.</p>
+          <div class="chip-row">
+            <div class="chip">Chip one</div>
+            <div class="chip">Chip two</div>
+          </div>
+        </div>
+      </section>
+    </template>
+
+    <template id="template-split">
+      <section class="slide theme-ivory" data-title="Split">
+        <div class="slide-inner layout-split">
+          <div>
+            <h2 class="section-title">Section title</h2>
+            <p class="body-text">Narrative text goes here.</p>
+          </div>
+          <div class="media-frame">
+            <div class="media-placeholder">Media</div>
+          </div>
+        </div>
+      </section>
+    </template>
+
+    <template id="template-metrics">
+      <section class="slide theme-ivory" data-title="Metrics">
+        <div class="slide-inner layout-metrics">
+          <div class="metric">
+            <div class="metric-number">45%</div>
+            <div class="metric-label">Metric label</div>
+          </div>
+          <div class="metric">
+            <div class="metric-number">3.2x</div>
+            <div class="metric-label">Metric label</div>
+          </div>
+          <div class="metric">
+            <div class="metric-number">12</div>
+            <div class="metric-label">Metric label</div>
+          </div>
+        </div>
+      </section>
+    </template>
+
+    <template id="template-quote">
+      <section class="slide theme-ink" data-title="Quote">
+        <div class="slide-inner layout-quote">
+          <p class="quote">"Quote goes here."</p>
+          <div class="quote-meta">Source</div>
+        </div>
+      </section>
+    </template>
+
+    <script src="../brands.js"></script>
+    <script src="./deck-config.js"></script>
+    <script>
+      const slides = Array.from(document.querySelectorAll(".slide"));
+      const progressBar = document.getElementById("progress-bar");
+      const progressCount = document.getElementById("progress-count");
+      const prevBtn = document.getElementById("prev-btn");
+      const nextBtn = document.getElementById("next-btn");
+      let currentIndex = slides.findIndex((slide) => slide.classList.contains("is-active"));
+      if (currentIndex < 0 && slides.length) {
+        currentIndex = 0;
+        slides[0].classList.add("is-active");
+      }
+
+      const genToggle = document.getElementById("gen-toggle");
+      const genPanel = document.getElementById("gen-panel");
+      const genKey = document.getElementById("gen-key");
+      const genBase = document.getElementById("gen-base");
+      const genSave = document.getElementById("gen-save");
+      const genSlide = document.getElementById("gen-slide");
+      const genAll = document.getElementById("gen-all");
+      const genClose = document.getElementById("gen-close");
+      const genStatus = document.getElementById("gen-status");
+      const genEntity = document.getElementById("gen-entity");
+      const genImageModel = document.getElementById("gen-image-model");
+      const genVideoModel = document.getElementById("gen-video-model");
+
+      const apiBase = "https://generativelanguage.googleapis.com/v1beta";
+      const defaultImageModel = "gemini-2.5-flash-image";
+      const keyStorage = "GEMINI_API_KEY";
+      const imageModelStorage = "KEYNOTE_IMAGE_MODEL";
+      const deckConfig = window.KEYNOTE_DECK || {};
+      const deckId =
+        typeof deckConfig.id === "string" && deckConfig.id.trim()
+          ? deckConfig.id.trim()
+          : "default";
+      const entityStorage = `KEYNOTE_ENTITY_${deckId}`;
+      // Example brand profiles - replace with your own
+      const fallbackBrandProfiles = {
+        northwind: {
+          label: "Northwind Labs",
+          tokens: {
+            "brand-ink": "#1a1a2e",
+            "brand-ink-soft": "#2d2d44",
+            "brand-paper": "#fafbfc",
+            "brand-paper-deep": "#f0f2f5",
+            "brand-accent": "#ed8936",
+            "brand-accent-strong": "#dd6b20",
+            "brand-sage": "#00b5d8",
+            "brand-slate": "#4a5568",
+            "brand-line": "rgba(26, 26, 46, 0.12)",
+            "brand-glow": "rgba(237, 137, 54, 0.35)",
+          },
+          fonts: {
+            display: "\"Inter\", \"Helvetica Neue\", sans-serif",
+            body: "\"Inter\", \"Helvetica Neue\", sans-serif",
+          },
+          fontLabel: "Display: Inter. Body: Inter.",
+          mediaPromptPrefix: "modern tech palette, amber and cyan highlights, clean studio lighting",
+        },
+        apex: {
+          label: "Apex Consulting",
+          tokens: {
+            "brand-ink": "#1a1a1a",
+            "brand-ink-soft": "#333333",
+            "brand-paper": "#f5f1e8",
+            "brand-paper-deep": "#e8dcc6",
+            "brand-accent": "#b8956f",
+            "brand-accent-strong": "#9a7a57",
+            "brand-sage": "#d4a574",
+            "brand-slate": "#666666",
+            "brand-line": "rgba(26, 26, 26, 0.12)",
+            "brand-glow": "rgba(184, 149, 111, 0.35)",
+          },
+          fonts: {
+            display: "\"Helvetica Neue\", \"Segoe UI\", \"Helvetica\", sans-serif",
+            body: "\"Helvetica Neue\", \"Segoe UI\", \"Helvetica\", sans-serif",
+          },
+          fontLabel: "Display: System sans. Body: System sans.",
+          mediaPromptPrefix: "warm parchment palette, refined brass accents, minimal editorial lighting",
+        },
+        coastal: {
+          label: "Coastal Biotech",
+          tokens: {
+            "brand-ink": "#0e2841",
+            "brand-ink-soft": "#1a3a57",
+            "brand-paper": "#f6f7f9",
+            "brand-paper-deep": "#e8e8e8",
+            "brand-accent": "#156082",
+            "brand-accent-strong": "#0f9ed5",
+            "brand-sage": "#196b24",
+            "brand-slate": "#0e2841",
+            "brand-line": "rgba(14, 40, 65, 0.12)",
+            "brand-glow": "rgba(21, 96, 130, 0.32)",
+          },
+          fonts: {
+            display: "\"Avenir Next\", \"Helvetica Neue\", sans-serif",
+            body: "\"Avenir Next\", \"Helvetica Neue\", sans-serif",
+          },
+          fontLabel: "Display: Avenir Next. Body: Avenir Next.",
+          mediaPromptPrefix: "navy biotech palette, teal accents, high-clarity lab lighting",
+        },
+      };
+      let brandProfiles =
+        window.KEYNOTE_BRANDS && typeof window.KEYNOTE_BRANDS === "object"
+          ? window.KEYNOTE_BRANDS
+          : fallbackBrandProfiles;
+      const defaultEntity =
+        typeof deckConfig.entity === "string" && deckConfig.entity.trim()
+          ? deckConfig.entity.trim()
+          : typeof window.KEYNOTE_DEFAULT_ENTITY === "string" && window.KEYNOTE_DEFAULT_ENTITY.trim()
+            ? window.KEYNOTE_DEFAULT_ENTITY.trim()
+            : "northwind";
+      let currentEntity = defaultEntity;
+      let baseImage = null;
+
+      const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+      const setStatus = (message) => {
+        genStatus.textContent = message || "";
+      };
+
+      const resolveKey = () =>
+        localStorage.getItem(keyStorage) ||
+        localStorage.getItem("NANO_BANANA_API_KEY") ||
+        "";
+
+      const saveKey = (value) => {
+        if (value) {
+          localStorage.setItem(keyStorage, value);
+        }
+      };
+
+      const resolveImageModel = () => {
+        const fromInput = genImageModel?.value?.trim();
+        return (
+          fromInput ||
+          localStorage.getItem("NANO_BANANA_IMAGE_MODEL") ||
+          localStorage.getItem(imageModelStorage) ||
+          defaultImageModel
+        );
+      };
+
+      const saveImageModel = (value) => {
+        if (value) {
+          localStorage.setItem(imageModelStorage, value);
+        }
+      };
+
+      const resolveEntity = () => {
+        const params = new URLSearchParams(window.location.search);
+        const fromQuery = params.get("entity");
+        if (fromQuery) return fromQuery;
+        const stored = localStorage.getItem(entityStorage);
+        if (stored) return stored;
+        return defaultEntity;
+      };
+
+      const updateTokenLabels = () => {
+        document.querySelectorAll("[data-token]").forEach((el) => {
+          const token = el.dataset.token;
+          if (!token) return;
+          const value = getComputedStyle(document.documentElement)
+            .getPropertyValue(`--${token}`)
+            .trim();
+          if (value) el.textContent = value;
+        });
+      };
+
+      const applyBrandProfile = (entityId, opts = {}) => {
+        const profile = brandProfiles[entityId] || brandProfiles[defaultEntity];
+        if (!profile) return;
+        Object.entries(profile.tokens || {}).forEach(([token, value]) => {
+          if (value) {
+            document.documentElement.style.setProperty(`--${token}`, value);
+          }
+        });
+        if (profile.fonts?.display) {
+          document.documentElement.style.setProperty("--font-display", profile.fonts.display);
+        }
+        if (profile.fonts?.body) {
+          document.documentElement.style.setProperty("--font-body", profile.fonts.body);
+        }
+        if (profile.fontLabel) {
+          const label = document.querySelector("[data-font-label]");
+          if (label) label.textContent = profile.fontLabel;
+        }
+        document.body.dataset.entity = entityId;
+        updateTokenLabels();
+        if (opts.persist) {
+          currentEntity = entityId;
+          localStorage.setItem(entityStorage, entityId);
+        }
+      };
+
+      const applyEntityForSlide = (slide) => {
+        const entityId = slide?.dataset?.entity || currentEntity;
+        applyBrandProfile(entityId, { persist: false });
+      };
+
+      const resolveEntityForElement = (element) => {
+        if (!element) return currentEntity;
+        const elementEntity = element.dataset?.entity;
+        if (elementEntity && brandProfiles[elementEntity]) return elementEntity;
+        const slideEntity = element.closest(".slide")?.dataset?.entity;
+        if (slideEntity && brandProfiles[slideEntity]) return slideEntity;
+        return currentEntity;
+      };
+
+      const buildPrompt = (prompt, entityId) => {
+        const profile = brandProfiles[entityId] || brandProfiles[currentEntity] || brandProfiles[defaultEntity];
+        const prefix = profile?.mediaPromptPrefix || "";
+        const suffix = profile?.mediaPromptSuffix || "";
+        return [prefix, prompt, suffix].filter(Boolean).join(", ");
+      };
+
+      const populateEntitySelect = () => {
+        if (!genEntity) return;
+        genEntity.innerHTML = "";
+        Object.entries(brandProfiles).forEach(([id, profile]) => {
+          const option = document.createElement("option");
+          option.value = id;
+          option.textContent = profile.label || id;
+          genEntity.appendChild(option);
+        });
+      };
+
+      const updateProgress = () => {
+        const total = slides.length;
+        const current = currentIndex + 1;
+        const pct = total === 0 ? 0 : (current / total) * 100;
+        progressBar.style.width = `${pct}%`;
+        progressCount.textContent = `${current} / ${total}`;
+      };
+
+      const showSlide = (index) => {
+        if (index < 0 || index >= slides.length) return;
+        slides[currentIndex]?.classList.remove("is-active");
+        slides[currentIndex]?.setAttribute("aria-hidden", "true");
+        currentIndex = index;
+        slides[currentIndex].classList.add("is-active");
+        slides[currentIndex].setAttribute("aria-hidden", "false");
+        updateProgress();
+        applyEntityForSlide(slides[currentIndex]);
+        const slug = slides[currentIndex].dataset.title || `slide-${currentIndex + 1}`;
+        history.replaceState(null, "", `#${slug.toLowerCase().replace(/\\s+/g, "-")}`);
+      };
+
+      const nextSlide = () => showSlide(currentIndex + 1);
+      const prevSlide = () => showSlide(currentIndex - 1);
+
+      const gotoFromHash = () => {
+        const hash = window.location.hash.replace("#", "").trim();
+        if (!hash) return;
+        const idx = slides.findIndex((slide) => {
+          const title = slide.dataset.title || "";
+          const slug = title.toLowerCase().replace(/\\s+/g, "-");
+          return slug === hash;
+        });
+        if (idx >= 0) showSlide(idx);
+      };
+
+      prevBtn.addEventListener("click", prevSlide);
+      nextBtn.addEventListener("click", nextSlide);
+
+      document.addEventListener("keydown", (event) => {
+        const target = event.target;
+        if (
+          target &&
+          (target.tagName === "INPUT" ||
+            target.tagName === "TEXTAREA" ||
+            target.tagName === "SELECT" ||
+            target.isContentEditable)
+        ) {
+          return;
+        }
+        if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
+          event.preventDefault();
+          nextSlide();
+        }
+        if (event.key === "ArrowLeft" || event.key === "PageUp") {
+          event.preventDefault();
+          prevSlide();
+        }
+        if (event.key === "Home") {
+          event.preventDefault();
+          showSlide(0);
+        }
+        if (event.key === "End") {
+          event.preventDefault();
+          showSlide(slides.length - 1);
+        }
+        if (event.key.toLowerCase() === "g") {
+          event.preventDefault();
+          genPanel.classList.toggle("is-open");
+          genPanel.setAttribute("aria-hidden", String(!genPanel.classList.contains("is-open")));
+        }
+      });
+
+      let touchStartX = 0;
+      document.addEventListener("touchstart", (event) => {
+        touchStartX = event.changedTouches[0].clientX;
+      });
+      document.addEventListener("touchend", (event) => {
+        const deltaX = event.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(deltaX) < 50) return;
+        if (deltaX < 0) nextSlide();
+        if (deltaX > 0) prevSlide();
+      });
+
+      window.addEventListener("hashchange", gotoFromHash);
+
+      const parseDataUrl = (dataUrl) => {
+        const match = dataUrl.match(/^data:(.*?);base64,(.*)$/);
+        if (!match) return null;
+        return { mimeType: match[1], base64: match[2] };
+      };
+
+      const loadBaseImage = (file) =>
+        new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onerror = () => reject(new Error("Failed to read base image"));
+          reader.onload = () => resolve(reader.result);
+          reader.readAsDataURL(file);
+        });
+
+      genBase.addEventListener("change", async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+        try {
+          const dataUrl = await loadBaseImage(file);
+          baseImage = parseDataUrl(dataUrl);
+          setStatus(baseImage ? `Loaded base image: ${file.name}` : "Base image format unsupported.");
+        } catch (error) {
+          setStatus(error.message);
+        }
+      });
+
+      const postJson = async (url, body, key) => {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            "x-goog-api-key": key,
+          },
+          body: JSON.stringify(body),
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          throw new Error(data?.error?.message || `Gemini error: ${response.status}`);
+        }
+        return data;
+      };
+
+      const generateImage = async (prompt, inputImage) => {
+        const key = resolveKey();
+        if (!key) throw new Error("Missing API key.");
+        const parts = [];
+        if (inputImage) {
+          parts.push({
+            inline_data: {
+              mime_type: inputImage.mimeType,
+              data: inputImage.base64,
+            },
+          });
+        }
+        parts.push({ text: prompt });
+        const data = await postJson(
+          `${apiBase}/models/${encodeURIComponent(resolveImageModel())}:generateContent`,
+          {
+            contents: [{ role: "user", parts }],
+            generationConfig: { temperature: 0.2 },
+          },
+          key
+        );
+        const partsOut = data?.candidates?.[0]?.content?.parts || [];
+        const inline = partsOut.find((part) => part.inlineData || part.inline_data);
+        const inlineData = inline?.inlineData || inline?.inline_data;
+        if (!inlineData?.data) throw new Error("No image data returned.");
+        const mimeType = inlineData.mimeType || inlineData.mime_type || "image/png";
+        return `data:${mimeType};base64,${inlineData.data}`;
+      };
+
+      const startVideoTask = async (prompt, inputImage, model) => {
+        const key = resolveKey();
+        if (!key) throw new Error("Missing API key.");
+        const instance = { prompt };
+        if (inputImage) {
+          instance.image = {
+            bytesBase64Encoded: inputImage.base64,
+            mimeType: inputImage.mimeType,
+          };
+        }
+        const data = await postJson(
+          `${apiBase}/models/${encodeURIComponent(model)}:predictLongRunning`,
+          {
+            instances: [instance],
+            parameters: {
+              aspectRatio: "16:9",
+              durationSeconds: 6,
+              resolution: "720p",
+              personGeneration: "allow_adult",
+            },
+          },
+          key
+        );
+        if (!data?.name) throw new Error("No operation name returned.");
+        return data.name;
+      };
+
+      const pollVideoTask = async (opName) => {
+        const key = resolveKey();
+        const timeoutMs = 4 * 60 * 1000;
+        const started = Date.now();
+        while (Date.now() - started < timeoutMs) {
+          await wait(8000);
+          const response = await fetch(`${apiBase}/${opName}`, {
+            headers: { "x-goog-api-key": key },
+          });
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok) {
+            throw new Error(data?.error?.message || `Veo poll error: ${response.status}`);
+          }
+          if (data?.done) {
+            if (data?.error) {
+              throw new Error(data.error.message || "Veo operation error.");
+            }
+            const uri =
+              data?.response?.generateVideoResponse?.generatedSamples?.[0]?.video?.uri ||
+              data?.response?.generatedVideos?.[0]?.video?.uri ||
+              data?.response?.generated_videos?.[0]?.video?.uri;
+            if (!uri) throw new Error("No video uri returned.");
+            return uri;
+          }
+        }
+        throw new Error("Video generation timed out.");
+      };
+
+      const fetchVideo = async (uri) => {
+        const key = resolveKey();
+        const response = await fetch(uri, { headers: { "x-goog-api-key": key } });
+        if (!response.ok) {
+          throw new Error(`Video download failed: ${response.status}`);
+        }
+        const blob = await response.blob();
+        return URL.createObjectURL(blob);
+      };
+
+      const generateForElement = async (element) => {
+        const promptBase = element.dataset.prompt;
+        const mode = element.dataset.gen;
+        if (!promptBase || !mode) return;
+        const entityId = resolveEntityForElement(element);
+        const prompt = buildPrompt(promptBase, entityId);
+        setStatus(`Generating ${mode.replace(/-/g, " ")} for ${entityId}...`);
+        if (mode === "text-to-image") {
+          const src = await generateImage(prompt);
+          element.src = src;
+          element.parentElement.dataset.ready = "true";
+        }
+        if (mode === "image-to-image") {
+          if (!baseImage) throw new Error("Base image required for image-to-image.");
+          const src = await generateImage(prompt, baseImage);
+          element.src = src;
+          element.parentElement.dataset.ready = "true";
+        }
+        if (mode === "text-to-video") {
+          const opName = await startVideoTask(prompt, null, genVideoModel.value);
+          const uri = await pollVideoTask(opName);
+          const src = await fetchVideo(uri);
+          element.src = src;
+          element.controls = true;
+          element.parentElement.dataset.ready = "true";
+        }
+        if (mode === "image-to-video") {
+          if (!baseImage) throw new Error("Base image required for image-to-video.");
+          const opName = await startVideoTask(prompt, baseImage, genVideoModel.value);
+          const uri = await pollVideoTask(opName);
+          const src = await fetchVideo(uri);
+          element.src = src;
+          element.controls = true;
+          element.parentElement.dataset.ready = "true";
+        }
+      };
+
+      const generateForSlide = async (slide) => {
+        const targets = slide.querySelectorAll("[data-gen]");
+        for (const target of targets) {
+          await generateForElement(target);
+        }
+      };
+
+      genToggle.addEventListener("click", () => {
+        genPanel.classList.toggle("is-open");
+        genPanel.setAttribute("aria-hidden", String(!genPanel.classList.contains("is-open")));
+      });
+
+      genClose.addEventListener("click", () => {
+        genPanel.classList.remove("is-open");
+        genPanel.setAttribute("aria-hidden", "true");
+      });
+
+      genSave.addEventListener("click", () => {
+        saveKey(genKey.value.trim());
+        saveImageModel(genImageModel.value.trim());
+        applyBrandProfile(genEntity.value, { persist: true });
+        setStatus("Saved settings to localStorage.");
+      });
+
+      genEntity.addEventListener("change", () => {
+        applyBrandProfile(genEntity.value, { persist: true });
+        setStatus(`Entity set to ${genEntity.value}.`);
+      });
+
+      genImageModel.addEventListener("change", () => {
+        saveImageModel(genImageModel.value.trim());
+        setStatus("Image model saved.");
+      });
+
+      genSlide.addEventListener("click", async () => {
+        try {
+          await generateForSlide(slides[currentIndex]);
+          setStatus("Slide generation complete.");
+        } catch (error) {
+          setStatus(error.message);
+        }
+      });
+
+      genAll.addEventListener("click", async () => {
+        try {
+          for (const slide of slides) {
+            await generateForSlide(slide);
+          }
+          setStatus("All slide generation complete.");
+        } catch (error) {
+          setStatus(error.message);
+        }
+      });
+
+      currentEntity = resolveEntity();
+      populateEntitySelect();
+      applyBrandProfile(currentEntity, { persist: false });
+      if (genEntity) genEntity.value = currentEntity;
+      genKey.value = resolveKey();
+      genImageModel.value = resolveImageModel();
+      updateProgress();
+      gotoFromHash();
+      applyEntityForSlide(slides[currentIndex]);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+Create a horizontal workflow diagram showing how the Keynote Slides Skill works.
+
+SIZE & PLACEMENT:
+- Output: 1400px × 450px
+- Full width below slide header
+- Text minimum 24pt at output size
+
+LAYOUT: Flowchart Nodes. Linear horizontal progression with 4 stages.
+Clean curved arrow connectors between stages.
+
+STAGES (left to right):
+1. "Create" - Terminal/CLI icon with command prompt
+   Label: "new-deck.sh"
+   Subtext: "Bootstrap structure"
+
+2. "Design" - HTML file icon with code brackets
+   Label: "Edit HTML"
+   Subtext: "Single-file deck"
+
+3. "Generate" - Sparkle/AI icon with image emerging
+   Label: "AI Media"
+   Subtext: "Infographics & video"
+
+4. "Present" - Browser window with slides
+   Label: "Preview & Export"
+   Subtext: "Serve or PDF"
+
+STYLE: Modern flat vector, subtle glassmorphism on nodes.
+Clean tech aesthetic, no photorealism.
+
+COLOR PALETTE:
+- Background: #fafbfc (light paper)
+- Node backgrounds: White with soft shadow
+- Primary accent: #ed8936 (amber) for main flow arrows
+- Secondary: #00b5d8 (cyan) for icons
+- Connectors: #4a5568 (slate)
+- Text: #1a1a2e (dark ink)
+
+TYPOGRAPHY:
+- Stage names: Bold Sans-Serif, 28pt
+- Labels: Medium, 22pt
+- Subtext: Regular, 18pt
+
+Key insight: From zero to presentation in minutes, with AI-generated visuals.
+Overall feeling: Simplicity, modern tooling, developer-friendly workflow.
