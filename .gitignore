@@ -2,3 +2,4 @@
 # ABOUTME: Keeps beads database out of version control.
 .beads/
 .DS_Store
+lib/media/__pycache__/
