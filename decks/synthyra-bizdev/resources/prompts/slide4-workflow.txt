@@ -1,0 +1,72 @@
+Create a horizontal workflow diagram showing Synthyra's platform pipeline.
+
+SIZE & PLACEMENT:
+- Output: 2000px wide × 500px tall (will display at ~1000×250px on slide)
+- Placement: Full width below the existing platform stack, spanning both columns
+- Icons should be 80px+ at output size, text 28pt+ for readability at 50% scale
+
+LAYOUT: Flowchart Nodes. Linear horizontal progression with 4 connected stages.
+Equal spacing between nodes. Clean arrow connectors flowing left to right.
+Leave 5% margin on left/right edges.
+
+STYLE: Flat vector art with subtle shadows for depth.
+Light background (#fafbfc or white).
+Each stage has its own distinct accent color:
+- Generate: Purple (#805ad5)
+- Annotate: Cyan (#00b5d8)
+- Screen: Amber (#ed8936)
+- Decide: Green (#38a169)
+No photorealism — clean, modern, tech diagram style.
+
+TYPOGRAPHY:
+- Stage names: Bold Sans-Serif, 36pt+
+- Subtext/descriptions: Regular weight, 24pt+
+- All text horizontal (no vertical or rotated text)
+
+CONTENT TO VISUALIZE:
+Synthyra's platform runs a generate-annotate-screen-decide workflow loop.
+This is how the technology components work together to deliver value.
+
+Four connected stages, flowing left to right:
+
+[1] GENERATE (Purple #805ad5)
+- Icon concept: DNA helix, sequence strand, or generation symbol
+- Label: "GENERATE"
+- Subtext: "100-1000 candidates"
+- What happens: DSM engine creates candidate protein sequences optimized
+  for desired properties. Starts with target or function, outputs variants.
+
+→ Clean arrow connecting to next stage →
+
+[2] ANNOTATE (Cyan #00b5d8)
+- Icon concept: Tag, label, classification marker, or annotation symbol
+- Label: "ANNOTATE"
+- Subtext: "Function + pathways"
+- What happens: CAMP engine adds functional annotation to each candidate.
+  What does this protein do? Which pathways? What's the mechanism of action?
+  Provides interpretable context, not just raw sequences.
+
+→ Clean arrow connecting to next stage →
+
+[3] SCREEN (Amber #ed8936)
+- Icon concept: Grid matrix, radar sweep, or screening visualization
+- Label: "SCREEN"
+- Subtext: "Full proteome off-target map"
+- What happens: Synteract Turbo screens every candidate against the entire
+  human proteome. Outputs interaction probability, affinity scores, and
+  binding sites for each candidate. This is where off-target risks surface.
+
+→ Clean arrow connecting to next stage →
+
+[4] DECIDE (Green #38a169)
+- Icon concept: Checkmark in circle, gate, decision diamond, or go/no-go signal
+- Label: "DECIDE"
+- Subtext: "Go/no-go in seconds"
+- What happens: Synteract 4 provides ultrafast decisioning at 375M interactions/sec.
+  Which candidates are safe to advance? Which have red flags? Instant answers.
+
+Arrows should feel like FLOW and PROGRESSION, not just static connectors.
+Maybe subtle animation suggestion (gradient along arrow, or directional marks).
+
+Overall feeling: "This is a systematic, integrated pipeline — not a collection
+of one-off tools. Each stage feeds the next. The whole is greater than the parts."
