@@ -16,7 +16,7 @@ Keynote-style single-file HTML decks with brand adherence, embedded infographics
 
 ```bash
 # Create a new deck
-skills/keynote-slides/scripts/new-deck.sh my-deck --entity synthyra --title "My Presentation" --type pitch
+skills/keynote-slides/scripts/new-deck.sh my-deck --entity northwind --title "My Presentation" --type pitch
 
 # Preview locally
 skills/keynote-slides/scripts/serve-decks.sh
@@ -73,8 +73,6 @@ pkill -f "http.server 5200"
 export GEMINI_API_KEY="your-gemini-api-key"
 export KIE_API_KEY="your-kie-api-key"  # For Veo video generation
 ```
-
-Keys can also be stored in `grok-aurora-cli/.env` (auto-loaded by the Python library).
 
 ### Browser-Based Generation
 
@@ -247,7 +245,7 @@ If issues found, add specific corrections:
 Entity-level brand identities in `decks/brands.js`:
 
 ```javascript
-synthyra: {
+northwind: {
   tokens: {
     '--brand-ink': '#1a1a2e',
     '--brand-paper': '#fafbfc',
@@ -255,16 +253,16 @@ synthyra: {
     // ...
   },
   fonts: {
-    display: '"Space Grotesk", sans-serif',
+    display: '"Inter", sans-serif',
     body: '"Inter", sans-serif'
   },
-  mediaPromptPrefix: 'Modern biotech aesthetic, clean studio lighting...'
+  mediaPromptPrefix: 'Modern tech aesthetic, amber and cyan highlights...'
 }
 ```
 
 Switch entities:
-- URL parameter: `?entity=synthyra`
-- Slide attribute: `data-entity="lightforgeworks"`
+- URL parameter: `?entity=northwind`
+- Slide attribute: `data-entity="apex"`
 - Generator panel dropdown
 
 ---

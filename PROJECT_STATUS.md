@@ -6,11 +6,14 @@
 
 - Initialized repository and skill structure.
 - Added the single-file slide deck template with navigation, templates, and Gemini media hooks.
-- Added multi-entity brand profiles for LightForge Works, Synthyra, and Navicyte, plus prompt prefixes for brand adherence and nano banana model settings.
+- Added multi-entity brand system with example profiles (Northwind Labs, Apex Consulting, Coastal Biotech).
 - Added print styles for PDF export.
 - Added deck storage scaffolding, shared brand store, and local preview script.
 - Added resource separation (assets vs materials) plus deck preference scaffolding.
 - Wrote the skill guide plus brand and Gemini media references.
+- Added Python media generation library (nano-banana for images, Veo for videos).
+- Added comprehensive best practices documentation for infographics and video generation.
+- Added Claude Code CLI visual evaluation workflow guidance.
 
 ## Tests
 
@@ -29,9 +32,13 @@
 - `skills/keynote-slides/scripts/new-deck.sh` deck bootstrap script.
 - `skills/keynote-slides/scripts/serve-decks.sh` local preview script.
 - `decks/brands.js` shared brand profiles.
+- `decks/example-pitch/` example deck with synthetic content.
+- `lib/media/` Python media generation library.
+- `docs/nano-banana-prompting.md` infographic generation guide.
+- `docs/veo-video-guide.md` video generation guide.
 
 ## Next steps
 
-- Confirm official brand tokens/fonts for the three entities.
-- Decide on deck manager scope (file-based vs Postgres-backed service).
-- Decide if we should package this skill into a .skill artifact.
+- Add your own brand profiles to `decks/brands.js`.
+- Create decks for your specific use cases.
+- Consider packaging this skill into a .skill artifact.

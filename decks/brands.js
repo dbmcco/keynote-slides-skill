@@ -1,8 +1,50 @@
 // ABOUTME: Shared brand profiles for keynote decks in this repo.
 // ABOUTME: Loaded by deck HTML to keep entity styling consistent.
+
+// These are example brand profiles. Replace with your own brand identities.
 window.KEYNOTE_BRANDS = {
-  lightforgeworks: {
-    label: "LightForge Works",
+  northwind: {
+    label: "Northwind Labs",
+    tokens: {
+      "brand-ink": "#1a1a2e",
+      "brand-ink-soft": "#2d2d44",
+      "brand-paper": "#fafbfc",
+      "brand-paper-deep": "#f0f2f5",
+      "brand-accent": "#ed8936",
+      "brand-accent-strong": "#dd6b20",
+      "brand-sage": "#00b5d8",
+      "brand-slate": "#4a5568",
+      "brand-line": "rgba(26, 26, 46, 0.12)",
+      "brand-glow": "rgba(237, 137, 54, 0.35)",
+    },
+    fonts: {
+      display: "\"Inter\", \"Helvetica Neue\", sans-serif",
+      body: "\"Inter\", \"Helvetica Neue\", sans-serif",
+    },
+    fontLabel: "Display: Inter. Body: Inter.",
+    mediaPromptPrefix: "modern tech palette, amber and cyan highlights, clean studio lighting",
+    defaultDeckType: "pitch",
+    deckPreferences: {
+      pitch: {
+        voice: "confident, data-driven, outcome-focused",
+        headlineStyle: "clear value proposition, concrete metrics",
+        narrative: ["Problem", "Solution", "Traction", "Team", "Ask"],
+        density: "low",
+        visualFocus: "hero visual + single insight per slide",
+        avoid: ["dense paragraphs", "multi-idea slides"],
+      },
+      strategy: {
+        voice: "direct, actionable, evidence-focused",
+        headlineStyle: "clear verdicts with concrete next steps",
+        narrative: ["Situation", "Analysis", "Recommendation", "Roadmap"],
+        density: "medium",
+        visualFocus: "tables, timelines, action lists",
+        avoid: ["vague strategy-speak", "unactionable recommendations"],
+      },
+    },
+  },
+  apex: {
+    label: "Apex Consulting",
     tokens: {
       "brand-ink": "#1a1a1a",
       "brand-ink-soft": "#333333",
@@ -33,40 +75,8 @@ window.KEYNOTE_BRANDS = {
       },
     },
   },
-  synthyra: {
-    label: "Synthyra",
-    tokens: {
-      "brand-ink": "#1a1a2e",
-      "brand-ink-soft": "#2d2d44",
-      "brand-paper": "#fafbfc",
-      "brand-paper-deep": "#f0f2f5",
-      "brand-accent": "#ed8936",
-      "brand-accent-strong": "#dd6b20",
-      "brand-sage": "#00b5d8",
-      "brand-slate": "#4a5568",
-      "brand-line": "rgba(26, 26, 46, 0.12)",
-      "brand-glow": "rgba(237, 137, 54, 0.35)",
-    },
-    fonts: {
-      display: "\"Inter\", \"Helvetica Neue\", sans-serif",
-      body: "\"Inter\", \"Helvetica Neue\", sans-serif",
-    },
-    fontLabel: "Display: Inter. Body: Inter.",
-    mediaPromptPrefix: "modern biotech palette, amber and cyan highlights, clean studio lighting",
-    defaultDeckType: "strategy",
-    deckPreferences: {
-      strategy: {
-        voice: "direct, actionable, evidence-focused",
-        headlineStyle: "clear verdicts with concrete next steps",
-        narrative: ["Verdict", "Positioning", "GTM", "Proof Points", "Actions"],
-        density: "medium",
-        visualFocus: "tables, timelines, action lists",
-        avoid: ["vague strategy-speak", "unactionable recommendations"],
-      },
-    },
-  },
-  navicyte: {
-    label: "Navicyte Biotech",
+  coastal: {
+    label: "Coastal Biotech",
     tokens: {
       "brand-ink": "#0e2841",
       "brand-ink-soft": "#1a3a57",
@@ -92,11 +102,11 @@ window.KEYNOTE_BRANDS = {
         headlineStyle: "mutual value and pathway clarity",
         narrative: ["Opportunity", "Mechanism", "Validation", "Pathway", "Next steps"],
         density: "medium-low",
-        visualFocus: "process maps, clinical milestones",
+        visualFocus: "process maps, milestones",
         avoid: ["overly technical walls of text"],
       },
     },
   },
 };
 
-window.KEYNOTE_DEFAULT_ENTITY = "lightforgeworks";
+window.KEYNOTE_DEFAULT_ENTITY = "northwind";

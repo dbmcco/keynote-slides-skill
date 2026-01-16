@@ -11,11 +11,11 @@
 ## Quickstart
 
 ```bash
-skills/keynote-slides/scripts/new-deck.sh lfw-pitch-2026 --entity lightforgeworks --title "LFW Pitch 2026"
+skills/keynote-slides/scripts/new-deck.sh my-pitch --entity northwind --title "My Pitch"
 skills/keynote-slides/scripts/serve-decks.sh
 ```
 
-Open `http://<tailscale-ip>:8921/decks/lfw-pitch-2026/index.html`.
+Open `http://<tailscale-ip>:8921/decks/my-pitch/index.html`.
 
 ## Deck Structure
 
