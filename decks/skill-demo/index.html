@@ -458,6 +458,133 @@
         }
       }
 
+      @media (max-width: 600px) {
+        body {
+          padding: 2vh 2vw 12vh;
+        }
+
+        .deck {
+          width: 100vw;
+          height: auto;
+          min-height: 85vh;
+        }
+
+        .slide {
+          position: relative;
+          min-height: 85vh;
+        }
+
+        .slide:not(.is-active) {
+          display: none;
+        }
+
+        .slide-inner {
+          border-radius: 0;
+          box-shadow: none;
+          padding: 24px 20px 32px;
+          min-height: 85vh;
+          overflow-y: auto;
+        }
+
+        .title {
+          font-size: clamp(1.8rem, 8vw, 2.4rem);
+          line-height: 1.15;
+        }
+
+        .section-title {
+          font-size: clamp(1.5rem, 6vw, 2rem);
+        }
+
+        .subtitle {
+          font-size: 1rem;
+        }
+
+        .body-text {
+          font-size: 0.95rem;
+        }
+
+        .chip {
+          padding: 6px 12px;
+          font-size: 0.8rem;
+        }
+
+        .chip-row {
+          gap: 8px;
+        }
+
+        .card {
+          padding: 14px;
+        }
+
+        .card-title {
+          font-size: 0.95rem;
+        }
+
+        .card-caption {
+          font-size: 0.85rem;
+        }
+
+        .layout-grid {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+
+        .layout-split {
+          gap: 16px;
+        }
+
+        .media-frame {
+          min-height: 200px;
+        }
+
+        .quote {
+          font-size: clamp(1.4rem, 5vw, 2rem);
+        }
+
+        .swatch-row {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+        }
+
+        .swatch {
+          min-height: 60px;
+          padding: 10px;
+          font-size: 0.75rem;
+        }
+
+        .diagram {
+          max-height: 200px;
+        }
+
+        .deck-nav {
+          bottom: 2vh;
+          right: 2vw;
+          left: 2vw;
+          justify-content: center;
+          padding: 12px 16px;
+        }
+
+        .deck-nav button {
+          padding: 10px 14px;
+          font-size: 1rem;
+        }
+
+        .progress {
+          width: 80px;
+        }
+
+        .gen-toggle {
+          display: none;
+        }
+
+        .gen-panel {
+          left: 2vw;
+          right: 2vw;
+          width: auto;
+          bottom: 12vh;
+        }
+      }
+
       @media (prefers-reduced-motion: reduce) {
         .slide,
         .reveal {
