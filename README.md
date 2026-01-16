@@ -4,6 +4,10 @@
 
 Keynote-style single-file HTML decks with brand adherence, embedded infographics via Gemini (nano-banana), and video generation via Veo.
 
+**[View Live Demo Deck](https://dbmcco.github.io/keynote-slides-skill/decks/skill-demo/index.html)** — Navigate with arrow keys or swipe
+
+---
+
 ## How It Works
 
 Generate professional infographics with AI and embed them directly in your slides:
