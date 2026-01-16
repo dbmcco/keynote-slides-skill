@@ -13,26 +13,14 @@ from pathlib import Path
 from typing import Optional
 
 
-# Default to grok-aurora-cli .env if no env var set
-DEFAULT_ENV_PATH = Path(__file__).parent.parent.parent.parent / "grok-aurora-cli" / ".env"
-
-
 def _load_api_key() -> str:
-    """Load Gemini API key from environment or grok-aurora-cli .env file."""
-    # Check environment first
+    """Load Gemini API key from environment."""
     api_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("NANO_BANANA_API_KEY")
     if api_key:
         return api_key
 
-    # Try loading from grok-aurora-cli .env
-    if DEFAULT_ENV_PATH.exists():
-        for line in DEFAULT_ENV_PATH.read_text().splitlines():
-            if line.startswith("GEMINI_API_KEY="):
-                return line.split("=", 1)[1].strip()
-
     raise ValueError(
-        "No Gemini API key found. Set GEMINI_API_KEY environment variable "
-        "or ensure grok-aurora-cli/.env exists with the key."
+        "No Gemini API key found. Set GEMINI_API_KEY environment variable."
     )
 
 

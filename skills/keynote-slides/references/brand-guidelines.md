@@ -16,8 +16,8 @@ Add one entry per entity in `decks/brands.js`. Capture deck-type preferences the
 
 ```js
 window.KEYNOTE_BRANDS = {
-  acme: {
-    label: "Acme",
+  mycompany: {
+    label: "My Company",
     tokens: {
       "brand-ink": "#0d1117",
       "brand-ink-soft": "#18202a",
@@ -48,52 +48,48 @@ window.KEYNOTE_BRANDS = {
 };
 ```
 
-For per-slide overrides, set `data-entity="acme"` on the slide.
+For per-slide overrides, set `data-entity="mycompany"` on the slide.
 
-## Current entity baselines
+## Example entity baselines
 
-### LightForge Works
+### Northwind Labs (Tech)
 
-Sources:
-- `work/lfw/lfw-website/src/app/globals.css`
-- `work/lfw/lfw-website/tailwind.config.ts`
+Suggested tokens:
+- Ink: `#1a1a2e`
+- Paper: `#fafbfc`
+- Paper deep: `#f0f2f5`
+- Accent: `#ed8936` (amber)
+- Accent strong: `#dd6b20`
+- Sage: `#00b5d8` (cyan)
+- Slate: `#4a5568`
+
+Style note: Modern tech palette, amber and cyan highlights, clean studio lighting
+
+### Apex Consulting (Professional Services)
 
 Suggested tokens:
 - Ink: `#1a1a1a`
 - Paper: `#f5f1e8`
 - Paper deep: `#e8dcc6`
-- Accent: `#b8956f`
+- Accent: `#b8956f` (brass)
 - Accent strong: `#9a7a57`
 - Sage: `#d4a574`
 - Slate: `#666666`
 
-### Synthyra
+Style note: Warm parchment palette, refined brass accents, minimal editorial lighting
 
-Source:
-- `work/synth/Fundraising/pipeline-slide.html`
-
-Suggested tokens:
-- Ink: `#0b1f24`
-- Paper: `#f6f8fb`
-- Paper deep: `#e4edf4`
-- Accent: `#2e7d32`
-- Accent strong: `#e67e22`
-- Sage: `#6fb27b`
-- Slate: `#1f3f5b`
-
-### Navicyte Biotech
-
-Source:
-- `work/navicyte/navicyte-shared/Navicyte Slide Deck Jan25.pptx` (theme colors)
+### Coastal Biotech (Life Sciences)
 
 Suggested tokens:
-- Ink: `#0e2841`
+- Ink: `#0e2841` (navy)
 - Paper: `#f6f7f9`
 - Paper deep: `#e8e8e8`
-- Accent: `#156082`
+- Accent: `#156082` (teal)
 - Accent strong: `#0f9ed5`
 - Sage: `#196b24`
 - Slate: `#0e2841`
+
+Style note: Navy biotech palette, teal accents, high-clarity lab lighting
 
 ## Typography
 

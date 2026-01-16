@@ -1,0 +1,13 @@
+{
+  "id": "example-pitch",
+  "title": "Northwind Labs Pitch",
+  "entity": "northwind",
+  "type": "pitch",
+  "created": "2025-01-16",
+  "resources": {
+    "materials": [
+      "materials/brief.md"
+    ],
+    "assets": []
+  }
+}

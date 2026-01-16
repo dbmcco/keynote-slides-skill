@@ -41,7 +41,7 @@ def main():
         epilog="""
 Examples:
   # Generate from prompt file
-  python -m lib.media.generate --prompt-file prompts/slide2.txt --output decks/synthyra/assets/slide2.png
+  python -m lib.media.generate --prompt-file prompts/slide2.txt --output decks/example-pitch/resources/assets/slide2.png
 
   # Generate from inline prompt
   python -m lib.media.generate --prompt "Create a diagram..." --output output.png

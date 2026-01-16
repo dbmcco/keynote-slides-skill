@@ -1,0 +1,32 @@
+Create a horizontal workflow diagram for Northwind Labs data pipeline.
+
+SIZE & PLACEMENT:
+- Output: 1200px × 400px (displays at 600px × 200px)
+- Placement: Full width below header
+- Text minimum 32pt at output size
+
+LAYOUT: Flowchart Nodes. Linear horizontal progression with 4 stages.
+Clean arrow connectors. Equal spacing.
+
+STAGES (left to right):
+1. Data Sources — databases, APIs, files flowing into system
+2. Unified Layer — data normalized and indexed
+3. AI Processing — natural language understanding, query optimization
+4. Insights — dashboards, reports, alerts delivered to users
+
+STYLE: Modern tech aesthetic, clean flat vector, subtle gradients on nodes.
+No photorealism. Think motion graphics, not photography.
+
+COLOR PALETTE (Northwind brand):
+- Background: #fafbfc (light paper)
+- Primary nodes: #ed8936 (amber accent)
+- Secondary elements: #00b5d8 (cyan/sage)
+- Connectors: #4a5568 (slate)
+- Text: #1a1a2e (ink)
+
+TYPOGRAPHY:
+- Stage names: Bold Sans-Serif, 36pt
+- Descriptions: Regular, 24pt
+
+Key insight: Data flows seamlessly from any source to actionable insights.
+Overall feeling: Speed, simplicity, modern enterprise-grade technology.

@@ -229,21 +229,18 @@ CONTENT TO VISUALIZE:
 
 ## Brand-Specific Palettes
 
-### Synthyra
+### Northwind Labs
 ```
 Background light: #fafbfc
 Background dark: #1a1a2e
 Primary accent: Amber #ed8936
 Secondary accent: Cyan #00b5d8
-Tertiary accent: Purple #805ad5
-Success: Green #38a169
-Danger/Warning: Red #e53e3e
 Neutral: Slate #4a5568
 
-Style note: "Modern biotech aesthetic, clean studio lighting"
+Style note: "Modern tech aesthetic, amber and cyan highlights, clean studio lighting"
 ```
 
-### LightForge Works
+### Apex Consulting
 ```
 Background: Warm parchment #f5f1e8
 Ink: #1a1a1a
@@ -251,6 +248,16 @@ Accent: Brass/Bronze #b8956f
 Secondary: Sage #d4a574
 
 Style note: "Warm parchment palette, refined brass accents, minimal editorial lighting"
+```
+
+### Coastal Biotech
+```
+Background: #f6f7f9
+Ink: Navy #0e2841
+Accent: Teal #156082
+Secondary: Green #196b24
+
+Style note: "Navy biotech palette, teal accents, high-clarity lab lighting"
 ```
 
 ---
@@ -465,11 +472,11 @@ Create a workflow diagram for our data pipeline.
 ```
 
 **Claude Code evaluation:**
-"The generated diagram has 6 stages but text is too small to read at 400px display width. The colors are generic blue/gray instead of Synthyra brand. Missing the feedback loop between stages 4 and 2."
+"The generated diagram has 6 stages but text is too small to read at 400px display width. The colors are generic blue/gray instead of Northwind brand. Missing the feedback loop between stages 4 and 2."
 
 **Refined prompt:**
 ```
-Create a horizontal workflow diagram for Synthyra's data pipeline.
+Create a horizontal workflow diagram for Northwind's data pipeline.
 
 SIZE: 1200px × 400px (displays at 600px × 200px)
 Text minimum 32pt at output size.
@@ -485,13 +492,13 @@ STAGES (left to right):
 IMPORTANT: Add feedback arrow from stage 4 back to stage 2
 (analysis results improve validation rules)
 
-COLOR PALETTE (Synthyra brand):
+COLOR PALETTE (Northwind brand):
 - Background: #fafbfc
 - Primary nodes: #ed8936 (amber)
 - Secondary elements: #00b5d8 (cyan)
 - Connectors: #4a5568 (slate)
 - Text: #1a1a2e (dark)
 
-STYLE: Modern biotech aesthetic, clean flat vector,
+STYLE: Modern tech aesthetic, clean flat vector,
 subtle gradients on nodes, no photorealism.
 ```

@@ -14,24 +14,14 @@ from pathlib import Path
 from typing import Optional, Literal
 
 
-# Default to grok-aurora-cli .env if no env var set
-DEFAULT_ENV_PATH = Path(__file__).parent.parent.parent.parent / "grok-aurora-cli" / ".env"
-
-
 def _load_api_key() -> str:
-    """Load Kie.ai API key from environment or grok-aurora-cli .env file."""
+    """Load Kie.ai API key from environment."""
     api_key = os.environ.get("KIE_API_KEY")
     if api_key:
         return api_key
 
-    if DEFAULT_ENV_PATH.exists():
-        for line in DEFAULT_ENV_PATH.read_text().splitlines():
-            if line.startswith("KIE_API_KEY="):
-                return line.split("=", 1)[1].strip()
-
     raise ValueError(
-        "No Kie.ai API key found. Set KIE_API_KEY environment variable "
-        "or ensure grok-aurora-cli/.env exists with the key."
+        "No Kie.ai API key found. Set KIE_API_KEY environment variable."
     )
 
 

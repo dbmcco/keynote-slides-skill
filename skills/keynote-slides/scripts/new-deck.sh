@@ -8,8 +8,8 @@ usage() {
 Usage: new-deck.sh <deck-id> [--entity ENTITY_ID] [--title TITLE] [--type DECK_TYPE] [--audience AUDIENCE] [--force]
 
 Examples:
-  new-deck.sh lfw-pitch-2026 --entity lightforgeworks --title "LFW Pitch 2026" --type pitch
-  new-deck.sh synthyra-seed --entity synthyra
+  new-deck.sh my-pitch --entity northwind --title "My Pitch" --type pitch
+  new-deck.sh partner-deck --entity coastal --type partner
 EOF
 }
 
@@ -19,7 +19,7 @@ if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
 fi
 
 deck_id=""
-entity="lightforgeworks"
+entity="northwind"
 title=""
 deck_type=""
 audience=""

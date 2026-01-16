@@ -16,7 +16,7 @@ description: Build Keynote-style single-file HTML slide decks with brand-ready t
 
 1. Run the deck bootstrap to create a deck folder:
 ```bash
-scripts/new-deck.sh lfw-pitch-2026 --entity lightforgeworks --title "LFW Pitch 2026" --type pitch
+scripts/new-deck.sh example-pitch --entity northwind --title "Example Pitch" --type pitch
 ```
 2. Update `decks/brands.js` when brand tokens change.
 3. Edit `decks/<deck-id>/index.html` and duplicate slides inside `<main id="deck">`, keeping each `data-title` unique.
