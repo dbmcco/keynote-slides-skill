@@ -4,6 +4,24 @@
 
 Keynote-style single-file HTML decks with brand adherence, embedded infographics via Gemini (nano-banana), and video generation via Veo.
 
+## How It Works
+
+Generate professional infographics with AI and embed them directly in your slides:
+
+![Workflow Diagram](decks/skill-demo/resources/assets/workflow-diagram.png)
+
+*From zero to presentation in minutes, with AI-generated visuals.*
+
+## Multi-Brand System
+
+One template supports multiple visual identities. Switch brands instantly:
+
+![Brand System](decks/skill-demo/resources/assets/brand-system.png)
+
+*Same deck structure, completely different look — just change `?entity=name`*
+
+---
+
 ## Features
 
 - **Single-file decks** — Each deck is one portable HTML file

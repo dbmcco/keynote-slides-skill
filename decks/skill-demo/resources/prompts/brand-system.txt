@@ -1,0 +1,50 @@
+Create an infographic showing a multi-brand identity system.
+
+SIZE & PLACEMENT:
+- Output: 1000px × 700px
+- Center of slide
+- Text minimum 22pt at output size
+
+LAYOUT: Three vertical cards side by side, each representing a brand identity.
+Cards should have distinct color themes but consistent structure.
+
+CONTENT:
+Card 1 - "Tech" brand:
+- Header bar in amber (#ed8936)
+- Sample color swatches below
+- Font preview text
+- Small slide thumbnail preview
+
+Card 2 - "Consulting" brand:
+- Header bar in warm brass (#b8956f)
+- Sample color swatches (parchment tones)
+- Font preview text
+- Small slide thumbnail preview
+
+Card 3 - "Biotech" brand:
+- Header bar in teal (#156082)
+- Sample color swatches (navy tones)
+- Font preview text
+- Small slide thumbnail preview
+
+Above the cards: "One Template, Multiple Identities"
+Below the cards: Curved arrows showing "Switch with ?entity=name"
+
+STYLE: Clean card-based design, subtle shadows for depth.
+Flat vector, dashboard aesthetic. No photorealism.
+
+COLOR PALETTE:
+- Background: #fafbfc
+- Card backgrounds: White
+- Card 1 accent: #ed8936 (amber)
+- Card 2 accent: #b8956f (brass)
+- Card 3 accent: #156082 (teal)
+- Text: #1a1a2e
+
+TYPOGRAPHY:
+- Title: Bold Sans-Serif, 32pt
+- Card headers: Bold, 24pt
+- Labels: Regular, 18pt
+
+Key insight: Same template, completely different visual identities.
+Overall feeling: Flexibility, consistency, professional design system.
