@@ -664,25 +664,37 @@
       </section>
 
       <section class="slide theme-ivory" data-title="How It Works">
-        <div class="slide-inner" style="display: flex; flex-direction: column; gap: 24px;">
+        <div class="slide-inner layout-split">
           <div>
             <h2 class="section-title reveal" style="--reveal-index: 1">How It Works</h2>
-            <p class="body-text reveal" style="--reveal-index: 2;">From zero to presentation in minutes, with AI-generated visuals.</p>
+            <p class="body-text reveal" style="--reveal-index: 2">From zero to presentation in minutes, with AI-generated visuals.</p>
+            <div class="chip-row reveal" style="--reveal-index: 3">
+              <div class="chip">Create</div>
+              <div class="chip">Design</div>
+              <div class="chip">Generate</div>
+              <div class="chip">Present</div>
+            </div>
           </div>
-          <div class="reveal" style="--reveal-index: 3; flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0;">
-            <img style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);" src="resources/assets/workflow-diagram.png" alt="Workflow: Create, Design, Generate, Present" />
+          <div class="media-frame reveal" style="--reveal-index: 2" data-ready="true">
+            <img class="gen-media" src="resources/assets/workflow-diagram.png" alt="Workflow: Create, Design, Generate, Present" style="opacity: 1;" />
           </div>
         </div>
       </section>
 
       <section class="slide theme-ivory" data-title="Brand System">
-        <div class="slide-inner" style="grid-template-rows: auto 1fr; align-items: start;">
+        <div class="slide-inner layout-split" style="grid-template-columns: 0.9fr 1.1fr;">
+          <div class="media-frame reveal" style="--reveal-index: 2" data-ready="true">
+            <img class="gen-media" src="resources/assets/brand-system.png" alt="Three brand identity cards: Tech, Consulting, Biotech" style="opacity: 1;" />
+          </div>
           <div>
             <h2 class="section-title reveal" style="--reveal-index: 1">Multi-Brand System</h2>
-            <p class="body-text reveal" style="--reveal-index: 2; margin-bottom: 16px;">One template, multiple visual identities. Switch with <code>?entity=name</code></p>
-          </div>
-          <div class="reveal" style="--reveal-index: 3; display: flex; align-items: center; justify-content: center; flex: 1;">
-            <img style="width: 100%; max-width: 800px; height: auto; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);" src="resources/assets/brand-system.png" alt="Three brand identity cards: Tech, Consulting, Biotech" />
+            <p class="body-text reveal" style="--reveal-index: 2">One template, multiple visual identities. Switch brands instantly with a URL parameter.</p>
+            <div class="card reveal" style="--reveal-index: 3">
+              <div class="card-title">Usage</div>
+              <div class="card-caption" style="font-family: monospace;">?entity=northwind</div>
+              <div class="card-caption" style="font-family: monospace;">?entity=apex</div>
+              <div class="card-caption" style="font-family: monospace;">?entity=coastal</div>
+            </div>
           </div>
         </div>
       </section>
@@ -862,6 +874,9 @@
                 Slow pan across layered paper textures and a glowing brand mark, soft studio lighting.
               </div>
             </div>
+            <p class="body-text reveal" style="--reveal-index: 4; font-size: 0.85rem; opacity: 0.7; margin-top: 12px;">
+              Note: Video playback requires local hosting or a video-capable CDN. Static preview shown here.
+            </p>
           </div>
           <div class="media-frame reveal" style="--reveal-index: 2" data-ready="true">
             <img
@@ -887,6 +902,9 @@
                 Gentle parallax, soft shadow drift, camera push in, warm studio grade.
               </div>
             </div>
+            <p class="body-text reveal" style="--reveal-index: 4; font-size: 0.85rem; opacity: 0.7; margin-top: 12px;">
+              Note: Video playback requires local hosting or a video-capable CDN. Static preview shown here.
+            </p>
           </div>
           <div class="media-frame reveal" style="--reveal-index: 2" data-ready="true">
             <img
