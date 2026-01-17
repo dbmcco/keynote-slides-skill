@@ -664,13 +664,13 @@
       </section>
 
       <section class="slide theme-ivory" data-title="How It Works">
-        <div class="slide-inner" style="grid-template-rows: auto 1fr; align-items: start;">
+        <div class="slide-inner" style="display: flex; flex-direction: column; gap: 24px;">
           <div>
             <h2 class="section-title reveal" style="--reveal-index: 1">How It Works</h2>
-            <p class="body-text reveal" style="--reveal-index: 2; margin-bottom: 16px;">From zero to presentation in minutes, with AI-generated visuals.</p>
+            <p class="body-text reveal" style="--reveal-index: 2;">From zero to presentation in minutes, with AI-generated visuals.</p>
           </div>
-          <div class="reveal" style="--reveal-index: 3; display: flex; align-items: center; justify-content: center; flex: 1;">
-            <img style="width: 100%; max-width: 900px; height: auto; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);" src="resources/assets/workflow-diagram.png" alt="Workflow: Create, Design, Generate, Present" />
+          <div class="reveal" style="--reveal-index: 3; flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0;">
+            <img style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);" src="resources/assets/workflow-diagram.png" alt="Workflow: Create, Design, Generate, Present" />
           </div>
         </div>
       </section>
@@ -687,26 +687,47 @@
         </div>
       </section>
 
-      <section class="slide theme-ivory" data-title="Agenda">
+      <section class="slide theme-ivory" data-title="Resources">
         <div class="slide-inner layout-split">
           <div>
-            <h2 class="section-title reveal" style="--reveal-index: 1">Deck Flow</h2>
+            <h2 class="section-title reveal" style="--reveal-index: 1">Add Your Materials</h2>
             <p class="body-text reveal" style="--reveal-index: 2">
-              Keep each section short. Use a single visual idea per slide and rely on the templates for rhythm.
+              Drop briefs, notes, and assets into the resources folder. The AI uses these for context.
             </p>
             <div class="chip-row reveal" style="--reveal-index: 3">
-              <div class="chip">Brand tokens</div>
-              <div class="chip">Media prompts</div>
-              <div class="chip">Keynote spacing</div>
+              <div class="chip">Briefs</div>
+              <div class="chip">Logos</div>
+              <div class="chip">Data</div>
             </div>
           </div>
           <div class="card reveal" style="--reveal-index: 2">
-            <div class="card-title">Sequence</div>
-            <div class="card-caption">1. Title and thesis</div>
-            <div class="card-caption">2. Problem / tension</div>
-            <div class="card-caption">3. Visual proof</div>
-            <div class="card-caption">4. Offer or roadmap</div>
-            <div class="card-caption">5. Close with ask</div>
+            <div class="card-title">resources/</div>
+            <div class="card-caption" style="font-family: monospace; font-size: 0.85rem;">├── assets/ <span style="opacity: 0.6">logos, images</span></div>
+            <div class="card-caption" style="font-family: monospace; font-size: 0.85rem;">├── materials/ <span style="opacity: 0.6">briefs, notes</span></div>
+            <div class="card-caption" style="font-family: monospace; font-size: 0.85rem;">└── prompts/ <span style="opacity: 0.6">saved prompts</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide theme-ink" data-title="CLI Workflow">
+        <div class="slide-inner layout-split">
+          <div>
+            <h2 class="section-title reveal" style="--reveal-index: 1">Iterate with Claude</h2>
+            <p class="body-text reveal" style="--reveal-index: 2">
+              Chat with the CLI to refine slides. It reads your deck, evaluates layouts, and makes targeted fixes.
+            </p>
+            <div class="chip-row reveal" style="--reveal-index: 3">
+              <div class="chip">Review</div>
+              <div class="chip">Refine</div>
+              <div class="chip">Regenerate</div>
+            </div>
+          </div>
+          <div class="card reveal" style="--reveal-index: 2">
+            <div class="card-title">Workflow</div>
+            <div class="card-caption">1. "Screenshot slide 3"</div>
+            <div class="card-caption">2. "The image is cropped"</div>
+            <div class="card-caption">3. "Regenerate with better sizing"</div>
+            <div class="card-caption">4. "Push to GitHub Pages"</div>
           </div>
         </div>
       </section>
