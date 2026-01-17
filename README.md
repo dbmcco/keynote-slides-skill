@@ -339,6 +339,12 @@ Switch entities:
 
 ---
 
+## Acknowledgments
+
+The Narrative Engine integration (framework-driven deck creation with 17 storytelling structures and 5-agent review panel) is based on [nraford7/Narrative-Engine](https://github.com/nraford7/Narrative-Engine).
+
+---
+
 ## Documentation
 
 | Document | Purpose |
