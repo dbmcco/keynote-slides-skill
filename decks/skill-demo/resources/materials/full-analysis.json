@@ -1,0 +1,2421 @@
+{
+  "deckPath": "decks/skill-demo",
+  "analyzedAt": "2026-01-17T11:59:42.904Z",
+  "summary": {
+    "overall": {
+      "slidesWithIssues": 0,
+      "totalFlags": 0,
+      "criticalIssues": [],
+      "importantIssues": [
+        {
+          "category": "storytelling",
+          "message": "11 flow gaps - slides don't connect logically"
+        }
+      ],
+      "suggestions": [],
+      "score": 57,
+      "grade": "C"
+    },
+    "byCategory": {
+      "visualDensity": {
+        "avgWordsPerSlide": 24,
+        "avgVisualsPerSlide": 0.6,
+        "slidesWithoutVisuals": 0,
+        "flags": 2
+      },
+      "emotionalArc": {
+        "hookGrade": "interesting",
+        "arcShape": "flat",
+        "flowGaps": 11,
+        "recommendations": [
+          "Add emotional dynamics - establish tension before offering resolution",
+          "Fix 11 slide transition(s) that lack logical connection",
+          "Add more stakes indicators (numbers, impact, consequences)"
+        ]
+      },
+      "readability": {
+        "avgGradeLevel": 4.74,
+        "passiveVoicePercent": 6.7,
+        "jargonDensity": 0.53,
+        "complexSentences": 2
+      }
+    },
+    "northStarScores": {
+      "storytelling": 35,
+      "clarity": 96,
+      "design": null,
+      "visualBalance": 41
+    }
+  },
+  "rawResults": {
+    "visual-density": {
+      "deckPath": "decks/skill-demo",
+      "slideCount": 20,
+      "thresholds": {
+        "highWordCount": 100,
+        "highCharCount": 600,
+        "lowWordCount": 5,
+        "noBulletMin": 0,
+        "manyBullets": 5
+      },
+      "deckAverages": {
+        "avgWordCount": 24,
+        "avgCharCount": 151,
+        "avgBulletCount": 2.7,
+        "avgVisualCount": 0.6,
+        "avgContentDensity": 30,
+        "avgWhitespace": 70
+      },
+      "slides": [
+        {
+          "index": 1,
+          "title": "Hook",
+          "slideType": "title",
+          "theme": "ink",
+          "metrics": {
+            "wordCount": 29,
+            "charCount": 179,
+            "bulletCount": 0,
+            "bulletBreakdown": {
+              "listItems": 0,
+              "chips": 0,
+              "cards": 0
+            },
+            "imageCount": 0,
+            "svgCount": 0,
+            "visualCount": 0,
+            "totalImageArea": null,
+            "totalSvgArea": null,
+            "totalVisualArea": null,
+            "mediaFrameCount": 0,
+            "emptyMediaFrames": 0,
+            "textToVisualRatio": null,
+            "contentDensity": 36,
+            "whitespaceEstimate": 64
+          },
+          "flags": []
+        },
+        {
+          "index": 2,
+          "title": "Solution",
+          "slideType": "title",
+          "theme": "ivory",
+          "metrics": {
+            "wordCount": 27,
+            "charCount": 183,
+            "bulletCount": 4,
+            "bulletBreakdown": {
+              "listItems": 0,
+              "chips": 4,
+              "cards": 0
+            },
+            "imageCount": 0,
+            "svgCount": 0,
+            "visualCount": 0,
+            "totalImageArea": null,
+            "totalSvgArea": null,
+            "totalVisualArea": null,
+            "mediaFrameCount": 0,
+            "emptyMediaFrames": 0,
+            "textToVisualRatio": null,
+            "contentDensity": 34,
+            "whitespaceEstimate": 66
+          },
+          "flags": []
+        },
+        {
+          "index": 3,
+          "title": "How It Works",
+          "slideType": "split",
+          "theme": "ivory",
+          "metrics": {
+            "wordCount": 26,
+            "charCount": 145,
+            "bulletCount": 5,
+            "bulletBreakdown": {
+              "listItems": 0,
+              "chips": 5,
+              "cards": 0
+            },
+            "imageCount": 1,
+            "svgCount": 0,
+            "visualCount": 1,
+            "totalImageArea": null,
+            "totalSvgArea": null,
+            "totalVisualArea": null,
+            "mediaFrameCount": 1,
+            "emptyMediaFrames": 0,
+            "textToVisualRatio": 26,
+            "contentDensity": 33,
+            "whitespaceEstimate": 67
+          },
+          "flags": []
+        },
+        {
+          "index": 4,
+          "title": "Brand System",
+          "slideType": "split",
+          "theme": "ivory",
+          "metrics": {
+            "wordCount": 24,
+            "charCount": 183,
+            "bulletCount": 5,
+            "bulletBreakdown": {
+              "listItems": 0,
+              "chips": 0,
+              "cards": 5
+            },
+            "imageCount": 1,
+            "svgCount": 0,
+            "visualCount": 1,
+            "totalImageArea": null,
+            "totalSvgArea": null,
+            "totalVisualArea": null,
+            "mediaFrameCount": 1,
+            "emptyMediaFrames": 0,
+            "textToVisualRatio": 24,
+            "contentDensity": 30,
+            "whitespaceEstimate": 70
+          },
+          "flags": []
+        },
+        {
+          "index": 5,
+          "title": "Getting Started",
+          "slideType": "title",
+          "theme": "ink",
+          "metrics": {
+            "wordCount": 17,
+            "charCount": 110,
+            "bulletCount": 0,
+            "bulletBreakdown": {
+              "listItems": 0,
+              "chips": 0,
+              "cards": 0
+            },
+            "imageCount": 0,
+            "svgCount": 0,
+            "visualCount": 0,
+            "totalImageArea": null,
+            "totalSvgArea": null,
+            "totalVisualArea": null,
+            "mediaFrameCount": 0,
+            "emptyMediaFrames": 0,
+            "textToVisualRatio": null,
+            "contentDensity": 21,
+            "whitespaceEstimate": 79
+          },
+          "flags": []
+        },
+        {
+          "index": 6,
+          "title": "Resources",
+          "slideType": "split",
+          "theme": "ivory",
+          "metrics": {
+            "wordCount": 31,
+            "charCount": 200,
+            "bulletCount": 5,
+            "bulletBreakdown": {
+              "listItems": 0,
+              "chips": 0,
+              "cards": 5
+            },
+            "imageCount": 1,
+            "svgCount": 0,
+            "visualCount": 1,
+            "totalImageArea": null,
+            "totalSvgArea": null,
+            "totalVisualArea": null,
+            "mediaFrameCount": 1,
+            "emptyMediaFrames": 0,
+            "textToVisualRatio": 31,
+            "contentDensity": 39,
+            "whitespaceEstimate": 61
+          },
+          "flags": []
+        },
+        {
+          "index": 7,
+          "title": "CLI Workflow",
+          "slideType": "split",
+          "theme": "ink",
+          "metrics": {
+            "wordCount": 23,
+            "charCount": 145,
+            "bulletCount": 4,
+            "bulletBreakdown": {
+              "listItems": 0,
+              "chips": 4,
+              "cards": 0
+            },
+            "imageCount": 1,
+            "svgCount": 0,
+            "visualCount": 1,
+            "totalImageArea": null,
+            "totalSvgArea": null,
+            "totalVisualArea": null,
+            "mediaFrameCount": 1,
+            "emptyMediaFrames": 0,
+            "textToVisualRatio": 23,
+            "contentDensity": 29,
+            "whitespaceEstimate": 71
+          },
+          "flags": []
+        },
+        {
+          "index": 8,
+          "title": "Templates",
+          "slideType": "split",
+          "theme": "ivory",
+          "metrics": {
+            "wordCount": 21,
+            "charCount": 126,
+            "bulletCount": 8,
+            "bulletBreakdown": {
+              "listItems": 0,
+              "chips": 8,
+              "cards": 0
+            },
+            "imageCount": 1,
+            "svgCount": 0,
+            "visualCount": 1,
+            "totalImageArea": null,
+            "totalSvgArea": null,
+            "totalVisualArea": null,
+            "mediaFrameCount": 1,
+            "emptyMediaFrames": 0,
+            "textToVisualRatio": 21,
+            "contentDensity": 26,
+            "whitespaceEstimate": 74
+          },
+          "flags": [
+            {
+              "type": "many_list_items",
+              "value": 8,
+              "threshold": 5
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "title": "Deep Dive",
+          "slideType": "title",
+          "theme": "ivory",
+          "metrics": {
+            "wordCount": 15,
+            "charCount": 100,
+            "bulletCount": 0,
+            "bulletBreakdown": {
+              "listItems": 0,
+              "chips": 0,
+              "cards": 0
+            },
+            "imageCount": 0,
+            "svgCount": 0,
+            "visualCount": 0,
+            "totalImageArea": null,
+            "totalSvgArea": null,
+            "totalVisualArea": null,
+            "mediaFrameCount": 0,
+            "emptyMediaFrames": 0,
+            "textToVisualRatio": null,
+            "contentDensity": 19,
+            "whitespaceEstimate": 81
+          },
+          "flags": []
+        },
+        {
+          "index": 10,
+          "title": "Capability Map",
+          "slideType": "content",
+          "theme": "ink",
+          "metrics": {
+            "wordCount": 30,
+            "charCount": 188,
+            "bulletCount": 4,
+            "bulletBreakdown": {
+              "listItems": 4,
+              "chips": 0,
+              "cards": 0
+            },
+            "imageCount": 0,
+            "svgCount": 1,
+            "visualCount": 1,
+            "totalImageArea": null,
+            "totalSvgArea": 324000,
+            "totalVisualArea": 324000,
+            "mediaFrameCount": 0,
+            "emptyMediaFrames": 0,
+            "textToVisualRatio": 30,
+            "contentDensity": 38,
+            "whitespaceEstimate": 62
+          },
+          "flags": []
+        },
+        {
+          "index": 11,
+          "title": "Text to Image",
+          "slideType": "split",
+          "theme": "ivory",
+          "metrics": {
+            "wordCount": 28,
+            "charCount": 192,
+            "bulletCount": 3,
+            "bulletBreakdown": {
+              "listItems": 0,
+              "chips": 0,
+              "cards": 3
+            },
+            "imageCount": 1,
+            "svgCount": 0,
+            "visualCount": 1,
+            "totalImageArea": null,
+            "totalSvgArea": null,
+            "totalVisualArea": null,
+            "mediaFrameCount": 1,
+            "emptyMediaFrames": 0,
+            "textToVisualRatio": 28,
+            "contentDensity": 35,
+            "whitespaceEstimate": 65
+          },
+          "flags": []
+        },
+        {
+          "index": 12,
+          "title": "Image to Image",
+          "slideType": "split",
+          "theme": "ivory",
+          "metrics": {
+            "wordCount": 37,
+            "charCount": 208,
+            "bulletCount": 3,
+            "bulletBreakdown": {
+              "listItems": 0,
+              "chips": 0,
+              "cards": 3
+            },
+            "imageCount": 1,
+            "svgCount": 0,
+            "visualCount": 1,
+            "totalImageArea": null,
+            "totalSvgArea": null,
+            "totalVisualArea": null,
+            "mediaFrameCount": 1,
+            "emptyMediaFrames": 0,
+            "textToVisualRatio": 37,
+            "contentDensity": 46,
+            "whitespaceEstimate": 54
+          },
+          "flags": []
+        },
+        {
+          "index": 13,
+          "title": "Text to Video",
+          "slideType": "split",
+          "theme": "ivory",
+          "metrics": {
+            "wordCount": 47,
+            "charCount": 303,
+            "bulletCount": 3,
+            "bulletBreakdown": {
+              "listItems": 0,
+              "chips": 0,
+              "cards": 3
+            },
+            "imageCount": 1,
+            "svgCount": 0,
+            "visualCount": 1,
+            "totalImageArea": null,
+            "totalSvgArea": null,
+            "totalVisualArea": null,
+            "mediaFrameCount": 1,
+            "emptyMediaFrames": 0,
+            "textToVisualRatio": 47,
+            "contentDensity": 59,
+            "whitespaceEstimate": 41
+          },
+          "flags": []
+        },
+        {
+          "index": 14,
+          "title": "Image to Video",
+          "slideType": "split",
+          "theme": "ivory",
+          "metrics": {
+            "wordCount": 45,
+            "charCount": 278,
+            "bulletCount": 3,
+            "bulletBreakdown": {
+              "listItems": 0,
+              "chips": 0,
+              "cards": 3
+            },
+            "imageCount": 1,
+            "svgCount": 0,
+            "visualCount": 1,
+            "totalImageArea": null,
+            "totalSvgArea": null,
+            "totalVisualArea": null,
+            "mediaFrameCount": 1,
+            "emptyMediaFrames": 0,
+            "textToVisualRatio": 45,
+            "contentDensity": 56,
+            "whitespaceEstimate": 44
+          },
+          "flags": []
+        },
+        {
+          "index": 15,
+          "title": "Brand Tokens",
+          "slideType": "split",
+          "theme": "ivory",
+          "metrics": {
+            "wordCount": 24,
+            "charCount": 165,
+            "bulletCount": 0,
+            "bulletBreakdown": {
+              "listItems": 0,
+              "chips": 0,
+              "cards": 0
+            },
+            "imageCount": 1,
+            "svgCount": 0,
+            "visualCount": 1,
+            "totalImageArea": null,
+            "totalSvgArea": null,
+            "totalVisualArea": null,
+            "mediaFrameCount": 1,
+            "emptyMediaFrames": 0,
+            "textToVisualRatio": 24,
+            "contentDensity": 30,
+            "whitespaceEstimate": 70
+          },
+          "flags": []
+        },
+        {
+          "index": 16,
+          "title": "Call to Action",
+          "slideType": "title",
+          "theme": "ink",
+          "metrics": {
+            "wordCount": 22,
+            "charCount": 133,
+            "bulletCount": 4,
+            "bulletBreakdown": {
+              "listItems": 0,
+              "chips": 4,
+              "cards": 0
+            },
+            "imageCount": 0,
+            "svgCount": 0,
+            "visualCount": 0,
+            "totalImageArea": null,
+            "totalSvgArea": null,
+            "totalVisualArea": null,
+            "mediaFrameCount": 0,
+            "emptyMediaFrames": 0,
+            "textToVisualRatio": null,
+            "contentDensity": 28,
+            "whitespaceEstimate": 72
+          },
+          "flags": []
+        },
+        {
+          "index": 17,
+          "title": "Title",
+          "slideType": "title",
+          "theme": "ivory",
+          "metrics": {
+            "wordCount": 12,
+            "charCount": 69,
+            "bulletCount": 3,
+            "bulletBreakdown": {
+              "listItems": 0,
+              "chips": 3,
+              "cards": 0
+            },
+            "imageCount": 0,
+            "svgCount": 0,
+            "visualCount": 0,
+            "totalImageArea": null,
+            "totalSvgArea": null,
+            "totalVisualArea": null,
+            "mediaFrameCount": 0,
+            "emptyMediaFrames": 0,
+            "textToVisualRatio": null,
+            "contentDensity": 15,
+            "whitespaceEstimate": 85
+          },
+          "flags": []
+        },
+        {
+          "index": 18,
+          "title": "Split",
+          "slideType": "split",
+          "theme": "ivory",
+          "metrics": {
+            "wordCount": 7,
+            "charCount": 45,
+            "bulletCount": 0,
+            "bulletBreakdown": {
+              "listItems": 0,
+              "chips": 0,
+              "cards": 0
+            },
+            "imageCount": 0,
+            "svgCount": 0,
+            "visualCount": 0,
+            "totalImageArea": null,
+            "totalSvgArea": null,
+            "totalVisualArea": null,
+            "mediaFrameCount": 1,
+            "emptyMediaFrames": 1,
+            "textToVisualRatio": null,
+            "contentDensity": 9,
+            "whitespaceEstimate": 91
+          },
+          "flags": [
+            {
+              "type": "empty_media_frames",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "index": 19,
+          "title": "Metrics",
+          "slideType": "metrics",
+          "theme": "ivory",
+          "metrics": {
+            "wordCount": 9,
+            "charCount": 50,
+            "bulletCount": 0,
+            "bulletBreakdown": {
+              "listItems": 0,
+              "chips": 0,
+              "cards": 0
+            },
+            "imageCount": 0,
+            "svgCount": 0,
+            "visualCount": 0,
+            "totalImageArea": null,
+            "totalSvgArea": null,
+            "totalVisualArea": null,
+            "mediaFrameCount": 0,
+            "emptyMediaFrames": 0,
+            "textToVisualRatio": null,
+            "contentDensity": 11,
+            "whitespaceEstimate": 89
+          },
+          "flags": []
+        },
+        {
+          "index": 20,
+          "title": "Quote",
+          "slideType": "quote",
+          "theme": "ink",
+          "metrics": {
+            "wordCount": 4,
+            "charCount": 25,
+            "bulletCount": 0,
+            "bulletBreakdown": {
+              "listItems": 0,
+              "chips": 0,
+              "cards": 0
+            },
+            "imageCount": 0,
+            "svgCount": 0,
+            "visualCount": 0,
+            "totalImageArea": null,
+            "totalSvgArea": null,
+            "totalVisualArea": null,
+            "mediaFrameCount": 0,
+            "emptyMediaFrames": 0,
+            "textToVisualRatio": null,
+            "contentDensity": 5,
+            "whitespaceEstimate": 95
+          },
+          "flags": []
+        }
+      ],
+      "flagSummary": {
+        "totalFlags": 2,
+        "slidesWithFlags": 2,
+        "flagsByType": {
+          "many_list_items": [
+            {
+              "type": "many_list_items",
+              "value": 8,
+              "threshold": 5,
+              "slideIndex": 8,
+              "slideTitle": "Templates"
+            }
+          ],
+          "empty_media_frames": [
+            {
+              "type": "empty_media_frames",
+              "count": 1,
+              "slideIndex": 18,
+              "slideTitle": "Split"
+            }
+          ]
+        }
+      }
+    },
+    "image-analysis": {
+      "deckPath": "decks/skill-demo",
+      "summary": {
+        "totalSlides": 20,
+        "slidesWithImages": 10,
+        "textOnlySlides": 10,
+        "slidesWithEmptyFrames": 1,
+        "totalImages": 10,
+        "imagesWithAlt": 10,
+        "imagesMissingAlt": 0,
+        "imagesWithPrompt": 0,
+        "imagesInMediaFrame": 10,
+        "standaloneImages": 0
+      },
+      "slides": [
+        {
+          "index": 1,
+          "title": "Hook",
+          "images": [],
+          "textContext": {
+            "headline": "What if presentations took minutes, not hours?",
+            "eyebrow": "The Problem",
+            "bodyText": [
+              "The average professional spends 8 hours creating a single deck. Most of that time is wasted on formatting, not thinking."
+            ],
+            "quote": null,
+            "chips": [],
+            "cardTitles": []
+          },
+          "isTextOnly": true,
+          "hasEmptyMediaFrame": false,
+          "imageCount": 0
+        },
+        {
+          "index": 2,
+          "title": "Solution",
+          "images": [],
+          "textContext": {
+            "headline": "Nano Banana Slidecraft",
+            "eyebrow": "The Answer",
+            "bodyText": [
+              "AI-generated visuals in single-file HTML slides. From blank page to polished deck in minutes."
+            ],
+            "quote": null,
+            "chips": [
+              "One file per deck",
+              "AI-generated images",
+              "Multi-brand ready"
+            ],
+            "cardTitles": []
+          },
+          "isTextOnly": true,
+          "hasEmptyMediaFrame": false,
+          "imageCount": 0
+        },
+        {
+          "index": 3,
+          "title": "How It Works",
+          "images": [
+            {
+              "src": "resources/assets/workflow-diagram.png",
+              "alt": "Workflow: Create, Design, Generate, Present",
+              "filename": "workflow-diagram.png",
+              "dataPrompt": null,
+              "dataGen": null,
+              "inMediaFrame": true,
+              "hasAlt": true
+            }
+          ],
+          "textContext": {
+            "headline": "Four Steps to Done",
+            "eyebrow": "The Process",
+            "bodyText": [
+              "From blank page to polished deck in minutes. No design skills required."
+            ],
+            "quote": null,
+            "chips": [
+              "1. Create",
+              "2. Design",
+              "3. Generate",
+              "4. Present"
+            ],
+            "cardTitles": []
+          },
+          "isTextOnly": false,
+          "hasEmptyMediaFrame": false,
+          "imageCount": 1
+        },
+        {
+          "index": 4,
+          "title": "Brand System",
+          "images": [
+            {
+              "src": "resources/assets/brand-system.png",
+              "alt": "Three brand identity cards: Tech, Consulting, Biotech",
+              "filename": "brand-system.png",
+              "dataPrompt": null,
+              "dataGen": null,
+              "inMediaFrame": true,
+              "hasAlt": true
+            }
+          ],
+          "textContext": {
+            "headline": "One Template, Many Brands",
+            "eyebrow": "Built for Scale",
+            "bodyText": [
+              "Switch visual identities instantly with a URL parameter. Perfect for agencies and teams."
+            ],
+            "quote": null,
+            "chips": [],
+            "cardTitles": [
+              "Usage"
+            ]
+          },
+          "isTextOnly": false,
+          "hasEmptyMediaFrame": false,
+          "imageCount": 1
+        },
+        {
+          "index": 5,
+          "title": "Getting Started",
+          "images": [],
+          "textContext": {
+            "headline": "Set Up Your Deck",
+            "eyebrow": "Getting Started",
+            "bodyText": [
+              "Three things to configure: your materials, your workflow, and your templates."
+            ],
+            "quote": null,
+            "chips": [],
+            "cardTitles": []
+          },
+          "isTextOnly": true,
+          "hasEmptyMediaFrame": false,
+          "imageCount": 0
+        },
+        {
+          "index": 6,
+          "title": "Resources",
+          "images": [
+            {
+              "src": "resources/assets/resources-folder.png",
+              "alt": "Illustration of organized folders with documents, logos, and data flowing into a presentation",
+              "filename": "resources-folder.png",
+              "dataPrompt": null,
+              "dataGen": null,
+              "inMediaFrame": true,
+              "hasAlt": true
+            }
+          ],
+          "textContext": {
+            "headline": "Add Your Materials",
+            "eyebrow": null,
+            "bodyText": [
+              "Drop briefs, notes, and assets into the resources folder. The AI uses these for context."
+            ],
+            "quote": null,
+            "chips": [],
+            "cardTitles": [
+              "resources/"
+            ]
+          },
+          "isTextOnly": false,
+          "hasEmptyMediaFrame": false,
+          "imageCount": 1
+        },
+        {
+          "index": 7,
+          "title": "CLI Workflow",
+          "images": [
+            {
+              "src": "resources/assets/cli-workflow.png",
+              "alt": "Terminal window showing Claude CLI conversation refining a slide deck",
+              "filename": "cli-workflow.png",
+              "dataPrompt": null,
+              "dataGen": null,
+              "inMediaFrame": true,
+              "hasAlt": true
+            }
+          ],
+          "textContext": {
+            "headline": "Iterate with Claude",
+            "eyebrow": null,
+            "bodyText": [
+              "Chat with the CLI to refine slides. It reads your deck, evaluates layouts, and makes targeted fixes."
+            ],
+            "quote": null,
+            "chips": [
+              "Review",
+              "Refine",
+              "Regenerate"
+            ],
+            "cardTitles": []
+          },
+          "isTextOnly": false,
+          "hasEmptyMediaFrame": false,
+          "imageCount": 1
+        },
+        {
+          "index": 8,
+          "title": "Templates",
+          "images": [
+            {
+              "src": "resources/assets/template-preview.png",
+              "alt": "Six slide layout templates arranged in a grid: Title, Split, Metrics, Quote, Diagram, Gallery",
+              "filename": "template-preview.png",
+              "dataPrompt": null,
+              "dataGen": null,
+              "inMediaFrame": true,
+              "hasAlt": true
+            }
+          ],
+          "textContext": {
+            "headline": "Six Core Templates",
+            "eyebrow": null,
+            "bodyText": [
+              "Every story fits one of these patterns. Mix and match for rhythm."
+            ],
+            "quote": null,
+            "chips": [
+              "Title",
+              "Split",
+              "Metrics",
+              "Quote",
+              "Diagram",
+              "Gallery"
+            ],
+            "cardTitles": []
+          },
+          "isTextOnly": false,
+          "hasEmptyMediaFrame": false,
+          "imageCount": 1
+        },
+        {
+          "index": 9,
+          "title": "Deep Dive",
+          "images": [],
+          "textContext": {
+            "headline": "AI-Powered Visuals",
+            "eyebrow": "Going Deeper",
+            "bodyText": [
+              "Four generation modes for every visual need. Let's explore each one."
+            ],
+            "quote": null,
+            "chips": [],
+            "cardTitles": []
+          },
+          "isTextOnly": true,
+          "hasEmptyMediaFrame": false,
+          "imageCount": 0
+        },
+        {
+          "index": 10,
+          "title": "Capability Map",
+          "images": [],
+          "textContext": {
+            "headline": "Gemini Media Map",
+            "eyebrow": "Overview",
+            "bodyText": [],
+            "quote": null,
+            "chips": [],
+            "cardTitles": []
+          },
+          "isTextOnly": true,
+          "hasEmptyMediaFrame": false,
+          "imageCount": 0
+        },
+        {
+          "index": 11,
+          "title": "Text to Image",
+          "images": [
+            {
+              "src": "resources/assets/text-to-image-demo.png",
+              "alt": "AI-generated banana character at a laptop",
+              "filename": "text-to-image-demo.png",
+              "dataPrompt": null,
+              "dataGen": null,
+              "inMediaFrame": true,
+              "hasAlt": true
+            }
+          ],
+          "textContext": {
+            "headline": "Text to Image",
+            "eyebrow": null,
+            "bodyText": [
+              "Generate diagrams, texture, and hero art with a prompt that locks brand tone and lighting."
+            ],
+            "quote": null,
+            "chips": [],
+            "cardTitles": [
+              "Prompt"
+            ]
+          },
+          "isTextOnly": false,
+          "hasEmptyMediaFrame": false,
+          "imageCount": 1
+        },
+        {
+          "index": 12,
+          "title": "Image to Image",
+          "images": [
+            {
+              "src": "resources/assets/image-to-image-demo.png",
+              "alt": "Paper collage with geometric shapes",
+              "filename": "image-to-image-demo.png",
+              "dataPrompt": null,
+              "dataGen": null,
+              "inMediaFrame": true,
+              "hasAlt": true
+            }
+          ],
+          "textContext": {
+            "headline": "Image to Image",
+            "eyebrow": null,
+            "bodyText": [
+              "Use a base image and restyle it into your brand's visual language. Set a base image in the generator panel."
+            ],
+            "quote": null,
+            "chips": [],
+            "cardTitles": [
+              "Prompt"
+            ]
+          },
+          "isTextOnly": false,
+          "hasEmptyMediaFrame": false,
+          "imageCount": 1
+        },
+        {
+          "index": 13,
+          "title": "Text to Video",
+          "images": [
+            {
+              "src": "resources/assets/text-to-video-demo.png",
+              "alt": "Cinematic light trails suggesting motion",
+              "filename": "text-to-video-demo.png",
+              "dataPrompt": null,
+              "dataGen": null,
+              "inMediaFrame": true,
+              "hasAlt": true
+            }
+          ],
+          "textContext": {
+            "headline": "Text to Video",
+            "eyebrow": null,
+            "bodyText": [
+              "Short cinematic clips that open a section or reinforce a transition. Expect longer generation times.",
+              "Note: Video playback requires local hosting or a video-capable CDN. Static preview shown here."
+            ],
+            "quote": null,
+            "chips": [],
+            "cardTitles": [
+              "Prompt"
+            ]
+          },
+          "isTextOnly": false,
+          "hasEmptyMediaFrame": false,
+          "imageCount": 1
+        },
+        {
+          "index": 14,
+          "title": "Image to Video",
+          "images": [
+            {
+              "src": "resources/assets/image-to-video-demo.png",
+              "alt": "Animation frames showing motion concept",
+              "filename": "image-to-video-demo.png",
+              "dataPrompt": null,
+              "dataGen": null,
+              "inMediaFrame": true,
+              "hasAlt": true
+            }
+          ],
+          "textContext": {
+            "headline": "Image to Video",
+            "eyebrow": null,
+            "bodyText": [
+              "Animate a still into a short motion vignette. Provide a base image in the generator panel.",
+              "Note: Video playback requires local hosting or a video-capable CDN. Static preview shown here."
+            ],
+            "quote": null,
+            "chips": [],
+            "cardTitles": [
+              "Prompt"
+            ]
+          },
+          "isTextOnly": false,
+          "hasEmptyMediaFrame": false,
+          "imageCount": 1
+        },
+        {
+          "index": 15,
+          "title": "Brand Tokens",
+          "images": [
+            {
+              "src": "resources/assets/brand-tokens.png",
+              "alt": "Brand identity system showing color palette, typography, and visual style",
+              "filename": "brand-tokens.png",
+              "dataPrompt": null,
+              "dataGen": null,
+              "inMediaFrame": true,
+              "hasAlt": true
+            }
+          ],
+          "textContext": {
+            "headline": "Make It Yours",
+            "eyebrow": "Customization",
+            "bodyText": [
+              "Update CSS variables to match your brand. Keep contrast high, typography confident."
+            ],
+            "quote": null,
+            "chips": [],
+            "cardTitles": []
+          },
+          "isTextOnly": false,
+          "hasEmptyMediaFrame": false,
+          "imageCount": 1
+        },
+        {
+          "index": 16,
+          "title": "Call to Action",
+          "images": [],
+          "textContext": {
+            "headline": "Your Next Deck Starts Here",
+            "eyebrow": "Start Now",
+            "bodyText": [
+              "Stop wrestling with formatting. Start telling your story."
+            ],
+            "quote": null,
+            "chips": [
+              "Clone the repo",
+              "Add your brief",
+              "Generate"
+            ],
+            "cardTitles": []
+          },
+          "isTextOnly": true,
+          "hasEmptyMediaFrame": false,
+          "imageCount": 0
+        },
+        {
+          "index": 17,
+          "title": "Title",
+          "images": [],
+          "textContext": {
+            "headline": "Slide Title",
+            "eyebrow": "Eyebrow",
+            "bodyText": [
+              "Subtitle with a concise thesis."
+            ],
+            "quote": null,
+            "chips": [
+              "Chip one",
+              "Chip two"
+            ],
+            "cardTitles": []
+          },
+          "isTextOnly": true,
+          "hasEmptyMediaFrame": false,
+          "imageCount": 0
+        },
+        {
+          "index": 18,
+          "title": "Split",
+          "images": [],
+          "textContext": {
+            "headline": "Section title",
+            "eyebrow": null,
+            "bodyText": [
+              "Narrative text goes here."
+            ],
+            "quote": null,
+            "chips": [],
+            "cardTitles": []
+          },
+          "isTextOnly": true,
+          "hasEmptyMediaFrame": true,
+          "imageCount": 0
+        },
+        {
+          "index": 19,
+          "title": "Metrics",
+          "images": [],
+          "textContext": {
+            "headline": null,
+            "eyebrow": null,
+            "bodyText": [],
+            "quote": null,
+            "chips": [],
+            "cardTitles": []
+          },
+          "isTextOnly": true,
+          "hasEmptyMediaFrame": false,
+          "imageCount": 0
+        },
+        {
+          "index": 20,
+          "title": "Quote",
+          "images": [],
+          "textContext": {
+            "headline": null,
+            "eyebrow": null,
+            "bodyText": [],
+            "quote": "\"Quote goes here.\"",
+            "chips": [],
+            "cardTitles": []
+          },
+          "isTextOnly": true,
+          "hasEmptyMediaFrame": false,
+          "imageCount": 0
+        }
+      ]
+    },
+    "narrative-review": {
+      "deckPath": "decks/skill-demo",
+      "slideCount": 20,
+      "narrativeArc": [
+        {
+          "index": 1,
+          "title": "Hook",
+          "type": "hook"
+        },
+        {
+          "index": 2,
+          "title": "Solution",
+          "type": "content"
+        },
+        {
+          "index": 3,
+          "title": "How It Works",
+          "type": "content"
+        },
+        {
+          "index": 4,
+          "title": "Brand System",
+          "type": "content"
+        },
+        {
+          "index": 5,
+          "title": "Getting Started",
+          "type": "content"
+        },
+        {
+          "index": 6,
+          "title": "Resources",
+          "type": "content"
+        },
+        {
+          "index": 7,
+          "title": "CLI Workflow",
+          "type": "content"
+        },
+        {
+          "index": 8,
+          "title": "Templates",
+          "type": "proof"
+        },
+        {
+          "index": 9,
+          "title": "Deep Dive",
+          "type": "cta"
+        },
+        {
+          "index": 10,
+          "title": "Capability Map",
+          "type": "content"
+        },
+        {
+          "index": 11,
+          "title": "Text to Image",
+          "type": "content"
+        },
+        {
+          "index": 12,
+          "title": "Image to Image",
+          "type": "content"
+        },
+        {
+          "index": 13,
+          "title": "Text to Video",
+          "type": "content"
+        },
+        {
+          "index": 14,
+          "title": "Image to Video",
+          "type": "content"
+        },
+        {
+          "index": 15,
+          "title": "Brand Tokens",
+          "type": "content"
+        },
+        {
+          "index": 16,
+          "title": "Call to Action",
+          "type": "content"
+        },
+        {
+          "index": 17,
+          "title": "Title",
+          "type": "content"
+        },
+        {
+          "index": 18,
+          "title": "Split",
+          "type": "content"
+        },
+        {
+          "index": 19,
+          "title": "Metrics",
+          "type": "proof"
+        },
+        {
+          "index": 20,
+          "title": "Quote",
+          "type": "content"
+        }
+      ],
+      "narrativeIssues": [
+        "No clear call-to-action in final slides"
+      ],
+      "flowIssues": [
+        "Potential topic jump between slide 1 (\"Hook\") and 2 (\"Solution\")",
+        "Potential topic jump between slide 7 (\"CLI Workflow\") and 8 (\"Templates\")",
+        "Potential topic jump between slide 8 (\"Templates\") and 9 (\"Deep Dive\")",
+        "Potential topic jump between slide 9 (\"Deep Dive\") and 10 (\"Capability Map\")"
+      ],
+      "redundancies": [],
+      "slides": [
+        {
+          "index": 1,
+          "title": "Hook",
+          "headline": "What if presentations took minutes, not hours?",
+          "type": "hook",
+          "contentLength": 179,
+          "issues": []
+        },
+        {
+          "index": 2,
+          "title": "Solution",
+          "headline": "Nano Banana Slidecraft",
+          "type": "content",
+          "contentLength": 183,
+          "issues": []
+        },
+        {
+          "index": 3,
+          "title": "How It Works",
+          "headline": "Four Steps to Done",
+          "type": "content",
+          "contentLength": 145,
+          "issues": []
+        },
+        {
+          "index": 4,
+          "title": "Brand System",
+          "headline": "One Template, Many Brands",
+          "type": "content",
+          "contentLength": 183,
+          "issues": []
+        },
+        {
+          "index": 5,
+          "title": "Getting Started",
+          "headline": "Set Up Your Deck",
+          "type": "content",
+          "contentLength": 110,
+          "issues": []
+        },
+        {
+          "index": 6,
+          "title": "Resources",
+          "headline": "Add Your Materials",
+          "type": "content",
+          "contentLength": 200,
+          "issues": []
+        },
+        {
+          "index": 7,
+          "title": "CLI Workflow",
+          "headline": "Iterate with Claude",
+          "type": "content",
+          "contentLength": 145,
+          "issues": []
+        },
+        {
+          "index": 8,
+          "title": "Templates",
+          "headline": "Six Core Templates",
+          "type": "proof",
+          "contentLength": 126,
+          "issues": []
+        },
+        {
+          "index": 9,
+          "title": "Deep Dive",
+          "headline": "AI-Powered Visuals",
+          "type": "cta",
+          "contentLength": 100,
+          "issues": []
+        },
+        {
+          "index": 10,
+          "title": "Capability Map",
+          "headline": "Gemini Media Map",
+          "type": "content",
+          "contentLength": 188,
+          "issues": []
+        },
+        {
+          "index": 11,
+          "title": "Text to Image",
+          "headline": "Text to Image",
+          "type": "content",
+          "contentLength": 192,
+          "issues": []
+        },
+        {
+          "index": 12,
+          "title": "Image to Image",
+          "headline": "Image to Image",
+          "type": "content",
+          "contentLength": 208,
+          "issues": []
+        },
+        {
+          "index": 13,
+          "title": "Text to Video",
+          "headline": "Text to Video",
+          "type": "content",
+          "contentLength": 303,
+          "issues": []
+        },
+        {
+          "index": 14,
+          "title": "Image to Video",
+          "headline": "Image to Video",
+          "type": "content",
+          "contentLength": 278,
+          "issues": []
+        },
+        {
+          "index": 15,
+          "title": "Brand Tokens",
+          "headline": "Make It Yours",
+          "type": "content",
+          "contentLength": 165,
+          "issues": []
+        },
+        {
+          "index": 16,
+          "title": "Call to Action",
+          "headline": "Your Next Deck Starts Here",
+          "type": "content",
+          "contentLength": 133,
+          "issues": []
+        },
+        {
+          "index": 17,
+          "title": "Title",
+          "headline": "Slide Title",
+          "type": "content",
+          "contentLength": 69,
+          "issues": [
+            "Consider expanding \"Slide Title\" to a complete thought"
+          ]
+        },
+        {
+          "index": 18,
+          "title": "Split",
+          "headline": "Section title",
+          "type": "content",
+          "contentLength": 45,
+          "issues": [
+            "Consider expanding \"Section title\" to a complete thought"
+          ]
+        },
+        {
+          "index": 19,
+          "title": "Metrics",
+          "headline": "Metrics",
+          "type": "proof",
+          "contentLength": 50,
+          "issues": [
+            "Consider expanding \"Metrics\" to a complete thought"
+          ]
+        },
+        {
+          "index": 20,
+          "title": "Quote",
+          "headline": "Quote",
+          "type": "content",
+          "contentLength": 25,
+          "issues": [
+            "Consider expanding \"Quote\" to a complete thought"
+          ]
+        }
+      ],
+      "summary": {
+        "totalIssues": 9,
+        "slidesWithIssues": 4
+      }
+    },
+    "emotional-arc": {
+      "deckPath": "decks/skill-demo",
+      "slideCount": 20,
+      "hookAnalysis": {
+        "primaryHook": {
+          "slideIndex": 1,
+          "title": "Hook",
+          "headline": "What if presentations took minutes, not hours?",
+          "hookType": "question",
+          "indicators": [
+            "question format",
+            "specific/concrete"
+          ],
+          "grade": "interesting",
+          "reasons": [
+            "good engagement elements"
+          ]
+        },
+        "openingSlides": [
+          {
+            "slideIndex": 1,
+            "title": "Hook",
+            "headline": "What if presentations took minutes, not hours?",
+            "hookType": "question",
+            "indicators": [
+              "question format",
+              "specific/concrete"
+            ],
+            "grade": "interesting",
+            "reasons": [
+              "good engagement elements"
+            ]
+          },
+          {
+            "slideIndex": 2,
+            "title": "Solution",
+            "headline": "Nano Banana Slidecraft",
+            "hookType": "statement",
+            "indicators": [],
+            "grade": "weak",
+            "reasons": [
+              "missing engagement elements"
+            ]
+          }
+        ],
+        "overallGrade": "interesting",
+        "summary": {
+          "provocative": 0,
+          "interesting": 1,
+          "informational": 0,
+          "weak": 1
+        }
+      },
+      "emotionalArc": {
+        "perSlide": [
+          {
+            "slideIndex": 1,
+            "title": "Hook",
+            "tension": {
+              "score": 2,
+              "words": [
+                "problem",
+                "waste"
+              ]
+            },
+            "resolution": {
+              "score": 0,
+              "words": []
+            },
+            "stakes": {
+              "score": 1,
+              "indicators": [
+                "8 hours"
+              ]
+            }
+          },
+          {
+            "slideIndex": 2,
+            "title": "Solution",
+            "tension": {
+              "score": 0,
+              "words": []
+            },
+            "resolution": {
+              "score": 1,
+              "words": [
+                "answer"
+              ]
+            },
+            "stakes": {
+              "score": 0,
+              "indicators": []
+            }
+          },
+          {
+            "slideIndex": 3,
+            "title": "How It Works",
+            "tension": {
+              "score": 0,
+              "words": []
+            },
+            "resolution": {
+              "score": 0,
+              "words": []
+            },
+            "stakes": {
+              "score": 0,
+              "indicators": []
+            }
+          },
+          {
+            "slideIndex": 4,
+            "title": "Brand System",
+            "tension": {
+              "score": 0,
+              "words": []
+            },
+            "resolution": {
+              "score": 1,
+              "words": [
+                "win"
+              ]
+            },
+            "stakes": {
+              "score": 0,
+              "indicators": []
+            }
+          },
+          {
+            "slideIndex": 5,
+            "title": "Getting Started",
+            "tension": {
+              "score": 0,
+              "words": []
+            },
+            "resolution": {
+              "score": 0,
+              "words": []
+            },
+            "stakes": {
+              "score": 0,
+              "indicators": []
+            }
+          },
+          {
+            "slideIndex": 6,
+            "title": "Resources",
+            "tension": {
+              "score": 0,
+              "words": []
+            },
+            "resolution": {
+              "score": 1,
+              "words": [
+                "save"
+              ]
+            },
+            "stakes": {
+              "score": 1,
+              "indicators": [
+                "save"
+              ]
+            }
+          },
+          {
+            "slideIndex": 7,
+            "title": "CLI Workflow",
+            "tension": {
+              "score": 0,
+              "words": []
+            },
+            "resolution": {
+              "score": 1,
+              "words": [
+                "fix"
+              ]
+            },
+            "stakes": {
+              "score": 0,
+              "indicators": []
+            }
+          },
+          {
+            "slideIndex": 8,
+            "title": "Templates",
+            "tension": {
+              "score": 0,
+              "words": []
+            },
+            "resolution": {
+              "score": 1,
+              "words": [
+                "metric"
+              ]
+            },
+            "stakes": {
+              "score": 0,
+              "indicators": []
+            }
+          },
+          {
+            "slideIndex": 9,
+            "title": "Deep Dive",
+            "tension": {
+              "score": 0,
+              "words": []
+            },
+            "resolution": {
+              "score": 0,
+              "words": []
+            },
+            "stakes": {
+              "score": 0,
+              "indicators": []
+            }
+          },
+          {
+            "slideIndex": 10,
+            "title": "Capability Map",
+            "tension": {
+              "score": 0,
+              "words": []
+            },
+            "resolution": {
+              "score": 0,
+              "words": []
+            },
+            "stakes": {
+              "score": 0,
+              "indicators": []
+            }
+          },
+          {
+            "slideIndex": 11,
+            "title": "Text to Image",
+            "tension": {
+              "score": 0,
+              "words": []
+            },
+            "resolution": {
+              "score": 0,
+              "words": []
+            },
+            "stakes": {
+              "score": 0,
+              "indicators": []
+            }
+          },
+          {
+            "slideIndex": 12,
+            "title": "Image to Image",
+            "tension": {
+              "score": 0,
+              "words": []
+            },
+            "resolution": {
+              "score": 0,
+              "words": []
+            },
+            "stakes": {
+              "score": 0,
+              "indicators": []
+            }
+          },
+          {
+            "slideIndex": 13,
+            "title": "Text to Video",
+            "tension": {
+              "score": 0,
+              "words": []
+            },
+            "resolution": {
+              "score": 1,
+              "words": [
+                "win"
+              ]
+            },
+            "stakes": {
+              "score": 0,
+              "indicators": []
+            }
+          },
+          {
+            "slideIndex": 14,
+            "title": "Image to Video",
+            "tension": {
+              "score": 0,
+              "words": []
+            },
+            "resolution": {
+              "score": 0,
+              "words": []
+            },
+            "stakes": {
+              "score": 0,
+              "indicators": []
+            }
+          },
+          {
+            "slideIndex": 15,
+            "title": "Brand Tokens",
+            "tension": {
+              "score": 0,
+              "words": []
+            },
+            "resolution": {
+              "score": 0,
+              "words": []
+            },
+            "stakes": {
+              "score": 0,
+              "indicators": []
+            }
+          },
+          {
+            "slideIndex": 16,
+            "title": "Call to Action",
+            "tension": {
+              "score": 1,
+              "words": [
+                "now"
+              ]
+            },
+            "resolution": {
+              "score": 2,
+              "words": [
+                "next"
+              ]
+            },
+            "stakes": {
+              "score": 0,
+              "indicators": []
+            }
+          },
+          {
+            "slideIndex": 17,
+            "title": "Title",
+            "tension": {
+              "score": 0,
+              "words": []
+            },
+            "resolution": {
+              "score": 0,
+              "words": []
+            },
+            "stakes": {
+              "score": 0,
+              "indicators": []
+            }
+          },
+          {
+            "slideIndex": 18,
+            "title": "Split",
+            "tension": {
+              "score": 0,
+              "words": []
+            },
+            "resolution": {
+              "score": 0,
+              "words": []
+            },
+            "stakes": {
+              "score": 0,
+              "indicators": []
+            }
+          },
+          {
+            "slideIndex": 19,
+            "title": "Metrics",
+            "tension": {
+              "score": 0,
+              "words": []
+            },
+            "resolution": {
+              "score": 4,
+              "words": [
+                "metric"
+              ]
+            },
+            "stakes": {
+              "score": 1,
+              "indicators": [
+                "45%"
+              ]
+            }
+          },
+          {
+            "slideIndex": 20,
+            "title": "Quote",
+            "tension": {
+              "score": 0,
+              "words": []
+            },
+            "resolution": {
+              "score": 0,
+              "words": []
+            },
+            "stakes": {
+              "score": 0,
+              "indicators": []
+            }
+          }
+        ],
+        "arcShape": {
+          "shape": "flat",
+          "description": "Warning: No emotional arc - deck feels monotone",
+          "metrics": {
+            "firstThird": {
+              "tension": "0.3",
+              "resolution": "0.6"
+            },
+            "middleThird": {
+              "tension": "0.0",
+              "resolution": "0.3"
+            },
+            "lastThird": {
+              "tension": "0.2",
+              "resolution": "1.0"
+            }
+          }
+        },
+        "totalTension": 3,
+        "totalResolution": 12,
+        "totalStakes": 3
+      },
+      "flowChain": {
+        "gaps": [
+          {
+            "fromSlide": 1,
+            "toSlide": 2,
+            "fromTitle": "Hook",
+            "toTitle": "Solution",
+            "issue": "No conceptual bridge between slides",
+            "suggestion": "Consider adding a transition from \"Hook\" to \"Solution\""
+          },
+          {
+            "fromSlide": 1,
+            "toSlide": 2,
+            "fromTitle": "Hook",
+            "toTitle": "Solution",
+            "issue": "Problem slide not followed by solution or deeper problem exploration",
+            "suggestion": "After establishing a problem, immediately address it or deepen it"
+          },
+          {
+            "fromSlide": 3,
+            "toSlide": 4,
+            "fromTitle": "How It Works",
+            "toTitle": "Brand System",
+            "issue": "No conceptual bridge between slides",
+            "suggestion": "Consider adding a transition from \"How It Works\" to \"Brand System\""
+          },
+          {
+            "fromSlide": 4,
+            "toSlide": 5,
+            "fromTitle": "Brand System",
+            "toTitle": "Getting Started",
+            "issue": "No conceptual bridge between slides",
+            "suggestion": "Consider adding a transition from \"Brand System\" to \"Getting Started\""
+          },
+          {
+            "fromSlide": 6,
+            "toSlide": 7,
+            "fromTitle": "Resources",
+            "toTitle": "CLI Workflow",
+            "issue": "No conceptual bridge between slides",
+            "suggestion": "Consider adding a transition from \"Resources\" to \"CLI Workflow\""
+          },
+          {
+            "fromSlide": 7,
+            "toSlide": 8,
+            "fromTitle": "CLI Workflow",
+            "toTitle": "Templates",
+            "issue": "No conceptual bridge between slides",
+            "suggestion": "Consider adding a transition from \"CLI Workflow\" to \"Templates\""
+          },
+          {
+            "fromSlide": 8,
+            "toSlide": 9,
+            "fromTitle": "Templates",
+            "toTitle": "Deep Dive",
+            "issue": "No conceptual bridge between slides",
+            "suggestion": "Consider adding a transition from \"Templates\" to \"Deep Dive\""
+          },
+          {
+            "fromSlide": 9,
+            "toSlide": 10,
+            "fromTitle": "Deep Dive",
+            "toTitle": "Capability Map",
+            "issue": "No conceptual bridge between slides",
+            "suggestion": "Consider adding a transition from \"Deep Dive\" to \"Capability Map\""
+          },
+          {
+            "fromSlide": 14,
+            "toSlide": 15,
+            "fromTitle": "Image to Video",
+            "toTitle": "Brand Tokens",
+            "issue": "No conceptual bridge between slides",
+            "suggestion": "Consider adding a transition from \"Image to Video\" to \"Brand Tokens\""
+          },
+          {
+            "fromSlide": 16,
+            "toSlide": 17,
+            "fromTitle": "Call to Action",
+            "toTitle": "Title",
+            "issue": "No conceptual bridge between slides",
+            "suggestion": "Consider adding a transition from \"Call to Action\" to \"Title\""
+          },
+          {
+            "fromSlide": 18,
+            "toSlide": 19,
+            "fromTitle": "Split",
+            "toTitle": "Metrics",
+            "issue": "No conceptual bridge between slides",
+            "suggestion": "Consider adding a transition from \"Split\" to \"Metrics\""
+          }
+        ],
+        "gapCount": 11,
+        "assessment": "Significant flow problems"
+      },
+      "summary": {
+        "hookQuality": "interesting",
+        "arcShape": "flat",
+        "flowGaps": 11,
+        "recommendations": [
+          "Add emotional dynamics - establish tension before offering resolution",
+          "Fix 11 slide transition(s) that lack logical connection",
+          "Add more stakes indicators (numbers, impact, consequences)"
+        ]
+      }
+    },
+    "readability": {
+      "deckPath": "decks/skill-demo",
+      "slideCount": 20,
+      "totalWords": 377,
+      "totalSentences": 64,
+      "deckAverage": {
+        "fleschKincaidGrade": 4.74,
+        "avgSentenceLength": 5.89,
+        "passiveVoicePercent": 6.7,
+        "jargonDensity": 0.53
+      },
+      "deckFlags": [],
+      "slides": [
+        {
+          "index": 1,
+          "title": "Hook",
+          "content": "The Problem What if presentations took minutes, not hours? The average professional spends 8 hours creating a single deck. Most of that time is wasted on formatting, not thinking.",
+          "wordCount": 23,
+          "sentenceCount": 3,
+          "fleschKincaidGrade": 4.84,
+          "avgSentenceLength": 7.67,
+          "avgWordLength": 4.83,
+          "avgSyllablesPerWord": 1.48,
+          "passiveVoice": [
+            "is wasted"
+          ],
+          "passiveVoicePercent": 33.3,
+          "jargon": [],
+          "jargonDensity": 0,
+          "complexSentences": [
+            {
+              "text": "Most of that time is wasted on formatting, not thinking",
+              "wordCount": 10,
+              "issues": [
+                "Passive voice: \"is wasted\""
+              ]
+            }
+          ],
+          "flags": [
+            "High passive voice: 33% (target: <20%)"
+          ]
+        },
+        {
+          "index": 2,
+          "title": "Solution",
+          "content": "The Answer Nano Banana Slidecraft AI-generated visuals in single-file HTML slides. From blank page to polished deck in minutes. One file per deck AI-generated images Multi-brand ready",
+          "wordCount": 21,
+          "sentenceCount": 3,
+          "fleschKincaidGrade": 5.12,
+          "avgSentenceLength": 7,
+          "avgWordLength": 4.57,
+          "avgSyllablesPerWord": 1.52,
+          "passiveVoice": [],
+          "passiveVoicePercent": 0,
+          "jargon": [],
+          "jargonDensity": 0,
+          "complexSentences": [],
+          "flags": []
+        },
+        {
+          "index": 3,
+          "title": "How It Works",
+          "content": "The Process Four Steps to Done From blank page to polished deck in minutes. No design skills required. 1. Create 2. Design 3. Generate 4. Present",
+          "wordCount": 20,
+          "sentenceCount": 7,
+          "fleschKincaidGrade": 1.45,
+          "avgSentenceLength": 2.86,
+          "avgWordLength": 4.75,
+          "avgSyllablesPerWord": 1.35,
+          "passiveVoice": [],
+          "passiveVoicePercent": 0,
+          "jargon": [],
+          "jargonDensity": 0,
+          "complexSentences": [],
+          "flags": []
+        },
+        {
+          "index": 4,
+          "title": "Brand System",
+          "content": "Built for Scale One Template, Many Brands Switch visual identities instantly with a URL parameter. Perfect for agencies and teams. Usage ?entity=northwind ?entity=apex ?entity=coastal",
+          "wordCount": 18,
+          "sentenceCount": 6,
+          "fleschKincaidGrade": 5.25,
+          "avgSentenceLength": 3,
+          "avgWordLength": 5.06,
+          "avgSyllablesPerWord": 1.67,
+          "passiveVoice": [],
+          "passiveVoicePercent": 0,
+          "jargon": [],
+          "jargonDensity": 0,
+          "complexSentences": [],
+          "flags": []
+        },
+        {
+          "index": 5,
+          "title": "Getting Started",
+          "content": "Getting Started Set Up Your Deck Three things to configure: your materials, your workflow, and your templates.",
+          "wordCount": 13,
+          "sentenceCount": 1,
+          "fleschKincaidGrade": 2.19,
+          "avgSentenceLength": 13,
+          "avgWordLength": 4.23,
+          "avgSyllablesPerWord": 1.08,
+          "passiveVoice": [
+            "Getting Started"
+          ],
+          "passiveVoicePercent": 100,
+          "jargon": [],
+          "jargonDensity": 0,
+          "complexSentences": [
+            {
+              "text": "Getting Started Set Up Your Deck Three things to configure: your materials, your workflow, and your ...",
+              "wordCount": 17,
+              "issues": [
+                "Passive voice: \"Getting Started\""
+              ]
+            }
+          ],
+          "flags": [
+            "High passive voice: 100% (target: <20%)"
+          ]
+        },
+        {
+          "index": 6,
+          "title": "Resources",
+          "content": "Add Your Materials Drop briefs, notes, and assets into the resources folder. The AI uses these for context. resources/ ├── assets/ logos, images ├── materials/ briefs, notes └── prompts/ saved prompts",
+          "wordCount": 18,
+          "sentenceCount": 3,
+          "fleschKincaidGrade": 2.48,
+          "avgSentenceLength": 6,
+          "avgWordLength": 4.72,
+          "avgSyllablesPerWord": 1.33,
+          "passiveVoice": [],
+          "passiveVoicePercent": 0,
+          "jargon": [],
+          "jargonDensity": 0,
+          "complexSentences": [],
+          "flags": []
+        },
+        {
+          "index": 7,
+          "title": "CLI Workflow",
+          "content": "Iterate with Claude Chat with the CLI to refine slides. It reads your deck, evaluates layouts, and makes targeted fixes. Review Refine Regenerate",
+          "wordCount": 19,
+          "sentenceCount": 3,
+          "fleschKincaidGrade": 5.51,
+          "avgSentenceLength": 6.33,
+          "avgWordLength": 5.11,
+          "avgSyllablesPerWord": 1.58,
+          "passiveVoice": [],
+          "passiveVoicePercent": 0,
+          "jargon": [
+            {
+              "term": "CLI",
+              "type": "acronym"
+            }
+          ],
+          "jargonDensity": 5.26,
+          "complexSentences": [],
+          "flags": [
+            "High jargon density: 5.3% (target: <5%)"
+          ]
+        },
+        {
+          "index": 8,
+          "title": "Templates",
+          "content": "Six Core Templates Every story fits one of these patterns. Mix and match for rhythm. Title Split Metrics Quote Diagram Gallery",
+          "wordCount": 19,
+          "sentenceCount": 3,
+          "fleschKincaidGrade": 4.27,
+          "avgSentenceLength": 6.33,
+          "avgWordLength": 4.74,
+          "avgSyllablesPerWord": 1.47,
+          "passiveVoice": [],
+          "passiveVoicePercent": 0,
+          "jargon": [],
+          "jargonDensity": 0,
+          "complexSentences": [],
+          "flags": []
+        },
+        {
+          "index": 9,
+          "title": "Deep Dive",
+          "content": "Going Deeper AI-Powered Visuals Four generation modes for every visual need. Let's explore each one.",
+          "wordCount": 11,
+          "sentenceCount": 2,
+          "fleschKincaidGrade": 8.01,
+          "avgSentenceLength": 5.5,
+          "avgWordLength": 5.64,
+          "avgSyllablesPerWord": 1.82,
+          "passiveVoice": [],
+          "passiveVoicePercent": 0,
+          "jargon": [],
+          "jargonDensity": 0,
+          "complexSentences": [],
+          "flags": []
+        },
+        {
+          "index": 10,
+          "title": "Capability Map",
+          "content": "Overview Gemini Media Map Text-to-image for diagrams. Image-to-image for brand stylization. Veo for motion. Text Prompt Image Base Text to Image Image to Image Text to Video Image to Video",
+          "wordCount": 25,
+          "sentenceCount": 4,
+          "fleschKincaidGrade": 4.31,
+          "avgSentenceLength": 6.25,
+          "avgWordLength": 4.16,
+          "avgSyllablesPerWord": 1.48,
+          "passiveVoice": [],
+          "passiveVoicePercent": 0,
+          "jargon": [],
+          "jargonDensity": 0,
+          "complexSentences": [],
+          "flags": []
+        },
+        {
+          "index": 11,
+          "title": "Text to Image",
+          "content": "Text to Image Generate diagrams, texture, and hero art with a prompt that locks brand tone and lighting. Prompt Editorial illustration, warm parchment palette, crisp linework, minimal shadows.",
+          "wordCount": 21,
+          "sentenceCount": 2,
+          "fleschKincaidGrade": 5.92,
+          "avgSentenceLength": 10.5,
+          "avgWordLength": 4.81,
+          "avgSyllablesPerWord": 1.48,
+          "passiveVoice": [],
+          "passiveVoicePercent": 0,
+          "jargon": [],
+          "jargonDensity": 0,
+          "complexSentences": [],
+          "flags": []
+        },
+        {
+          "index": 12,
+          "title": "Image to Image",
+          "content": "Image to Image Use a base image and restyle it into your brand's visual language. Set a base image in the generator panel. Prompt Restyle into a matte collage with warm paper textures and bold orange accents.",
+          "wordCount": 33,
+          "sentenceCount": 3,
+          "fleschKincaidGrade": 6.94,
+          "avgSentenceLength": 11,
+          "avgWordLength": 4.3,
+          "avgSyllablesPerWord": 1.55,
+          "passiveVoice": [],
+          "passiveVoicePercent": 0,
+          "jargon": [],
+          "jargonDensity": 0,
+          "complexSentences": [],
+          "flags": []
+        },
+        {
+          "index": 13,
+          "title": "Text to Video",
+          "content": "Text to Video Short cinematic clips that open a section or reinforce a transition. Expect longer generation times. Prompt Slow pan across layered paper textures and a glowing brand mark, soft studio lighting. Note: Video playback requires local hosting or a video-capable CDN. Static preview shown here.",
+          "wordCount": 39,
+          "sentenceCount": 5,
+          "fleschKincaidGrade": 6.51,
+          "avgSentenceLength": 7.8,
+          "avgWordLength": 5.1,
+          "avgSyllablesPerWord": 1.62,
+          "passiveVoice": [],
+          "passiveVoicePercent": 0,
+          "jargon": [
+            {
+              "term": "CDN",
+              "type": "acronym"
+            }
+          ],
+          "jargonDensity": 2.56,
+          "complexSentences": [],
+          "flags": []
+        },
+        {
+          "index": 14,
+          "title": "Image to Video",
+          "content": "Image to Video Animate a still into a short motion vignette. Provide a base image in the generator panel. Prompt Gentle parallax, soft shadow drift, camera push in, warm studio grade. Note: Video playback requires local hosting or a video-capable CDN. Static preview shown here.",
+          "wordCount": 35,
+          "sentenceCount": 5,
+          "fleschKincaidGrade": 6.69,
+          "avgSentenceLength": 7,
+          "avgWordLength": 4.8,
+          "avgSyllablesPerWord": 1.66,
+          "passiveVoice": [],
+          "passiveVoicePercent": 0,
+          "jargon": [
+            {
+              "term": "CDN",
+              "type": "acronym"
+            }
+          ],
+          "jargonDensity": 2.86,
+          "complexSentences": [],
+          "flags": []
+        },
+        {
+          "index": 15,
+          "title": "Brand Tokens",
+          "content": "Customization Make It Yours Update CSS variables to match your brand. Keep contrast high, typography confident. Ink #0d1117 Accent #ff6b35 Sage #93a77a Slate #3a4654",
+          "wordCount": 17,
+          "sentenceCount": 3,
+          "fleschKincaidGrade": 6.75,
+          "avgSentenceLength": 5.67,
+          "avgWordLength": 5.47,
+          "avgSyllablesPerWord": 1.71,
+          "passiveVoice": [],
+          "passiveVoicePercent": 0,
+          "jargon": [],
+          "jargonDensity": 0,
+          "complexSentences": [],
+          "flags": []
+        },
+        {
+          "index": 16,
+          "title": "Call to Action",
+          "content": "Start Now Your Next Deck Starts Here Stop wrestling with formatting. Start telling your story. Clone the repo Add your brief Generate",
+          "wordCount": 20,
+          "sentenceCount": 3,
+          "fleschKincaidGrade": 1.76,
+          "avgSentenceLength": 6.67,
+          "avgWordLength": 4.75,
+          "avgSyllablesPerWord": 1.25,
+          "passiveVoice": [],
+          "passiveVoicePercent": 0,
+          "jargon": [],
+          "jargonDensity": 0,
+          "complexSentences": [],
+          "flags": []
+        },
+        {
+          "index": 17,
+          "title": "Title",
+          "content": "Eyebrow Slide Title Subtitle with a concise thesis. Chip one Chip two",
+          "wordCount": 11,
+          "sentenceCount": 2,
+          "fleschKincaidGrade": 3.72,
+          "avgSentenceLength": 5.5,
+          "avgWordLength": 4.64,
+          "avgSyllablesPerWord": 1.45,
+          "passiveVoice": [],
+          "passiveVoicePercent": 0,
+          "jargon": [],
+          "jargonDensity": 0,
+          "complexSentences": [],
+          "flags": []
+        },
+        {
+          "index": 18,
+          "title": "Split",
+          "content": "Section title Narrative text goes here. Media",
+          "wordCount": 6,
+          "sentenceCount": 2,
+          "fleschKincaidGrade": 7.21,
+          "avgSentenceLength": 3,
+          "avgWordLength": 5.67,
+          "avgSyllablesPerWord": 1.83,
+          "passiveVoice": [],
+          "passiveVoicePercent": 0,
+          "jargon": [],
+          "jargonDensity": 0,
+          "complexSentences": [],
+          "flags": []
+        },
+        {
+          "index": 19,
+          "title": "Metrics",
+          "content": "45% Metric label 3.2x Metric label 12 Metric label",
+          "wordCount": 6,
+          "sentenceCount": 2,
+          "fleschKincaidGrade": 9.18,
+          "avgSentenceLength": 3,
+          "avgWordLength": 5.5,
+          "avgSyllablesPerWord": 2,
+          "passiveVoice": [],
+          "passiveVoicePercent": 0,
+          "jargon": [],
+          "jargonDensity": 0,
+          "complexSentences": [],
+          "flags": []
+        },
+        {
+          "index": 20,
+          "title": "Quote",
+          "content": "\"Quote goes here.\" Source",
+          "wordCount": 2,
+          "sentenceCount": 2,
+          "fleschKincaidGrade": -3.4,
+          "avgSentenceLength": 1,
+          "avgWordLength": 5,
+          "avgSyllablesPerWord": 1,
+          "passiveVoice": [],
+          "passiveVoicePercent": 0,
+          "jargon": [],
+          "jargonDensity": 0,
+          "complexSentences": [],
+          "flags": []
+        }
+      ],
+      "complexSentences": [
+        {
+          "slide": 1,
+          "slideTitle": "Hook",
+          "text": "Most of that time is wasted on formatting, not thinking",
+          "wordCount": 10,
+          "issues": [
+            "Passive voice: \"is wasted\""
+          ]
+        },
+        {
+          "slide": 5,
+          "slideTitle": "Getting Started",
+          "text": "Getting Started Set Up Your Deck Three things to configure: your materials, your workflow, and your ...",
+          "wordCount": 17,
+          "issues": [
+            "Passive voice: \"Getting Started\""
+          ]
+        }
+      ],
+      "summary": {
+        "slidesWithFlags": 3,
+        "totalFlags": 3,
+        "totalComplexSentences": 2
+      }
+    }
+  },
+  "errors": []
+}
