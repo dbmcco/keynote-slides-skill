@@ -1,3 +1,8 @@
+---
+name: new-deck-wizard
+description: Guided wizard for creating high-quality slide decks. Enforces presentation best practices through interactive interview about audience, goals, and visual concepts. Use when starting a new deck from scratch and want quality guidance.
+---
+
 # /new-deck-wizard - Guided Deck Creation
 
 Create a high-quality slide deck through an interactive interview process that enforces good presentation design from the start.

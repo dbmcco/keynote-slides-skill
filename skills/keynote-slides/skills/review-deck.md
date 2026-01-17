@@ -1,3 +1,8 @@
+---
+name: review-deck
+description: Run comprehensive antagonistic review of slide decks using specialized sub-agents. Spawns narrative, clarity, brand, audience, and accessibility reviewers that challenge each other. Use when reviewing a completed deck before presenting.
+---
+
 # /review-deck - Model-Mediated Deck Review
 
 Run a comprehensive, antagonistic review of a slide deck using specialized sub-agents.
