@@ -639,7 +639,16 @@
   </head>
   <body>
     <main class="deck" id="deck" aria-live="polite">
-      <section class="slide theme-ivory is-active" data-title="Title">
+      <section class="slide theme-ink is-active" data-title="Philosophy">
+        <div class="slide-inner layout-quote">
+          <p class="quote reveal" style="--reveal-index: 1">
+            "Keep one bold idea per slide.<br>Let whitespace do the talking."
+          </p>
+          <div class="quote-meta reveal" style="--reveal-index: 2">Keynote Style Deck Guide</div>
+        </div>
+      </section>
+
+      <section class="slide theme-ivory" data-title="Title">
         <div class="slide-inner layout-title">
           <div class="eyebrow reveal" style="--reveal-index: 1">Keynote Style Deck</div>
           <h1 class="title reveal" style="--reveal-index: 2">Nano Banana Slidecraft</h1>
@@ -655,18 +664,26 @@
       </section>
 
       <section class="slide theme-ivory" data-title="How It Works">
-        <div class="slide-inner">
-          <h2 class="section-title reveal" style="--reveal-index: 1">How It Works</h2>
-          <p class="body-text reveal" style="--reveal-index: 2">From zero to presentation in minutes, with AI-generated visuals.</p>
-          <img class="reveal" style="--reveal-index: 3; width: 100%; max-height: 320px; object-fit: contain; border-radius: 16px;" src="resources/assets/workflow-diagram.png" alt="Workflow: Create, Design, Generate, Present" />
+        <div class="slide-inner" style="grid-template-rows: auto 1fr; align-items: start;">
+          <div>
+            <h2 class="section-title reveal" style="--reveal-index: 1">How It Works</h2>
+            <p class="body-text reveal" style="--reveal-index: 2; margin-bottom: 16px;">From zero to presentation in minutes, with AI-generated visuals.</p>
+          </div>
+          <div class="reveal" style="--reveal-index: 3; display: flex; align-items: center; justify-content: center; flex: 1;">
+            <img style="width: 100%; max-width: 900px; height: auto; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);" src="resources/assets/workflow-diagram.png" alt="Workflow: Create, Design, Generate, Present" />
+          </div>
         </div>
       </section>
 
       <section class="slide theme-ivory" data-title="Brand System">
-        <div class="slide-inner">
-          <h2 class="section-title reveal" style="--reveal-index: 1">Multi-Brand System</h2>
-          <p class="body-text reveal" style="--reveal-index: 2">One template, multiple visual identities. Switch with <code>?entity=name</code></p>
-          <img class="reveal" style="--reveal-index: 3; width: 100%; max-height: 380px; object-fit: contain; border-radius: 16px;" src="resources/assets/brand-system.png" alt="Three brand identity cards: Tech, Consulting, Biotech" />
+        <div class="slide-inner" style="grid-template-rows: auto 1fr; align-items: start;">
+          <div>
+            <h2 class="section-title reveal" style="--reveal-index: 1">Multi-Brand System</h2>
+            <p class="body-text reveal" style="--reveal-index: 2; margin-bottom: 16px;">One template, multiple visual identities. Switch with <code>?entity=name</code></p>
+          </div>
+          <div class="reveal" style="--reveal-index: 3; display: flex; align-items: center; justify-content: center; flex: 1;">
+            <img style="width: 100%; max-width: 800px; height: auto; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.12);" src="resources/assets/brand-system.png" alt="Three brand identity cards: Tech, Consulting, Biotech" />
+          </div>
         </div>
       </section>
 
@@ -775,13 +792,12 @@
               </div>
             </div>
           </div>
-          <div class="media-frame reveal" style="--reveal-index: 2">
-            <div class="media-placeholder">Text to Image preview</div>
+          <div class="media-frame reveal" style="--reveal-index: 2" data-ready="true">
             <img
               class="gen-media"
-              data-gen="text-to-image"
-              data-prompt="Editorial illustration of a layered keynote slide, warm parchment palette, crisp linework, minimal shadows"
-              alt="Generated text to image"
+              src="resources/assets/text-to-image-demo.png"
+              alt="AI-generated banana character at a laptop"
+              style="opacity: 1;"
             />
           </div>
         </div>
@@ -801,13 +817,12 @@
               </div>
             </div>
           </div>
-          <div class="media-frame reveal" style="--reveal-index: 2">
-            <div class="media-placeholder">Image to Image preview</div>
+          <div class="media-frame reveal" style="--reveal-index: 2" data-ready="true">
             <img
               class="gen-media"
-              data-gen="image-to-image"
-              data-prompt="Restyle into a matte collage with warm paper textures and bold orange accents"
-              alt="Generated image to image"
+              src="resources/assets/image-to-image-demo.png"
+              alt="Paper collage with geometric shapes"
+              style="opacity: 1;"
             />
           </div>
         </div>
@@ -827,16 +842,13 @@
               </div>
             </div>
           </div>
-          <div class="media-frame reveal" style="--reveal-index: 2">
-            <div class="media-placeholder">Text to Video preview</div>
-            <video
+          <div class="media-frame reveal" style="--reveal-index: 2" data-ready="true">
+            <img
               class="gen-media"
-              data-gen="text-to-video"
-              data-prompt="Slow pan across layered paper textures and a glowing brand mark, soft studio lighting"
-              muted
-              loop
-              playsinline
-            ></video>
+              src="resources/assets/text-to-video-demo.png"
+              alt="Cinematic light trails suggesting motion"
+              style="opacity: 1;"
+            />
           </div>
         </div>
       </section>
@@ -855,16 +867,13 @@
               </div>
             </div>
           </div>
-          <div class="media-frame reveal" style="--reveal-index: 2">
-            <div class="media-placeholder">Image to Video preview</div>
-            <video
+          <div class="media-frame reveal" style="--reveal-index: 2" data-ready="true">
+            <img
               class="gen-media"
-              data-gen="image-to-video"
-              data-prompt="Gentle parallax, soft shadow drift, camera push in, warm studio grade"
-              muted
-              loop
-              playsinline
-            ></video>
+              src="resources/assets/image-to-video-demo.png"
+              alt="Animation frames showing motion concept"
+              style="opacity: 1;"
+            />
           </div>
         </div>
       </section>
@@ -900,14 +909,6 @@
         </div>
       </section>
 
-      <section class="slide theme-ink" data-title="Close">
-        <div class="slide-inner layout-quote">
-          <p class="quote reveal" style="--reveal-index: 1">
-            "Keep one bold idea per slide. Let whitespace do the talking."
-          </p>
-          <div class="quote-meta reveal" style="--reveal-index: 2">Keynote Style Deck Guide</div>
-        </div>
-      </section>
     </main>
 
     <nav class="deck-nav" aria-label="Slide navigation">
