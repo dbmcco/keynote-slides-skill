@@ -415,6 +415,74 @@ function generateReviewPrompts(deckData, context, brandProfile) {
 }
 
 // ============================================================================
+// ANALYSIS INTEGRATION
+// ============================================================================
+
+function runFullAnalysis(deckPath) {
+  const { spawnSync } = require('child_process');
+  const reviewAllPath = path.join(__dirname, 'review-all.js');
+
+  console.log('📊 Running comprehensive analysis...');
+
+  const result = spawnSync('node', [reviewAllPath, deckPath], {
+    encoding: 'utf-8',
+    timeout: 120000,
+    stdio: ['inherit', 'pipe', 'pipe'],
+  });
+
+  if (result.error) {
+    console.warn(`   Warning: Analysis failed: ${result.error.message}`);
+    return null;
+  }
+
+  // Load the generated analysis
+  const analysisPath = path.join(deckPath, 'resources', 'materials', 'full-analysis.json');
+  if (fs.existsSync(analysisPath)) {
+    return JSON.parse(fs.readFileSync(analysisPath, 'utf-8'));
+  }
+  return null;
+}
+
+function formatAnalysisForAgents(analysis) {
+  if (!analysis) return {};
+
+  const summary = analysis.summary || {};
+
+  return {
+    // North star scores
+    northStarScores: summary.northStarScores || {},
+    overallGrade: summary.overall?.grade || 'N/A',
+    overallScore: summary.overall?.score || 0,
+
+    // Critical issues for agents to address
+    criticalIssues: summary.overall?.criticalIssues || [],
+    importantIssues: summary.overall?.importantIssues || [],
+
+    // Visual density data
+    visualDensity: summary.byCategory?.visualDensity || {},
+    slidesWithoutVisuals: analysis.rawResults?.['visual-density']?.flagSummary?.flagsByType?.no_visuals_on_content_slide || [],
+
+    // Emotional arc data
+    emotionalArc: summary.byCategory?.emotionalArc || {},
+    hookGrade: analysis.rawResults?.['emotional-arc']?.hookAnalysis?.overallGrade || 'unknown',
+    arcShape: analysis.rawResults?.['emotional-arc']?.emotionalArc?.arcShape?.shape || 'unknown',
+    flowGaps: analysis.rawResults?.['emotional-arc']?.flowChain?.gaps || [],
+
+    // Readability data
+    readability: summary.byCategory?.readability || {},
+    complexSentences: analysis.rawResults?.readability?.complexSentences || [],
+    jargonFound: analysis.rawResults?.readability?.slides?.flatMap((s) => s.jargon) || [],
+
+    // Design quality (if available)
+    designQuality: summary.byCategory?.designQuality || {},
+
+    // Per-slide breakdowns
+    perSlideVisualDensity: analysis.rawResults?.['visual-density']?.slides || [],
+    perSlideEmotional: analysis.rawResults?.['emotional-arc']?.emotionalArc?.perSlide || [],
+  };
+}
+
+// ============================================================================
 // MAIN
 // ============================================================================
 
@@ -422,6 +490,7 @@ async function main() {
   const args = process.argv.slice(2);
   const deckPath = args.find((a) => !a.startsWith('--')) || 'decks/skill-demo';
   const skipInterview = args.includes('--skip-interview');
+  const skipAnalysis = args.includes('--skip-analysis');
 
   console.log('🎯 Model-Mediated Deck Review');
   console.log('='.repeat(50));
@@ -438,6 +507,18 @@ async function main() {
     console.log(`\n📋 Using existing context from ${deckPath}/resources/materials/review-context.json\n`);
   }
 
+  // Run comprehensive analysis
+  let analysisData = null;
+  if (!skipAnalysis) {
+    analysisData = runFullAnalysis(deckPath);
+    if (analysisData) {
+      console.log('   Analysis complete.\n');
+    }
+  }
+
+  // Format analysis for agents
+  const formattedAnalysis = formatAnalysisForAgents(analysisData);
+
   // Extract deck data
   console.log('📊 Extracting deck data...');
   const deckData = extractDeckData(deckPath);
@@ -445,21 +526,53 @@ async function main() {
 
   console.log(`   Found ${deckData.slideCount} slides\n`);
 
-  // Generate prompts
+  // Generate prompts with analysis data
   console.log('🤖 Generating agent prompts...\n');
   const prompts = generateReviewPrompts(deckData, context, brandProfile);
+
+  // Add analysis context to prompts
+  for (const name of Object.keys(prompts)) {
+    prompts[name] = prompts[name]
+      .replace(/{analysisData}/g, JSON.stringify(formattedAnalysis, null, 2))
+      .replace(/{visualDensityData}/g, JSON.stringify(formattedAnalysis.perSlideVisualDensity, null, 2))
+      .replace(/{emotionalArcData}/g, JSON.stringify(formattedAnalysis.perSlideEmotional, null, 2))
+      .replace(/{northStarScores}/g, JSON.stringify(formattedAnalysis.northStarScores, null, 2))
+      .replace(/{criticalIssues}/g, JSON.stringify(formattedAnalysis.criticalIssues, null, 2))
+      .replace(/{flowGaps}/g, JSON.stringify(formattedAnalysis.flowGaps, null, 2));
+  }
 
   // Save prompts for Claude Code to execute
   const promptsPath = path.join(deckPath, 'resources', 'materials', 'review-prompts.json');
   fs.writeFileSync(promptsPath, JSON.stringify(prompts, null, 2));
 
+  // Save formatted analysis separately for reference
+  const formattedPath = path.join(deckPath, 'resources', 'materials', 'analysis-summary.json');
+  fs.writeFileSync(formattedPath, JSON.stringify(formattedAnalysis, null, 2));
+
   console.log('='.repeat(50));
   console.log('✅ Review preparation complete!\n');
+
+  // Show quick summary from analysis
+  if (formattedAnalysis.overallGrade !== 'N/A') {
+    console.log('--- AUTOMATED ANALYSIS SUMMARY ---');
+    console.log(`   Overall Grade: ${formattedAnalysis.overallGrade} (${formattedAnalysis.overallScore}%)`);
+    console.log(`   Storytelling:  ${formattedAnalysis.northStarScores.storytelling || 'N/A'}%`);
+    console.log(`   Clarity:       ${formattedAnalysis.northStarScores.clarity || 'N/A'}%`);
+    console.log(`   Visual Balance:${formattedAnalysis.northStarScores.visualBalance || 'N/A'}%`);
+    console.log(`   Design:        ${formattedAnalysis.northStarScores.design || 'N/A'}%`);
+    if (formattedAnalysis.criticalIssues.length > 0) {
+      console.log(`\n   Critical Issues: ${formattedAnalysis.criticalIssues.length}`);
+      formattedAnalysis.criticalIssues.forEach((i) => console.log(`     - ${i.message}`));
+    }
+    console.log('');
+  }
+
   console.log('To execute the model-mediated review, use Claude Code:\n');
   console.log('   "Run the deck review agents for decks/skill-demo"');
   console.log('   "Execute antagonistic review with the generated prompts"\n');
   console.log(`Prompts saved to: ${promptsPath}`);
-  console.log(`Context saved to: ${deckPath}/resources/materials/review-context.json\n`);
+  console.log(`Context saved to: ${deckPath}/resources/materials/review-context.json`);
+  console.log(`Analysis saved to: ${formattedPath}\n`);
 
   // Output summary for Claude Code to use
   console.log('--- AGENT EXECUTION ORDER ---');
