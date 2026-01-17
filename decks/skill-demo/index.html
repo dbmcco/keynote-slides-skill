@@ -639,26 +639,27 @@
   </head>
   <body>
     <main class="deck" id="deck" aria-live="polite">
-      <section class="slide theme-ink is-active" data-title="Philosophy">
-        <div class="slide-inner layout-quote">
-          <p class="quote reveal" style="--reveal-index: 1">
-            "Keep one bold idea per slide.<br>Let whitespace do the talking."
+      <section class="slide theme-ink is-active" data-title="Hook">
+        <div class="slide-inner layout-title">
+          <div class="eyebrow reveal" style="--reveal-index: 1">The Problem</div>
+          <h1 class="title reveal" style="--reveal-index: 2">What if presentations took minutes, not hours?</h1>
+          <p class="subtitle reveal" style="--reveal-index: 3">
+            The average professional spends 8 hours creating a single deck. Most of that time is wasted on formatting, not thinking.
           </p>
-          <div class="quote-meta reveal" style="--reveal-index: 2">Keynote Style Deck Guide</div>
         </div>
       </section>
 
-      <section class="slide theme-ivory" data-title="Title">
+      <section class="slide theme-ivory" data-title="Solution">
         <div class="slide-inner layout-title">
-          <div class="eyebrow reveal" style="--reveal-index: 1">Keynote Style Deck</div>
+          <div class="eyebrow reveal" style="--reveal-index: 1">The Answer</div>
           <h1 class="title reveal" style="--reveal-index: 2">Nano Banana Slidecraft</h1>
           <p class="subtitle reveal" style="--reveal-index: 3">
-            Single-file HTML slides with brand tokens, templated layouts, and Gemini media hooks.
+            AI-generated visuals in single-file HTML slides. From blank page to polished deck in minutes.
           </p>
           <div class="chip-row reveal" style="--reveal-index: 4">
-            <div class="chip">Minimal navigation</div>
-            <div class="chip">Template-driven</div>
-            <div class="chip">Image and video ready</div>
+            <div class="chip">One file per deck</div>
+            <div class="chip">AI-generated images</div>
+            <div class="chip">Multi-brand ready</div>
           </div>
         </div>
       </section>
@@ -666,13 +667,14 @@
       <section class="slide theme-ivory" data-title="How It Works">
         <div class="slide-inner layout-split">
           <div>
-            <h2 class="section-title reveal" style="--reveal-index: 1">How It Works</h2>
-            <p class="body-text reveal" style="--reveal-index: 2">From zero to presentation in minutes, with AI-generated visuals.</p>
-            <div class="chip-row reveal" style="--reveal-index: 3">
-              <div class="chip">Create</div>
-              <div class="chip">Design</div>
-              <div class="chip">Generate</div>
-              <div class="chip">Present</div>
+            <div class="eyebrow reveal" style="--reveal-index: 1">The Process</div>
+            <h2 class="section-title reveal" style="--reveal-index: 2">Four Steps to Done</h2>
+            <p class="body-text reveal" style="--reveal-index: 3">From blank page to polished deck in minutes. No design skills required.</p>
+            <div class="chip-row reveal" style="--reveal-index: 4">
+              <div class="chip">1. Create</div>
+              <div class="chip">2. Design</div>
+              <div class="chip">3. Generate</div>
+              <div class="chip">4. Present</div>
             </div>
           </div>
           <div class="media-frame reveal" style="--reveal-index: 2" data-ready="true">
@@ -687,15 +689,26 @@
             <img class="gen-media" src="resources/assets/brand-system.png" alt="Three brand identity cards: Tech, Consulting, Biotech" style="opacity: 1;" />
           </div>
           <div>
-            <h2 class="section-title reveal" style="--reveal-index: 1">Multi-Brand System</h2>
-            <p class="body-text reveal" style="--reveal-index: 2">One template, multiple visual identities. Switch brands instantly with a URL parameter.</p>
-            <div class="card reveal" style="--reveal-index: 3">
+            <div class="eyebrow reveal" style="--reveal-index: 1">Built for Scale</div>
+            <h2 class="section-title reveal" style="--reveal-index: 2">One Template, Many Brands</h2>
+            <p class="body-text reveal" style="--reveal-index: 3">Switch visual identities instantly with a URL parameter. Perfect for agencies and teams.</p>
+            <div class="card reveal" style="--reveal-index: 4">
               <div class="card-title">Usage</div>
               <div class="card-caption" style="font-family: monospace;">?entity=northwind</div>
               <div class="card-caption" style="font-family: monospace;">?entity=apex</div>
               <div class="card-caption" style="font-family: monospace;">?entity=coastal</div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section class="slide theme-ink" data-title="Getting Started">
+        <div class="slide-inner layout-title">
+          <div class="eyebrow reveal" style="--reveal-index: 1">Getting Started</div>
+          <h1 class="title reveal" style="--reveal-index: 2">Set Up Your Deck</h1>
+          <p class="subtitle reveal" style="--reveal-index: 3">
+            Three things to configure: your materials, your workflow, and your templates.
+          </p>
         </div>
       </section>
 
@@ -706,17 +719,15 @@
             <p class="body-text reveal" style="--reveal-index: 2">
               Drop briefs, notes, and assets into the resources folder. The AI uses these for context.
             </p>
-            <div class="chip-row reveal" style="--reveal-index: 3">
-              <div class="chip">Briefs</div>
-              <div class="chip">Logos</div>
-              <div class="chip">Data</div>
+            <div class="card reveal" style="--reveal-index: 3">
+              <div class="card-title">resources/</div>
+              <div class="card-caption" style="font-family: monospace; font-size: 0.85rem;">├── assets/ <span style="opacity: 0.6">logos, images</span></div>
+              <div class="card-caption" style="font-family: monospace; font-size: 0.85rem;">├── materials/ <span style="opacity: 0.6">briefs, notes</span></div>
+              <div class="card-caption" style="font-family: monospace; font-size: 0.85rem;">└── prompts/ <span style="opacity: 0.6">saved prompts</span></div>
             </div>
           </div>
-          <div class="card reveal" style="--reveal-index: 2">
-            <div class="card-title">resources/</div>
-            <div class="card-caption" style="font-family: monospace; font-size: 0.85rem;">├── assets/ <span style="opacity: 0.6">logos, images</span></div>
-            <div class="card-caption" style="font-family: monospace; font-size: 0.85rem;">├── materials/ <span style="opacity: 0.6">briefs, notes</span></div>
-            <div class="card-caption" style="font-family: monospace; font-size: 0.85rem;">└── prompts/ <span style="opacity: 0.6">saved prompts</span></div>
+          <div class="media-frame reveal" style="--reveal-index: 2" data-ready="true">
+            <img class="gen-media" src="resources/assets/resources-folder.png" alt="Illustration of organized folders with documents, logos, and data flowing into a presentation" style="opacity: 1;" />
           </div>
         </div>
       </section>
@@ -734,56 +745,52 @@
               <div class="chip">Regenerate</div>
             </div>
           </div>
-          <div class="card reveal" style="--reveal-index: 2">
-            <div class="card-title">Workflow</div>
-            <div class="card-caption">1. "Screenshot slide 3"</div>
-            <div class="card-caption">2. "The image is cropped"</div>
-            <div class="card-caption">3. "Regenerate with better sizing"</div>
-            <div class="card-caption">4. "Push to GitHub Pages"</div>
+          <div class="media-frame reveal" style="--reveal-index: 2" data-ready="true">
+            <img class="gen-media" src="resources/assets/cli-workflow.png" alt="Terminal window showing Claude CLI conversation refining a slide deck" style="opacity: 1;" />
           </div>
         </div>
       </section>
 
       <section class="slide theme-ivory" data-title="Templates">
-        <div class="slide-inner">
-          <h2 class="section-title reveal" style="--reveal-index: 1">Template Grid</h2>
-          <div class="layout-grid">
-            <div class="card reveal" style="--reveal-index: 2">
-              <div class="card-title">Title</div>
-              <div class="card-caption">Single idea, hero headline.</div>
+        <div class="slide-inner layout-split" style="grid-template-columns: 0.9fr 1.1fr;">
+          <div class="media-frame reveal" style="--reveal-index: 2" data-ready="true">
+            <img class="gen-media" src="resources/assets/template-preview.png" alt="Six slide layout templates arranged in a grid: Title, Split, Metrics, Quote, Diagram, Gallery" style="opacity: 1;" />
+          </div>
+          <div>
+            <h2 class="section-title reveal" style="--reveal-index: 1">Six Core Templates</h2>
+            <p class="body-text reveal" style="--reveal-index: 2">Every story fits one of these patterns. Mix and match for rhythm.</p>
+            <div class="chip-row reveal" style="--reveal-index: 3">
+              <div class="chip">Title</div>
+              <div class="chip">Split</div>
+              <div class="chip">Metrics</div>
             </div>
-            <div class="card reveal" style="--reveal-index: 3">
-              <div class="card-title">Split</div>
-              <div class="card-caption">Narrative on the left, media on the right.</div>
-            </div>
-            <div class="card reveal" style="--reveal-index: 4">
-              <div class="card-title">Metrics</div>
-              <div class="card-caption">Highlight outcomes with strong numbers.</div>
-            </div>
-            <div class="card reveal" style="--reveal-index: 5">
-              <div class="card-title">Quote</div>
-              <div class="card-caption">Pause, breathe, and emphasize a belief.</div>
-            </div>
-            <div class="card reveal" style="--reveal-index: 6">
-              <div class="card-title">Diagram</div>
-              <div class="card-caption">Process flow or capability map.</div>
-            </div>
-            <div class="card reveal" style="--reveal-index: 7">
-              <div class="card-title">Gallery</div>
-              <div class="card-caption">Three cards, three points, no fluff.</div>
+            <div class="chip-row reveal" style="--reveal-index: 4">
+              <div class="chip">Quote</div>
+              <div class="chip">Diagram</div>
+              <div class="chip">Gallery</div>
             </div>
           </div>
         </div>
       </section>
 
+      <section class="slide theme-ivory" data-title="Deep Dive">
+        <div class="slide-inner layout-title">
+          <div class="eyebrow reveal" style="--reveal-index: 1">Going Deeper</div>
+          <h1 class="title reveal" style="--reveal-index: 2">AI-Powered Visuals</h1>
+          <p class="subtitle reveal" style="--reveal-index: 3">
+            Four generation modes for every visual need. Let's explore each one.
+          </p>
+        </div>
+      </section>
+
       <section class="slide theme-ink" data-title="Capability Map">
         <div class="slide-inner">
-          <h2 class="section-title reveal" style="--reveal-index: 1">Gemini Media Map</h2>
-          <div class="body-text reveal" style="--reveal-index: 2">
-            Use text-to-image for diagrams and moodboards, image-to-image for brand stylization,
-            and Veo for short motion clips.
+          <div class="eyebrow reveal" style="--reveal-index: 1">Overview</div>
+          <h2 class="section-title reveal" style="--reveal-index: 2">Gemini Media Map</h2>
+          <div class="body-text reveal" style="--reveal-index: 3">
+            Text-to-image for diagrams. Image-to-image for brand stylization. Veo for motion.
           </div>
-          <svg class="diagram reveal" style="--reveal-index: 3" viewBox="0 0 900 360" role="img" aria-label="Capability map">
+          <svg class="diagram reveal" style="--reveal-index: 4" viewBox="0 0 900 360" role="img" aria-label="Capability map">
             <rect width="900" height="360" rx="28" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" />
             <circle cx="140" cy="120" r="48" fill="rgba(255,107,53,0.18)" stroke="rgba(255,255,255,0.4)" />
             <text x="140" y="120" text-anchor="middle" fill="#f7f1e8" font-size="14" font-family="Space Grotesk">Text</text>
@@ -918,32 +925,49 @@
       </section>
 
       <section class="slide theme-ivory" data-title="Brand Tokens">
-        <div class="slide-inner">
-          <h2 class="section-title reveal" style="--reveal-index: 1">Brand Tokens</h2>
-          <div class="body-text reveal" style="--reveal-index: 2">
-            Update the CSS variables to match your brand. Keep contrast high and typography confident.
+        <div class="slide-inner layout-split">
+          <div>
+            <div class="eyebrow reveal" style="--reveal-index: 1">Customization</div>
+            <h2 class="section-title reveal" style="--reveal-index: 2">Make It Yours</h2>
+            <p class="body-text reveal" style="--reveal-index: 3">
+              Update CSS variables to match your brand. Keep contrast high, typography confident.
+            </p>
+            <div class="swatch-row reveal" style="--reveal-index: 4">
+              <div class="swatch" style="background: var(--brand-ink)">
+                <span>Ink</span>
+                <div data-token="brand-ink">#0d1117</div>
+              </div>
+              <div class="swatch" style="background: var(--brand-accent)">
+                <span>Accent</span>
+                <div data-token="brand-accent">#ff6b35</div>
+              </div>
+              <div class="swatch" style="background: var(--brand-sage)">
+                <span>Sage</span>
+                <div data-token="brand-sage">#93a77a</div>
+              </div>
+              <div class="swatch" style="background: var(--brand-slate)">
+                <span>Slate</span>
+                <div data-token="brand-slate">#3a4654</div>
+              </div>
+            </div>
           </div>
-          <div class="swatch-row reveal" style="--reveal-index: 3">
-            <div class="swatch" style="background: var(--brand-ink)">
-              <span>Ink</span>
-              <div data-token="brand-ink">#0d1117</div>
-            </div>
-            <div class="swatch" style="background: var(--brand-accent)">
-              <span>Accent</span>
-              <div data-token="brand-accent">#ff6b35</div>
-            </div>
-            <div class="swatch" style="background: var(--brand-sage)">
-              <span>Sage</span>
-              <div data-token="brand-sage">#93a77a</div>
-            </div>
-            <div class="swatch" style="background: var(--brand-slate)">
-              <span>Slate</span>
-              <div data-token="brand-slate">#3a4654</div>
-            </div>
+          <div class="media-frame reveal" style="--reveal-index: 2" data-ready="true">
+            <img class="gen-media" src="resources/assets/brand-tokens.png" alt="Brand identity system showing color palette, typography, and visual style" style="opacity: 1;" />
           </div>
-          <div class="card reveal" style="--reveal-index: 4">
-            <div class="card-title">Typography</div>
-            <div class="card-caption" data-font-label>Display: Fraunces. Body: Space Grotesk.</div>
+        </div>
+      </section>
+
+      <section class="slide theme-ink" data-title="Call to Action">
+        <div class="slide-inner layout-title">
+          <div class="eyebrow reveal" style="--reveal-index: 1">Start Now</div>
+          <h1 class="title reveal" style="--reveal-index: 2">Your Next Deck Starts Here</h1>
+          <p class="subtitle reveal" style="--reveal-index: 3">
+            Stop wrestling with formatting. Start telling your story.
+          </p>
+          <div class="chip-row reveal" style="--reveal-index: 4">
+            <div class="chip">Clone the repo</div>
+            <div class="chip">Add your brief</div>
+            <div class="chip">Generate</div>
           </div>
         </div>
       </section>
@@ -955,7 +979,7 @@
       <div class="progress" aria-hidden="true">
         <div class="progress-bar" id="progress-bar"></div>
       </div>
-      <div id="progress-count">1 / 10</div>
+      <div id="progress-count">1 / 16</div>
       <button id="next-btn" type="button" aria-label="Next slide">&rarr;</button>
     </nav>
 
