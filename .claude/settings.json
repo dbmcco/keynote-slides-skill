@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "post-tool-use": [
+      {
+        "name": "layout-review",
+        "description": "Screenshot and evaluate deck layouts after changes",
+        "pattern": "decks/**/index.html",
+        "command": "node scripts/layout-review.js"
+      }
+    ]
+  }
+}

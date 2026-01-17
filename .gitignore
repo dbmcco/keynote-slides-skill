@@ -4,3 +4,4 @@
 .DS_Store
 lib/media/__pycache__/
 .env
+node_modules/
