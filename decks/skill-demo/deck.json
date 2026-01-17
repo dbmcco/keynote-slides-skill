@@ -3,14 +3,20 @@
   "title": "Keynote Slides Skill",
   "entity": "northwind",
   "deckType": "pitch",
-  "audience": "",
+  "audience": "Developers and designers who create presentations",
+  "framework": "Raskin's Greatest Sales Deck",
   "createdAt": "2026-01-16T23:23:01Z",
-  "updatedAt": "2026-01-16T23:23:01Z",
+  "updatedAt": "2026-01-17T00:00:00Z",
   "preferences": {
-    "voice": "",
-    "headlineStyle": "",
-    "density": "",
-    "visualMood": ""
+    "voice": "Direct, confident",
+    "headlineStyle": "Claims with power verbs",
+    "density": "Sparse - one idea per slide",
+    "visualMood": "Modern tech, warm accents"
+  },
+  "narrative": {
+    "metaphorFamily": "workflow/journey",
+    "slideCount": 10,
+    "duration": "8 minutes"
   },
   "resources": {
     "assets": [],
