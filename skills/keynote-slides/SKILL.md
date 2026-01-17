@@ -1,6 +1,6 @@
 ---
 name: keynote-slides
-description: Build Keynote-style single-file HTML slide decks with brand-ready templates, minimal navigation, and Gemini nano banana media generation (text-to-image, image-to-image, text-to-video, image-to-video). Use when creating or editing slide decks, applying brand tokens, or generating slide visuals and diagrams.
+description: Build Keynote-style single-file HTML slide decks with brand-ready templates, minimal navigation, and Gemini nano banana media generation. Includes Narrative Engine integration for framework-driven deck creation with 17 proven storytelling structures and 5-agent review panel. Use when creating or editing slide decks, transforming content into presentations, or generating slide visuals.
 ---
 <!-- ABOUTME: Skill guide for building Keynote-style HTML decks with brand tokens and Gemini media hooks. -->
 <!-- ABOUTME: Points to the single-file template, templates, and media generation workflow. -->
@@ -82,3 +82,77 @@ Then open `http://<tailscale-ip>:8921/decks/<deck-id>/index.html`.
 - Arrow keys, PageUp/PageDown, Space.
 - Home/End for first or last slide.
 - Use `#slide-title` hash navigation for direct jumps.
+
+---
+
+## Narrative Engine Integration
+
+For content-driven deck creation, use the Narrative Engine workflow that matches your material to proven storytelling frameworks.
+
+### Reference Files
+
+- `references/narrative-engine/narrative-arcs.md` — Beat-by-beat structures for 10 narrative arcs
+- `references/narrative-engine/framework-selection.md` — Selection matrix by audience/purpose/content
+- `references/narrative-engine/communication-frameworks.md` — 7 efficiency-optimized frameworks
+- `references/narrative-engine/agent-reference-*.md` — Agent-specific frameworks for review
+
+### Workflow: Narrative Build
+
+1. **Ingest resources:** Run `node scripts/ingest-resources.js decks/<deck-id>` to read all materials
+2. **Discovery:** Answer 5 structured questions (audience, purpose, content type, tone, reveal potential)
+3. **Framework match:** Get 2-3 recommendations with content mapped to structure
+4. **Deck generation:** Build slides with source attribution tags
+5. **Review panel:** 5 agents + Director synthesize feedback
+
+### Discovery Questions
+
+| Question | Options |
+|----------|---------|
+| **Audience** | Executive, Technical, Investors, Skeptics, General, Mixed |
+| **Purpose** | Persuade, Inform, Inspire, Align, Report, Defend, Entertain |
+| **Content type** | Research, Strategy, Origin story, Post-mortem, Pattern insight, etc. |
+| **Tone** | Authoritative, Provocative, Warm, Urgent, Balanced, Visionary |
+| **Reveal potential** | Yes (has surprise), No (straightforward), Help me find one |
+
+### Framework Selection Quick Reference
+
+| If your content has... | Consider... |
+|------------------------|-------------|
+| A genuine surprise | The Prestige or Mystery Box |
+| Multiple stakeholder views | Rashomon |
+| A transformation story | Hero's Journey |
+| Future vision | Time Machine |
+| Root cause analysis | Columbo |
+| Strategy/roadmap | The Heist |
+| Paradigm shift | Trojan Horse |
+
+### 5-Agent Review Panel
+
+| Agent | Lens | Key Question |
+|-------|------|--------------|
+| **Audience Advocate** | Target audience persona | "Does this land for [audience]?" |
+| **Comms Specialist** | Messaging, emotion, PR risk | "Is this tight and bulletproof?" |
+| **Visual Designer** | Metaphor coherence, S.T.A.R. moments | "What visual makes this unforgettable?" |
+| **Critic** | Pacing, weak links, efficacy | "What's the weakest link?" |
+| **Content Expert** | Accuracy, logic, sources | "Can every claim be defended?" |
+
+### Source Attribution Tags
+
+| Tag | Meaning |
+|-----|---------|
+| `[DIRECT]` | Verbatim from source material |
+| `[PARAPHRASE]` | Restated ideas |
+| `[ELABORATED]` | Expanded concept |
+| `[SYNTHESIZED]` | Combined multiple sources |
+| `[GENERATED]` | New content for flow |
+
+### Headline Rules
+
+- **Image & Action:** Concrete nouns + strong transitive verbs; avoid "is/are"
+- **Tension & Turn:** Because/Therefore, Not/But, Before/After
+- **Cadence:** 8-14 words; two-beat rhythm
+- **Specific Anchors:** Time/place/actor/number in every third headline
+- **Power verbs:** tilts, unseats, ignites, drains, compounds, unlocks, anchors, accelerates
+- **Metaphor family:** One per deck (journey OR ecology OR weather, etc.)
+
+See `/docs/integrated-architecture.md` for full technical details.
