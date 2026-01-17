@@ -220,15 +220,42 @@ See [docs/veo-video-guide.md](docs/veo-video-guide.md) for complete guidance.
 
 Claude Code can evaluate generated media qualitatively and suggest refinements.
 
+### Automated Review Tools
+
+**Layout Review** (Playwright-based):
+```bash
+# Screenshot slides and detect layout issues
+node scripts/layout-review.js decks/my-deck
+
+# Test locally with built-in server
+node scripts/layout-review.js decks/my-deck --serve
+```
+
+Detects: cropped images, empty placeholders, overflow issues.
+
+**Narrative Review** (storytelling analysis):
+```bash
+# Analyze deck for storytelling quality
+node scripts/narrative-review.js decks/my-deck
+
+# Output as JSON for programmatic use
+node scripts/narrative-review.js decks/my-deck --json
+```
+
+Analyzes:
+- **Narrative arc** — hook → problem → solution → proof → CTA
+- **Flow** — logical transitions between slides
+- **Redundancy** — similar content across slides
+- **Clarity** — anti-patterns like wall of text, weak headlines
+
 ### Evaluation Workflow
 
 ```
 1. Generate infographic/video with detailed prompt
-2. Read/view the generated file
-3. Assess: clarity, accuracy, brand alignment, balance
-4. Document issues found
-5. Refine prompt with specific corrections
-6. Regenerate and compare
+2. Run layout review to check visual rendering
+3. Run narrative review to check storytelling
+4. Refine based on feedback
+5. Regenerate and compare
 ```
 
 ### Evaluation Criteria
@@ -316,6 +343,7 @@ Switch entities:
 
 | Document | Purpose |
 |----------|---------|
+| [docs/storytelling-guide.md](docs/storytelling-guide.md) | Narrative arc, flow, and slide best practices |
 | [docs/nano-banana-prompting.md](docs/nano-banana-prompting.md) | Complete infographic generation guide |
 | [docs/veo-video-guide.md](docs/veo-video-guide.md) | Video generation and embedding guide |
 | [skills/keynote-slides/references/brand-guidelines.md](skills/keynote-slides/references/brand-guidelines.md) | Brand tokens and style guidance |

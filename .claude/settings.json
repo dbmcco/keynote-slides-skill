@@ -3,10 +3,26 @@
     "post-tool-use": [
       {
         "name": "layout-review",
-        "description": "Screenshot and evaluate deck layouts after changes",
+        "description": "Screenshot and evaluate deck layouts after HTML changes",
         "pattern": "decks/**/index.html",
         "command": "node scripts/layout-review.js"
+      },
+      {
+        "name": "narrative-review",
+        "description": "Analyze storytelling: arc, flow, redundancy, clarity",
+        "pattern": "decks/**/index.html",
+        "command": "node scripts/narrative-review.js"
       }
     ]
+  },
+  "review": {
+    "layout": {
+      "script": "scripts/layout-review.js",
+      "checks": ["cropped-images", "empty-placeholders", "overflow"]
+    },
+    "narrative": {
+      "script": "scripts/narrative-review.js",
+      "checks": ["arc", "flow", "redundancy", "clarity", "anti-patterns"]
+    }
   }
 }
