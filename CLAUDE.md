@@ -30,6 +30,26 @@ Build Keynote-style decks in a single HTML file per deck with strong brand adher
 - Use Chrome Devtools MCP tools to capture snapshots/screenshots.
 - Check hierarchy, spacing, contrast, and pacing before generating visuals.
 - When serving locally for review, bind to `0.0.0.0` for Tailscale access.
+- Run `node scripts/layout-review.js decks/<deck-id>` for automated layout checks.
+
+## Model-Mediated Deck Review
+
+For comprehensive deck review, use the antagonistic multi-agent system:
+
+1. **Interview first**: `node scripts/deck-review.js decks/<deck-id>`
+   - Gathers audience, goal, context, duration, stakes
+   - Saves context to `resources/materials/review-context.json`
+
+2. **Spawn review agents** with generated prompts:
+   - Narrative Critic ↔ Narrative Defender
+   - Clarity Skeptic ↔ Simplicity Advocate
+   - Brand Guardian ↔ Creative Challenger
+   - Audience Advocate ↔ Expert Perspective
+   - Accessibility Auditor
+
+3. **Synthesize findings** weighted by stated goals.
+
+See `docs/model-mediated-review.md` for architecture and `docs/storytelling-guide.md` for best practices.
 
 ## Media Generation
 
