@@ -3,3 +3,4 @@
 .beads/
 .DS_Store
 lib/media/__pycache__/
+.env
