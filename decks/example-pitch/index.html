@@ -424,6 +424,56 @@
         min-height: 1.1em;
       }
 
+      [data-anim] {
+        opacity: 0;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        transition-delay: var(--anim-delay, 0s);
+      }
+
+      [data-anim="fade"] {
+        transform: none;
+      }
+
+      [data-anim="slide-up"] {
+        transform: translateY(18px);
+      }
+
+      [data-anim="slide-left"] {
+        transform: translateX(18px);
+      }
+
+      [data-anim="slide-right"] {
+        transform: translateX(-18px);
+      }
+
+      [data-anim="scale-in"] {
+        transform: scale(0.96);
+      }
+
+      .slide.is-active [data-anim] {
+        opacity: 1;
+      }
+
+      .slide.is-active [data-anim="fade"] {
+        transform: none;
+      }
+
+      .slide.is-active [data-anim="slide-up"] {
+        transform: translateY(0);
+      }
+
+      .slide.is-active [data-anim="slide-left"] {
+        transform: translateX(0);
+      }
+
+      .slide.is-active [data-anim="slide-right"] {
+        transform: translateX(0);
+      }
+
+      .slide.is-active [data-anim="scale-in"] {
+        transform: scale(1);
+      }
+
       .reveal {
         opacity: 0;
         transform: translateY(12px);
@@ -460,9 +510,19 @@
 
       @media (prefers-reduced-motion: reduce) {
         .slide,
-        .reveal {
+        .reveal,
+        [data-anim] {
           transition: none;
+          transform: none;
+          opacity: 1;
         }
+      }
+
+      body[data-motion="off"] .reveal,
+      body[data-motion="off"] [data-anim] {
+        transition: none;
+        transform: none;
+        opacity: 1;
       }
 
       @page {
@@ -502,6 +562,13 @@
           box-shadow: none;
         }
 
+        .reveal,
+        [data-anim] {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+
         .deck-nav,
         .gen-toggle,
         .gen-panel {
@@ -514,9 +581,9 @@
     <main class="deck" id="deck" aria-live="polite">
       <section class="slide theme-ivory is-active" data-title="Title">
         <div class="slide-inner layout-title">
-          <div class="eyebrow reveal" style="--reveal-index: 1">Keynote Style Deck</div>
-          <h1 class="title reveal" style="--reveal-index: 2">Nano Banana Slidecraft</h1>
-          <p class="subtitle reveal" style="--reveal-index: 3">
+          <div class="eyebrow" data-anim="slide-up" style="--anim-delay: 0.05s">Keynote Style Deck</div>
+          <h1 class="title" data-anim="slide-up" style="--anim-delay: 0.15s">Nano Banana Slidecraft</h1>
+          <p class="subtitle" data-anim="fade" style="--anim-delay: 0.25s">
             Single-file HTML slides with brand tokens, templated layouts, and Gemini media hooks.
           </p>
           <div class="chip-row reveal" style="--reveal-index: 4">
@@ -590,7 +657,14 @@
             Use text-to-image for diagrams and moodboards, image-to-image for brand stylization,
             and Veo for short motion clips.
           </div>
-          <svg class="diagram reveal" style="--reveal-index: 3" viewBox="0 0 900 360" role="img" aria-label="Capability map">
+          <svg
+            class="diagram reveal"
+            data-media="svg"
+            style="--reveal-index: 3"
+            viewBox="0 0 900 360"
+            role="img"
+            aria-label="Capability map"
+          >
             <rect width="900" height="360" rx="28" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" />
             <circle cx="140" cy="120" r="48" fill="rgba(255,107,53,0.18)" stroke="rgba(255,255,255,0.4)" />
             <text x="140" y="120" text-anchor="middle" fill="#f7f1e8" font-size="14" font-family="Space Grotesk">Text</text>
@@ -636,6 +710,7 @@
             <div class="media-placeholder">Text to Image preview</div>
             <img
               class="gen-media"
+              data-media="gemini"
               data-gen="text-to-image"
               data-prompt="Editorial illustration of a layered keynote slide, warm parchment palette, crisp linework, minimal shadows"
               alt="Generated text to image"
@@ -662,6 +737,7 @@
             <div class="media-placeholder">Image to Image preview</div>
             <img
               class="gen-media"
+              data-media="gemini"
               data-gen="image-to-image"
               data-prompt="Restyle into a matte collage with warm paper textures and bold orange accents"
               alt="Generated image to image"
@@ -688,6 +764,7 @@
             <div class="media-placeholder">Text to Video preview</div>
             <video
               class="gen-media"
+              data-media="gemini"
               data-gen="text-to-video"
               data-prompt="Slow pan across layered paper textures and a glowing brand mark, soft studio lighting"
               muted
@@ -716,6 +793,7 @@
             <div class="media-placeholder">Image to Video preview</div>
             <video
               class="gen-media"
+              data-media="gemini"
               data-gen="image-to-video"
               data-prompt="Gentle parallax, soft shadow drift, camera push in, warm studio grade"
               muted
@@ -1406,6 +1484,8 @@
         }
       });
 
+      const urlParams = new URLSearchParams(window.location.search);
+      const motionSetting = urlParams.get("motion");
       currentEntity = resolveEntity();
       populateEntitySelect();
       applyBrandProfile(currentEntity, { persist: false });
@@ -1415,6 +1495,9 @@
       updateProgress();
       gotoFromHash();
       applyEntityForSlide(slides[currentIndex]);
+      if (motionSetting === "off" || motionSetting === "0") {
+        document.body.dataset.motion = "off";
+      }
     </script>
   </body>
 </html>

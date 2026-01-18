@@ -424,6 +424,56 @@
         min-height: 1.1em;
       }
 
+      [data-anim] {
+        opacity: 0;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        transition-delay: var(--anim-delay, 0s);
+      }
+
+      [data-anim="fade"] {
+        transform: none;
+      }
+
+      [data-anim="slide-up"] {
+        transform: translateY(18px);
+      }
+
+      [data-anim="slide-left"] {
+        transform: translateX(18px);
+      }
+
+      [data-anim="slide-right"] {
+        transform: translateX(-18px);
+      }
+
+      [data-anim="scale-in"] {
+        transform: scale(0.96);
+      }
+
+      .slide.is-active [data-anim] {
+        opacity: 1;
+      }
+
+      .slide.is-active [data-anim="fade"] {
+        transform: none;
+      }
+
+      .slide.is-active [data-anim="slide-up"] {
+        transform: translateY(0);
+      }
+
+      .slide.is-active [data-anim="slide-left"] {
+        transform: translateX(0);
+      }
+
+      .slide.is-active [data-anim="slide-right"] {
+        transform: translateX(0);
+      }
+
+      .slide.is-active [data-anim="scale-in"] {
+        transform: scale(1);
+      }
+
       .reveal {
         opacity: 0;
         transform: translateY(12px);
@@ -587,9 +637,19 @@
 
       @media (prefers-reduced-motion: reduce) {
         .slide,
-        .reveal {
+        .reveal,
+        [data-anim] {
           transition: none;
+          transform: none;
+          opacity: 1;
         }
+      }
+
+      body[data-motion="off"] .reveal,
+      body[data-motion="off"] [data-anim] {
+        transition: none;
+        transform: none;
+        opacity: 1;
       }
 
       @page {
@@ -629,6 +689,13 @@
           box-shadow: none;
         }
 
+        .reveal,
+        [data-anim] {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+
         .deck-nav,
         .gen-toggle,
         .gen-panel {
@@ -642,9 +709,9 @@
       <!-- Slide 1: HOOK (Change) -->
       <section class="slide theme-ink is-active" data-title="AI Shift">
         <div class="slide-inner layout-title">
-          <div class="eyebrow reveal" style="--reveal-index: 1">The Shift</div>
-          <h1 class="title reveal" style="--reveal-index: 2">AI flipped what presentations demand</h1>
-          <p class="subtitle reveal" style="--reveal-index: 3">
+          <div class="eyebrow" data-anim="slide-up" style="--anim-delay: 0.05s">The Shift</div>
+          <h1 class="title" data-anim="slide-up" style="--anim-delay: 0.15s">AI flipped what presentations demand</h1>
+          <p class="subtitle" data-anim="fade" style="--anim-delay: 0.25s">
             Not design skills. Prompting skills. The tools that dominated for decades now feel like drawing with a mouse.
           </p>
         </div>
@@ -1448,6 +1515,8 @@
         }
       });
 
+      const urlParams = new URLSearchParams(window.location.search);
+      const motionSetting = urlParams.get("motion");
       currentEntity = resolveEntity();
       populateEntitySelect();
       applyBrandProfile(currentEntity, { persist: false });
@@ -1457,6 +1526,9 @@
       updateProgress();
       gotoFromHash();
       applyEntityForSlide(slides[currentIndex]);
+      if (motionSetting === "off" || motionSetting === "0") {
+        document.body.dataset.motion = "off";
+      }
     </script>
   </body>
 </html>
