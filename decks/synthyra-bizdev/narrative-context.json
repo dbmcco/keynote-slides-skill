@@ -1,0 +1,63 @@
+{
+  "created": "2026-01-18T20:13:15Z",
+  "discovery": {
+    "audience": "mixed",
+    "purpose": "align",
+    "contentType": "strategic-plan",
+    "tone": "urgent",
+    "revealPotential": "yes"
+  },
+  "framework": {
+    "name": "Minto Pyramid",
+    "variant": "scqa-opener",
+    "revealPosition": 0.45
+  },
+  "length": "short",
+  "slideCount": 11,
+  "metaphorFamily": "runway",
+  "resourceSynthesis": {
+    "sourcesUsed": [
+      "resources/materials/executive_summary.md",
+      "resources/materials/strategy_analysis.md",
+      "resources/materials/05_pricing_packaging_synthesis.md",
+      "resources/product-doc-x.md"
+    ],
+    "keyThemes": [
+      "fundability timeline",
+      "proof point closure",
+      "safety and toxicity wedge",
+      "partnership-first GTM",
+      "hybrid pricing architecture"
+    ],
+    "dataPoints": [
+      {
+        "value": "6-9 months",
+        "context": "fundable timeline if proof points close",
+        "source": "resources/materials/strategy_analysis.md"
+      },
+      {
+        "value": "$12-18M",
+        "context": "target raise range",
+        "source": "resources/materials/strategy_analysis.md"
+      },
+      {
+        "value": "375M PPI/sec",
+        "context": "proteome-scale throughput",
+        "source": "resources/product-doc-x.md"
+      },
+      {
+        "value": "$150K-350K",
+        "context": "validation pilot price range",
+        "source": "resources/materials/05_pricing_packaging_synthesis.md"
+      }
+    ]
+  },
+  "sourcingScore": {
+    "direct": 5,
+    "paraphrase": 4,
+    "elaborated": 0,
+    "synthesized": 1,
+    "generated": 1,
+    "userSourcedPercent": 91
+  }
+}

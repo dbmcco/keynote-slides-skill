@@ -1,49 +1,73 @@
-# Synthyra Strategy Validation Deck
+# Synthyra Strategy Alignment Deck
 
-## Purpose
-Internal deck to align team on what we heard from the VC panel, surface the embedded assumptions, and define validation experiments before committing to strategy.
+## Narrative Framework
+- Primary: Minto Pyramid with SCQA opener
+- Metaphor family: Runway and gates
 
----
+## Slides
 
-## Deck Structure
+### 1. Title
+**Headline:** 6-9 months from fundable.
+**Spotlight:** Compelling tech, thin evidence. Close five proof points to unlock a $12-18M raise.
+**Design note:** Minimal title slide with five chips signaling proof points.
+**Source:** [PARAPHRASE] resources/materials/executive_summary.md, resources/materials/strategy_analysis.md
 
-### 1. What We Heard
-Panel verdict as input, not conclusion. "6-9 months from fundable" is their assessment — we need to test the assumptions behind it.
+### 2. Problem
+**Headline:** Blind experimentation burns a decade before you know a drug fails.
+**Spotlight:** 90% trial failure, $100M+ late-stage burn, 10+ year cycles.
+**Design note:** Funnel visual showing 100 candidates to 1 approval.
+**Source:** [GENERATED] (contextual stats for framing)
 
-### 2. Key Hypotheses (Unvalidated)
-| Hypothesis | Source | Risk if wrong |
-|------------|--------|---------------|
-| "Interrogation capacity" framing resonates | Panel pitch feedback | Waste positioning work |
-| Safety & Tox is right wedge | Panel GTM rec | Build wrong case study, target wrong buyers |
-| We beat Chai/AlphaFold on benchmarks | Competitive claim | Can't defend differentiation |
-| $75K-$250K pilots are viable | Panel pricing | Price ourselves out or leave money on table |
+### 3. Infrastructure
+**Headline:** Real-time proteome screening makes biology searchable.
+**Spotlight:** 375M interactions/sec; full human proteome in under 2 seconds.
+**Design note:** Dark theme with looping network visualization.
+**Source:** [PARAPHRASE] resources/materials/strategy_analysis.md, resources/product-doc-x.md
 
-### 3. Validation Experiments
-| Experiment | Test | Signal | Timeline |
-|------------|------|--------|----------|
-| Positioning | Pitch both framings to 5 contacts | 3+ go to "how would this work?" | 2 weeks |
-| Wedge Discovery | Discovery calls with 3 buyer types | One segment shows 2x urgency | 3 weeks |
-| Benchmark | Run CASP, compare to competitors | Stat sig advantage on 2+ metrics | 8-12 weeks |
-| Price Sensitivity | Test $50K/$100K/$200K in calls | 2+ don't flinch at $100K+ | 4 weeks |
+### 4. Platform
+**Headline:** Four engines convert sequence data into go/no-go decisions.
+**Spotlight:** DSM, CAMP, Synteract Turbo, and Synteract 4 power the generate-annotate-screen-decide workflow.
+**Design note:** Stack diagram with labeled engines and throughput callout.
+**Source:** [PARAPHRASE] resources/product-doc-x.md
 
-### 4. Decision Points
-Pre-commit to decisions based on experiment outcomes:
-- **Positioning:** If resonates → commit. If not → test alternatives.
-- **Wedge:** If Safety/Tox wins → focus GTM. If not → pivot to winning segment.
-- **Benchmark:** If advantage → publish & use. If not → reposition to workflow value.
-- **Pricing:** If $100K+ works → hold. If not → drop entry, add expansion.
+### 5. Go-to-Market
+**Headline:** Safety and Toxicity is the fastest, clearest wedge.
+**Spotlight:** Partnership-first pilots now, SaaS transition in 18-24 months.
+**Design note:** Suite cards with Safety/Tox highlighted as recommended entry.
+**Source:** [DIRECT] resources/materials/strategy_analysis.md
 
-### 5. First 30 Days Sprint
-Week 1-2: Draft pitches, schedule 5 conversations, map buyer contacts
-Week 2-4: Start benchmark, run 6+ discovery calls, build case study
+### 6. Verdict
+**Headline:** Compelling tech, thin evidence, five proof points to close.
+**Spotlight:** Panel verdict: 6-9 months from fundable if benchmarks, pilot, case study, SAB, and narrative land.
+**Design note:** Left column framing cards for risk/opportunity; right column proof-point checklist.
+**Source:** [DIRECT] resources/materials/strategy_analysis.md
 
-### 6. Outcome
-After 30 days: validated strategy we can commit to, or clear signal to pivot.
+### 7. Pricing
+**Headline:** Hybrid reserve + usage aligns value without commoditizing.
+**Spotlight:** $150K-350K pilot, 50% upfront; expansion at $500K-1.5M with success bonus optional.
+**Design note:** Rate card table with non-negotiable deal terms underneath.
+**Source:** [DIRECT] resources/materials/strategy_analysis.md, resources/materials/05_pricing_packaging_synthesis.md
 
----
+### 8. Gaps
+**Headline:** These are the investability gaps before we raise.
+**Spotlight:** Benchmark, pilot, case study, SAB, narrative, pricing terms.
+**Design note:** Six warning cards in a two-column grid.
+**Source:** [PARAPHRASE] resources/materials/strategy_analysis.md
 
-## Key Shift from V1
-- **V1:** Presented panel recommendations as conclusions to execute
-- **V2:** Presents panel input as hypotheses to validate before committing
+### 9. Initiatives
+**Headline:** Initiatives map directly to the five proof points.
+**Spotlight:** Benchmarks, case study, pilot, SAB, narrative deck, pricing architecture.
+**Design note:** Initiative table with owners and timelines.
+**Source:** [SYNTHESIZED] resources/materials/strategy_analysis.md, resources/materials/executive_summary.md
 
-The team's job isn't to check boxes. It's to run experiments and make informed decisions.
+### 10. Raise
+**Headline:** $12-18M buys 24 months and pharma credibility.
+**Spotlight:** Series Seed positioning, $40-50M post, 9-12 month close window.
+**Design note:** Raise metric cards plus use-of-funds bars.
+**Source:** [DIRECT] resources/materials/strategy_analysis.md
+
+### 11. Execution
+**Headline:** Benchmark, pilot, then raise on a 6-9 month runway.
+**Spotlight:** Month-by-month gates and this-week sprint by track.
+**Design note:** Timeline steps with a three-track sprint panel.
+**Source:** [PARAPHRASE] resources/materials/strategy_analysis.md
