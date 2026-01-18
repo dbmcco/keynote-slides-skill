@@ -25,6 +25,12 @@ Build Keynote-style decks in a single HTML file per deck with strong brand adher
 - Use `decks/<deck-id>/resources/materials/` for briefs, pricing, P&L, and raw notes.
 - Summarize materials before generating slides and keep the summary in `slides.md` or `brief.md`.
 
+## Private Decks (Local-Only)
+
+- Private decks (Synthyra + personal) live in the local worktree at `../keynote-slides-private`.
+- That worktree uses branch `local/decks-private` and must never be pushed.
+- Keep `main` for demo/example decks only.
+
 ## Visual Review
 
 - Use Chrome Devtools MCP tools to capture snapshots/screenshots.
