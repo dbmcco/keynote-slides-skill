@@ -178,6 +178,18 @@ open http://localhost:8921/decks/my-pitch/editor.html
 
 In the editor window, click "Open deck" to connect the live preview. Edits are saved in localStorage; export JSON to hand off changes.
 
+## Speaker Notes
+
+Add notes per slide without affecting layout:
+
+```html
+<aside class="slide-notes">
+  Speaker notes go here. Line breaks are preserved in the notes panel.
+</aside>
+```
+
+Toggle the notes panel with the "Notes" button or press `n`. Add `?notes=1` to the deck URL to open notes by default. Use "Export notes" to download `speaker-notes-<deck-id>.md`.
+
 ---
 
 ## Navigation
@@ -188,6 +200,7 @@ In the editor window, click "Open deck" to connect the live preview. Edits are s
 | `←` `↑` | Previous |
 | `Home` / `End` | First / Last |
 | `g` | Generator panel |
+| `n` | Notes panel |
 | `#slide-title` | Direct link |
 
 ---

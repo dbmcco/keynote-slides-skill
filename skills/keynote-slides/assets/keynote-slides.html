@@ -341,6 +341,11 @@
         background: rgba(255, 255, 255, 0.18);
       }
 
+      .deck-nav .notes-toggle {
+        background: rgba(255, 255, 255, 0.16);
+        font-weight: 600;
+      }
+
       .progress {
         width: 120px;
         height: 4px;
@@ -403,6 +408,56 @@
         font-size: 0.9rem;
       }
 
+      .notes-panel {
+        position: fixed;
+        right: 4vw;
+        bottom: 9vh;
+        width: min(360px, 92vw);
+        background: rgba(13, 17, 23, 0.92);
+        color: #f7f1e8;
+        border-radius: 18px;
+        padding: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 20px 40px rgba(13, 17, 23, 0.4);
+        display: none;
+        gap: 12px;
+      }
+
+      .notes-panel.is-open {
+        display: grid;
+      }
+
+      .notes-title {
+        font-size: 0.85rem;
+        color: rgba(247, 241, 232, 0.68);
+      }
+
+      .notes-body {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        white-space: pre-wrap;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 12px;
+        border-radius: 12px;
+        max-height: 240px;
+        overflow: auto;
+      }
+
+      .notes-actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .notes-actions button {
+        border: none;
+        padding: 8px 12px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.12);
+        color: inherit;
+        cursor: pointer;
+      }
+
       .gen-actions {
         display: flex;
         gap: 8px;
@@ -422,6 +477,10 @@
         font-size: 0.8rem;
         color: rgba(247, 241, 232, 0.72);
         min-height: 1.1em;
+      }
+
+      .slide-notes {
+        display: none;
       }
 
       .reveal {
@@ -504,7 +563,8 @@
 
         .deck-nav,
         .gen-toggle,
-        .gen-panel {
+        .gen-panel,
+        .notes-panel {
           display: none;
         }
       }
@@ -773,8 +833,19 @@
         <div class="progress-bar" id="progress-bar"></div>
       </div>
       <div id="progress-count">1 / 10</div>
+      <button class="notes-toggle" id="notes-toggle" type="button">Notes</button>
       <button id="next-btn" type="button" aria-label="Next slide">&rarr;</button>
     </nav>
+
+    <aside class="notes-panel" id="notes-panel" aria-hidden="true">
+      <strong>Speaker Notes</strong>
+      <div class="notes-title" id="notes-title">Slide notes</div>
+      <div class="notes-body" id="notes-body">No notes yet.</div>
+      <div class="notes-actions">
+        <button id="notes-export" type="button">Export notes</button>
+        <button id="notes-close" type="button">Close</button>
+      </div>
+    </aside>
 
     <button class="gen-toggle" id="gen-toggle" type="button">Gen</button>
     <aside class="gen-panel" id="gen-panel" aria-hidden="true">
@@ -875,6 +946,12 @@
       const progressCount = document.getElementById("progress-count");
       const prevBtn = document.getElementById("prev-btn");
       const nextBtn = document.getElementById("next-btn");
+      const notesToggle = document.getElementById("notes-toggle");
+      const notesPanel = document.getElementById("notes-panel");
+      const notesTitle = document.getElementById("notes-title");
+      const notesBody = document.getElementById("notes-body");
+      const notesClose = document.getElementById("notes-close");
+      const notesExport = document.getElementById("notes-export");
       let currentIndex = slides.findIndex((slide) => slide.classList.contains("is-active"));
       if (currentIndex < 0 && slides.length) {
         currentIndex = 0;
@@ -1094,6 +1171,70 @@
         });
       };
 
+      const normalizeNotes = (value) => {
+        if (!value) return "";
+        return value.replace(/\r\n/g, "\n").replace(/\\n/g, "\n").trim();
+      };
+
+      const getNotesForSlide = (slide) => {
+        if (!slide) return "";
+        const direct = slide.dataset?.notes;
+        if (direct) return normalizeNotes(direct);
+        const notesEl = slide.querySelector(".slide-notes, [data-notes]");
+        if (!notesEl) return "";
+        if (notesEl.dataset?.notes) return normalizeNotes(notesEl.dataset.notes);
+        return normalizeNotes(notesEl.textContent || "");
+      };
+
+      const setNotesPanelOpen = (isOpen) => {
+        if (!notesPanel) return;
+        notesPanel.classList.toggle("is-open", isOpen);
+        notesPanel.setAttribute("aria-hidden", String(!isOpen));
+      };
+
+      const updateNotesPanel = (slide, index = currentIndex) => {
+        if (!notesPanel || !notesTitle || !notesBody) return;
+        const title = slide?.dataset?.title || `Slide ${index + 1}`;
+        const notes = getNotesForSlide(slide);
+        notesTitle.textContent = `Slide ${index + 1}: ${title}`;
+        notesBody.textContent = notes || "No notes yet.";
+      };
+
+      const exportNotes = () => {
+        const entries = slides
+          .map((slide, index) => ({
+            index: index + 1,
+            title: slide.dataset.title || `Slide ${index + 1}`,
+            notes: getNotesForSlide(slide),
+          }))
+          .filter((entry) => entry.notes);
+
+        if (!entries.length) {
+          updateNotesPanel(slides[currentIndex], currentIndex);
+          setNotesPanelOpen(true);
+          return;
+        }
+
+        const deckTitle = (deckConfig.title || document.title || "Deck").trim();
+        const lines = [`# Speaker Notes`, "", `Deck: ${deckTitle}`, ""];
+        entries.forEach((entry) => {
+          lines.push(`## Slide ${entry.index}: ${entry.title}`);
+          lines.push("");
+          lines.push(entry.notes);
+          lines.push("");
+        });
+
+        const blob = new Blob([lines.join("\n")], { type: "text/markdown" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `speaker-notes-${deckId}.md`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+      };
+
       const updateProgress = () => {
         const total = slides.length;
         const current = currentIndex + 1;
@@ -1111,6 +1252,7 @@
         slides[currentIndex].setAttribute("aria-hidden", "false");
         updateProgress();
         applyEntityForSlide(slides[currentIndex]);
+        updateNotesPanel(slides[currentIndex], currentIndex);
         const slug = slides[currentIndex].dataset.title || `slide-${currentIndex + 1}`;
         history.replaceState(null, "", `#${slug.toLowerCase().replace(/\\s+/g, "-")}`);
       };
@@ -1131,6 +1273,15 @@
 
       prevBtn.addEventListener("click", prevSlide);
       nextBtn.addEventListener("click", nextSlide);
+      const toggleNotesPanel = () => {
+        if (!notesPanel) return;
+        const shouldOpen = !notesPanel.classList.contains("is-open");
+        updateNotesPanel(slides[currentIndex], currentIndex);
+        setNotesPanelOpen(shouldOpen);
+      };
+      notesToggle?.addEventListener("click", toggleNotesPanel);
+      notesClose?.addEventListener("click", () => setNotesPanelOpen(false));
+      notesExport?.addEventListener("click", exportNotes);
 
       document.addEventListener("keydown", (event) => {
         const target = event.target;
@@ -1163,6 +1314,10 @@
           event.preventDefault();
           genPanel.classList.toggle("is-open");
           genPanel.setAttribute("aria-hidden", String(!genPanel.classList.contains("is-open")));
+        }
+        if (event.key.toLowerCase() === "n") {
+          event.preventDefault();
+          toggleNotesPanel();
         }
       });
 
@@ -1406,6 +1561,9 @@
         }
       });
 
+      const notesParams = new URLSearchParams(window.location.search);
+      const openNotesByDefault =
+        notesParams.get("notes") === "1" || notesParams.get("presenter") === "1";
       currentEntity = resolveEntity();
       populateEntitySelect();
       applyBrandProfile(currentEntity, { persist: false });
@@ -1415,6 +1573,10 @@
       updateProgress();
       gotoFromHash();
       applyEntityForSlide(slides[currentIndex]);
+      updateNotesPanel(slides[currentIndex], currentIndex);
+      if (openNotesByDefault) {
+        setNotesPanelOpen(true);
+      }
     </script>
   </body>
 </html>

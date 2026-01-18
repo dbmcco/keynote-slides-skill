@@ -365,8 +365,9 @@
         "quote-meta",
         "chip",
         "media-placeholder",
+        "slide-notes",
       ];
-      const MULTILINE_ROLES = new Set(["subtitle", "body-text", "card-caption", "quote"]);
+      const MULTILINE_ROLES = new Set(["subtitle", "body-text", "card-caption", "quote", "slide-notes"]);
       const ROLE_LABELS = {
         eyebrow: "Eyebrow",
         title: "Title",
@@ -381,13 +382,20 @@
         "quote-meta": "Quote meta",
         chip: "Chip",
         "media-placeholder": "Media placeholder",
+        "slide-notes": "Speaker notes",
       };
       const EDITABLE_SELECTOR = `${ROLE_CLASSES.map((role) => `.${role}`).join(",")}, [data-copy-id], [data-copy-role]`;
 
       let deckWindow = null;
       let nodeMap = new Map();
 
-      const normalizeText = (value) => value.replace(/\s+/g, " ").trim();
+      const normalizeText = (value, role) => {
+        const normalized = value.replace(/\r\n/g, "\n");
+        if (role === "slide-notes") {
+          return normalized.trim();
+        }
+        return normalized.replace(/\s+/g, " ").trim();
+      };
 
       const setStatus = (state, message) => {
         statusEl.dataset.state = state;
@@ -485,7 +493,7 @@
               id: copyId,
               slideTitle,
               role,
-              value: normalizeText(node.textContent || ""),
+              value: normalizeText(node.textContent || "", role),
             });
           });
         });
@@ -545,12 +553,13 @@
               : document.createElement("input");
             input.id = `field-${entry.id}`;
             input.dataset.copyId = entry.id;
+            input.dataset.copyRole = entry.role;
             const overrideValue = Object.prototype.hasOwnProperty.call(overrides, entry.id)
               ? overrides[entry.id]
               : entry.value;
             input.value = overrideValue;
             input.addEventListener("input", (event) => {
-              const value = normalizeText(event.target.value);
+              const value = normalizeText(event.target.value, entry.role);
               const updatedOverrides = getOverrides();
               updatedOverrides[entry.id] = value;
               setOverrides(updatedOverrides);
@@ -597,7 +606,7 @@
           title: deckTitle,
           exportedAt: new Date().toISOString(),
           copy: fields.reduce((acc, field) => {
-            acc[field.dataset.copyId] = normalizeText(field.value);
+            acc[field.dataset.copyId] = normalizeText(field.value, field.dataset.copyRole);
             return acc;
           }, {}),
         };
