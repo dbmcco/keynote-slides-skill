@@ -80,10 +80,15 @@ fi
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 repo_root="$(cd "${script_dir}/../../.." && pwd)"
 template_path="${script_dir}/../assets/keynote-slides.html"
+editor_template_path="${script_dir}/../assets/keynote-editor.html"
 deck_dir="${repo_root}/decks/${deck_id}"
 
 if [[ ! -f "$template_path" ]]; then
   echo "Template not found: $template_path" >&2
+  exit 1
+fi
+if [[ ! -f "$editor_template_path" ]]; then
+  echo "Editor template not found: $editor_template_path" >&2
   exit 1
 fi
 
@@ -95,6 +100,7 @@ fi
 rm -rf "$deck_dir"
 mkdir -p "$deck_dir/resources/assets" "$deck_dir/resources/materials"
 cp "$template_path" "$deck_dir/index.html"
+cp "$editor_template_path" "$deck_dir/editor.html"
 
 python3 - "$deck_dir" "$deck_id" "$entity" "$title" "$deck_type" "$audience" <<'PY'
 import json

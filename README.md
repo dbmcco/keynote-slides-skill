@@ -163,6 +163,21 @@ node scripts/layout-review.js decks/my-pitch
 node scripts/narrative-review.js decks/my-pitch
 ```
 
+## Copy Editor (sidecar)
+
+Open a second window to edit copy without touching HTML.
+
+```bash
+# For existing decks (new-deck.sh now copies this file automatically)
+cp skills/keynote-slides/assets/keynote-editor.html decks/my-pitch/editor.html
+
+# Preview and edit
+skills/keynote-slides/scripts/serve-decks.sh
+open http://localhost:8921/decks/my-pitch/editor.html
+```
+
+Use "Open deck" in the editor to connect. Edits are saved in localStorage; export JSON to hand off changes.
+
 ---
 
 ## Navigation
@@ -180,6 +195,12 @@ node scripts/narrative-review.js decks/my-pitch
 ## Export
 
 Print dialog → Save as PDF → Enable "Background graphics"
+
+### CLI (Playwright)
+
+```bash
+node scripts/export-pdf.js decks/my-pitch --out /tmp/my-pitch.pdf
+```
 
 ---
 
