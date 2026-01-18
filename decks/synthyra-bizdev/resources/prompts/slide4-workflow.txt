@@ -1,0 +1,47 @@
+Create a WIDE horizontal workflow diagram (4:1 aspect ratio, like a banner).
+
+CRITICAL - ASPECT RATIO:
+This MUST be a wide horizontal strip, NOT a square.
+Think: 4x wider than it is tall. Like a website header banner.
+
+LAYOUT:
+4 stages in a single horizontal row, left to right:
+GENERATE → ANNOTATE → SCREEN → DECIDE
+
+Each stage is a simple colored box with:
+- Large bold label (the stage name) - minimum 60pt font
+- Small subtext below - minimum 36pt font
+- Simple icon above the label
+
+Arrows connect each stage horizontally.
+
+STAGE DETAILS:
+1. GENERATE (Purple #805ad5 background)
+   - Icon: DNA helix
+   - Subtext: "100-1000 candidates"
+
+2. ANNOTATE (Cyan #00b5d8 background)
+   - Icon: Tag/label
+   - Subtext: "Function + pathways"
+
+3. SCREEN (Amber #ed8936 background)
+   - Icon: Grid/radar
+   - Subtext: "Proteome-wide scan"
+
+4. DECIDE (Green #38a169 background)
+   - Icon: Checkmark
+   - Subtext: "Go/no-go in seconds"
+
+STYLE:
+- Clean flat design, no gradients or shadows
+- White text on colored backgrounds
+- White or very light gray (#fafbfc) background behind the stages
+- Large chunky arrows between stages
+- Bold sans-serif font (like Helvetica Bold or Inter Bold)
+- LARGE TEXT - this will be displayed small, so text must be huge
+
+DO NOT:
+- Do not make this square
+- Do not include detailed descriptions or paragraphs
+- Do not make text smaller than 36pt
+- Do not add extra visual complexity

@@ -1,0 +1,17 @@
+A mesmerizing data visualization of instant proteome interrogation.
+
+Dark blue-black background (#1a1a2e). Center of frame: a glowing purple orb pulsing with energy - this is the query origin point.
+
+The animation begins: from the purple center, thousands of fine cyan (#00b5d8) luminous lines radiate outward in all directions, like a starburst or neural network activating. The lines connect to small glowing nodes scattered across the frame.
+
+As the search radiates outward, 5-8 nodes suddenly pulse bright amber/orange (#ed8936) - these are the "hits" found in the proteome scan. They glow and pulse while the rest remain cyan.
+
+Subtle particle effects flow along the connection lines, suggesting massive data throughput. Speed lines and motion blur emphasize the velocity.
+
+In the lower right corner, the text "375M/sec" fades in with a subtle glow effect.
+
+The overall feeling: watching a real-time search across the entire human proteome - instant, comprehensive, illuminating what was previously hidden. Like watching a radar sweep but for molecular biology.
+
+Style: Abstract data visualization, clean and modern, no photorealism. Think: high-end biotech company brand video meets scientific visualization.
+
+Duration: 8 seconds. Smooth, fluid motion. Professional, awe-inspiring.
