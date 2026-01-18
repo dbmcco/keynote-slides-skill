@@ -329,6 +329,9 @@ function generateImagePrompts(context, slides, entityProfile) {
 function generateSlideHtml(slide, index, theme = 'theme-ivory') {
   const layoutClass = SLIDE_LAYOUTS[slide.layout]?.layouts[0] || 'layout-split';
   const isActive = index === 0 ? ' is-active' : '';
+  const notesMarkup = slide.notes
+    ? `\n          <aside class="slide-notes" aria-hidden="true">${escapeHtml(slide.notes)}</aside>`
+    : '';
 
   if (slide.layout === 'title') {
     return `
@@ -337,6 +340,7 @@ function generateSlideHtml(slide, index, theme = 'theme-ivory') {
           <div class="eyebrow reveal" style="--reveal-index: 1"><!-- Eyebrow --></div>
           <h1 class="title reveal" style="--reveal-index: 2">${escapeHtml(slide.headline)}</h1>
           <p class="subtitle reveal" style="--reveal-index: 3">${escapeHtml(slide.point)}</p>
+          ${notesMarkup}
         </div>
       </section>`;
   }
@@ -357,6 +361,7 @@ function generateSlideHtml(slide, index, theme = 'theme-ivory') {
             <div class="metric-number">XX</div>
             <div class="metric-label">Metric 3</div>
           </div>
+          ${notesMarkup}
         </div>
       </section>`;
   }
@@ -367,6 +372,7 @@ function generateSlideHtml(slide, index, theme = 'theme-ivory') {
         <div class="slide-inner ${layoutClass}">
           <p class="quote reveal" style="--reveal-index: 1">"${escapeHtml(slide.point)}"</p>
           <div class="quote-meta reveal" style="--reveal-index: 2">- Source</div>
+          ${notesMarkup}
         </div>
       </section>`;
   }
@@ -388,6 +394,7 @@ function generateSlideHtml(slide, index, theme = 'theme-ivory') {
               alt="${escapeHtml(slide.headline)}"
             />
           </div>
+          ${notesMarkup}
         </div>
       </section>`;
 }

@@ -71,6 +71,16 @@ scripts/serve-decks.sh
 ```
 Then open `http://<tailscale-ip>:8921/decks/<deck-id>/index.html`.
 
+## Speaker notes
+
+- Add per-slide notes with a hidden block:
+  ```html
+  <aside class="slide-notes">Speaker notes here.</aside>
+  ```
+- Toggle the notes panel with the "Notes" button or press `n`.
+- Append `?notes=1` to open notes by default.
+- Use "Export notes" to download a markdown file.
+
 ## Copy editor
 
 - Open `decks/<deck-id>/editor.html` in a second window to edit copy without touching HTML.
