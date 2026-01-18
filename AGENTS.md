@@ -25,6 +25,12 @@ Open `http://<tailscale-ip>:8921/decks/my-pitch/index.html`.
 - `decks/<deck-id>/resources/assets/` holds logos and visuals (incl. nano-banana inputs).
 - `decks/<deck-id>/resources/materials/` holds briefs, pricing, P&L, and notes.
 
+## Private Decks (Local-Only)
+
+- Private decks (Synthyra + personal) live in the local worktree at `../keynote-slides-private`.
+- That worktree is on branch `local/decks-private` and must never be pushed.
+- Keep `main` free of private decks; only demo/example decks belong on `main`.
+
 ## Review Loop
 
 - Use Chrome Devtools MCP tools to capture snapshots/screenshots for review.
@@ -66,6 +72,7 @@ bd sync               # Sync with git
 
 **CRITICAL RULES:**
 - Work is NOT complete until `git push` succeeds
+- This applies to the `main` worktree only; the private worktree must stay local.
 - NEVER stop before pushing - that leaves work stranded locally
 - NEVER say "ready to push when you are" - YOU must push
 - If push fails, resolve and retry until it succeeds
