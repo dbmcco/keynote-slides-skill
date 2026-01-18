@@ -190,6 +190,35 @@ Add notes per slide without affecting layout:
 
 Toggle the notes panel with the "Notes" button or press `n`. Add `?notes=1` to the deck URL to open notes by default. Use "Export notes" to download `speaker-notes-<deck-id>.md`.
 
+## Animation + SVG
+
+Use `data-anim` for lightweight animations (no JS libraries required):
+
+```html
+<h2 class="section-title" data-anim="slide-up" style="--anim-delay: 0.1s">
+  The headline lands with motion
+</h2>
+```
+
+Disable animation with `?motion=off` and respect `prefers-reduced-motion`.
+
+SVG diagrams are first-class:
+
+```html
+<div class="media-frame" data-media="svg">
+  <svg class="diagram" data-media="svg" viewBox="0 0 800 450" role="img" aria-label="Flow diagram">
+    <!-- SVG markup -->
+  </svg>
+</div>
+```
+
+### Media lanes (avoid confusion)
+
+- **Gemini**: only elements with `data-gen` (optionally `data-media="gemini"`).
+- **SVG**: inline `<svg class="diagram" data-media="svg">` (no `data-gen`).
+- **Static**: `<img src="...">` or `<video src="...">` without `data-gen`.
+- **Animation**: `data-anim` only; it never implies media choice.
+
 ---
 
 ## Navigation

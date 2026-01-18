@@ -81,6 +81,20 @@ Then open `http://<tailscale-ip>:8921/decks/<deck-id>/index.html`.
 - Append `?notes=1` to open notes by default.
 - Use "Export notes" to download a markdown file.
 
+## Animation + SVG
+
+- Use `data-anim` for lightweight animations (fade, slide-up, slide-left, slide-right, scale-in).
+- Set `--anim-delay` to stagger; avoid mixing with `reveal` on the same element.
+- Disable animation with `?motion=off` or rely on `prefers-reduced-motion`.
+- Inline SVG diagrams use `.diagram` and `data-media="svg"`:
+  ```html
+  <svg class="diagram" data-media="svg" viewBox="0 0 800 450" role="img" aria-label="Diagram"></svg>
+  ```
+- Keep media lanes explicit:
+  - `data-gen` = Gemini only (optional `data-media="gemini"`).
+  - Inline SVG = no `data-gen`.
+  - Static images/videos = no `data-gen`.
+
 ## Copy editor
 
 - Open `decks/<deck-id>/editor.html` in a second window to edit copy without touching HTML.
