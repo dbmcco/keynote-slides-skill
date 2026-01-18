@@ -176,7 +176,7 @@ skills/keynote-slides/scripts/serve-decks.sh
 open http://localhost:8921/decks/my-pitch/editor.html
 ```
 
-Use "Open deck" in the editor to connect. Edits are saved in localStorage; export JSON to hand off changes.
+In the editor window, click "Open deck" to connect the live preview. Edits are saved in localStorage; export JSON to hand off changes.
 
 ---
 
