@@ -1,0 +1,660 @@
+<!doctype html>
+<!-- ABOUTME: Sidecar copy editor for Keynote-style decks. -->
+<!-- ABOUTME: Opens the deck in a second window and updates copy live. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Keynote Deck Copy Editor</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600,700&family=Space+Grotesk:wght@400;500;600&display=swap");
+
+      :root {
+        --ink: #0f172a;
+        --ink-soft: #1e293b;
+        --paper: #f7f1e8;
+        --paper-deep: #efe3d4;
+        --accent: #ff6b35;
+        --accent-strong: #ff4d1a;
+        --line: rgba(15, 23, 42, 0.12);
+        --panel: rgba(255, 255, 255, 0.84);
+        --shadow: 0 24px 60px rgba(15, 23, 42, 0.14);
+        --font-display: "Fraunces", "Iowan Old Style", "Palatino", serif;
+        --font-body: "Space Grotesk", "Avenir Next", "Gill Sans", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: var(--font-body);
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 12% 15%, rgba(255, 107, 53, 0.16), transparent 60%),
+          radial-gradient(circle at 85% 8%, rgba(148, 163, 184, 0.2), transparent 55%),
+          linear-gradient(180deg, #fbf7f0 0%, #f3e7d9 45%, #ecddcd 100%);
+        padding: 5vh 6vw 8vh;
+      }
+
+      .editor-shell {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .editor-header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        font-size: 0.65rem;
+        font-weight: 600;
+        color: var(--accent);
+      }
+
+      .title {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin: 8px 0 6px;
+      }
+
+      .deck-meta {
+        margin: 0;
+        color: var(--ink-soft);
+      }
+
+      .header-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+      }
+
+      button,
+      .button-link {
+        border: none;
+        border-radius: 999px;
+        padding: 10px 16px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        background: var(--ink);
+        color: #ffffff;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      button:hover,
+      .button-link:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 24px rgba(15, 23, 42, 0.2);
+      }
+
+      .ghost {
+        background: rgba(15, 23, 42, 0.08);
+        color: var(--ink);
+        box-shadow: none;
+      }
+
+      .ghost:hover {
+        box-shadow: none;
+      }
+
+      .accent {
+        background: var(--accent);
+        color: #ffffff;
+      }
+
+      .editor-main {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr);
+        gap: 24px;
+      }
+
+      .copy-list {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .slide-card {
+        background: var(--panel);
+        border-radius: 20px;
+        padding: 18px 18px 20px;
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .slide-card h2 {
+        margin: 0;
+        font-size: 1.2rem;
+      }
+
+      .slide-card-header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .slide-card-header span {
+        font-size: 0.85rem;
+        color: var(--ink-soft);
+      }
+
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .field label {
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      .field input,
+      .field textarea {
+        width: 100%;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        padding: 10px 12px;
+        font-family: var(--font-body);
+        font-size: 0.95rem;
+        background: #ffffff;
+      }
+
+      .field textarea {
+        min-height: 72px;
+        resize: vertical;
+      }
+
+      .field-meta {
+        font-size: 0.75rem;
+        color: rgba(15, 23, 42, 0.6);
+      }
+
+      .side-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .panel-card {
+        background: var(--panel);
+        border-radius: 18px;
+        padding: 16px;
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        box-shadow: var(--shadow);
+      }
+
+      .panel-title {
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .panel-text {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--ink-soft);
+      }
+
+      .status {
+        margin-top: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(148, 163, 184, 0.2);
+        color: var(--ink-soft);
+      }
+
+      .status[data-state="connected"] {
+        background: rgba(34, 197, 94, 0.18);
+        color: #166534;
+      }
+
+      .status[data-state="error"] {
+        background: rgba(248, 113, 113, 0.2);
+        color: #991b1b;
+      }
+
+      .deck-url {
+        display: flex;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .deck-url input {
+        flex: 1;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        padding: 8px 10px;
+        font-size: 0.85rem;
+        background: #ffffff;
+      }
+
+      .empty-state {
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px dashed rgba(15, 23, 42, 0.18);
+        padding: 20px;
+        border-radius: 18px;
+        text-align: center;
+        color: var(--ink-soft);
+      }
+
+      @media (max-width: 980px) {
+        .editor-main {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="editor-shell">
+      <header class="editor-header">
+        <div>
+          <div class="eyebrow">Keynote Slides</div>
+          <h1 class="title">Copy Editor</h1>
+          <p class="deck-meta" id="deck-meta">Deck:</p>
+        </div>
+        <div class="header-actions">
+          <button id="open-deck" type="button">Open deck</button>
+          <button id="refresh-deck" type="button" class="ghost">Refresh</button>
+          <button id="export-json" type="button" class="ghost">Export JSON</button>
+          <button id="export-pdf" type="button" class="accent">Export PDF</button>
+        </div>
+      </header>
+
+      <main class="editor-main">
+        <section class="copy-list" id="copy-list">
+          <div class="empty-state" id="empty-state">
+            Open the deck to load copy fields. Keep the deck window open for live preview.
+          </div>
+        </section>
+
+        <aside class="side-panel">
+          <div class="panel-card">
+            <div class="panel-title">Connection</div>
+            <div class="status" id="connection-status" data-state="idle">Waiting for deck</div>
+            <div class="deck-url">
+              <input id="deck-url" type="text" readonly />
+              <button id="copy-url" type="button" class="ghost">Copy</button>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-title">Storage</div>
+            <p class="panel-text">
+              Edits are stored in this browser (localStorage). Export JSON to hand off changes.
+            </p>
+            <div style="margin-top: 10px;">
+              <button id="reset-copy" type="button" class="ghost">Reset overrides</button>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-title">PDF Export</div>
+            <p class="panel-text">
+              Export PDF opens the print dialog in the deck window. Choose Save as PDF and enable
+              background graphics.
+            </p>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <script src="./deck-config.js"></script>
+    <script>
+      const deckConfig = window.KEYNOTE_DECK || {};
+      const pathParts = window.location.pathname.split("/").filter(Boolean);
+      const fallbackDeckId = pathParts.length > 1 ? pathParts[pathParts.length - 2] : "deck";
+      const deckId = typeof deckConfig.id === "string" && deckConfig.id.trim()
+        ? deckConfig.id.trim()
+        : fallbackDeckId;
+      const deckTitle = typeof deckConfig.title === "string" && deckConfig.title.trim()
+        ? deckConfig.title.trim()
+        : deckId;
+      const deckUrl = new URL("index.html", window.location.href).toString();
+      const deckWindowName = `keynote-deck-${deckId || "default"}`;
+      const storageKey = `KEYNOTE_COPY_${deckId || "default"}`;
+
+      const deckMeta = document.getElementById("deck-meta");
+      const deckUrlInput = document.getElementById("deck-url");
+      const openDeckButton = document.getElementById("open-deck");
+      const refreshButton = document.getElementById("refresh-deck");
+      const exportJsonButton = document.getElementById("export-json");
+      const exportPdfButton = document.getElementById("export-pdf");
+      const copyUrlButton = document.getElementById("copy-url");
+      const resetButton = document.getElementById("reset-copy");
+      const statusEl = document.getElementById("connection-status");
+      const copyList = document.getElementById("copy-list");
+      const emptyState = document.getElementById("empty-state");
+
+      const ROLE_CLASSES = [
+        "eyebrow",
+        "title",
+        "subtitle",
+        "section-title",
+        "body-text",
+        "card-title",
+        "card-caption",
+        "metric-number",
+        "metric-label",
+        "quote",
+        "quote-meta",
+        "chip",
+        "media-placeholder",
+      ];
+      const MULTILINE_ROLES = new Set(["subtitle", "body-text", "card-caption", "quote"]);
+      const ROLE_LABELS = {
+        eyebrow: "Eyebrow",
+        title: "Title",
+        subtitle: "Subtitle",
+        "section-title": "Section title",
+        "body-text": "Body text",
+        "card-title": "Card title",
+        "card-caption": "Card caption",
+        "metric-number": "Metric number",
+        "metric-label": "Metric label",
+        quote: "Quote",
+        "quote-meta": "Quote meta",
+        chip: "Chip",
+        "media-placeholder": "Media placeholder",
+      };
+      const EDITABLE_SELECTOR = `${ROLE_CLASSES.map((role) => `.${role}`).join(",")}, [data-copy-id], [data-copy-role]`;
+
+      let deckWindow = null;
+      let nodeMap = new Map();
+
+      const normalizeText = (value) => value.replace(/\s+/g, " ").trim();
+
+      const setStatus = (state, message) => {
+        statusEl.dataset.state = state;
+        statusEl.textContent = message;
+      };
+
+      const getOverrides = () => {
+        try {
+          const raw = localStorage.getItem(storageKey);
+          return raw ? JSON.parse(raw) : {};
+        } catch (error) {
+          return {};
+        }
+      };
+
+      const setOverrides = (payload) => {
+        localStorage.setItem(storageKey, JSON.stringify(payload));
+      };
+
+      const openDeck = () => {
+        const ref = window.open(deckUrl, deckWindowName);
+        if (!ref) {
+          setStatus("error", "Pop-up blocked. Allow pop-ups and retry.");
+          return null;
+        }
+        ref.focus();
+        return ref;
+      };
+
+      const waitForDeck = async () => {
+        const maxAttempts = 40;
+        for (let i = 0; i < maxAttempts; i += 1) {
+          if (deckWindow && !deckWindow.closed) {
+            try {
+              const ready = deckWindow.document.readyState === "complete";
+              const deckRoot = deckWindow.document.querySelector("#deck");
+              if (ready && deckRoot) return true;
+            } catch (error) {
+              // Ignore cross-window access errors during load.
+            }
+          }
+          await new Promise((resolve) => setTimeout(resolve, 250));
+        }
+        return false;
+      };
+
+      const slugify = (value) =>
+        value
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "");
+
+      const resolveRole = (node) => {
+        if (node.dataset.copyRole) return slugify(node.dataset.copyRole);
+        const roleMatch = ROLE_CLASSES.find((role) => node.classList.contains(role));
+        return roleMatch || "text";
+      };
+
+      const ensureUniqueId = (id, used) => {
+        let value = id;
+        let count = 2;
+        while (used.has(value)) {
+          value = `${id}-${count}`;
+          count += 1;
+        }
+        return value;
+      };
+
+      const collectEntries = () => {
+        const deckRoot = deckWindow.document.querySelector("#deck");
+        if (!deckRoot) return [];
+
+        const slides = Array.from(deckRoot.querySelectorAll(".slide"));
+        const usedIds = new Set();
+        nodeMap = new Map();
+        const entries = [];
+
+        slides.forEach((slide, slideIndex) => {
+          const slideTitle = slide.dataset.title || `Slide ${slideIndex + 1}`;
+          const slideSlug = slugify(slideTitle) || `slide-${slideIndex + 1}`;
+          const roleCounts = {};
+          const nodes = Array.from(slide.querySelectorAll(EDITABLE_SELECTOR));
+
+          nodes.forEach((node) => {
+            if (node.closest("template")) return;
+            const role = resolveRole(node);
+            roleCounts[role] = (roleCounts[role] || 0) + 1;
+            const baseId = `${slideSlug}-${role}-${roleCounts[role]}`;
+            const rawId = node.dataset.copyId || baseId;
+            const copyId = ensureUniqueId(rawId, usedIds);
+            node.dataset.copyId = copyId;
+            usedIds.add(copyId);
+            nodeMap.set(copyId, node);
+            entries.push({
+              id: copyId,
+              slideTitle,
+              role,
+              value: normalizeText(node.textContent || ""),
+            });
+          });
+        });
+
+        return entries;
+      };
+
+      const applyOverrides = (overrides) => {
+        Object.entries(overrides).forEach(([id, value]) => {
+          const node = nodeMap.get(id);
+          if (node) {
+            node.textContent = value;
+          }
+        });
+      };
+
+      const renderEntries = (entries, overrides) => {
+        copyList.innerHTML = "";
+        if (!entries.length) {
+          copyList.appendChild(emptyState);
+          return;
+        }
+
+        const grouped = new Map();
+        entries.forEach((entry) => {
+          const list = grouped.get(entry.slideTitle) || [];
+          list.push(entry);
+          grouped.set(entry.slideTitle, list);
+        });
+
+        grouped.forEach((slideEntries, slideTitle) => {
+          const card = document.createElement("section");
+          card.className = "slide-card";
+
+          const header = document.createElement("div");
+          header.className = "slide-card-header";
+
+          const heading = document.createElement("h2");
+          heading.textContent = slideTitle;
+          const count = document.createElement("span");
+          count.textContent = `${slideEntries.length} fields`;
+
+          header.appendChild(heading);
+          header.appendChild(count);
+          card.appendChild(header);
+
+          slideEntries.forEach((entry) => {
+            const field = document.createElement("div");
+            field.className = "field";
+
+            const label = document.createElement("label");
+            label.textContent = ROLE_LABELS[entry.role] || entry.role;
+            label.setAttribute("for", `field-${entry.id}`);
+
+            const input = MULTILINE_ROLES.has(entry.role)
+              ? document.createElement("textarea")
+              : document.createElement("input");
+            input.id = `field-${entry.id}`;
+            input.dataset.copyId = entry.id;
+            const overrideValue = Object.prototype.hasOwnProperty.call(overrides, entry.id)
+              ? overrides[entry.id]
+              : entry.value;
+            input.value = overrideValue;
+            input.addEventListener("input", (event) => {
+              const value = normalizeText(event.target.value);
+              const updatedOverrides = getOverrides();
+              updatedOverrides[entry.id] = value;
+              setOverrides(updatedOverrides);
+              const node = nodeMap.get(entry.id);
+              if (node) node.textContent = value;
+            });
+
+            const meta = document.createElement("div");
+            meta.className = "field-meta";
+            meta.textContent = entry.id;
+
+            field.appendChild(label);
+            field.appendChild(input);
+            field.appendChild(meta);
+            card.appendChild(field);
+          });
+
+          copyList.appendChild(card);
+        });
+      };
+
+      const loadDeckCopy = async () => {
+        if (!deckWindow || deckWindow.closed) {
+          setStatus("error", "Deck not open. Click Open deck.");
+          return;
+        }
+        setStatus("idle", "Connecting...");
+        const ready = await waitForDeck();
+        if (!ready) {
+          setStatus("error", "Deck not ready.");
+          return;
+        }
+        const entries = collectEntries();
+        const overrides = getOverrides();
+        applyOverrides(overrides);
+        renderEntries(entries, overrides);
+        setStatus("connected", `Connected. ${entries.length} fields loaded.`);
+      };
+
+      const exportJson = () => {
+        const fields = Array.from(copyList.querySelectorAll("input[data-copy-id], textarea[data-copy-id]"));
+        const payload = {
+          deckId,
+          title: deckTitle,
+          exportedAt: new Date().toISOString(),
+          copy: fields.reduce((acc, field) => {
+            acc[field.dataset.copyId] = normalizeText(field.value);
+            return acc;
+          }, {}),
+        };
+
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `copy-${deckId}.json`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+      };
+
+      const exportPdf = () => {
+        if (!deckWindow || deckWindow.closed) {
+          setStatus("error", "Open the deck before exporting PDF.");
+          return;
+        }
+        deckWindow.focus();
+        deckWindow.print();
+      };
+
+      const resetOverrides = () => {
+        if (!confirm("Reset all copy overrides for this deck?")) return;
+        localStorage.removeItem(storageKey);
+        loadDeckCopy();
+      };
+
+      const copyDeckUrl = async () => {
+        try {
+          await navigator.clipboard.writeText(deckUrl);
+          setStatus("connected", "Deck URL copied.");
+        } catch (error) {
+          setStatus("error", "Unable to copy deck URL.");
+        }
+      };
+
+      deckMeta.textContent = `Deck: ${deckTitle}`;
+      deckUrlInput.value = deckUrl;
+
+      openDeckButton.addEventListener("click", async () => {
+        deckWindow = deckWindow && !deckWindow.closed ? deckWindow : openDeck();
+        if (!deckWindow) return;
+        await loadDeckCopy();
+      });
+
+      refreshButton.addEventListener("click", loadDeckCopy);
+      exportJsonButton.addEventListener("click", exportJson);
+      exportPdfButton.addEventListener("click", exportPdf);
+      copyUrlButton.addEventListener("click", copyDeckUrl);
+      resetButton.addEventListener("click", resetOverrides);
+
+      if (document.hasFocus()) {
+        setStatus("idle", "Ready. Open the deck to connect.");
+      }
+    </script>
+  </body>
+</html>

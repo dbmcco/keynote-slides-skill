@@ -71,11 +71,25 @@ scripts/serve-decks.sh
 ```
 Then open `http://<tailscale-ip>:8921/decks/<deck-id>/index.html`.
 
+## Copy editor
+
+- Open `decks/<deck-id>/editor.html` in a second window to edit copy without touching HTML.
+- Use the editor "Open deck" button to connect and update the live preview.
+- For existing decks, copy the template first:
+  ```bash
+  cp skills/keynote-slides/assets/keynote-editor.html decks/<deck-id>/editor.html
+  ```
+- Edits are stored in localStorage; export JSON from the editor for handoff.
+
 ## PDF export
 
 - Use the browser print dialog and "Save as PDF".
 - Enable background graphics for gradients and color fills.
 - The template includes print styles to paginate each slide.
+- CLI option:
+  ```bash
+  node scripts/export-pdf.js decks/<deck-id> --out /tmp/<deck-id>.pdf
+  ```
 
 ## Navigation
 
