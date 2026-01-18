@@ -231,6 +231,15 @@
         gap: 8px;
       }
 
+      .stack-diagram.compact .stack-layer {
+        grid-template-columns: 90px 1fr;
+        padding: 8px 12px;
+        font-size: 0.78rem;
+      }
+
+      .stack-diagram.compact .stack-layer-desc {
+        font-size: 0.72rem;
+      }
       .stack-layer {
         display: grid;
         grid-template-columns: 100px 1fr;
@@ -289,6 +298,21 @@
         gap: 14px;
       }
 
+      .lock-column {
+        display: grid;
+        gap: 12px;
+      }
+
+      .lock-title {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-weight: 600;
+      }
+
+      .lock-title.tech { color: var(--brand-sage); }
+      .lock-title.biz { color: var(--brand-accent); }
+
       .gap-card {
         border-radius: 12px;
         border: 1px solid rgba(255, 255, 255, 0.1);
@@ -307,6 +331,9 @@
         width: 4px;
         background: linear-gradient(180deg, var(--brand-warning), #b7791f);
       }
+
+      .gap-card.tech::before { background: linear-gradient(180deg, var(--brand-sage), #0f9ed5); }
+      .gap-card.biz::before { background: linear-gradient(180deg, var(--brand-accent), var(--brand-accent-strong)); }
 
       .gap-card::after {
         content: "⚠";
@@ -335,6 +362,103 @@
         display: grid;
         gap: 12px;
       }
+
+      .timeline {
+        position: relative;
+        display: grid;
+        gap: 12px;
+        padding-left: 26px;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 8px;
+        top: 6px;
+        bottom: 6px;
+        width: 2px;
+        background: var(--brand-line);
+      }
+
+      .timeline-step {
+        position: relative;
+        padding: 12px 14px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid var(--brand-line);
+        display: grid;
+        gap: 6px;
+      }
+
+      .theme-ink .timeline-step {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .timeline-step::before {
+        content: "";
+        position: absolute;
+        left: -22px;
+        top: 16px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--brand-paper);
+        border: 3px solid var(--brand-sage);
+        box-shadow: 0 0 0 4px rgba(0, 181, 216, 0.15);
+      }
+
+      .timeline-step.science::before { border-color: var(--brand-sage); box-shadow: 0 0 0 4px rgba(0, 181, 216, 0.15); }
+      .timeline-step.biz::before { border-color: var(--brand-accent); box-shadow: 0 0 0 4px rgba(237, 137, 54, 0.15); }
+      .timeline-step.ops::before { border-color: var(--brand-purple); box-shadow: 0 0 0 4px rgba(128, 90, 213, 0.15); }
+      .timeline-step.raise::before { border-color: var(--brand-success); box-shadow: 0 0 0 4px rgba(56, 161, 105, 0.15); }
+
+      .timeline-time {
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-weight: 600;
+        color: var(--brand-slate);
+      }
+
+      .theme-ink .timeline-time { color: rgba(250, 251, 252, 0.6); }
+
+      .timeline-title {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--brand-ink);
+      }
+
+      .theme-ink .timeline-title { color: rgba(250, 251, 252, 0.92); }
+
+      .timeline-body {
+        font-size: 0.82rem;
+        color: var(--brand-slate);
+        line-height: 1.4;
+      }
+
+      .theme-ink .timeline-body { color: rgba(250, 251, 252, 0.65); }
+
+      .timeline-tags {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .timeline-tag {
+        font-size: 0.6rem;
+        padding: 2px 6px;
+        border-radius: 999px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 600;
+        background: var(--brand-paper-deep);
+        color: var(--brand-slate);
+      }
+
+      .timeline-tag.science { background: rgba(0, 181, 216, 0.2); color: var(--brand-sage); }
+      .timeline-tag.biz { background: rgba(237, 137, 54, 0.2); color: var(--brand-accent); }
+      .timeline-tag.ops { background: rgba(128, 90, 213, 0.2); color: var(--brand-purple); }
 
       .bet-row {
         display: grid;
@@ -535,7 +659,7 @@
       }
 
       .rate-header > div {
-        padding: 12px 16px;
+        padding: 10px 14px;
         border-right: 1px solid rgba(255, 255, 255, 0.1);
       }
 
@@ -551,10 +675,10 @@
       .rate-row:last-child { border-bottom: none; }
 
       .rate-row > div {
-        padding: 14px 16px;
+        padding: 10px 14px;
         border-right: 1px solid var(--brand-line);
-        font-size: 0.82rem;
-        line-height: 1.4;
+        font-size: 0.78rem;
+        line-height: 1.35;
       }
 
       .rate-row > div:last-child { border-right: none; }
@@ -566,10 +690,10 @@
 
       .rate-product .tier {
         display: block;
-        font-size: 0.68rem;
+        font-size: 0.62rem;
         font-weight: 500;
         color: var(--brand-slate);
-        margin-top: 2px;
+        margin-top: 1px;
       }
 
       .rate-solution {
@@ -587,7 +711,7 @@
       }
 
       .rate-price .terms {
-        font-size: 0.72rem;
+        font-size: 0.68rem;
         color: var(--brand-slate);
         margin-top: 4px;
       }
@@ -1016,9 +1140,9 @@
         <div class="slide-inner layout-title">
           <img class="logo reveal" style="--reveal-index: 1" src="resources/assets/synthyra-logo.png" alt="Synthyra" />
           <p class="eyebrow reveal" style="--reveal-index: 2">Internal Strategy Alignment</p>
-          <h1 class="title reveal" style="--reveal-index: 3">6-9 months from fundable.</h1>
+          <h1 class="title reveal" style="--reveal-index: 3">The next 6-9 months: proof is the product.</h1>
           <p class="subtitle reveal" style="--reveal-index: 4">
-            We built a search engine for biology, but the evidence base is thin. Close five proof points to unlock the $12-18M raise.
+            The tech is spectacular. The raise depends on evidence — close the proof points to unlock the $12-18M round.
           </p>
           <div class="chip-row reveal" style="--reveal-index: 5">
             <div class="chip muted">Benchmark</div>
@@ -1026,77 +1150,75 @@
             <div class="chip muted">Case study</div>
             <div class="chip muted">SAB</div>
             <div class="chip muted">Narrative</div>
+            <div class="chip muted">Pricing</div>
           </div>
         </div>
       </section>
 
-      <!-- Slide 2: The Problem -->
-      <section class="slide theme-ivory" data-title="Problem">
+      <!-- Slide 2: Messaging -->
+      <section class="slide theme-ivory" data-title="Messaging">
         <div class="slide-inner layout-split">
           <div>
-            <p class="eyebrow reveal" style="--reveal-index: 1">The Problem</p>
-            <h2 class="section-title reveal" style="--reveal-index: 2">Years of blind experimentation.</h2>
-            <p class="body-text reveal" style="--reveal-index: 3">
-              Biology's networks are hidden. You can't see what a drug interacts with until it fails in a patient. So you guess, test, wait, fail, repeat — for a decade.
-            </p>
-            <div class="problem-stats reveal" style="--reveal-index: 4">
-              <div class="problem-stat">
-                <div class="problem-stat-number">90%</div>
-                <div class="problem-stat-label">of drugs fail<br/>in trials</div>
+            <p class="eyebrow reveal" style="--reveal-index: 1">Messaging</p>
+            <h2 class="section-title reveal" style="--reveal-index: 2">How we describe the category.</h2>
+            <div class="input-box reveal" style="--reveal-index: 3; margin-top: 12px; background: rgba(56, 161, 105, 0.08); border-color: var(--brand-success);">
+              <strong>The Hook</strong>
+              "We built a search engine for biology."
+            </div>
+            <div class="input-box reveal" style="--reveal-index: 4; margin-top: 12px;">
+              <strong>The Positioning</strong>
+              We sit above single-molecule models — the systems layer for interactions, cascades, and toxicity signals.
+            </div>
+            <div class="input-box reveal" style="--reveal-index: 5; margin-top: 12px;">
+              <strong>The Wedge</strong>
+              Safety & Toxicity proves value fastest (30-60 days) and sets up expansion.
+            </div>
+          </div>
+          <div>
+            <p class="eyebrow reveal" style="--reveal-index: 2">Questions Buyers Can Now Ask</p>
+            <div class="solution-value reveal" style="--reveal-index: 3; margin-top: 12px;">
+              <div class="value-card">
+                <div class="value-icon">🔍</div>
+                <div class="value-content">
+                  <p>"Which compounds are likely to fail Phase I before we run it?"</p>
+                </div>
               </div>
-              <div class="problem-stat">
-                <div class="problem-stat-number">$100M+</div>
-                <div class="problem-stat-label">burned per<br/>late failure</div>
+              <div class="value-card">
+                <div class="value-icon">🧬</div>
+                <div class="value-content">
+                  <p>"What off-target interactions create toxicity risk?"</p>
+                </div>
               </div>
-              <div class="problem-stat">
-                <div class="problem-stat-number">10+ yrs</div>
-                <div class="problem-stat-label">to maybe<br/>get one drug</div>
+              <div class="value-card">
+                <div class="value-icon">⚗️</div>
+                <div class="value-content">
+                  <p>"Which tissue compartments will see accumulation?"</p>
+                </div>
+              </div>
+              <div class="value-card">
+                <div class="value-icon">🦠</div>
+                <div class="value-content">
+                  <p>"How does a binding-site change affect safety?"</p>
+                </div>
               </div>
             </div>
           </div>
-          <div class="reveal" style="--reveal-index: 3; text-align: center;">
-            <img src="resources/assets/slide2-problem.png" alt="Drug development funnel showing 100 compounds narrowing to 1 approval" style="max-width: 100%; max-height: 500px; border-radius: 12px;" />
-          </div>
         </div>
       </section>
 
-      <!-- Slide 3: The Solution -->
-      <section class="slide theme-ink" data-title="Solution">
+      <!-- Slide 3: Engine + Stack -->
+      <section class="slide theme-ink" data-title="Engine">
         <div class="slide-inner layout-split">
           <div>
-            <p class="eyebrow reveal" style="--reveal-index: 1">The Infrastructure</p>
-            <h2 class="section-title reveal" style="--reveal-index: 2">Real-time vision into biology's hidden networks.</h2>
+            <p class="eyebrow reveal" style="--reveal-index: 1">The Engine</p>
+            <h2 class="section-title reveal" style="--reveal-index: 2">Spectacular tech, one integrated stack.</h2>
             <p class="body-text reveal" style="--reveal-index: 3">
-              We predict interactions across entire proteomes, map downstream cascades, and spot risks before they kill programs. We're the systems layer above single-molecule models.
+              We predict interactions across entire proteomes, map downstream cascades, and spot risks before they kill programs. Workflow: generate → annotate → screen → decide.
             </p>
             <div class="solution-headline reveal" style="--reveal-index: 4">
               <span>375M interactions/second.</span> Full human proteome in under 2 seconds.
             </div>
-            <div class="chip-row reveal" style="--reveal-index: 5; margin-top: 16px;">
-              <div class="chip sage">Predict interactions</div>
-              <div class="chip accent">Spot risks early</div>
-              <div class="chip purple">Design countermeasures</div>
-            </div>
-          </div>
-          <div class="reveal" style="--reveal-index: 2; display: flex; align-items: center; justify-content: center;">
-            <video autoplay loop muted playsinline style="max-width: 100%; max-height: 480px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 181, 216, 0.3);">
-              <source src="resources/assets/solution-video.mp4" type="video/mp4" />
-              <img src="resources/assets/slide3-solution.png" alt="Network visualization showing proteome interrogation at 375M interactions per second" />
-            </video>
-          </div>
-        </div>
-      </section>
-
-      <!-- Slide 4: Platform -->
-      <section class="slide theme-ivory" data-title="Platform">
-        <div class="slide-inner layout-split">
-          <div>
-            <p class="eyebrow reveal" style="--reveal-index: 1">Platform Architecture</p>
-            <h2 class="section-title reveal" style="--reveal-index: 2">Four engines, one stack.</h2>
-            <p class="body-text reveal" style="--reveal-index: 3">
-              Each engine solves a distinct problem. Together they power a generate-annotate-screen-decide workflow.
-            </p>
-            <div class="stack-diagram reveal" style="--reveal-index: 4">
+            <div class="stack-diagram compact reveal" style="--reveal-index: 5; margin-top: 12px;">
               <div class="stack-layer dsm">
                 <span class="stack-layer-name">DSM</span>
                 <span class="stack-layer-desc">Sequence generation + optimization</span>
@@ -1115,18 +1237,20 @@
               </div>
             </div>
           </div>
-          <div class="reveal" style="--reveal-index: 3; display: flex; align-items: center; justify-content: center;">
-            <img src="resources/assets/slide4-workflow.png" alt="Platform workflow: Generate → Annotate → Screen → Decide" style="max-width: 100%; max-height: 400px; border-radius: 12px;" />
+          <div class="reveal" style="--reveal-index: 2; display: flex; align-items: center; justify-content: center;">
+            <video autoplay loop muted playsinline poster="resources/assets/slide3-solution.png" style="max-width: 100%; max-height: 420px; border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 181, 216, 0.3);">
+              <source src="resources/assets/solution-video.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
       </section>
 
-      <!-- Slide 5: Products -->
-      <section class="slide theme-ivory" data-title="Products">
+      <!-- Slide 4: Wedge -->
+      <section class="slide theme-ivory" data-title="Wedge">
         <div class="slide-inner layout-split">
           <div>
-            <p class="eyebrow reveal" style="--reveal-index: 1">Go-to-Market</p>
-            <h2 class="section-title reveal" style="--reveal-index: 2">Three product suites.</h2>
+            <p class="eyebrow reveal" style="--reveal-index: 1">The Wedge</p>
+            <h2 class="section-title reveal" style="--reveal-index: 2">Safety & Toxicity is the entry point.</h2>
             <p class="body-text reveal" style="--reveal-index: 3">
               Same platform, different entry points. Each suite targets a specific buyer and use case.
             </p>
@@ -1170,26 +1294,26 @@
         </div>
       </section>
 
-      <!-- Slide 6: Verdict -->
-      <section class="slide theme-ivory" data-title="Verdict">
+      <!-- Slide 5: Twist -->
+      <section class="slide theme-ivory" data-title="Twist">
         <div class="slide-inner layout-split">
           <div>
-            <p class="eyebrow reveal" style="--reveal-index: 1">Panel Verdict</p>
-            <h2 class="section-title reveal" style="--reveal-index: 2">Compelling tech, thin evidence.</h2>
+            <p class="eyebrow reveal" style="--reveal-index: 1">The Twist</p>
+            <h2 class="section-title reveal" style="--reveal-index: 2">We raise on tech and proof — proof is the gate.</h2>
             <p class="body-text reveal" style="--reveal-index: 3">
-              Synthyra is 6-9 months from fundable at a $12-18M raise if we close five proof points.
+              The tech earns attention; evidence unlocks capital. For the next 6-9 months, the product is proof that the tech works in the market.
             </p>
             <div class="framing-card danger reveal" style="--reveal-index: 4; margin-top: 12px;">
               <div class="framing-label danger">Risk</div>
-              <div class="framing-text">Speed alone is a thin moat without published benchmarks and validation.</div>
+              <div class="framing-text">Without benchmarks and a pilot, speed is just a claim.</div>
             </div>
             <div class="framing-card success reveal" style="--reveal-index: 5; margin-top: 12px;">
               <div class="framing-label success">Opportunity</div>
-              <div class="framing-text">Lead with Safety & Tox, prove accuracy, and lock a flagship pilot.</div>
+              <div class="framing-text">Close the proof points and the $12-18M raise becomes straightforward.</div>
             </div>
           </div>
           <div>
-            <p class="eyebrow reveal" style="--reveal-index: 2">Five Proof Points</p>
+            <p class="eyebrow reveal" style="--reveal-index: 2">Proof that Unlocks the Raise</p>
             <div class="reveal" style="--reveal-index: 3; display: grid; gap: 12px; margin-top: 12px;">
               <div class="input-box">
                 <strong>Benchmark</strong>
@@ -1208,20 +1332,20 @@
                 1-2 pharma advisors to validate the story and open doors.
               </div>
               <div class="input-box">
-                <strong>Narrative Deck</strong>
-                Investor-ready story tied to proof points and pricing model.
+                <strong>Narrative + Pricing</strong>
+                Investor-ready story with packaging and deal terms aligned.
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Slide 7: Pricing -->
+      <!-- Slide 6: Pricing -->
       <section class="slide theme-ivory" data-title="Pricing">
         <div class="slide-inner layout-stack">
           <div>
-            <p class="eyebrow reveal" style="--reveal-index: 1">Rate Card</p>
-            <h2 class="section-title reveal" style="--reveal-index: 2">Hybrid reserve + usage model.</h2>
+            <p class="eyebrow reveal" style="--reveal-index: 1">The Deal</p>
+            <h2 class="section-title reveal" style="--reveal-index: 2">Hybrid reserve + usage aligns value.</h2>
           </div>
           <div class="reveal" style="--reveal-index: 3">
             <div class="rate-card">
@@ -1272,102 +1396,106 @@
         </div>
       </section>
 
-      <!-- Slide 8: Internal Gaps -->
-      <section class="slide theme-ink" data-title="Gaps">
-        <div class="slide-inner layout-stack">
+      <!-- Slide 7: Locks -->
+      <section class="slide theme-ink" data-title="Locks">
+        <div class="slide-inner layout-split">
           <div>
-            <p class="eyebrow reveal" style="--reveal-index: 1">Internal Alignment</p>
-            <h2 class="section-title reveal" style="--reveal-index: 2">Gaps to close before we raise.</h2>
-          </div>
-          <div class="gap-grid reveal" style="--reveal-index: 3">
-            <div class="gap-card">
-              <div class="gap-title">Published benchmark vs Chai/AlphaFold</div>
-              <div class="gap-detail">Run CASP/STRING/BioGRID comparisons with ablation and shareable results.</div>
+            <p class="eyebrow reveal" style="--reveal-index: 1">The Locks</p>
+            <h2 class="section-title reveal" style="--reveal-index: 2">Proof points unlock the vault.</h2>
+            <p class="body-text reveal" style="--reveal-index: 3">Science proof on the left, business proof on the right.</p>
+            <div class="lock-column reveal" style="--reveal-index: 4; margin-top: 16px;">
+              <div class="lock-title tech">Science + Tech Proof</div>
+              <div class="gap-card tech">
+                <div class="gap-title">Published benchmark vs Chai/AlphaFold</div>
+                <div class="gap-detail">Run CASP/STRING/BioGRID comparisons with ablation and shareable results.</div>
+              </div>
+              <div class="gap-card tech">
+                <div class="gap-title">Safety/Tox case study</div>
+                <div class="gap-detail">Retrospective screen using public withdrawal data to show value fast.</div>
+              </div>
+              <div class="gap-card tech">
+                <div class="gap-title">Validation thresholds locked</div>
+                <div class="gap-detail">Align MCC vs accuracy framing and binding-site claims across materials.</div>
+              </div>
             </div>
-            <div class="gap-card">
+          </div>
+          <div class="lock-column reveal" style="--reveal-index: 4; margin-top: 32px;">
+            <div class="lock-title biz">Business Proof</div>
+            <div class="gap-card biz">
               <div class="gap-title">Signed pilot with recognizable pharma</div>
               <div class="gap-detail">Validation pilot for 2-3 programs, 50-100 compounds, with case study rights.</div>
             </div>
-            <div class="gap-card">
-              <div class="gap-title">Safety/Tox case study</div>
-              <div class="gap-detail">Retrospective screen using public withdrawal data to show value fast.</div>
-            </div>
-            <div class="gap-card">
+            <div class="gap-card biz">
               <div class="gap-title">SAB members with pharma credibility</div>
               <div class="gap-detail">Secure 1-2 advisors who can validate the narrative and open doors.</div>
             </div>
-            <div class="gap-card">
-              <div class="gap-title">Investor-ready narrative deck</div>
-              <div class="gap-detail">12-15 slide story tied to proof points and critical path.</div>
-            </div>
-            <div class="gap-card">
-              <div class="gap-title">Pricing architecture + deal terms</div>
-              <div class="gap-detail">Hybrid reserve + usage model, success bonus, and non-negotiables defined.</div>
+            <div class="gap-card biz">
+              <div class="gap-title">Narrative + pricing aligned</div>
+              <div class="gap-detail">Investor story plus packaging, deal terms, and expansion path.</div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Slide 9: Program Initiatives -->
-      <section class="slide theme-ivory" data-title="Initiatives">
+      <!-- Slide 8: Timeline -->
+      <section class="slide theme-ivory" data-title="Timeline">
         <div class="slide-inner layout-split">
           <div>
-            <p class="eyebrow reveal" style="--reveal-index: 1">Program Initiatives</p>
-            <h2 class="section-title reveal" style="--reveal-index: 2">What we're accountable for.</h2>
-            <p class="body-text reveal" style="--reveal-index: 3; margin-top: 4px;">Proof points to close before raising. Color = owner track.</p>
-            <div class="input-box reveal" style="--reveal-index: 6; margin-top: 16px; background: rgba(128, 90, 213, 0.08); border-color: var(--brand-purple);">
-              <strong>Question for Team</strong>
-              What are our key initiatives? Are these the right priorities? What's missing?
+            <p class="eyebrow reveal" style="--reveal-index: 1">The Crew</p>
+            <h2 class="section-title reveal" style="--reveal-index: 2">Proof-point timeline with owners.</h2>
+            <p class="body-text reveal" style="--reveal-index: 3; margin-top: 4px;">
+              Each milestone has a lead and unlocks the next gate. This is the heist plan.
+            </p>
+            <div class="input-box reveal" style="--reveal-index: 4; margin-top: 16px;">
+              <strong>Decision</strong>
+              Confirm owners, commit dates, and lock dependencies this week.
             </div>
           </div>
-          <div class="reveal" style="--reveal-index: 3">
-            <div class="bet-header">
-              <span>Initiative</span>
-              <span>Owner</span>
-              <span>Timeline</span>
+          <div class="timeline">
+            <div class="timeline-step science reveal" style="--reveal-index: 2;">
+              <div class="timeline-time">Month 0-2</div>
+              <div class="timeline-title">Benchmark kickoff + Safety/Tox case study</div>
+              <div class="timeline-body">CASP run, public withdrawal data, initial readout.</div>
+              <div class="timeline-tags">
+                <span class="timeline-tag science">Science</span>
+              </div>
             </div>
-            <div class="bet-table">
-              <div class="bet-row" style="border-left: 3px solid var(--brand-purple);">
-                <div class="bet-hypothesis"><strong>Benchmark vs Chai/AlphaFold</strong><br/>CASP/STRING/BioGRID results with ablation + publishable story.</div>
-                <div class="bet-source">Science</div>
-                <div class="bet-risk">8-12 weeks</div>
+            <div class="timeline-step biz reveal" style="--reveal-index: 3;">
+              <div class="timeline-time">Month 2-4</div>
+              <div class="timeline-title">Interim benchmark + pilot shortlist + SAB outreach</div>
+              <div class="timeline-body">Short list 3-5 pharma targets and secure first advisor.</div>
+              <div class="timeline-tags">
+                <span class="timeline-tag science">Science</span>
+                <span class="timeline-tag biz">BD</span>
               </div>
-              <div class="bet-row" style="border-left: 3px solid var(--brand-purple);">
-                <div class="bet-hypothesis"><strong>Safety/Tox Case Study</strong><br/>Retrospective withdrawal analysis with ranked off-target risk.</div>
-                <div class="bet-source">Science + BD</div>
-                <div class="bet-risk">4-6 weeks</div>
+            </div>
+            <div class="timeline-step ops reveal" style="--reveal-index: 4;">
+              <div class="timeline-time">Month 4-6</div>
+              <div class="timeline-title">Pilot signed + narrative + pricing locked</div>
+              <div class="timeline-body">Finalize deck, packaging, and deal terms.</div>
+              <div class="timeline-tags">
+                <span class="timeline-tag biz">BD</span>
+                <span class="timeline-tag ops">Ops</span>
               </div>
-              <div class="bet-row" style="border-left: 3px solid var(--brand-accent);">
-                <div class="bet-hypothesis"><strong>Signed Validation Pilot</strong><br/>2-3 programs, 50-100 compounds, case study rights.</div>
-                <div class="bet-source">CEO + BD</div>
-                <div class="bet-risk">12-20 weeks</div>
-              </div>
-              <div class="bet-row" style="border-left: 3px solid var(--brand-accent);">
-                <div class="bet-hypothesis"><strong>SAB Members</strong><br/>1-2 pharma advisors who validate the narrative and open doors.</div>
-                <div class="bet-source">CEO</div>
-                <div class="bet-risk">8-12 weeks</div>
-              </div>
-              <div class="bet-row" style="border-left: 3px solid var(--brand-sage);">
-                <div class="bet-hypothesis"><strong>Investor Narrative Deck</strong><br/>12-15 slide story tied to proof points and critical path.</div>
-                <div class="bet-source">CEO + Comms</div>
-                <div class="bet-risk">2-4 weeks</div>
-              </div>
-              <div class="bet-row" style="border-left: 3px solid var(--brand-sage);">
-                <div class="bet-hypothesis"><strong>Pricing Architecture + Terms</strong><br/>Hybrid reserve + usage model, success bonus, non-negotiables.</div>
-                <div class="bet-source">BD + Ops</div>
-                <div class="bet-risk">2-3 weeks</div>
+            </div>
+            <div class="timeline-step raise reveal" style="--reveal-index: 5;">
+              <div class="timeline-time">Month 6-9</div>
+              <div class="timeline-title">Investor outreach + pilot results</div>
+              <div class="timeline-body">Run the raise with fresh evidence in hand.</div>
+              <div class="timeline-tags">
+                <span class="timeline-tag biz">CEO</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Slide 10: The Raise -->
-      <section class="slide theme-ink" data-title="Raise">
+      <!-- Slide 9: Payout -->
+      <section class="slide theme-ink" data-title="Payout">
         <div class="slide-inner layout-split">
           <div>
-            <p class="eyebrow reveal" style="--reveal-index: 1">Fundraise Parameters</p>
-            <h2 class="section-title reveal" style="--reveal-index: 2">What we're raising for.</h2>
+            <p class="eyebrow reveal" style="--reveal-index: 1">The Payout</p>
+            <h2 class="section-title reveal" style="--reveal-index: 2">What the raise unlocks.</h2>
             <div class="raise-grid reveal" style="--reveal-index: 3; margin-top: 20px;">
               <div class="raise-card">
                 <div class="raise-number">$12-18M</div>
@@ -1402,11 +1530,11 @@
         </div>
       </section>
 
-      <!-- Slide 11: Execution -->
-      <section class="slide theme-ivory" data-title="Execution">
+      <!-- Slide 10: Execution -->
+      <section class="slide theme-ivory" data-title="Clock">
         <div class="slide-inner layout-split">
           <div>
-            <p class="eyebrow reveal" style="--reveal-index: 1">Critical Path</p>
+            <p class="eyebrow reveal" style="--reveal-index: 1">The Clock</p>
             <h2 class="section-title reveal" style="--reveal-index: 2">Benchmark → Pilot → Raise</h2>
             <p class="body-text reveal" style="--reveal-index: 3">
               Panel verdict: 6-9 months from fundable. Close the benchmark, pilot, and narrative gates in sequence.

@@ -1,20 +1,20 @@
 {
-  "created": "2026-01-18T20:13:15Z",
+  "created": "2026-01-18T21:02:33Z",
   "discovery": {
-    "audience": "mixed",
+    "audience": "cross-functional",
     "purpose": "align",
     "contentType": "strategic-plan",
-    "tone": "urgent",
+    "tone": "visionary-balanced",
     "revealPotential": "yes"
   },
   "framework": {
-    "name": "Minto Pyramid",
-    "variant": "scqa-opener",
-    "revealPosition": 0.45
+    "name": "The Heist",
+    "variant": "proof-point-vault",
+    "revealPosition": 0.7
   },
   "length": "short",
-  "slideCount": 11,
-  "metaphorFamily": "runway",
+  "slideCount": 10,
+  "metaphorFamily": "heist",
   "resourceSynthesis": {
     "sourcesUsed": [
       "resources/materials/executive_summary.md",
@@ -23,11 +23,11 @@
       "resources/product-doc-x.md"
     ],
     "keyThemes": [
-      "fundability timeline",
-      "proof point closure",
+      "raise on tech and proof",
       "safety and toxicity wedge",
       "partnership-first GTM",
-      "hybrid pricing architecture"
+      "hybrid pricing architecture",
+      "proof-point execution plan"
     ],
     "dataPoints": [
       {

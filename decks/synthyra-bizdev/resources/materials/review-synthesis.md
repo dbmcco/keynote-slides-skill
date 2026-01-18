@@ -1,19 +1,19 @@
 # Review Panel Synthesis
 
 **Date:** 2026-01-18
-**Framework:** Minto Pyramid with SCQA opener
+**Framework:** The Heist (proof-point vault)
 
 ## Strengths
-- Clear verdict up front and explicit proof-point gate structure.
-- Pricing and deal terms are concrete, making the ask feel real.
-- Execution timeline maps directly to investability gaps.
+- Reveal lands: raise depends on spectacular tech plus proof.
+- Heist structure keeps focus on proof points, owners, and timeline.
+- Pricing and deal terms are concrete, making the plan feel executable.
 
 ## Recommended Changes
-**Messaging:** Simplify platform jargon on the infrastructure slide.  
-**Audience Fit:** Keep proof-point language in every slide to reinforce alignment.  
+**Messaging:** Keep the systems-layer positioning crisp and consistent across slides.  
+**Audience Fit:** Reinforce the "proof is the product" line in the opening and twist.  
 **Visuals:** Consider a single proof-point checklist visual to reduce text density.  
-**Cuts:** If time is short, trim the platform detail and keep the verdict, wedge, and plan.  
-**Accuracy:** Ensure benchmark claims are referenced to CASP/STRING/BioGRID sources.
+**Cuts:** If time is short, compress platform details and keep wedge, twist, and plan.  
+**Accuracy:** Ensure benchmark claims are tied to CASP/STRING/BioGRID sources.
 
 ## Points Requiring Decision
 - **Proof vs. Product Depth:** Keep full platform detail or compress to one slide?
