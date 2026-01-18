@@ -389,6 +389,7 @@ function generateSlideHtml(slide, index, theme = 'theme-ivory') {
             <div class="media-placeholder">${escapeHtml(slide.visual)}</div>
             <img
               class="gen-media"
+              data-media="gemini"
               data-gen="text-to-image"
               data-prompt="${escapeHtml(slide.visual)}"
               alt="${escapeHtml(slide.headline)}"
