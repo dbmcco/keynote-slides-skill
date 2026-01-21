@@ -5,6 +5,7 @@
 ## Completed
 
 - Added model-mediated architecture docs, narrative build runner, review signal refactor, and conformance scaffolding.
+- Documented model-mediated workflow in README.
 - Synced Narrative Engine persuasion reference, added selection guide + checklists, and refreshed narrative-deck guidance.
 - Updated README to call out Narrative Engine references and link to Noah's repo.
 - Initialized repository and skill structure.
