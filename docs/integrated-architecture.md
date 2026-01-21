@@ -386,3 +386,5 @@ The model decides:
 - How to structure content
 - What's working/not working
 - What visuals to generate
+
+See `docs/model-mediated-architecture.md` for the decision ownership map and artifact list.

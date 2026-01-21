@@ -388,7 +388,7 @@ function loadExistingContext(deckPath) {
 // PROMPT GENERATION (Prepare for model-mediated review)
 // ============================================================================
 
-function generateReviewPrompts(deckData, context, brandProfile) {
+function generateReviewPrompts(deckData, context, brandProfile, analysisSummary) {
   const prompts = {};
 
   const replacePlaceholders = (template) => {
@@ -408,7 +408,11 @@ function generateReviewPrompts(deckData, context, brandProfile) {
   };
 
   for (const [name, template] of Object.entries(AGENT_PROMPTS)) {
-    prompts[name] = replacePlaceholders(template);
+    let prompt = replacePlaceholders(template);
+    if (analysisSummary) {
+      prompt += `\n\nANALYSIS SIGNALS:\n${JSON.stringify(analysisSummary, null, 2)}\n`;
+    }
+    prompts[name] = prompt;
   }
 
   return prompts;
@@ -449,14 +453,13 @@ function formatAnalysisForAgents(analysis) {
   const summary = analysis.summary || {};
 
   return {
-    // North star scores
-    northStarScores: summary.northStarScores || {},
-    overallGrade: summary.overall?.grade || 'N/A',
-    overallScore: summary.overall?.score || 0,
+    // North star signals
+    northStarSignals: summary.northStarSignals || {},
+    overallHeuristicGrade: summary.overall?.heuristicGrade || 'N/A',
+    overallHeuristicScore: summary.overall?.heuristicScore || 0,
 
-    // Critical issues for agents to address
-    criticalIssues: summary.overall?.criticalIssues || [],
-    importantIssues: summary.overall?.importantIssues || [],
+    // Analyzer signals for agents to interpret
+    analysisFlags: summary.overall?.flags || [],
 
     // Visual density data
     visualDensity: summary.byCategory?.visualDensity || {},
@@ -528,7 +531,7 @@ async function main() {
 
   // Generate prompts with analysis data
   console.log('🤖 Generating agent prompts...\n');
-  const prompts = generateReviewPrompts(deckData, context, brandProfile);
+  const prompts = generateReviewPrompts(deckData, context, brandProfile, formattedAnalysis);
 
   // Add analysis context to prompts
   for (const name of Object.keys(prompts)) {
@@ -536,8 +539,8 @@ async function main() {
       .replace(/{analysisData}/g, JSON.stringify(formattedAnalysis, null, 2))
       .replace(/{visualDensityData}/g, JSON.stringify(formattedAnalysis.perSlideVisualDensity, null, 2))
       .replace(/{emotionalArcData}/g, JSON.stringify(formattedAnalysis.perSlideEmotional, null, 2))
-      .replace(/{northStarScores}/g, JSON.stringify(formattedAnalysis.northStarScores, null, 2))
-      .replace(/{criticalIssues}/g, JSON.stringify(formattedAnalysis.criticalIssues, null, 2))
+      .replace(/{northStarSignals}/g, JSON.stringify(formattedAnalysis.northStarSignals, null, 2))
+      .replace(/{analysisFlags}/g, JSON.stringify(formattedAnalysis.analysisFlags, null, 2))
       .replace(/{flowGaps}/g, JSON.stringify(formattedAnalysis.flowGaps, null, 2));
   }
 
@@ -553,16 +556,16 @@ async function main() {
   console.log('✅ Review preparation complete!\n');
 
   // Show quick summary from analysis
-  if (formattedAnalysis.overallGrade !== 'N/A') {
+  if (formattedAnalysis.overallHeuristicGrade !== 'N/A') {
     console.log('--- AUTOMATED ANALYSIS SUMMARY ---');
-    console.log(`   Overall Grade: ${formattedAnalysis.overallGrade} (${formattedAnalysis.overallScore}%)`);
-    console.log(`   Storytelling:  ${formattedAnalysis.northStarScores.storytelling || 'N/A'}%`);
-    console.log(`   Clarity:       ${formattedAnalysis.northStarScores.clarity || 'N/A'}%`);
-    console.log(`   Visual Balance:${formattedAnalysis.northStarScores.visualBalance || 'N/A'}%`);
-    console.log(`   Design:        ${formattedAnalysis.northStarScores.design || 'N/A'}%`);
-    if (formattedAnalysis.criticalIssues.length > 0) {
-      console.log(`\n   Critical Issues: ${formattedAnalysis.criticalIssues.length}`);
-      formattedAnalysis.criticalIssues.forEach((i) => console.log(`     - ${i.message}`));
+    console.log(`   Overall (heuristic): ${formattedAnalysis.overallHeuristicGrade} (${formattedAnalysis.overallHeuristicScore}%)`);
+    console.log(`   Storytelling:       ${formattedAnalysis.northStarSignals.storytelling || 'N/A'}%`);
+    console.log(`   Clarity:            ${formattedAnalysis.northStarSignals.clarity || 'N/A'}%`);
+    console.log(`   Visual Balance:     ${formattedAnalysis.northStarSignals.visualBalance || 'N/A'}%`);
+    console.log(`   Design:             ${formattedAnalysis.northStarSignals.design || 'N/A'}%`);
+    if (formattedAnalysis.analysisFlags.length > 0) {
+      console.log(`\n   Signals: ${formattedAnalysis.analysisFlags.length}`);
+      formattedAnalysis.analysisFlags.forEach((i) => console.log(`     - ${i.message}`));
     }
     console.log('');
   }
