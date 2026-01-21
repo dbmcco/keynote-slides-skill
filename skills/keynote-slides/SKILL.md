@@ -131,7 +131,9 @@ For content-driven deck creation, use the Narrative Engine workflow that matches
 
 - `references/narrative-engine/narrative-arcs.md` — Beat-by-beat structures for 10 narrative arcs
 - `references/narrative-engine/framework-selection.md` — Selection matrix by audience/purpose/content
+- `references/narrative-engine/framework_selection_guide.md` — Deep pairing guidance for arcs + frameworks
 - `references/narrative-engine/communication-frameworks.md` — 7 efficiency-optimized frameworks
+- `references/narrative-engine/checklists.md` — Quality gates for narrative + copy review
 - `references/narrative-engine/agent-reference-*.md` — Agent-specific frameworks for review
 
 ### Workflow: Narrative Build

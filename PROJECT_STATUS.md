@@ -4,6 +4,7 @@
 
 ## Completed
 
+- Synced Narrative Engine persuasion reference, added selection guide + checklists, and refreshed narrative-deck guidance.
 - Initialized repository and skill structure.
 - Added the single-file slide deck template with navigation, templates, and Gemini media hooks.
 - Added multi-entity brand system with example profiles (Northwind Labs, Apex Consulting, Coastal Biotech).
@@ -27,6 +28,8 @@
 
 - `skills/keynote-slides/assets/keynote-slides.html` slide deck template.
 - `skills/keynote-slides/SKILL.md` skill instructions.
+- `skills/keynote-slides/references/narrative-engine/checklists.md` Narrative Engine review checklists.
+- `skills/keynote-slides/references/narrative-engine/framework_selection_guide.md` Narrative Engine framework selection guide.
 - `skills/keynote-slides/references/brand-guidelines.md` brand token sheet.
 - `skills/keynote-slides/references/gemini-media.md` Gemini media reference.
 - `skills/keynote-slides/scripts/new-deck.sh` deck bootstrap script.
