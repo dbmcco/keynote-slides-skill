@@ -4,6 +4,7 @@
 
 ## Completed
 
+- Added model-mediated architecture docs, narrative build runner, review signal refactor, and conformance scaffolding.
 - Synced Narrative Engine persuasion reference, added selection guide + checklists, and refreshed narrative-deck guidance.
 - Updated README to call out Narrative Engine references and link to Noah's repo.
 - Initialized repository and skill structure.
@@ -19,7 +20,7 @@
 
 ## Tests
 
-- Not run (no automated test suite set up).
+- `node --test test/narrative-build.test.js test/review-all-summary.test.js test/model-mediated-conformance.test.js`
 
 ## Blockers
 
@@ -27,6 +28,8 @@
 
 ## Deliverables
 
+- `docs/model-mediated-architecture.md` model-mediated decision map and workflow spec.
+- `docs/model-mediated-deviation-register.md` deviation register for remaining heuristics.
 - `skills/keynote-slides/assets/keynote-slides.html` slide deck template.
 - `skills/keynote-slides/SKILL.md` skill instructions.
 - `skills/keynote-slides/references/narrative-engine/checklists.md` Narrative Engine review checklists.
@@ -40,6 +43,8 @@
 - `lib/media/` Python media generation library.
 - `docs/nano-banana-prompting.md` infographic generation guide.
 - `docs/veo-video-guide.md` video generation guide.
+- `scripts/narrative-build.js` model-mediated narrative build prep runner.
+- `scripts/model-mediated-conformance.js` conformance checker for build/review artifacts.
 
 ## Next steps
 

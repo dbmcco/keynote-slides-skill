@@ -139,8 +139,9 @@ For content-driven deck creation, use the Narrative Engine workflow that matches
 ### Workflow: Narrative Build
 
 1. **Ingest resources:** Run `node scripts/ingest-resources.js decks/<deck-id>` to read all materials
-2. **Discovery:** Answer 5 structured questions (audience, purpose, content type, tone, reveal potential)
-3. **Framework match:** Get 2-3 recommendations with content mapped to structure
+   - Or use `node scripts/narrative-build.js decks/<deck-id>` to prepare model-mediated prompts
+2. **Focal discovery + discovery:** Align on the one point, then answer 5 questions (audience, purpose, content type, tone, reveal)
+3. **Density + framework match:** Choose density mode, then get 2-3 recommendations with content mapped to structure
 4. **Deck generation:** Build slides with source attribution tags
 5. **Review panel:** 5 agents + Director synthesize feedback
 

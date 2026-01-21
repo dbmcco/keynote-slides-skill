@@ -17,6 +17,12 @@ Read all materials from the deck folder:
 node scripts/ingest-resources.js decks/<deck-id>
 ```
 
+Or run the model-mediated prep (ingestion + prompt packet):
+
+```bash
+node scripts/narrative-build.js decks/<deck-id>
+```
+
 Or manually review:
 - `resources/materials/` — briefs, research, notes, data
 - `resources/assets/` — logos, images, charts
@@ -28,7 +34,20 @@ Or manually review:
 - Potential surprises or counterintuitive findings
 - Gaps that need to be filled
 
-### Step 2: Discovery Questions
+### Step 2: Focal Discovery
+
+Before the standard questions, align on the ONE point:
+
+> Based on your material, I see these possible angles:
+> 1. [Angle A] - [Why it could be the point]
+> 2. [Angle B] - [Why it could be the point]
+> 3. [Angle C] - [Why it could be the point]
+>
+> Which direction should we optimize for?
+
+Skip if the user already stated a focal point.
+
+### Step 3: Discovery Questions
 
 Ask these 5 questions to understand context:
 
@@ -79,7 +98,14 @@ Ask these 5 questions to understand context:
 > 2. No — straightforward information
 > 3. Help me find one
 
-### Step 3: Framework Recommendation
+### Step 4: Density Mode
+
+> How concentrated should this deck be?
+> 1. High-Impact — Maximum compression, one punch per slide
+> 2. Narrative — Room to breathe, story beats can land
+> 3. Evidence — Denser proof for skeptics and technical audiences
+
+### Step 5: Framework Recommendation
 
 Based on discovery, recommend 2-3 frameworks from:
 
@@ -115,14 +141,14 @@ For each recommendation, show:
 See `references/narrative-engine/framework-selection.md` for the selection matrix.
 See `references/narrative-engine/framework_selection_guide.md` for deeper arc + framework pairing.
 
-### Step 4: Length Selection
+### Step 6: Length Selection
 
 > How long is your presentation?
 > 1. Short (10-12 min) — ~12-15 slides
 > 2. Medium (30 min) — ~25-35 slides
 > 3. Full (60 min) — ~45-55 slides
 
-### Step 5: Deck Generation
+### Step 7: Deck Generation
 
 Generate slides with:
 

@@ -127,6 +127,9 @@ interface Finding {
 }
 ```
 
+Automated analyzer outputs are treated as **signals** only; severity and priority
+are model decisions during synthesis.
+
 ## Adversarial Prompting Patterns
 
 ### Challenge Assumptions
