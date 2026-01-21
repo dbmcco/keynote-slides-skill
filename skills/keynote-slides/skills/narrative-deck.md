@@ -112,7 +112,8 @@ For each recommendation, show:
 3. Their content mapped to the structure
 4. Tradeoffs
 
-See `references/narrative-engine/framework-selection.md` for full selection matrix.
+See `references/narrative-engine/framework-selection.md` for the selection matrix.
+See `references/narrative-engine/framework_selection_guide.md` for deeper arc + framework pairing.
 
 ### Step 4: Length Selection
 
@@ -182,6 +183,8 @@ Reference: `references/narrative-engine/agent-reference-visual.md`
 > - Rate confidence in major claims
 
 Reference: `references/narrative-engine/agent-reference-verification.md`
+
+Use `references/narrative-engine/checklists.md` for final quality gates before delivery.
 
 ### Director Synthesis
 
