@@ -82,6 +82,28 @@ Add `data-gen` and `data-prompt` to any image. Press `g`. Gemini generates diagr
 
 ---
 
+## Model-Mediated Architecture
+
+**Model decides. Code executes.** Judgment lives in prompts; code only gathers
+signals, runs tools, and writes artifacts.
+
+What that means in practice:
+- `scripts/narrative-build.js` prepares ingestion + prompt packets for the model.
+- `scripts/review-all.js` emits analyzer signals (no severity); the model prioritizes.
+- `scripts/deck-review.js` packages prompts for antagonistic agents.
+- `scripts/model-mediated-conformance.js` validates required artifacts.
+
+Artifacts you can audit:
+- `resources/materials/ingestion.json`
+- `resources/materials/narrative-build-prompts.json`
+- `resources/materials/review-prompts.json`
+- `resources/materials/analysis-summary.json`
+- `resources/materials/work-runs/*.json`
+
+If we keep heuristics temporarily, they are logged in `docs/model-mediated-deviation-register.md`.
+
+---
+
 ## Deck Structure
 
 ```
