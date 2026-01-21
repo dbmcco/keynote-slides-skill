@@ -5,6 +5,7 @@
 ## Completed
 
 - Synced Narrative Engine persuasion reference, added selection guide + checklists, and refreshed narrative-deck guidance.
+- Updated README to call out Narrative Engine references and link to Noah's repo.
 - Initialized repository and skill structure.
 - Added the single-file slide deck template with navigation, templates, and Gemini media hooks.
 - Added multi-entity brand system with example profiles (Northwind Labs, Apex Consulting, Coastal Biotech).
