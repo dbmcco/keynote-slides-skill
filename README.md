@@ -59,6 +59,8 @@ Answer five questions. Get framework recommendations with your content pre-mappe
 | Root cause analysis | Columbo |
 | Paradigm shift | Trojan Horse |
 
+Narrative Engine references (including the selection guide and review checklists) are synced from [nraford7/Narrative-Engine](https://github.com/nraford7/Narrative-Engine).
+
 ### 2. AI generates brand-aware infographics
 
 Add `data-gen` and `data-prompt` to any image. Press `g`. Gemini generates diagrams, charts, and visualizations that match your brand tokens.
@@ -266,6 +268,8 @@ The Narrative Engine (17 storytelling frameworks, 5-agent review panel) is based
 | Doc | Purpose |
 |-----|---------|
 | [Storytelling Guide](docs/storytelling-guide.md) | Narrative arcs and slide best practices |
+| [Framework Selection Guide](skills/keynote-slides/references/narrative-engine/framework_selection_guide.md) | Deep pairing guidance for arcs + frameworks |
+| [Narrative Engine Checklists](skills/keynote-slides/references/narrative-engine/checklists.md) | Review gates for narrative + copy quality |
 | [Infographic Prompting](docs/nano-banana-prompting.md) | Gemini image generation |
 | [Video Guide](docs/veo-video-guide.md) | Veo video generation |
 | [Brand Guidelines](skills/keynote-slides/references/brand-guidelines.md) | Token reference |
