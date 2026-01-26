@@ -13,6 +13,7 @@ Run a comprehensive, antagonistic review of a slide deck using specialized sub-a
 /review-deck [deck-path]
 /review-deck decks/my-deck
 /review-deck decks/skill-demo --quick  (skip optional interview questions)
+/review-deck decks/my-deck --stress-test  (include stress test phase)
 ```
 
 ## What This Does
@@ -32,6 +33,11 @@ Run a comprehensive, antagonistic review of a slide deck using specialized sub-a
    - Accessibility Auditor
 
 3. **Synthesis Phase**: Resolves conflicts and prioritizes findings based on YOUR stated goals.
+
+4. **Stress Test Phase** (optional): Pressure-tests the deck with stakeholder personas:
+   - Auto-selects personas based on content type
+   - Engineer, Skeptic, Risk Officer, CFO, Lawyer, Conservative, COO
+   - Director triages into Must Fix / Should Fix / Could Fix
 
 ## Execution
 
@@ -65,6 +71,23 @@ SUGGESTIONS (nice to have):
 4. [Slide 1] Hook could be stronger
    - Current: company overview
    - Consider: surprising market stat or provocative question
+
+---
+
+🔬 STRESS TEST FINDINGS (--stress-test)
+
+MUST FIX:
+1. [CFO] Slide 9 ROI claim has no supporting data
+   - "10x return" needs methodology or case study
+
+SHOULD FIX:
+2. [Skeptic] Slide 5 competitive comparison feels cherry-picked
+   - Add dates, sources, or acknowledge limitations
+3. [Risk Officer] No mention of implementation timeline risks
+
+COULD FIX:
+4. [Engineer] Slide 8 architecture diagram oversimplifies
+   - Acceptable for exec audience, but add appendix for technical follow-up
 ```
 
 ## Model-Mediated Design
