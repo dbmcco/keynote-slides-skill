@@ -64,6 +64,27 @@ scripts/new-deck.sh example-pitch --entity northwind --title "Example Pitch" --t
 4. For image-to-image or image-to-video, load a base image in the panel.
 5. Run "Generate slide" or "Generate all" and review outputs.
 
+### Model-Mediated Image Acquisition
+
+Use the `/acquire-images` skill (see `skills/acquire-images.md`) to populate slides with visuals.
+
+Claude decides whether to **generate** (Gemini) or **search** (stock photos) for each slide:
+
+| Content Type | Decision | Why |
+|--------------|----------|-----|
+| Diagrams, flowcharts | GENERATE | Custom layouts, brand colors |
+| Data visualizations | GENERATE | Precise data representation |
+| Real-world photos | SEARCH | Authentic people, places |
+| Team/people shots | SEARCH | Realistic human photos |
+| Abstract concepts | GENERATE | Metaphorical, brand-styled |
+| Branded hero images | HYBRID | Search base + AI overlay |
+
+**Search sources:** Unsplash, Pexels, Google Custom Search.
+
+**Attribution:** Downloaded images tracked in `resources/materials/image-credits.json`.
+
+See `skills/acquire-images.md` for the full workflow.
+
 ## Preview
 
 ```bash
@@ -176,6 +197,22 @@ For content-driven deck creation, use the Narrative Engine workflow that matches
 | **Visual Designer** | Metaphor coherence, S.T.A.R. moments | "What visual makes this unforgettable?" |
 | **Critic** | Pacing, weak links, efficacy | "What's the weakest link?" |
 | **Content Expert** | Accuracy, logic, sources | "Can every claim be defended?" |
+
+### Stress Test Panel (Optional)
+
+After the 5-agent review, optionally stress-test with stakeholder personas auto-selected by content type:
+
+| Persona | Questions | Best For |
+|---------|-----------|----------|
+| **Engineer** | "How does this actually work?" | Technical proposals, product launches |
+| **Skeptic** | "Why should I believe this?" | Bold claims, paradigm shifts |
+| **Risk Officer** | "What could go wrong?" | Strategy, transformation, investment |
+| **CFO** | "What are the numbers?" | Pitches, business cases, ROI claims |
+| **Lawyer** | "What's the exposure?" | Policy, compliance, external-facing |
+| **Conservative** | "Why change what's working?" | Change management |
+| **COO** | "Would this actually work?" | Execution plans, go-to-market |
+
+The Director triages findings into **Must Fix**, **Should Fix**, and **Could Fix** categories.
 
 ### Source Attribution Tags
 

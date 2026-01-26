@@ -70,6 +70,14 @@ Add `data-gen` and `data-prompt` to any image. Press `g`. Gemini generates diagr
      Use brand colors. Flat vector style. Labels 24pt+." />
 ```
 
+Or use the `/acquire-images` skill which decides whether to **generate** (Gemini) or **search** (stock photos) for each slide:
+
+| Content Type | Decision |
+|--------------|----------|
+| Diagrams, charts | Generate |
+| Real people, places | Search (Unsplash/Pexels) |
+| Branded hero images | Hybrid (search + AI overlay) |
+
 ### 3. Five-agent review panel challenges your deck
 
 | Agent | Questions |
@@ -79,6 +87,8 @@ Add `data-gen` and `data-prompt` to any image. Press `g`. Gemini generates diagr
 | Visual Designer | What visual makes the reveal unforgettable? |
 | Critic | What's the weakest slide? Cut it. |
 | Content Expert | Can every claim be defended? |
+
+Optional **Stress Test Panel** pressure-tests with stakeholder personas (Engineer, Skeptic, CFO, Risk Officer, Lawyer, Conservative, COO) auto-selected by content type.
 
 ---
 
@@ -153,13 +163,23 @@ Switch brands:
 ### CLI
 
 ```bash
-# Image
-python -m lib.media.generate image \
-  --prompt "Network diagram showing microservices..." \
-  --output decks/my-pitch/resources/assets/architecture.png
+# Generate image with Gemini
+python3 -m lib.media.model_mediated generate \
+  "Network diagram showing microservices..." \
+  decks/my-pitch/resources/assets/architecture.png \
+  --brand "Modern tech aesthetic"
+
+# Search stock photos
+python3 -m lib.media.model_mediated search "team collaboration modern office"
+
+# Download selected result
+python3 -m lib.media.model_mediated download \
+  "https://images.unsplash.com/photo-abc" \
+  decks/my-pitch/resources/assets/team.jpg \
+  --source unsplash --photographer "Jane Doe"
 
 # Video (Veo)
-python -m lib.media.generate video \
+python3 -m lib.media.generate video \
   --prompt "Data flowing through nodes, camera tracks left..." \
   --output decks/my-pitch/resources/assets/flow.mp4
 ```
@@ -301,6 +321,8 @@ The Narrative Engine (17 storytelling frameworks, 5-agent review panel) is based
 ## Troubleshooting
 
 **Media won't generate:** Check `$GEMINI_API_KEY` is set. Verify in generator panel localStorage.
+
+**Image search fails:** Set at least one of `$UNSPLASH_ACCESS_KEY`, `$PEXELS_API_KEY`, or `$GOOGLE_CUSTOM_SEARCH_KEY`.
 
 **Colors wrong:** Use exact hex codes. Add "STRICT COLOR PALETTE" to prompt.
 
