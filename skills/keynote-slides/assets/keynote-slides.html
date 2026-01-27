@@ -631,9 +631,376 @@
         .deck-nav,
         .gen-toggle,
         .gen-panel,
-        .notes-panel {
+        .notes-panel,
+        .review-toggle,
+        .comment-sidebar,
+        .comment-popover,
+        .identity-modal {
           display: none;
         }
+      }
+
+      /* Review Mode Styles */
+      body.review-mode .slide-inner {
+        cursor: crosshair;
+      }
+
+      body.review-mode .commentable {
+        position: relative;
+        cursor: pointer;
+        transition: outline 0.15s ease, background 0.15s ease;
+      }
+
+      body.review-mode .commentable:hover {
+        outline: 2px solid var(--brand-accent);
+        outline-offset: 4px;
+        background: rgba(255, 107, 53, 0.08);
+      }
+
+      body.review-mode .commentable.has-comments {
+        outline: 2px dashed var(--brand-sage);
+        outline-offset: 2px;
+      }
+
+      body.review-mode .commentable.has-comments:hover {
+        outline: 2px solid var(--brand-accent);
+      }
+
+      .comment-indicator {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--brand-accent);
+        color: #fff;
+        font-size: 0.7rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+        z-index: 10;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      }
+
+      .review-toggle {
+        position: fixed;
+        bottom: 3vh;
+        left: calc(4vw + 60px);
+        border: none;
+        border-radius: 999px;
+        padding: 10px 16px;
+        background: rgba(13, 17, 23, 0.76);
+        color: #f7f1e8;
+        font-size: 0.9rem;
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+      }
+
+      .review-toggle.is-active {
+        background: var(--brand-accent);
+        color: #fff;
+      }
+
+      .identity-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(13, 17, 23, 0.85);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        backdrop-filter: blur(4px);
+      }
+
+      .identity-modal.is-open {
+        display: flex;
+      }
+
+      .identity-modal-inner {
+        background: var(--brand-paper);
+        border-radius: 18px;
+        padding: 24px;
+        width: min(400px, 90vw);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+
+      .identity-modal h3 {
+        margin: 0 0 16px;
+        font-family: var(--font-display);
+        font-size: 1.4rem;
+      }
+
+      .identity-modal label {
+        display: block;
+        margin-bottom: 12px;
+        font-size: 0.9rem;
+      }
+
+      .identity-modal input {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid var(--brand-line);
+        font-size: 0.95rem;
+        margin-top: 4px;
+      }
+
+      .identity-modal-actions {
+        display: flex;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .identity-modal-actions button {
+        flex: 1;
+        padding: 10px 16px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        font-size: 0.9rem;
+      }
+
+      .identity-modal-actions .btn-primary {
+        background: var(--brand-accent);
+        color: #fff;
+      }
+
+      .identity-modal-actions .btn-secondary {
+        background: rgba(13, 17, 23, 0.08);
+        color: var(--brand-ink);
+      }
+
+      .comment-popover {
+        position: fixed;
+        background: var(--brand-paper);
+        border-radius: 14px;
+        padding: 16px;
+        width: min(320px, 85vw);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--brand-line);
+        z-index: 100;
+        display: none;
+      }
+
+      .comment-popover.is-open {
+        display: block;
+      }
+
+      .comment-popover-header {
+        font-size: 0.8rem;
+        color: var(--brand-slate);
+        margin-bottom: 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .comment-popover textarea {
+        width: 100%;
+        min-height: 80px;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid var(--brand-line);
+        font-size: 0.9rem;
+        font-family: var(--font-body);
+        resize: vertical;
+      }
+
+      .comment-popover-actions {
+        display: flex;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .comment-popover-actions button {
+        flex: 1;
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-size: 0.85rem;
+      }
+
+      .comment-popover-actions .btn-submit {
+        background: var(--brand-accent);
+        color: #fff;
+      }
+
+      .comment-popover-actions .btn-cancel {
+        background: rgba(13, 17, 23, 0.08);
+        color: var(--brand-ink);
+      }
+
+      .comment-sidebar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: min(380px, 100vw);
+        height: 100vh;
+        background: rgba(13, 17, 23, 0.95);
+        color: #f7f1e8;
+        padding: 20px;
+        overflow-y: auto;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 90;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .comment-sidebar.is-open {
+        transform: translateX(0);
+      }
+
+      .comment-sidebar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .comment-sidebar-header h3 {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+
+      .comment-sidebar-close {
+        background: none;
+        border: none;
+        color: inherit;
+        font-size: 1.4rem;
+        cursor: pointer;
+        padding: 4px 8px;
+      }
+
+      .comment-sidebar-actions {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+
+      .comment-sidebar-actions button {
+        flex: 1;
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: none;
+        background: rgba(255, 255, 255, 0.1);
+        color: inherit;
+        cursor: pointer;
+        font-size: 0.85rem;
+      }
+
+      .comment-sidebar-actions button:hover {
+        background: rgba(255, 255, 255, 0.18);
+      }
+
+      .comment-list-empty {
+        text-align: center;
+        padding: 32px 16px;
+        color: rgba(247, 241, 232, 0.6);
+        font-size: 0.9rem;
+      }
+
+      .comment-item {
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 12px;
+        padding: 14px;
+        margin-bottom: 12px;
+      }
+
+      .comment-item.is-resolved {
+        opacity: 0.5;
+      }
+
+      .comment-item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 8px;
+      }
+
+      .comment-item-author {
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      .comment-item-time {
+        font-size: 0.75rem;
+        color: rgba(247, 241, 232, 0.5);
+      }
+
+      .comment-item-context {
+        font-size: 0.8rem;
+        color: var(--brand-accent);
+        margin-bottom: 6px;
+        font-style: italic;
+      }
+
+      .comment-item-text {
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .comment-item-actions {
+        display: flex;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .comment-item-actions button {
+        padding: 4px 10px;
+        border-radius: 6px;
+        border: none;
+        background: rgba(255, 255, 255, 0.1);
+        color: inherit;
+        cursor: pointer;
+        font-size: 0.75rem;
+      }
+
+      .comment-item-actions button:hover {
+        background: rgba(255, 255, 255, 0.18);
+      }
+
+      .sidebar-toggle {
+        position: fixed;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        background: rgba(13, 17, 23, 0.76);
+        color: #f7f1e8;
+        border: none;
+        border-radius: 8px 0 0 8px;
+        padding: 12px 8px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-right: none;
+        display: none;
+        z-index: 85;
+      }
+
+      body.review-mode .sidebar-toggle {
+        display: block;
+      }
+
+      .sidebar-toggle .comment-count {
+        display: inline-block;
+        background: var(--brand-accent);
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        font-size: 0.7rem;
+        line-height: 18px;
+        text-align: center;
+        margin-top: 6px;
+        writing-mode: horizontal-tb;
       }
     </style>
   </head>
@@ -926,6 +1293,10 @@
     </aside>
 
     <button class="gen-toggle" id="gen-toggle" type="button">Gen</button>
+    <button class="review-toggle" id="review-toggle" type="button">Review</button>
+    <button class="sidebar-toggle" id="sidebar-toggle" type="button">
+      Comments <span class="comment-count" id="sidebar-count">0</span>
+    </button>
     <aside class="gen-panel" id="gen-panel" aria-hidden="true">
       <strong>Gemini Media Controls</strong>
       <label>
@@ -1015,6 +1386,51 @@
         </div>
       </section>
     </template>
+
+    <!-- Identity Modal -->
+    <div class="identity-modal" id="identity-modal" aria-hidden="true">
+      <div class="identity-modal-inner">
+        <h3>Enter your details</h3>
+        <p style="font-size: 0.9rem; color: var(--brand-slate); margin-bottom: 16px;">
+          Your name and email will be attached to comments.
+        </p>
+        <label>
+          Name
+          <input type="text" id="identity-name" placeholder="Your name" />
+        </label>
+        <label>
+          Email
+          <input type="email" id="identity-email" placeholder="you@example.com" />
+        </label>
+        <div class="identity-modal-actions">
+          <button type="button" class="btn-secondary" id="identity-cancel">Cancel</button>
+          <button type="button" class="btn-primary" id="identity-save">Continue</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comment Popover -->
+    <div class="comment-popover" id="comment-popover">
+      <div class="comment-popover-header" id="popover-context">Element context</div>
+      <textarea id="comment-text" placeholder="Enter your feedback..."></textarea>
+      <div class="comment-popover-actions">
+        <button type="button" class="btn-cancel" id="popover-cancel">Cancel</button>
+        <button type="button" class="btn-submit" id="popover-submit">Add Comment</button>
+      </div>
+    </div>
+
+    <!-- Comment Sidebar -->
+    <aside class="comment-sidebar" id="comment-sidebar" aria-hidden="true">
+      <div class="comment-sidebar-header">
+        <h3>Comments</h3>
+        <button class="comment-sidebar-close" id="sidebar-close" type="button">&times;</button>
+      </div>
+      <div class="comment-sidebar-actions">
+        <button type="button" id="export-comments">Export JSON</button>
+        <button type="button" id="export-markdown">Export MD</button>
+      </div>
+      <div id="comment-list"></div>
+    </aside>
 
     <template id="template-diagram">
       <section class="slide theme-ivory" data-title="Diagram">
@@ -1680,6 +2096,496 @@
       if (openNotesByDefault) {
         setNotesPanelOpen(true);
       }
+
+      // ============================================
+      // Review Mode / Comment System
+      // ============================================
+
+      const reviewToggle = document.getElementById("review-toggle");
+      const identityModal = document.getElementById("identity-modal");
+      const identityName = document.getElementById("identity-name");
+      const identityEmail = document.getElementById("identity-email");
+      const identitySave = document.getElementById("identity-save");
+      const identityCancel = document.getElementById("identity-cancel");
+      const commentPopover = document.getElementById("comment-popover");
+      const popoverContext = document.getElementById("popover-context");
+      const commentText = document.getElementById("comment-text");
+      const popoverSubmit = document.getElementById("popover-submit");
+      const popoverCancel = document.getElementById("popover-cancel");
+      const commentSidebar = document.getElementById("comment-sidebar");
+      const commentList = document.getElementById("comment-list");
+      const sidebarToggle = document.getElementById("sidebar-toggle");
+      const sidebarClose = document.getElementById("sidebar-close");
+      const sidebarCount = document.getElementById("sidebar-count");
+      const exportCommentsBtn = document.getElementById("export-comments");
+      const exportMarkdownBtn = document.getElementById("export-markdown");
+
+      const commentStorageKey = `KEYNOTE_COMMENTS_${deckId}`;
+      const identityStorageKey = "KEYNOTE_REVIEWER_IDENTITY";
+      let commentsData = { deckId, comments: [] };
+      let isReviewMode = false;
+      let currentCommentTarget = null;
+      let reviewerIdentity = null;
+
+      // Commentable element selectors
+      const commentableSelectors = [
+        ".title",
+        ".subtitle",
+        ".section-title",
+        ".body-text",
+        ".card",
+        ".metric",
+        ".quote",
+        ".eyebrow",
+        ".chip",
+        ".media-frame",
+        "[data-comment-target]",
+      ].join(", ");
+
+      const generateCommentId = () => `c_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+
+      const getElementSelector = (element) => {
+        if (element.dataset.commentTarget) {
+          return `[data-comment-target="${element.dataset.commentTarget}"]`;
+        }
+        const path = [];
+        let el = element;
+        while (el && el !== document.body) {
+          let selector = el.tagName.toLowerCase();
+          if (el.classList.length) {
+            selector += "." + Array.from(el.classList).slice(0, 2).join(".");
+          }
+          const siblings = el.parentElement?.querySelectorAll(`:scope > ${el.tagName.toLowerCase()}`);
+          if (siblings && siblings.length > 1) {
+            const idx = Array.from(siblings).indexOf(el) + 1;
+            selector += `:nth-child(${idx})`;
+          }
+          path.unshift(selector);
+          el = el.parentElement;
+        }
+        return path.join(" > ");
+      };
+
+      const getElementText = (element) => {
+        const text = element.textContent?.trim() || "";
+        return text.length > 50 ? text.slice(0, 50) + "..." : text;
+      };
+
+      const getSlideIndex = (element) => {
+        const slide = element.closest(".slide");
+        return slide ? slides.indexOf(slide) : -1;
+      };
+
+      const loadComments = () => {
+        try {
+          const stored = localStorage.getItem(commentStorageKey);
+          if (stored) {
+            commentsData = JSON.parse(stored);
+          }
+        } catch {
+          commentsData = { deckId, comments: [] };
+        }
+        renderCommentIndicators();
+        updateSidebarCount();
+      };
+
+      const saveComments = () => {
+        localStorage.setItem(commentStorageKey, JSON.stringify(commentsData));
+        renderCommentIndicators();
+        updateSidebarCount();
+      };
+
+      const loadIdentity = () => {
+        try {
+          const stored = sessionStorage.getItem(identityStorageKey);
+          if (stored) {
+            reviewerIdentity = JSON.parse(stored);
+          }
+        } catch {
+          reviewerIdentity = null;
+        }
+      };
+
+      const saveIdentity = (name, email) => {
+        reviewerIdentity = { name, email };
+        sessionStorage.setItem(identityStorageKey, JSON.stringify(reviewerIdentity));
+      };
+
+      const promptForIdentity = () => {
+        return new Promise((resolve, reject) => {
+          if (reviewerIdentity) {
+            resolve(reviewerIdentity);
+            return;
+          }
+          identityModal.classList.add("is-open");
+          identityModal.setAttribute("aria-hidden", "false");
+          identityName.focus();
+
+          const handleSave = () => {
+            const name = identityName.value.trim();
+            const email = identityEmail.value.trim();
+            if (!name || !email) {
+              identityName.style.borderColor = name ? "" : "var(--brand-accent)";
+              identityEmail.style.borderColor = email ? "" : "var(--brand-accent)";
+              return;
+            }
+            saveIdentity(name, email);
+            closeIdentityModal();
+            resolve(reviewerIdentity);
+          };
+
+          const handleCancel = () => {
+            closeIdentityModal();
+            reject(new Error("Identity cancelled"));
+          };
+
+          const closeIdentityModal = () => {
+            identityModal.classList.remove("is-open");
+            identityModal.setAttribute("aria-hidden", "true");
+            identitySave.removeEventListener("click", handleSave);
+            identityCancel.removeEventListener("click", handleCancel);
+          };
+
+          identitySave.addEventListener("click", handleSave);
+          identityCancel.addEventListener("click", handleCancel);
+        });
+      };
+
+      const enterReviewMode = () => {
+        isReviewMode = true;
+        document.body.classList.add("review-mode");
+        reviewToggle.classList.add("is-active");
+        reviewToggle.textContent = "Exit Review";
+
+        document.querySelectorAll(commentableSelectors).forEach((el) => {
+          if (!el.closest(".slide-notes") && !el.closest("template")) {
+            el.classList.add("commentable");
+          }
+        });
+        renderCommentIndicators();
+      };
+
+      const exitReviewMode = () => {
+        isReviewMode = false;
+        document.body.classList.remove("review-mode");
+        reviewToggle.classList.remove("is-active");
+        reviewToggle.textContent = "Review";
+
+        document.querySelectorAll(".commentable").forEach((el) => {
+          el.classList.remove("commentable");
+        });
+        closeCommentPopover();
+        closeSidebar();
+      };
+
+      const toggleReviewMode = () => {
+        if (isReviewMode) {
+          exitReviewMode();
+        } else {
+          enterReviewMode();
+        }
+      };
+
+      const openCommentPopover = (element, rect) => {
+        currentCommentTarget = element;
+        popoverContext.textContent = getElementText(element);
+        commentText.value = "";
+
+        const popoverWidth = 320;
+        const popoverHeight = 180;
+        let left = rect.left + rect.width / 2 - popoverWidth / 2;
+        let top = rect.bottom + 12;
+
+        if (left < 16) left = 16;
+        if (left + popoverWidth > window.innerWidth - 16) {
+          left = window.innerWidth - popoverWidth - 16;
+        }
+        if (top + popoverHeight > window.innerHeight - 16) {
+          top = rect.top - popoverHeight - 12;
+        }
+
+        commentPopover.style.left = `${left}px`;
+        commentPopover.style.top = `${top}px`;
+        commentPopover.classList.add("is-open");
+        commentText.focus();
+      };
+
+      const closeCommentPopover = () => {
+        commentPopover.classList.remove("is-open");
+        currentCommentTarget = null;
+        commentText.value = "";
+      };
+
+      const addComment = async (element, text) => {
+        const identity = await promptForIdentity();
+        const slideIndex = getSlideIndex(element);
+        const slide = slides[slideIndex];
+
+        const comment = {
+          id: generateCommentId(),
+          slideIndex,
+          slideTitle: slide?.dataset?.title || `Slide ${slideIndex + 1}`,
+          elementSelector: getElementSelector(element),
+          elementText: getElementText(element),
+          comment: text,
+          author: {
+            name: identity.name,
+            email: identity.email,
+          },
+          createdAt: new Date().toISOString(),
+          resolved: false,
+        };
+
+        commentsData.comments.push(comment);
+        saveComments();
+        renderSidebar();
+      };
+
+      const resolveComment = (commentId) => {
+        const comment = commentsData.comments.find((c) => c.id === commentId);
+        if (comment) {
+          comment.resolved = !comment.resolved;
+          saveComments();
+          renderSidebar();
+        }
+      };
+
+      const deleteComment = (commentId) => {
+        commentsData.comments = commentsData.comments.filter((c) => c.id !== commentId);
+        saveComments();
+        renderSidebar();
+      };
+
+      const renderCommentIndicators = () => {
+        document.querySelectorAll(".comment-indicator").forEach((el) => el.remove());
+        document.querySelectorAll(".has-comments").forEach((el) => el.classList.remove("has-comments"));
+
+        if (!isReviewMode) return;
+
+        const commentsBySelector = {};
+        commentsData.comments
+          .filter((c) => !c.resolved)
+          .forEach((c) => {
+            if (!commentsBySelector[c.elementSelector]) {
+              commentsBySelector[c.elementSelector] = [];
+            }
+            commentsBySelector[c.elementSelector].push(c);
+          });
+
+        Object.entries(commentsBySelector).forEach(([selector, comments]) => {
+          try {
+            const element = document.querySelector(selector);
+            if (element && !element.closest("template")) {
+              element.classList.add("has-comments");
+              element.style.position = element.style.position || "relative";
+              const badge = document.createElement("span");
+              badge.className = "comment-indicator";
+              badge.textContent = comments.length;
+              element.appendChild(badge);
+            }
+          } catch {}
+        });
+      };
+
+      const updateSidebarCount = () => {
+        const unresolvedCount = commentsData.comments.filter((c) => !c.resolved).length;
+        sidebarCount.textContent = unresolvedCount;
+      };
+
+      const openSidebar = () => {
+        renderSidebar();
+        commentSidebar.classList.add("is-open");
+        commentSidebar.setAttribute("aria-hidden", "false");
+      };
+
+      const closeSidebar = () => {
+        commentSidebar.classList.remove("is-open");
+        commentSidebar.setAttribute("aria-hidden", "true");
+      };
+
+      const toggleSidebar = () => {
+        if (commentSidebar.classList.contains("is-open")) {
+          closeSidebar();
+        } else {
+          openSidebar();
+        }
+      };
+
+      const formatTime = (isoString) => {
+        const date = new Date(isoString);
+        return date.toLocaleDateString() + " " + date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+      };
+
+      const renderSidebar = () => {
+        if (!commentsData.comments.length) {
+          commentList.innerHTML = '<div class="comment-list-empty">No comments yet. Click on elements in review mode to add feedback.</div>';
+          return;
+        }
+
+        const grouped = {};
+        commentsData.comments.forEach((c) => {
+          const key = c.slideIndex;
+          if (!grouped[key]) grouped[key] = [];
+          grouped[key].push(c);
+        });
+
+        let html = "";
+        Object.keys(grouped)
+          .sort((a, b) => Number(a) - Number(b))
+          .forEach((slideIndex) => {
+            const comments = grouped[slideIndex];
+            const slideTitle = comments[0].slideTitle;
+            html += `<div style="font-size: 0.85rem; color: rgba(247,241,232,0.6); margin: 16px 0 8px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 6px;">Slide ${Number(slideIndex) + 1}: ${slideTitle}</div>`;
+            comments.forEach((c) => {
+              html += `
+                <div class="comment-item ${c.resolved ? "is-resolved" : ""}" data-comment-id="${c.id}">
+                  <div class="comment-item-header">
+                    <span class="comment-item-author">${c.author.name}</span>
+                    <span class="comment-item-time">${formatTime(c.createdAt)}</span>
+                  </div>
+                  <div class="comment-item-context">"${c.elementText}"</div>
+                  <div class="comment-item-text">${c.comment}</div>
+                  <div class="comment-item-actions">
+                    <button type="button" data-action="resolve" data-id="${c.id}">${c.resolved ? "Unresolve" : "Resolve"}</button>
+                    <button type="button" data-action="delete" data-id="${c.id}">Delete</button>
+                    <button type="button" data-action="goto" data-slide="${c.slideIndex}">Go to slide</button>
+                  </div>
+                </div>
+              `;
+            });
+          });
+
+        commentList.innerHTML = html;
+      };
+
+      const exportCommentsJson = () => {
+        const blob = new Blob([JSON.stringify(commentsData, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `comments-${deckId}.json`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+      };
+
+      const exportCommentsMarkdown = () => {
+        const deckTitle = deckConfig.title || document.title || "Deck";
+        const lines = [`# Feedback: ${deckTitle}`, "", `Generated: ${new Date().toISOString()}`, ""];
+
+        const grouped = {};
+        commentsData.comments.forEach((c) => {
+          if (!grouped[c.slideIndex]) grouped[c.slideIndex] = [];
+          grouped[c.slideIndex].push(c);
+        });
+
+        Object.keys(grouped)
+          .sort((a, b) => Number(a) - Number(b))
+          .forEach((slideIndex) => {
+            const comments = grouped[slideIndex];
+            const slideTitle = comments[0].slideTitle;
+            lines.push(`## Slide ${Number(slideIndex) + 1}: ${slideTitle}`);
+            lines.push("");
+            comments.forEach((c) => {
+              const status = c.resolved ? "[RESOLVED]" : "[OPEN]";
+              lines.push(`### ${status} ${c.author.name} (${c.author.email})`);
+              lines.push(`> "${c.elementText}"`);
+              lines.push("");
+              lines.push(c.comment);
+              lines.push("");
+              lines.push(`*${formatTime(c.createdAt)}*`);
+              lines.push("");
+            });
+          });
+
+        const blob = new Blob([lines.join("\n")], { type: "text/markdown" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `feedback-${deckId}.md`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+      };
+
+      // Event listeners for review mode
+      reviewToggle?.addEventListener("click", toggleReviewMode);
+      sidebarToggle?.addEventListener("click", toggleSidebar);
+      sidebarClose?.addEventListener("click", closeSidebar);
+      exportCommentsBtn?.addEventListener("click", exportCommentsJson);
+      exportMarkdownBtn?.addEventListener("click", exportCommentsMarkdown);
+
+      popoverCancel?.addEventListener("click", closeCommentPopover);
+      popoverSubmit?.addEventListener("click", async () => {
+        const text = commentText.value.trim();
+        if (!text || !currentCommentTarget) return;
+        try {
+          await addComment(currentCommentTarget, text);
+          closeCommentPopover();
+        } catch {}
+      });
+
+      commentList?.addEventListener("click", (event) => {
+        const btn = event.target.closest("button[data-action]");
+        if (!btn) return;
+        const action = btn.dataset.action;
+        const id = btn.dataset.id;
+        const slideIndex = btn.dataset.slide;
+
+        if (action === "resolve" && id) resolveComment(id);
+        if (action === "delete" && id) deleteComment(id);
+        if (action === "goto" && slideIndex !== undefined) {
+          showSlide(Number(slideIndex));
+          closeSidebar();
+        }
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!isReviewMode) return;
+        const target = event.target.closest(".commentable");
+        if (!target) return;
+        if (event.target.closest(".comment-popover, .comment-sidebar, .identity-modal")) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+        const rect = target.getBoundingClientRect();
+        openCommentPopover(target, rect);
+      });
+
+      // Close popover on escape
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          if (commentPopover.classList.contains("is-open")) {
+            closeCommentPopover();
+          } else if (commentSidebar.classList.contains("is-open")) {
+            closeSidebar();
+          } else if (identityModal.classList.contains("is-open")) {
+            identityModal.classList.remove("is-open");
+          }
+        }
+        // Toggle review mode with 'r' key
+        if (event.key.toLowerCase() === "r" && !event.target.closest("input, textarea, select, [contenteditable]")) {
+          event.preventDefault();
+          toggleReviewMode();
+        }
+        // Toggle sidebar with 'c' key in review mode
+        if (event.key.toLowerCase() === "c" && isReviewMode && !event.target.closest("input, textarea, select, [contenteditable]")) {
+          event.preventDefault();
+          toggleSidebar();
+        }
+      });
+
+      // Check for review mode URL param
+      const reviewParam = urlParams.get("review");
+      if (reviewParam === "1" || reviewParam === "true") {
+        enterReviewMode();
+      }
+
+      // Initialize comment system
+      loadIdentity();
+      loadComments();
     </script>
   </body>
 </html>

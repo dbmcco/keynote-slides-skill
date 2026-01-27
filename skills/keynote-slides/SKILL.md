@@ -142,6 +142,86 @@ Then open `http://<tailscale-ip>:8921/decks/<deck-id>/index.html`.
 - Home/End for first or last slide.
 - Use `#slide-title` hash navigation for direct jumps.
 
+## Review Mode / Feedback System
+
+Enable reviewers to leave comments on deck elements for collaborative feedback.
+
+### Entering Review Mode
+
+- Click the "Review" button in the bottom toolbar (next to Gen)
+- Press `r` key to toggle review mode
+- Add `?review=1` to the URL to start in review mode
+
+### Adding Comments
+
+1. In review mode, hover over elements to see them highlighted
+2. Click any commentable element (titles, text, cards, metrics, media frames)
+3. First-time commenters enter name and email (stored in session)
+4. Type feedback in the popover and click "Add Comment"
+5. A badge appears on commented elements showing comment count
+
+### Viewing Comments
+
+- Press `c` or click the sidebar toggle to open the comment sidebar
+- Comments are grouped by slide
+- Click "Go to slide" to navigate to the commented element
+- Mark comments as resolved or delete them
+
+### Exporting Feedback
+
+From the comment sidebar:
+- **Export JSON** - Downloads `comments-<deck-id>.json` for backup or import
+- **Export MD** - Downloads markdown summary for sharing or Claude iteration
+
+### Feedback Viewer Page
+
+Use `assets/feedback-viewer.html` to review all feedback outside the deck:
+
+1. Open `feedback-viewer.html` in a browser
+2. Load a `comments.json` file or enter a URL
+3. Filter by open/resolved status
+4. Mark comments as resolved
+5. Export updated JSON or markdown
+
+Add `?url=<path-to-json>` to auto-load comments.
+
+### Comment Data Structure
+
+Comments are stored in localStorage keyed by deck ID. Export structure:
+
+```json
+{
+  "deckId": "example-pitch",
+  "comments": [
+    {
+      "id": "c_1706123456789_abc123",
+      "slideIndex": 2,
+      "slideTitle": "Our Solution",
+      "elementSelector": "[data-comment-target='headline']",
+      "elementText": "First 50 chars of element...",
+      "comment": "This needs more specificity",
+      "author": {
+        "name": "Sarah Chen",
+        "email": "sarah@example.com"
+      },
+      "createdAt": "2024-01-24T10:30:00Z",
+      "resolved": false
+    }
+  ]
+}
+```
+
+### Element Targeting
+
+For precise comment targeting, add `data-comment-target` attributes:
+
+```html
+<h2 data-comment-target="solution-headline">Our Solution</h2>
+<p data-comment-target="value-prop-1">We reduce costs by 40%...</p>
+```
+
+Elements without explicit targets use a generated CSS selector path.
+
 ---
 
 ## Narrative Engine Integration
