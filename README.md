@@ -103,6 +103,17 @@ Share your deck URL with reviewers. They enter review mode, click elements, and 
 
 Comments persist in localStorage. Export to `comments.json` for backup or use the standalone `feedback-viewer.html` to review outside the deck.
 
+### 5. Present with speaker notes
+
+Add notes to any slide without affecting layout. Toggle the notes panel during presentation:
+
+| Action | How |
+|--------|-----|
+| Add notes | `<aside class="slide-notes">Your notes here</aside>` |
+| View notes | Press `n` or click **Notes** button |
+| Open by default | Add `?notes=1` to URL |
+| Export all notes | Click **Export notes** → downloads markdown |
+
 ---
 
 ## Model-Mediated Architecture
