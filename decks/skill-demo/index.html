@@ -597,20 +597,22 @@
 
       .accent-line {
         display: block;
-        width: 60px;
+        width: 80px;
         height: 3px;
         background: var(--brand-accent);
-        margin-top: 12px;
+        margin-top: 8px;
+        margin-bottom: 8px;
         transform-origin: left;
         border-radius: 2px;
+        transform: scaleX(0);
       }
 
       .slide.is-active .accent-line {
-        animation: line-expand 0.6s ease-out forwards, line-pulse 3s ease-in-out 0.6s infinite;
+        animation: line-expand 0.8s ease-out 0.3s forwards, line-pulse 4s ease-in-out 1.1s infinite;
       }
 
       .accent-line.long {
-        width: 100px;
+        width: 120px;
       }
 
       @media (prefers-reduced-motion: reduce) {
