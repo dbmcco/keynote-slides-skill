@@ -104,7 +104,7 @@ Then open `http://<tailscale-ip>:8921/decks/<deck-id>/index.html`.
 
 ## Animation + SVG
 
-- Use `data-anim` for lightweight animations (fade, slide-up, slide-left, slide-right, scale-in).
+- Use `data-anim` for lightweight entrance animations (fade, slide-up, slide-left, slide-right, scale-in).
 - Set `--anim-delay` to stagger; avoid mixing with `reveal` on the same element.
 - Disable animation with `?motion=off` or rely on `prefers-reduced-motion`.
 - Inline SVG diagrams use `.diagram` and `data-media="svg"`:
@@ -115,6 +115,43 @@ Then open `http://<tailscale-ip>:8921/decks/<deck-id>/index.html`.
   - `data-gen` = Gemini only (optional `data-media="gemini"`).
   - Inline SVG = no `data-gen`.
   - Static images/videos = no `data-gen`.
+
+### Micro Animations
+
+Micro animations are **small decorative accent elements** that add subtle motion to slides without distracting from content.
+
+**What micro animations ARE:**
+- Small accent lines that expand/draw next to headlines
+- Subtle decorative strokes or shapes that pulse gently
+- Tiny visual flourishes positioned near text (not on text)
+- CSS-driven, lightweight, and unobtrusive
+
+**What micro animations are NOT:**
+- Large SVG graphics or overlays covering slide areas
+- Animations applied directly to text (no flashing, glowing, or bouncing text)
+- Complex particle systems or heavy motion graphics
+- Anything that competes with or obscures content
+
+**Implementation:**
+```html
+<!-- Accent line after a headline -->
+<h1 class="title">Your headline here</h1>
+<span class="accent-line"></span>
+```
+
+**Available classes:**
+- `.accent-line` — 80px amber line that expands from left, then pulses
+- `.accent-line.long` — 120px version for major headlines
+
+**Behavior:**
+- Line draws in from left (0.8s ease-out) when slide becomes active
+- Then gently pulses (opacity + slight scale) on a 4s cycle
+- Respects `prefers-reduced-motion` and `?motion=off`
+
+**When to use:**
+- Title slides (layout-title) to add visual interest
+- Key message slides where you want emphasis
+- Sparingly — 3-4 slides per deck maximum
 
 ## Copy editor
 
