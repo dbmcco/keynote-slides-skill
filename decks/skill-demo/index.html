@@ -588,12 +588,24 @@
       .anim-visual {
         position: absolute;
         pointer-events: none;
-        z-index: 1;
+        z-index: 0;
       }
 
       .slide-inner {
         position: relative;
-        z-index: 2;
+      }
+
+      .slide-inner > .eyebrow,
+      .slide-inner > .title,
+      .slide-inner > .section-title,
+      .slide-inner > .subtitle,
+      .slide-inner > .body-text,
+      .slide-inner > .chip-row,
+      .slide-inner > .card,
+      .slide-inner > .media-frame,
+      .slide-inner > div:not(.anim-visual) {
+        position: relative;
+        z-index: 1;
       }
 
       .anim-visual svg {
