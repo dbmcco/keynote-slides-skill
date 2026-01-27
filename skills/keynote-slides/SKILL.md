@@ -192,10 +192,11 @@ Enable reviewers to leave comments on deck elements for collaborative feedback.
 ### Adding Comments
 
 1. In review mode, hover over elements to see them highlighted
-2. Click any commentable element (titles, text, cards, metrics, media frames)
-3. First-time commenters enter name and email (stored in session)
-4. Type feedback in the popover and click "Add Comment"
-5. A badge appears on commented elements showing comment count
+2. **Click** any commentable element (titles, text, cards, metrics, media frames)
+3. **Or select text** within an element to comment on specific wording/typos
+4. First-time commenters enter name and email (stored in session)
+5. Type feedback in the popover and click "Add Comment"
+6. A numbered badge (①②③) appears on commented elements for easy reference
 
 ### Viewing Comments
 
@@ -229,13 +230,16 @@ Comments are stored in localStorage keyed by deck ID. Export structure:
 ```json
 {
   "deckId": "example-pitch",
+  "nextNumber": 4,
   "comments": [
     {
       "id": "c_1706123456789_abc123",
+      "number": 1,
       "slideIndex": 2,
       "slideTitle": "Our Solution",
       "elementSelector": "[data-comment-target='headline']",
       "elementText": "First 50 chars of element...",
+      "selectedText": "specific phrase",
       "comment": "This needs more specificity",
       "author": {
         "name": "Sarah Chen",
@@ -247,6 +251,9 @@ Comments are stored in localStorage keyed by deck ID. Export structure:
   ]
 }
 ```
+
+- `number`: Sequential comment number (①②③) for easy reference in feedback
+- `selectedText`: If reviewer selected specific text, captures that selection (null otherwise)
 
 ### Element Targeting
 
