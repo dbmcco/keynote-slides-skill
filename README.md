@@ -90,6 +90,19 @@ Or use the `/acquire-images` skill which decides whether to **generate** (Gemini
 
 Optional **Stress Test Panel** pressure-tests with stakeholder personas (Engineer, Skeptic, CFO, Risk Officer, Lawyer, Conservative, COO) auto-selected by content type.
 
+### 4. Collect feedback with Review Mode
+
+Share your deck URL with reviewers. They enter review mode, click elements, and leave comments:
+
+| Action | How |
+|--------|-----|
+| Enter review mode | Click **Review** button, press `r`, or add `?review=1` |
+| Add comment | Click any element → enter feedback → submit |
+| View all comments | Press `c` or click sidebar toggle |
+| Export feedback | **Export JSON** or **Export MD** from sidebar |
+
+Comments persist in localStorage. Export to `comments.json` for backup or use the standalone `feedback-viewer.html` to review outside the deck.
+
 ---
 
 ## Model-Mediated Architecture
@@ -277,57 +290,6 @@ SVG diagrams are first-class:
 | `r` | Toggle review mode |
 | `c` | Toggle comment sidebar (in review mode) |
 | `#slide-title` | Direct link |
-
----
-
-## Review Mode: How To
-
-Collect feedback from reviewers directly on your slides.
-
-### How do I enter review mode?
-
-Three ways:
-- Click the **Review** button in the bottom toolbar
-- Press `r` on your keyboard
-- Add `?review=1` to the deck URL
-
-### How do I add comments to elements?
-
-1. Enter review mode (elements highlight on hover)
-2. Click any commentable element (titles, text blocks, cards, metrics, media)
-3. First time only: enter your name and email
-4. Type your feedback in the popover
-5. Click **Add Comment**
-
-A badge appears on elements with comments showing the count.
-
-### How do I view all comments?
-
-- Press `c` or click the sidebar toggle on the right edge
-- Comments are grouped by slide
-- Click **Go to slide** to jump to that element
-
-### How do I mark feedback as resolved?
-
-In the comment sidebar, click **Resolve** on any comment. Resolved comments fade out but remain visible. Click again to unresolve.
-
-### How do I export feedback?
-
-From the sidebar:
-- **Export JSON** — machine-readable backup (`comments-<deck>.json`)
-- **Export MD** — markdown summary for sharing or Claude iteration
-
-### How do I review feedback outside the deck?
-
-Open `skills/keynote-slides/assets/feedback-viewer.html`:
-1. Load a `comments.json` file or paste a URL
-2. Filter by open/resolved
-3. Resolve, delete, or export comments
-4. Pass `?url=<path>` to auto-load
-
-### Where are comments stored?
-
-Comments persist in browser localStorage keyed by deck ID. Export JSON to back up or share. The structure is backend-ready for future API integration.
 
 ---
 
