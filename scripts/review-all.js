@@ -81,14 +81,13 @@ function runAnalyzer(analyzer, deckPath, options = {}) {
 function summarizeFindings(results) {
   const summary = {
     overall: {
-      slidesWithIssues: 0,
       totalFlags: 0,
-      criticalIssues: [],
-      importantIssues: [],
-      suggestions: [],
+      flags: [],
+      heuristicScore: null,
+      heuristicGrade: null,
     },
     byCategory: {},
-    northStarScores: {
+    northStarSignals: {
       storytelling: null,
       clarity: null,
       design: null,
@@ -109,13 +108,13 @@ function summarizeFindings(results) {
     // Score: Lower words + more visuals = better
     const wordScore = Math.max(0, 100 - (vd.deckAverages?.avgWordCount || 0) * 2);
     const visualScore = Math.min(100, (vd.deckAverages?.avgVisualCount || 0) * 50);
-    summary.northStarScores.visualBalance = Math.round((wordScore + visualScore) / 2);
+    summary.northStarSignals.visualBalance = Math.round((wordScore + visualScore) / 2);
 
-    // Flag critical issues
     const noVisualSlides = vd.flagSummary?.flagsByType?.no_visuals_on_content_slide || [];
     if (noVisualSlides.length > 0) {
-      summary.overall.importantIssues.push({
+      summary.overall.flags.push({
         category: 'visual-density',
+        signal: 'no-visuals-on-content-slide',
         message: `${noVisualSlides.length} content slide(s) missing visuals`,
         slides: noVisualSlides.map((f) => f.slideIndex),
       });
@@ -123,8 +122,9 @@ function summarizeFindings(results) {
 
     const highWordSlides = vd.flagSummary?.flagsByType?.high_word_count || [];
     if (highWordSlides.length > 0) {
-      summary.overall.criticalIssues.push({
+      summary.overall.flags.push({
         category: 'visual-density',
+        signal: 'high-word-count',
         message: `${highWordSlides.length} slide(s) have too much text`,
         slides: highWordSlides.map((f) => f.slideIndex),
       });
@@ -155,18 +155,20 @@ function summarizeFindings(results) {
     };
     const arcScore = arcShapes[ea.emotionalArc?.arcShape?.shape] || 50;
     const flowScore = Math.max(0, 100 - (ea.flowChain?.gapCount || 0) * 20);
-    summary.northStarScores.storytelling = Math.round((hookScore + arcScore + flowScore) / 3);
+    summary.northStarSignals.storytelling = Math.round((hookScore + arcScore + flowScore) / 3);
 
     if (ea.hookAnalysis?.overallGrade === 'weak') {
-      summary.overall.criticalIssues.push({
+      summary.overall.flags.push({
         category: 'storytelling',
+        signal: 'weak-hook',
         message: 'Weak opening hook - needs provocative or interesting opener',
       });
     }
 
     if (ea.flowChain?.gapCount > 2) {
-      summary.overall.importantIssues.push({
+      summary.overall.flags.push({
         category: 'storytelling',
+        signal: 'flow-gaps',
         message: `${ea.flowChain.gapCount} flow gaps - slides don't connect logically`,
       });
     }
@@ -186,18 +188,20 @@ function summarizeFindings(results) {
     const gradeScore = Math.max(0, 100 - ((rd.deckAverage?.fleschKincaidGrade || 8) - 6) * 10);
     const passiveScore = Math.max(0, 100 - (rd.deckAverage?.passiveVoicePercent || 0) * 3);
     const jargonScore = Math.max(0, 100 - (rd.deckAverage?.jargonDensity || 0) * 10);
-    summary.northStarScores.clarity = Math.round((gradeScore + passiveScore + jargonScore) / 3);
+    summary.northStarSignals.clarity = Math.round((gradeScore + passiveScore + jargonScore) / 3);
 
     if ((rd.deckAverage?.fleschKincaidGrade || 0) > 10) {
-      summary.overall.importantIssues.push({
+      summary.overall.flags.push({
         category: 'readability',
+        signal: 'high-grade-level',
         message: `High reading grade level: ${rd.deckAverage?.fleschKincaidGrade?.toFixed(1)} (target: <10)`,
       });
     }
 
     if ((rd.deckAverage?.jargonDensity || 0) > 5) {
-      summary.overall.importantIssues.push({
+      summary.overall.flags.push({
         category: 'readability',
+        signal: 'high-jargon-density',
         message: `High jargon density: ${rd.deckAverage?.jargonDensity?.toFixed(1)}%`,
       });
     }
@@ -216,30 +220,35 @@ function summarizeFindings(results) {
     const highFlags = dq.summary?.bySeverity?.high || 0;
     const mediumFlags = dq.summary?.bySeverity?.medium || 0;
     const designScore = Math.max(0, 100 - highFlags * 20 - mediumFlags * 10);
-    summary.northStarScores.design = designScore;
+    summary.northStarSignals.design = designScore;
 
     const highSeverity = dq.flags?.filter((f) => f.severity === 'high') || [];
     if (highSeverity.length > 0) {
-      summary.overall.criticalIssues.push({
+      summary.overall.flags.push({
         category: 'design',
+        signal: 'high-severity-design',
         message: `${highSeverity.length} high-severity design issue(s)`,
         details: highSeverity.slice(0, 3).map((f) => f.message),
       });
     }
   }
 
-  // Calculate overall score
-  const scores = Object.values(summary.northStarScores).filter((s) => s !== null);
-  summary.overall.score = scores.length > 0 ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : null;
+  // Calculate overall heuristic score
+  const scores = Object.values(summary.northStarSignals).filter((s) => s !== null);
+  summary.overall.heuristicScore = scores.length > 0
+    ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length)
+    : null;
 
   // Grade
-  if (summary.overall.score !== null) {
-    if (summary.overall.score >= 85) summary.overall.grade = 'A';
-    else if (summary.overall.score >= 70) summary.overall.grade = 'B';
-    else if (summary.overall.score >= 55) summary.overall.grade = 'C';
-    else if (summary.overall.score >= 40) summary.overall.grade = 'D';
-    else summary.overall.grade = 'F';
+  if (summary.overall.heuristicScore !== null) {
+    if (summary.overall.heuristicScore >= 85) summary.overall.heuristicGrade = 'A';
+    else if (summary.overall.heuristicScore >= 70) summary.overall.heuristicGrade = 'B';
+    else if (summary.overall.heuristicScore >= 55) summary.overall.heuristicGrade = 'C';
+    else if (summary.overall.heuristicScore >= 40) summary.overall.heuristicGrade = 'D';
+    else summary.overall.heuristicGrade = 'F';
   }
+
+  summary.overall.totalFlags = summary.overall.flags.length;
 
   return summary;
 }
@@ -251,29 +260,20 @@ function printSummary(summary, deckPath) {
 
   // North Star Scores
   console.log('\n--- NORTH STAR ALIGNMENT ---\n');
-  console.log('  Compelling Storytelling:    ' + formatScore(summary.northStarScores.storytelling));
-  console.log('  Clear Messaging:            ' + formatScore(summary.northStarScores.clarity));
-  console.log('  Beautiful Design:           ' + formatScore(summary.northStarScores.design));
-  console.log('  Image > Text Balance:       ' + formatScore(summary.northStarScores.visualBalance));
+  console.log('  Compelling Storytelling:    ' + formatScore(summary.northStarSignals.storytelling));
+  console.log('  Clear Messaging:            ' + formatScore(summary.northStarSignals.clarity));
+  console.log('  Beautiful Design:           ' + formatScore(summary.northStarSignals.design));
+  console.log('  Image > Text Balance:       ' + formatScore(summary.northStarSignals.visualBalance));
   console.log('');
-  console.log(`  OVERALL: ${summary.overall.grade || 'N/A'} (${summary.overall.score || 'N/A'}%)`);
+  console.log(`  OVERALL (heuristic): ${summary.overall.heuristicGrade || 'N/A'} (${summary.overall.heuristicScore || 'N/A'}%)`);
 
-  // Critical Issues
-  if (summary.overall.criticalIssues.length > 0) {
-    console.log('\n--- CRITICAL ISSUES (fix before presenting) ---\n');
-    summary.overall.criticalIssues.forEach((issue, i) => {
+  // Signals (model decides severity)
+  if (summary.overall.flags.length > 0) {
+    console.log('\n--- SIGNALS (model decides priority) ---\n');
+    summary.overall.flags.forEach((issue, i) => {
       console.log(`  ${i + 1}. [${issue.category}] ${issue.message}`);
       if (issue.slides) console.log(`     Slides: ${issue.slides.join(', ')}`);
       if (issue.details) issue.details.forEach((d) => console.log(`     - ${d}`));
-    });
-  }
-
-  // Important Issues
-  if (summary.overall.importantIssues.length > 0) {
-    console.log('\n--- IMPORTANT ISSUES (should fix) ---\n');
-    summary.overall.importantIssues.forEach((issue, i) => {
-      console.log(`  ${i + 1}. [${issue.category}] ${issue.message}`);
-      if (issue.slides) console.log(`     Slides: ${issue.slides.join(', ')}`);
     });
   }
 
@@ -368,10 +368,6 @@ async function main() {
     printSummary(summary, deckPath);
   }
 
-  // Exit with error code if critical issues
-  if (summary.overall.criticalIssues.length > 0) {
-    process.exit(1);
-  }
 }
 
 main().catch(console.error);

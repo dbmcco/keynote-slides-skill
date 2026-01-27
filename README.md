@@ -59,6 +59,8 @@ Answer five questions. Get framework recommendations with your content pre-mappe
 | Root cause analysis | Columbo |
 | Paradigm shift | Trojan Horse |
 
+Narrative Engine references (including the selection guide and review checklists) are synced from [nraford7/Narrative-Engine](https://github.com/nraford7/Narrative-Engine).
+
 ### 2. AI generates brand-aware infographics
 
 Add `data-gen` and `data-prompt` to any image. Press `g`. Gemini generates diagrams, charts, and visualizations that match your brand tokens.
@@ -67,6 +69,14 @@ Add `data-gen` and `data-prompt` to any image. Press `g`. Gemini generates diagr
 <img data-gen data-prompt="Flowchart: data pipeline from ingestion to dashboard.
      Use brand colors. Flat vector style. Labels 24pt+." />
 ```
+
+Or use the `/acquire-images` skill which decides whether to **generate** (Gemini) or **search** (stock photos) for each slide:
+
+| Content Type | Decision |
+|--------------|----------|
+| Diagrams, charts | Generate |
+| Real people, places | Search (Unsplash/Pexels) |
+| Branded hero images | Hybrid (search + AI overlay) |
 
 ### 3. Five-agent review panel challenges your deck
 
@@ -77,6 +87,30 @@ Add `data-gen` and `data-prompt` to any image. Press `g`. Gemini generates diagr
 | Visual Designer | What visual makes the reveal unforgettable? |
 | Critic | What's the weakest slide? Cut it. |
 | Content Expert | Can every claim be defended? |
+
+Optional **Stress Test Panel** pressure-tests with stakeholder personas (Engineer, Skeptic, CFO, Risk Officer, Lawyer, Conservative, COO) auto-selected by content type.
+
+---
+
+## Model-Mediated Architecture
+
+**Model decides. Code executes.** Judgment lives in prompts; code only gathers
+signals, runs tools, and writes artifacts.
+
+What that means in practice:
+- `scripts/narrative-build.js` prepares ingestion + prompt packets for the model.
+- `scripts/review-all.js` emits analyzer signals (no severity); the model prioritizes.
+- `scripts/deck-review.js` packages prompts for antagonistic agents.
+- `scripts/model-mediated-conformance.js` validates required artifacts.
+
+Artifacts you can audit:
+- `resources/materials/ingestion.json`
+- `resources/materials/narrative-build-prompts.json`
+- `resources/materials/review-prompts.json`
+- `resources/materials/analysis-summary.json`
+- `resources/materials/work-runs/*.json`
+
+If we keep heuristics temporarily, they are logged in `docs/model-mediated-deviation-register.md`.
 
 ---
 
@@ -129,13 +163,23 @@ Switch brands:
 ### CLI
 
 ```bash
-# Image
-python -m lib.media.generate image \
-  --prompt "Network diagram showing microservices..." \
-  --output decks/my-pitch/resources/assets/architecture.png
+# Generate image with Gemini
+python3 -m lib.media.model_mediated generate \
+  "Network diagram showing microservices..." \
+  decks/my-pitch/resources/assets/architecture.png \
+  --brand "Modern tech aesthetic"
+
+# Search stock photos
+python3 -m lib.media.model_mediated search "team collaboration modern office"
+
+# Download selected result
+python3 -m lib.media.model_mediated download \
+  "https://images.unsplash.com/photo-abc" \
+  decks/my-pitch/resources/assets/team.jpg \
+  --source unsplash --photographer "Jane Doe"
 
 # Video (Veo)
-python -m lib.media.generate video \
+python3 -m lib.media.generate video \
   --prompt "Data flowing through nodes, camera tracks left..." \
   --output decks/my-pitch/resources/assets/flow.mp4
 ```
@@ -230,7 +274,60 @@ SVG diagrams are first-class:
 | `Home` / `End` | First / Last |
 | `g` | Generator panel |
 | `n` | Notes panel |
+| `r` | Toggle review mode |
+| `c` | Toggle comment sidebar (in review mode) |
 | `#slide-title` | Direct link |
+
+---
+
+## Review Mode: How To
+
+Collect feedback from reviewers directly on your slides.
+
+### How do I enter review mode?
+
+Three ways:
+- Click the **Review** button in the bottom toolbar
+- Press `r` on your keyboard
+- Add `?review=1` to the deck URL
+
+### How do I add comments to elements?
+
+1. Enter review mode (elements highlight on hover)
+2. Click any commentable element (titles, text blocks, cards, metrics, media)
+3. First time only: enter your name and email
+4. Type your feedback in the popover
+5. Click **Add Comment**
+
+A badge appears on elements with comments showing the count.
+
+### How do I view all comments?
+
+- Press `c` or click the sidebar toggle on the right edge
+- Comments are grouped by slide
+- Click **Go to slide** to jump to that element
+
+### How do I mark feedback as resolved?
+
+In the comment sidebar, click **Resolve** on any comment. Resolved comments fade out but remain visible. Click again to unresolve.
+
+### How do I export feedback?
+
+From the sidebar:
+- **Export JSON** — machine-readable backup (`comments-<deck>.json`)
+- **Export MD** — markdown summary for sharing or Claude iteration
+
+### How do I review feedback outside the deck?
+
+Open `skills/keynote-slides/assets/feedback-viewer.html`:
+1. Load a `comments.json` file or paste a URL
+2. Filter by open/resolved
+3. Resolve, delete, or export comments
+4. Pass `?url=<path>` to auto-load
+
+### Where are comments stored?
+
+Comments persist in browser localStorage keyed by deck ID. Export JSON to back up or share. The structure is backend-ready for future API integration.
 
 ---
 
@@ -266,6 +363,8 @@ The Narrative Engine (17 storytelling frameworks, 5-agent review panel) is based
 | Doc | Purpose |
 |-----|---------|
 | [Storytelling Guide](docs/storytelling-guide.md) | Narrative arcs and slide best practices |
+| [Framework Selection Guide](skills/keynote-slides/references/narrative-engine/framework_selection_guide.md) | Deep pairing guidance for arcs + frameworks |
+| [Narrative Engine Checklists](skills/keynote-slides/references/narrative-engine/checklists.md) | Review gates for narrative + copy quality |
 | [Infographic Prompting](docs/nano-banana-prompting.md) | Gemini image generation |
 | [Video Guide](docs/veo-video-guide.md) | Veo video generation |
 | [Brand Guidelines](skills/keynote-slides/references/brand-guidelines.md) | Token reference |
@@ -275,6 +374,8 @@ The Narrative Engine (17 storytelling frameworks, 5-agent review panel) is based
 ## Troubleshooting
 
 **Media won't generate:** Check `$GEMINI_API_KEY` is set. Verify in generator panel localStorage.
+
+**Image search fails:** Set at least one of `$UNSPLASH_ACCESS_KEY`, `$PEXELS_API_KEY`, or `$GOOGLE_CUSTOM_SEARCH_KEY`.
 
 **Colors wrong:** Use exact hex codes. Add "STRICT COLOR PALETTE" to prompt.
 

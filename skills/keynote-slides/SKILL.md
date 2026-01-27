@@ -64,6 +64,27 @@ scripts/new-deck.sh example-pitch --entity northwind --title "Example Pitch" --t
 4. For image-to-image or image-to-video, load a base image in the panel.
 5. Run "Generate slide" or "Generate all" and review outputs.
 
+### Model-Mediated Image Acquisition
+
+Use the `/acquire-images` skill (see `skills/acquire-images.md`) to populate slides with visuals.
+
+Claude decides whether to **generate** (Gemini) or **search** (stock photos) for each slide:
+
+| Content Type | Decision | Why |
+|--------------|----------|-----|
+| Diagrams, flowcharts | GENERATE | Custom layouts, brand colors |
+| Data visualizations | GENERATE | Precise data representation |
+| Real-world photos | SEARCH | Authentic people, places |
+| Team/people shots | SEARCH | Realistic human photos |
+| Abstract concepts | GENERATE | Metaphorical, brand-styled |
+| Branded hero images | HYBRID | Search base + AI overlay |
+
+**Search sources:** Unsplash, Pexels, Google Custom Search.
+
+**Attribution:** Downloaded images tracked in `resources/materials/image-credits.json`.
+
+See `skills/acquire-images.md` for the full workflow.
+
 ## Preview
 
 ```bash
@@ -121,6 +142,86 @@ Then open `http://<tailscale-ip>:8921/decks/<deck-id>/index.html`.
 - Home/End for first or last slide.
 - Use `#slide-title` hash navigation for direct jumps.
 
+## Review Mode / Feedback System
+
+Enable reviewers to leave comments on deck elements for collaborative feedback.
+
+### Entering Review Mode
+
+- Click the "Review" button in the bottom toolbar (next to Gen)
+- Press `r` key to toggle review mode
+- Add `?review=1` to the URL to start in review mode
+
+### Adding Comments
+
+1. In review mode, hover over elements to see them highlighted
+2. Click any commentable element (titles, text, cards, metrics, media frames)
+3. First-time commenters enter name and email (stored in session)
+4. Type feedback in the popover and click "Add Comment"
+5. A badge appears on commented elements showing comment count
+
+### Viewing Comments
+
+- Press `c` or click the sidebar toggle to open the comment sidebar
+- Comments are grouped by slide
+- Click "Go to slide" to navigate to the commented element
+- Mark comments as resolved or delete them
+
+### Exporting Feedback
+
+From the comment sidebar:
+- **Export JSON** - Downloads `comments-<deck-id>.json` for backup or import
+- **Export MD** - Downloads markdown summary for sharing or Claude iteration
+
+### Feedback Viewer Page
+
+Use `assets/feedback-viewer.html` to review all feedback outside the deck:
+
+1. Open `feedback-viewer.html` in a browser
+2. Load a `comments.json` file or enter a URL
+3. Filter by open/resolved status
+4. Mark comments as resolved
+5. Export updated JSON or markdown
+
+Add `?url=<path-to-json>` to auto-load comments.
+
+### Comment Data Structure
+
+Comments are stored in localStorage keyed by deck ID. Export structure:
+
+```json
+{
+  "deckId": "example-pitch",
+  "comments": [
+    {
+      "id": "c_1706123456789_abc123",
+      "slideIndex": 2,
+      "slideTitle": "Our Solution",
+      "elementSelector": "[data-comment-target='headline']",
+      "elementText": "First 50 chars of element...",
+      "comment": "This needs more specificity",
+      "author": {
+        "name": "Sarah Chen",
+        "email": "sarah@example.com"
+      },
+      "createdAt": "2024-01-24T10:30:00Z",
+      "resolved": false
+    }
+  ]
+}
+```
+
+### Element Targeting
+
+For precise comment targeting, add `data-comment-target` attributes:
+
+```html
+<h2 data-comment-target="solution-headline">Our Solution</h2>
+<p data-comment-target="value-prop-1">We reduce costs by 40%...</p>
+```
+
+Elements without explicit targets use a generated CSS selector path.
+
 ---
 
 ## Narrative Engine Integration
@@ -139,8 +240,9 @@ For content-driven deck creation, use the Narrative Engine workflow that matches
 ### Workflow: Narrative Build
 
 1. **Ingest resources:** Run `node scripts/ingest-resources.js decks/<deck-id>` to read all materials
-2. **Discovery:** Answer 5 structured questions (audience, purpose, content type, tone, reveal potential)
-3. **Framework match:** Get 2-3 recommendations with content mapped to structure
+   - Or use `node scripts/narrative-build.js decks/<deck-id>` to prepare model-mediated prompts
+2. **Focal discovery + discovery:** Align on the one point, then answer 5 questions (audience, purpose, content type, tone, reveal)
+3. **Density + framework match:** Choose density mode, then get 2-3 recommendations with content mapped to structure
 4. **Deck generation:** Build slides with source attribution tags
 5. **Review panel:** 5 agents + Director synthesize feedback
 
@@ -175,6 +277,22 @@ For content-driven deck creation, use the Narrative Engine workflow that matches
 | **Visual Designer** | Metaphor coherence, S.T.A.R. moments | "What visual makes this unforgettable?" |
 | **Critic** | Pacing, weak links, efficacy | "What's the weakest link?" |
 | **Content Expert** | Accuracy, logic, sources | "Can every claim be defended?" |
+
+### Stress Test Panel (Optional)
+
+After the 5-agent review, optionally stress-test with stakeholder personas auto-selected by content type:
+
+| Persona | Questions | Best For |
+|---------|-----------|----------|
+| **Engineer** | "How does this actually work?" | Technical proposals, product launches |
+| **Skeptic** | "Why should I believe this?" | Bold claims, paradigm shifts |
+| **Risk Officer** | "What could go wrong?" | Strategy, transformation, investment |
+| **CFO** | "What are the numbers?" | Pitches, business cases, ROI claims |
+| **Lawyer** | "What's the exposure?" | Policy, compliance, external-facing |
+| **Conservative** | "Why change what's working?" | Change management |
+| **COO** | "Would this actually work?" | Execution plans, go-to-market |
+
+The Director triages findings into **Must Fix**, **Should Fix**, and **Could Fix** categories.
 
 ### Source Attribution Tags
 
