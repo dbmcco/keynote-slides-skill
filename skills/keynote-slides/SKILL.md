@@ -39,6 +39,21 @@ scripts/new-deck.sh example-pitch --entity northwind --title "Example Pitch" --t
 - `decks/<deck-id>/resources/assets/` holds logos, images, and media inputs.
 - `decks/<deck-id>/resources/materials/` holds briefs, pricing docs, P&L inputs, and outlines.
 
+### PMF Panel Integration
+
+Export PMF Panel findings as deck input materials:
+
+```bash
+# From pmf-panel directory
+.claude/export-deck-brief.sh <scenario-id>
+
+# Copy to deck materials
+cp scenarios/<scenario-id>/deck-brief.md \
+   ../keynote-slides-skill/decks/<deck-id>/resources/materials/pmf-brief.md
+```
+
+The brief includes diagnosis, scenarios, 30/60/90 plan, and specialist perspectives ready for narrative engine ingestion.
+
 ## Collaboration
 
 - Co-author the narrative: propose headlines, POV, and slide ordering based on `deckType` and entity preferences.
