@@ -1,0 +1,636 @@
+<!doctype html>
+<!-- ABOUTME: Standalone feedback viewer for keynote-slides comment system. -->
+<!-- ABOUTME: Loads comments.json, displays grouped by slide, supports resolve/export. -->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Feedback Viewer</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400,600,700&family=Space+Grotesk:wght@400;500;600&display=swap");
+
+      :root {
+        --brand-ink: #0d1117;
+        --brand-ink-soft: #18202a;
+        --brand-paper: #f7f1e8;
+        --brand-paper-deep: #efe3d4;
+        --brand-accent: #ff6b35;
+        --brand-accent-strong: #ff4d1a;
+        --brand-sage: #93a77a;
+        --brand-slate: #3a4654;
+        --brand-line: rgba(13, 17, 23, 0.12);
+        --font-display: "Fraunces", "Iowan Old Style", "Palatino", serif;
+        --font-body: "Space Grotesk", "Avenir Next", "Gill Sans", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: var(--font-body);
+        color: var(--brand-ink);
+        background:
+          radial-gradient(circle at 15% 20%, rgba(255, 107, 53, 0.08), transparent 55%),
+          radial-gradient(circle at 85% 8%, rgba(147, 167, 122, 0.12), transparent 45%),
+          linear-gradient(180deg, #fdf8f0 0%, #f4eadf 45%, #ede0d2 100%);
+        padding: 32px;
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      header {
+        margin-bottom: 32px;
+      }
+
+      h1 {
+        font-family: var(--font-display);
+        font-size: 2.4rem;
+        margin: 0 0 8px;
+      }
+
+      .subtitle {
+        color: var(--brand-slate);
+        font-size: 1rem;
+      }
+
+      .toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 24px;
+        padding: 16px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 14px;
+        border: 1px solid var(--brand-line);
+      }
+
+      .toolbar label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.9rem;
+      }
+
+      .toolbar input[type="file"] {
+        font-size: 0.85rem;
+      }
+
+      .toolbar input[type="text"] {
+        padding: 8px 12px;
+        border-radius: 8px;
+        border: 1px solid var(--brand-line);
+        font-size: 0.9rem;
+        width: 300px;
+      }
+
+      .toolbar button {
+        padding: 8px 16px;
+        border-radius: 8px;
+        border: none;
+        background: var(--brand-ink);
+        color: #fff;
+        cursor: pointer;
+        font-size: 0.9rem;
+      }
+
+      .toolbar button:hover {
+        background: var(--brand-ink-soft);
+      }
+
+      .toolbar button.secondary {
+        background: rgba(13, 17, 23, 0.08);
+        color: var(--brand-ink);
+      }
+
+      .toolbar button.secondary:hover {
+        background: rgba(13, 17, 23, 0.15);
+      }
+
+      .stats {
+        display: flex;
+        gap: 24px;
+        margin-bottom: 24px;
+      }
+
+      .stat {
+        background: rgba(255, 255, 255, 0.7);
+        border-radius: 12px;
+        padding: 16px 24px;
+        border: 1px solid var(--brand-line);
+      }
+
+      .stat-number {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        color: var(--brand-accent);
+      }
+
+      .stat-label {
+        font-size: 0.85rem;
+        color: var(--brand-slate);
+      }
+
+      .filters {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+
+      .filter-btn {
+        padding: 8px 16px;
+        border-radius: 999px;
+        border: 1px solid var(--brand-line);
+        background: rgba(255, 255, 255, 0.6);
+        cursor: pointer;
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+
+      .filter-btn.is-active {
+        background: var(--brand-ink);
+        color: #fff;
+        border-color: var(--brand-ink);
+      }
+
+      .slide-group {
+        margin-bottom: 32px;
+      }
+
+      .slide-group-header {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--brand-line);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .slide-group-header .count {
+        font-family: var(--font-body);
+        font-size: 0.85rem;
+        color: var(--brand-slate);
+        font-weight: normal;
+      }
+
+      .comment-card {
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 14px;
+        padding: 18px;
+        margin-bottom: 12px;
+        border: 1px solid var(--brand-line);
+        transition: opacity 0.2s;
+      }
+
+      .comment-card.is-resolved {
+        opacity: 0.5;
+        background: rgba(255, 255, 255, 0.4);
+      }
+
+      .comment-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 10px;
+      }
+
+      .comment-author {
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      .comment-email {
+        font-size: 0.8rem;
+        color: var(--brand-slate);
+      }
+
+      .comment-time {
+        font-size: 0.75rem;
+        color: var(--brand-slate);
+      }
+
+      .comment-context {
+        font-size: 0.85rem;
+        color: var(--brand-accent);
+        font-style: italic;
+        margin-bottom: 8px;
+        padding: 8px 12px;
+        background: rgba(255, 107, 53, 0.08);
+        border-radius: 8px;
+        border-left: 3px solid var(--brand-accent);
+      }
+
+      .comment-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 12px;
+      }
+
+      .comment-actions {
+        display: flex;
+        gap: 8px;
+      }
+
+      .comment-actions button {
+        padding: 6px 12px;
+        border-radius: 6px;
+        border: none;
+        background: rgba(13, 17, 23, 0.08);
+        color: var(--brand-ink);
+        cursor: pointer;
+        font-size: 0.8rem;
+      }
+
+      .comment-actions button:hover {
+        background: rgba(13, 17, 23, 0.15);
+      }
+
+      .comment-actions button.resolve-btn {
+        background: var(--brand-sage);
+        color: #fff;
+      }
+
+      .comment-actions button.resolve-btn:hover {
+        background: #7a9062;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: var(--brand-slate);
+      }
+
+      .empty-state h2 {
+        font-family: var(--font-display);
+        font-size: 1.6rem;
+        margin-bottom: 12px;
+        color: var(--brand-ink);
+      }
+
+      .status-badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .status-badge.open {
+        background: rgba(255, 107, 53, 0.15);
+        color: var(--brand-accent-strong);
+      }
+
+      .status-badge.resolved {
+        background: rgba(147, 167, 122, 0.2);
+        color: #5a6f45;
+      }
+
+      @media (max-width: 600px) {
+        body {
+          padding: 16px;
+        }
+
+        .toolbar {
+          flex-direction: column;
+        }
+
+        .toolbar input[type="text"] {
+          width: 100%;
+        }
+
+        .stats {
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .filters {
+          flex-wrap: wrap;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Feedback Viewer</h1>
+        <p class="subtitle" id="deck-title">Load a comments.json file to view feedback</p>
+      </header>
+
+      <div class="toolbar">
+        <label>
+          Load JSON:
+          <input type="file" id="file-input" accept=".json,application/json" />
+        </label>
+        <span style="color: var(--brand-slate)">or</span>
+        <label>
+          URL:
+          <input type="text" id="url-input" placeholder="https://example.com/comments.json" />
+        </label>
+        <button type="button" id="load-url">Load</button>
+        <button type="button" id="export-json" class="secondary">Export JSON</button>
+        <button type="button" id="export-md" class="secondary">Export Markdown</button>
+      </div>
+
+      <div class="stats" id="stats" style="display: none;">
+        <div class="stat">
+          <div class="stat-number" id="total-count">0</div>
+          <div class="stat-label">Total Comments</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" id="open-count">0</div>
+          <div class="stat-label">Open</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" id="resolved-count">0</div>
+          <div class="stat-label">Resolved</div>
+        </div>
+      </div>
+
+      <div class="filters" id="filters" style="display: none;">
+        <button type="button" class="filter-btn is-active" data-filter="all">All</button>
+        <button type="button" class="filter-btn" data-filter="open">Open</button>
+        <button type="button" class="filter-btn" data-filter="resolved">Resolved</button>
+      </div>
+
+      <main id="comments-container">
+        <div class="empty-state">
+          <h2>No comments loaded</h2>
+          <p>Upload a comments.json file or enter a URL to view feedback on your deck.</p>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const fileInput = document.getElementById("file-input");
+      const urlInput = document.getElementById("url-input");
+      const loadUrlBtn = document.getElementById("load-url");
+      const exportJsonBtn = document.getElementById("export-json");
+      const exportMdBtn = document.getElementById("export-md");
+      const deckTitleEl = document.getElementById("deck-title");
+      const statsEl = document.getElementById("stats");
+      const filtersEl = document.getElementById("filters");
+      const commentsContainer = document.getElementById("comments-container");
+      const totalCountEl = document.getElementById("total-count");
+      const openCountEl = document.getElementById("open-count");
+      const resolvedCountEl = document.getElementById("resolved-count");
+
+      let commentsData = null;
+      let currentFilter = "all";
+
+      const formatTime = (isoString) => {
+        const date = new Date(isoString);
+        return date.toLocaleDateString() + " " + date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+      };
+
+      const updateStats = () => {
+        if (!commentsData) return;
+        const total = commentsData.comments.length;
+        const resolved = commentsData.comments.filter((c) => c.resolved).length;
+        const open = total - resolved;
+
+        totalCountEl.textContent = total;
+        openCountEl.textContent = open;
+        resolvedCountEl.textContent = resolved;
+      };
+
+      const filterComments = (comments) => {
+        if (currentFilter === "open") return comments.filter((c) => !c.resolved);
+        if (currentFilter === "resolved") return comments.filter((c) => c.resolved);
+        return comments;
+      };
+
+      const renderComments = () => {
+        if (!commentsData || !commentsData.comments.length) {
+          commentsContainer.innerHTML = `
+            <div class="empty-state">
+              <h2>No comments found</h2>
+              <p>This deck has no feedback comments yet.</p>
+            </div>
+          `;
+          statsEl.style.display = "none";
+          filtersEl.style.display = "none";
+          return;
+        }
+
+        statsEl.style.display = "flex";
+        filtersEl.style.display = "flex";
+        updateStats();
+
+        const filtered = filterComments(commentsData.comments);
+
+        if (!filtered.length) {
+          commentsContainer.innerHTML = `
+            <div class="empty-state">
+              <h2>No ${currentFilter} comments</h2>
+              <p>Try changing the filter to see other comments.</p>
+            </div>
+          `;
+          return;
+        }
+
+        const grouped = {};
+        filtered.forEach((c) => {
+          const key = c.slideIndex;
+          if (!grouped[key]) grouped[key] = [];
+          grouped[key].push(c);
+        });
+
+        let html = "";
+        Object.keys(grouped)
+          .sort((a, b) => Number(a) - Number(b))
+          .forEach((slideIndex) => {
+            const comments = grouped[slideIndex];
+            const slideTitle = comments[0].slideTitle || `Slide ${Number(slideIndex) + 1}`;
+
+            html += `
+              <div class="slide-group">
+                <div class="slide-group-header">
+                  <span>Slide ${Number(slideIndex) + 1}: ${slideTitle}</span>
+                  <span class="count">${comments.length} comment${comments.length !== 1 ? "s" : ""}</span>
+                </div>
+            `;
+
+            comments.forEach((c) => {
+              html += `
+                <div class="comment-card ${c.resolved ? "is-resolved" : ""}" data-comment-id="${c.id}">
+                  <div class="comment-header">
+                    <div>
+                      <span class="comment-author">${c.author.name}</span>
+                      <span class="comment-email">${c.author.email}</span>
+                      <span class="status-badge ${c.resolved ? "resolved" : "open"}">${c.resolved ? "Resolved" : "Open"}</span>
+                    </div>
+                    <span class="comment-time">${formatTime(c.createdAt)}</span>
+                  </div>
+                  <div class="comment-context">"${c.elementText}"</div>
+                  <div class="comment-text">${c.comment}</div>
+                  <div class="comment-actions">
+                    <button type="button" class="resolve-btn" data-action="resolve" data-id="${c.id}">
+                      ${c.resolved ? "Unresolve" : "Resolve"}
+                    </button>
+                    <button type="button" data-action="delete" data-id="${c.id}">Delete</button>
+                  </div>
+                </div>
+              `;
+            });
+
+            html += `</div>`;
+          });
+
+        commentsContainer.innerHTML = html;
+      };
+
+      const loadCommentsData = (data) => {
+        commentsData = data;
+        deckTitleEl.textContent = `Feedback for: ${data.deckId || "Unknown Deck"}`;
+        document.title = `Feedback: ${data.deckId || "Deck"}`;
+        renderComments();
+      };
+
+      const resolveComment = (commentId) => {
+        if (!commentsData) return;
+        const comment = commentsData.comments.find((c) => c.id === commentId);
+        if (comment) {
+          comment.resolved = !comment.resolved;
+          renderComments();
+        }
+      };
+
+      const deleteComment = (commentId) => {
+        if (!commentsData) return;
+        commentsData.comments = commentsData.comments.filter((c) => c.id !== commentId);
+        renderComments();
+      };
+
+      const exportJson = () => {
+        if (!commentsData) return;
+        const blob = new Blob([JSON.stringify(commentsData, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `comments-${commentsData.deckId || "deck"}.json`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+      };
+
+      const exportMarkdown = () => {
+        if (!commentsData) return;
+
+        const lines = [
+          `# Feedback: ${commentsData.deckId || "Deck"}`,
+          "",
+          `Generated: ${new Date().toISOString()}`,
+          "",
+          `Total: ${commentsData.comments.length} | Open: ${commentsData.comments.filter((c) => !c.resolved).length} | Resolved: ${commentsData.comments.filter((c) => c.resolved).length}`,
+          "",
+          "---",
+          "",
+        ];
+
+        const grouped = {};
+        commentsData.comments.forEach((c) => {
+          if (!grouped[c.slideIndex]) grouped[c.slideIndex] = [];
+          grouped[c.slideIndex].push(c);
+        });
+
+        Object.keys(grouped)
+          .sort((a, b) => Number(a) - Number(b))
+          .forEach((slideIndex) => {
+            const comments = grouped[slideIndex];
+            const slideTitle = comments[0].slideTitle || `Slide ${Number(slideIndex) + 1}`;
+            lines.push(`## Slide ${Number(slideIndex) + 1}: ${slideTitle}`);
+            lines.push("");
+
+            comments.forEach((c) => {
+              const status = c.resolved ? "[RESOLVED]" : "[OPEN]";
+              lines.push(`### ${status} ${c.author.name}`);
+              lines.push(`*${c.author.email} - ${formatTime(c.createdAt)}*`);
+              lines.push("");
+              lines.push(`> "${c.elementText}"`);
+              lines.push("");
+              lines.push(c.comment);
+              lines.push("");
+            });
+          });
+
+        const blob = new Blob([lines.join("\n")], { type: "text/markdown" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `feedback-${commentsData.deckId || "deck"}.md`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+      };
+
+      // Event listeners
+      fileInput.addEventListener("change", async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+        try {
+          const text = await file.text();
+          const data = JSON.parse(text);
+          loadCommentsData(data);
+        } catch (error) {
+          alert("Failed to parse JSON file: " + error.message);
+        }
+      });
+
+      loadUrlBtn.addEventListener("click", async () => {
+        const url = urlInput.value.trim();
+        if (!url) return;
+        try {
+          const response = await fetch(url);
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const data = await response.json();
+          loadCommentsData(data);
+        } catch (error) {
+          alert("Failed to load from URL: " + error.message);
+        }
+      });
+
+      exportJsonBtn.addEventListener("click", exportJson);
+      exportMdBtn.addEventListener("click", exportMarkdown);
+
+      filtersEl.addEventListener("click", (event) => {
+        const btn = event.target.closest(".filter-btn");
+        if (!btn) return;
+        document.querySelectorAll(".filter-btn").forEach((b) => b.classList.remove("is-active"));
+        btn.classList.add("is-active");
+        currentFilter = btn.dataset.filter;
+        renderComments();
+      });
+
+      commentsContainer.addEventListener("click", (event) => {
+        const btn = event.target.closest("button[data-action]");
+        if (!btn) return;
+        const action = btn.dataset.action;
+        const id = btn.dataset.id;
+
+        if (action === "resolve" && id) resolveComment(id);
+        if (action === "delete" && id) {
+          if (confirm("Delete this comment?")) deleteComment(id);
+        }
+      });
+
+      // Check for URL param
+      const params = new URLSearchParams(window.location.search);
+      const jsonUrl = params.get("url") || params.get("json");
+      if (jsonUrl) {
+        urlInput.value = jsonUrl;
+        loadUrlBtn.click();
+      }
+    </script>
+  </body>
+</html>
