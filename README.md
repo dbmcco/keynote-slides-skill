@@ -92,16 +92,17 @@ Optional **Stress Test Panel** pressure-tests with stakeholder personas (Enginee
 
 ### 4. Collect feedback with Review Mode
 
-Share your deck URL with reviewers. They enter review mode, click elements, and leave comments:
+Share your deck URL with reviewers. They enter review mode, click elements or select text, and leave numbered comments:
 
 | Action | How |
 |--------|-----|
 | Enter review mode | Click **Review** button, press `r`, or add `?review=1` |
-| Add comment | Click any element → enter feedback → submit |
+| Comment on element | Click any element → enter feedback → submit |
+| Comment on text | Select specific text → comment on that phrase (great for typos) |
 | View all comments | Press `c` or click sidebar toggle |
 | Export feedback | **Export JSON** or **Export MD** from sidebar |
 
-Comments persist in localStorage. Export to `comments.json` for backup or use the standalone `feedback-viewer.html` to review outside the deck.
+Each comment gets a sequential number (①②③) so reviewers can reference "fix issue 3" instead of describing location. Comments persist in localStorage. Export to `comments.json` for backup or use the standalone `feedback-viewer.html` to review outside the deck.
 
 ### 5. Present with speaker notes
 
