@@ -588,7 +588,12 @@
       .anim-visual {
         position: absolute;
         pointer-events: none;
-        z-index: 0;
+        z-index: 1;
+      }
+
+      .slide-inner {
+        position: relative;
+        z-index: 2;
       }
 
       .anim-visual svg {
@@ -602,7 +607,7 @@
       }
 
       @keyframes pulse {
-        0%, 100% { opacity: 0.4; transform: scale(1); }
+        0%, 100% { opacity: 0.6; transform: scale(1); }
         50% { opacity: 0.8; transform: scale(1.05); }
       }
 
@@ -982,7 +987,7 @@
       }
 
       .comment-item.is-resolved {
-        opacity: 0.5;
+        opacity: 0.7;
       }
 
       .comment-item-header {
@@ -1076,20 +1081,20 @@
     <main class="deck" id="deck" aria-live="polite">
       <!-- Slide 1: HOOK (Change) -->
       <section class="slide theme-ink is-active" data-title="AI Shift">
-        <div class="anim-visual" style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 450px; height: 300px; opacity: 0.3;">
+        <div class="anim-visual" style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 450px; height: 300px; opacity: 0.6;">
           <svg viewBox="0 0 450 300" fill="none">
             <!-- Flowing transformation lines -->
-            <path d="M50 200 Q150 200 150 150 Q150 100 250 100 Q350 100 350 150 Q350 200 400 200" stroke="var(--brand-accent)" stroke-width="2" fill="none" class="dash-line" style="stroke-dasharray: 12 8;"/>
-            <path d="M80 220 Q160 220 180 160 Q200 100 280 100 Q360 100 370 160 Q380 220 420 220" stroke="var(--brand-accent)" stroke-width="1.5" fill="none" opacity="0.6" class="dash-line" style="stroke-dasharray: 10 10; animation-delay: -0.5s;"/>
+            <path d="M50 200 Q150 200 150 150 Q150 100 250 100 Q350 100 350 150 Q350 200 400 200" stroke="#ed8936" stroke-width="2" fill="none" class="dash-line" style="stroke-dasharray: 12 8;"/>
+            <path d="M80 220 Q160 220 180 160 Q200 100 280 100 Q360 100 370 160 Q380 220 420 220" stroke="#ed8936" stroke-width="1.5" fill="none" opacity="0.6" class="dash-line" style="stroke-dasharray: 10 10; animation-delay: -0.5s;"/>
             <!-- Transformation nodes -->
             <g class="float-element" style="animation-duration: 3s;">
-              <circle cx="150" cy="150" r="8" fill="var(--brand-accent)" opacity="0.7"/>
+              <circle cx="150" cy="150" r="8" fill="#ed8936" opacity="0.8"/>
             </g>
             <g class="float-element" style="animation-duration: 3.5s; animation-delay: -1s;">
-              <circle cx="250" cy="100" r="10" fill="var(--brand-accent)"/>
+              <circle cx="250" cy="100" r="12" fill="#ed8936"/>
             </g>
             <g class="float-element" style="animation-duration: 3.2s; animation-delay: -2s;">
-              <circle cx="350" cy="150" r="8" fill="var(--brand-accent)" opacity="0.7"/>
+              <circle cx="350" cy="150" r="8" fill="#ed8936" opacity="0.8"/>
             </g>
           </svg>
         </div>
@@ -1162,22 +1167,22 @@ The visual shows the difference: cluttered toolbars vs. a clean prompt interface
 
       <!-- Slide 4: PROMISED LAND -->
       <section class="slide theme-ink" data-title="Promised Land">
-        <div class="anim-visual" style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; height: 400px; opacity: 0.5;">
+        <div class="anim-visual" style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; height: 400px; opacity: 0.7;">
           <svg viewBox="0 0 400 400" fill="none">
             <!-- Outer orbit ring -->
-            <circle cx="200" cy="200" r="120" stroke="var(--brand-accent)" stroke-width="1" opacity="0.3" class="pulse-ring"/>
-            <circle cx="200" cy="200" r="80" stroke="var(--brand-accent)" stroke-width="1" opacity="0.2" class="pulse-ring"/>
+            <circle cx="200" cy="200" r="120" stroke="#ed8936" stroke-width="1" opacity="0.3" class="pulse-ring"/>
+            <circle cx="200" cy="200" r="80" stroke="#ed8936" stroke-width="1" opacity="0.2" class="pulse-ring"/>
             <!-- Center glow -->
-            <circle cx="200" cy="200" r="8" fill="var(--brand-accent)" class="pulse-ring"/>
+            <circle cx="200" cy="200" r="8" fill="#ed8936" class="pulse-ring"/>
             <!-- Orbiting dots -->
             <g style="transform-origin: 200px 200px;">
-              <circle cx="200" cy="200" r="6" fill="var(--brand-accent)" class="orbit-dot"/>
+              <circle cx="200" cy="200" r="6" fill="#ed8936" class="orbit-dot"/>
             </g>
             <g style="transform-origin: 200px 200px;">
-              <circle cx="200" cy="200" r="5" fill="var(--brand-accent)" opacity="0.7" class="orbit-dot"/>
+              <circle cx="200" cy="200" r="5" fill="#ed8936" opacity="0.7" class="orbit-dot"/>
             </g>
             <g style="transform-origin: 200px 200px;">
-              <circle cx="200" cy="200" r="4" fill="var(--brand-accent)" opacity="0.5" class="orbit-dot"/>
+              <circle cx="200" cy="200" r="4" fill="#ed8936" opacity="0.5" class="orbit-dot"/>
             </g>
           </svg>
         </div>
@@ -1288,29 +1293,29 @@ This deck uses a modified "Gift" structure—problem, promise, then capabilities
 
       <!-- Slide 8: GIFT 4 (Review Panel) -->
       <section class="slide theme-ink" data-title="Review Panel">
-        <div class="anim-visual" style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 300px; opacity: 0.4;">
+        <div class="anim-visual" style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 300px; opacity: 0.6;">
           <svg viewBox="0 0 500 300" fill="none">
             <!-- Five floating dots representing five agents -->
             <g class="float-element" style="animation-duration: 3.5s;">
-              <circle cx="100" cy="150" r="12" fill="var(--brand-accent)" opacity="0.8"/>
+              <circle cx="100" cy="150" r="12" fill="#ed8936" opacity="0.8"/>
             </g>
             <g class="float-element" style="animation-duration: 4.2s; animation-delay: -0.8s;">
-              <circle cx="175" cy="120" r="10" fill="var(--brand-accent)" opacity="0.6"/>
+              <circle cx="175" cy="120" r="10" fill="#ed8936" opacity="0.6"/>
             </g>
             <g class="float-element" style="animation-duration: 3.8s; animation-delay: -1.5s;">
-              <circle cx="250" cy="150" r="14" fill="var(--brand-accent)" opacity="0.9"/>
+              <circle cx="250" cy="150" r="14" fill="#ed8936" opacity="0.9"/>
             </g>
             <g class="float-element" style="animation-duration: 4s; animation-delay: -2.2s;">
-              <circle cx="325" cy="130" r="10" fill="var(--brand-accent)" opacity="0.6"/>
+              <circle cx="325" cy="130" r="10" fill="#ed8936" opacity="0.6"/>
             </g>
             <g class="float-element" style="animation-duration: 3.6s; animation-delay: -2.8s;">
-              <circle cx="400" cy="150" r="11" fill="var(--brand-accent)" opacity="0.7"/>
+              <circle cx="400" cy="150" r="11" fill="#ed8936" opacity="0.7"/>
             </g>
             <!-- Connecting dashed lines -->
-            <path d="M112 150 L163 125" stroke="var(--brand-accent)" stroke-width="1" opacity="0.3" class="dash-line"/>
-            <path d="M187 120 L236 150" stroke="var(--brand-accent)" stroke-width="1" opacity="0.3" class="dash-line"/>
-            <path d="M264 150 L313 130" stroke="var(--brand-accent)" stroke-width="1" opacity="0.3" class="dash-line"/>
-            <path d="M337 130 L388 150" stroke="var(--brand-accent)" stroke-width="1" opacity="0.3" class="dash-line"/>
+            <path d="M112 150 L163 125" stroke="#ed8936" stroke-width="1" opacity="0.3" class="dash-line"/>
+            <path d="M187 120 L236 150" stroke="#ed8936" stroke-width="1" opacity="0.3" class="dash-line"/>
+            <path d="M264 150 L313 130" stroke="#ed8936" stroke-width="1" opacity="0.3" class="dash-line"/>
+            <path d="M337 130 L388 150" stroke="#ed8936" stroke-width="1" opacity="0.3" class="dash-line"/>
           </svg>
         </div>
         <div class="slide-inner layout-title" style="position: relative; z-index: 1;">
@@ -1401,15 +1406,15 @@ Pause here. Let the contrast with the "8 hours" from earlier sink in.
 
       <!-- Slide 11: CTA -->
       <section class="slide theme-ink" data-title="Call to Action">
-        <div class="anim-visual" style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; opacity: 0.35;">
+        <div class="anim-visual" style="top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; opacity: 0.6;">
           <svg viewBox="0 0 300 300" fill="none">
             <!-- Radiating pulse rings -->
-            <circle cx="150" cy="150" r="60" stroke="var(--brand-accent)" stroke-width="2" opacity="0.6" class="pulse-ring" style="animation-duration: 2.5s;"/>
-            <circle cx="150" cy="150" r="90" stroke="var(--brand-accent)" stroke-width="1.5" opacity="0.4" class="pulse-ring" style="animation-duration: 3s; animation-delay: -0.8s;"/>
-            <circle cx="150" cy="150" r="120" stroke="var(--brand-accent)" stroke-width="1" opacity="0.25" class="pulse-ring" style="animation-duration: 3.5s; animation-delay: -1.6s;"/>
+            <circle cx="150" cy="150" r="60" stroke="#ed8936" stroke-width="2" opacity="0.6" class="pulse-ring" style="animation-duration: 2.5s;"/>
+            <circle cx="150" cy="150" r="90" stroke="#ed8936" stroke-width="1.5" opacity="0.4" class="pulse-ring" style="animation-duration: 3s; animation-delay: -0.8s;"/>
+            <circle cx="150" cy="150" r="120" stroke="#ed8936" stroke-width="1" opacity="0.25" class="pulse-ring" style="animation-duration: 3.5s; animation-delay: -1.6s;"/>
             <!-- Center arrow pointing up -->
             <g class="float-element" style="animation-duration: 2s;">
-              <path d="M150 180 L150 120 M130 140 L150 120 L170 140" stroke="var(--brand-accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M150 180 L150 120 M130 140 L150 120 L170 140" stroke="#ed8936" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
             </g>
           </svg>
         </div>
