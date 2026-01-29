@@ -713,12 +713,13 @@
         position: absolute;
         top: -8px;
         right: -8px;
-        width: 20px;
+        min-width: 20px;
         height: 20px;
-        border-radius: 50%;
+        padding: 0 4px;
+        border-radius: 10px;
         background: var(--brand-accent);
         color: #fff;
-        font-size: 0.7rem;
+        font-size: 0.75rem;
         font-weight: 600;
         display: flex;
         align-items: center;
@@ -726,6 +727,7 @@
         pointer-events: none;
         z-index: 10;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        white-space: nowrap;
       }
 
       .review-toggle {
@@ -965,16 +967,35 @@
         justify-content: space-between;
         align-items: flex-start;
         margin-bottom: 8px;
+        gap: 8px;
+      }
+
+      .comment-number {
+        background: var(--brand-accent);
+        color: #fff;
+        font-size: 0.85rem;
+        font-weight: 600;
+        min-width: 1.4em;
+        text-align: center;
+        flex-shrink: 0;
       }
 
       .comment-item-author {
         font-weight: 600;
         font-size: 0.9rem;
+        flex: 1;
       }
 
       .comment-item-time {
         font-size: 0.75rem;
         color: rgba(247, 241, 232, 0.5);
+      }
+
+      .selection-label {
+        color: var(--brand-accent);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
       }
 
       .comment-item-context {
@@ -1256,14 +1277,14 @@ They debate. You get a prioritized fix list. Much faster than waiting for human 
         <div class="slide-inner layout-split">
           <div>
             <div class="eyebrow" data-anim="fade" style="--anim-delay: 0.05s">Capability</div>
-            <h2 class="section-title" data-anim="slide-left" style="--anim-delay: 0.1s">Reviewers leave feedback directly on your slides</h2>
+            <h2 class="section-title" data-anim="slide-left" style="--anim-delay: 0.1s">Reviewers leave numbered feedback directly on slides</h2>
             <p class="body-text" data-anim="fade" style="--anim-delay: 0.15s">
-              Share the URL. They press R to enter review mode, click any element, and leave comments. Export to JSON or markdown.
+              Press R to enter review mode. Click elements or select specific text to comment. Each comment gets a number (①②③) for easy reference. Export to JSON or markdown.
             </p>
             <div class="chip-row" data-anim="slide-up" style="--anim-delay: 0.2s">
               <div class="chip">Press R</div>
-              <div class="chip">Click element</div>
-              <div class="chip">Add feedback</div>
+              <div class="chip">Click or select text</div>
+              <div class="chip">Numbered ①②③</div>
               <div class="chip">Export</div>
             </div>
           </div>
@@ -1273,19 +1294,21 @@ They debate. You get a prioritized fix list. Much faster than waiting for human 
               class="gen-media"
               data-media="gemini"
               data-gen="text-to-image"
-              data-prompt="Clean UI mockup showing a slide deck with review mode active: an element highlighted with an orange border, a comment popover with a text field and submit button, and a small badge showing comment count. Minimal, warm parchment palette, flat design, 16:9 aspect ratio."
+              data-prompt="Clean UI mockup showing a slide deck with review mode active: an element highlighted with an orange border showing a circled number 1 badge, a comment popover with 'Selected: specific phrase' label and text field. Second element has circled number 2 badge. Minimal, warm parchment palette, flat design, 16:9 aspect ratio."
               alt="Review mode interface"
             />
           </div>
         </div>
         <aside class="slide-notes">
-Fifth capability: Human review mode. Complements the AI review panel.
+Fifth capability: Human review mode with numbered comments and text selection.
 
-Demo opportunity: Press R right now to show review mode. Click on any element to show the comment popover. Press C to show the sidebar.
+Demo opportunity: Press R right now to show review mode. Try two ways to comment:
+1. Click any element to comment on the whole thing
+2. Select specific text within an element to comment on that phrase (great for typos)
 
-Key workflow: Share URL → reviewer presses R → clicks elements → leaves comments → you export JSON or markdown for iteration.
+Each comment gets a sequential number (①②③). Reviewers can say "fix issue 3" instead of describing location.
 
-Comments persist in localStorage. Export to share or feed back to Claude for revisions.
+Press C to show the sidebar with all comments grouped by slide. Export JSON or markdown to feed back to Claude for revisions.
         </aside>
       </section>
 
@@ -2193,9 +2216,10 @@ Thank you. Questions?
 
       const commentStorageKey = `KEYNOTE_COMMENTS_${deckId}`;
       const identityStorageKey = "KEYNOTE_REVIEWER_IDENTITY";
-      let commentsData = { deckId, comments: [] };
+      let commentsData = { deckId, comments: [], nextNumber: 1 };
       let isReviewMode = false;
       let currentCommentTarget = null;
+      let currentSelectedText = null;
       let reviewerIdentity = null;
 
       // Commentable element selectors
@@ -2252,9 +2276,21 @@ Thank you. Questions?
           const stored = localStorage.getItem(commentStorageKey);
           if (stored) {
             commentsData = JSON.parse(stored);
+            // Migrate old data: ensure nextNumber exists
+            if (!commentsData.nextNumber) {
+              const maxNumber = commentsData.comments.reduce((max, c) => Math.max(max, c.number || 0), 0);
+              commentsData.nextNumber = maxNumber + 1;
+              // Assign numbers to old comments that don't have them
+              commentsData.comments.forEach((c) => {
+                if (!c.number) {
+                  c.number = commentsData.nextNumber++;
+                }
+              });
+              saveComments();
+            }
           }
         } catch {
-          commentsData = { deckId, comments: [] };
+          commentsData = { deckId, comments: [], nextNumber: 1 };
         }
         renderCommentIndicators();
         updateSidebarCount();
@@ -2359,7 +2395,11 @@ Thank you. Questions?
 
       const openCommentPopover = (element, rect) => {
         currentCommentTarget = element;
-        popoverContext.textContent = getElementText(element);
+        if (currentSelectedText) {
+          popoverContext.innerHTML = `<span class="selection-label">Selected:</span> "${currentSelectedText}"`;
+        } else {
+          popoverContext.textContent = `"${getElementText(element)}"`;
+        }
         commentText.value = "";
 
         const popoverWidth = 320;
@@ -2384,20 +2424,24 @@ Thank you. Questions?
       const closeCommentPopover = () => {
         commentPopover.classList.remove("is-open");
         currentCommentTarget = null;
+        currentSelectedText = null;
         commentText.value = "";
+        window.getSelection()?.removeAllRanges();
       };
 
-      const addComment = async (element, text) => {
+      const addComment = async (element, text, selectedText = null) => {
         const identity = await promptForIdentity();
         const slideIndex = getSlideIndex(element);
         const slide = slides[slideIndex];
 
         const comment = {
           id: generateCommentId(),
+          number: commentsData.nextNumber++,
           slideIndex,
           slideTitle: slide?.dataset?.title || `Slide ${slideIndex + 1}`,
           elementSelector: getElementSelector(element),
           elementText: getElementText(element),
+          selectedText: selectedText || null,
           comment: text,
           author: {
             name: identity.name,
@@ -2427,6 +2471,10 @@ Thank you. Questions?
         renderSidebar();
       };
 
+      // Circled numbers for comment badges (1-20, then fallback to regular numbers)
+      const circledNumbers = ["①","②","③","④","⑤","⑥","⑦","⑧","⑨","⑩","⑪","⑫","⑬","⑭","⑮","⑯","⑰","⑱","⑲","⑳"];
+      const getCircledNumber = (n) => n <= 20 ? circledNumbers[n - 1] : String(n);
+
       const renderCommentIndicators = () => {
         document.querySelectorAll(".comment-indicator").forEach((el) => el.remove());
         document.querySelectorAll(".has-comments").forEach((el) => el.classList.remove("has-comments"));
@@ -2451,7 +2499,9 @@ Thank you. Questions?
               element.style.position = element.style.position || "relative";
               const badge = document.createElement("span");
               badge.className = "comment-indicator";
-              badge.textContent = comments.length;
+              // Show comment numbers instead of count
+              const numbers = comments.map(c => getCircledNumber(c.number)).join("");
+              badge.textContent = numbers;
               element.appendChild(badge);
             }
           } catch {}
@@ -2508,13 +2558,16 @@ Thank you. Questions?
             const slideTitle = comments[0].slideTitle;
             html += `<div style="font-size: 0.85rem; color: rgba(247,241,232,0.6); margin: 16px 0 8px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 6px;">Slide ${Number(slideIndex) + 1}: ${slideTitle}</div>`;
             comments.forEach((c) => {
+              const numberBadge = c.number ? `<span class="comment-number">${getCircledNumber(c.number)}</span>` : "";
+              const contextText = c.selectedText ? c.selectedText : c.elementText;
               html += `
                 <div class="comment-item ${c.resolved ? "is-resolved" : ""}" data-comment-id="${c.id}">
                   <div class="comment-item-header">
+                    ${numberBadge}
                     <span class="comment-item-author">${c.author.name}</span>
                     <span class="comment-item-time">${formatTime(c.createdAt)}</span>
                   </div>
-                  <div class="comment-item-context">"${c.elementText}"</div>
+                  <div class="comment-item-context">${c.selectedText ? '<span class="selection-label">Selected:</span> ' : ''}"${contextText}"</div>
                   <div class="comment-item-text">${c.comment}</div>
                   <div class="comment-item-actions">
                     <button type="button" data-action="resolve" data-id="${c.id}">${c.resolved ? "Unresolve" : "Resolve"}</button>
@@ -2560,8 +2613,14 @@ Thank you. Questions?
             lines.push("");
             comments.forEach((c) => {
               const status = c.resolved ? "[RESOLVED]" : "[OPEN]";
-              lines.push(`### ${status} ${c.author.name} (${c.author.email})`);
-              lines.push(`> "${c.elementText}"`);
+              const numberPrefix = c.number ? `#${c.number} ` : "";
+              lines.push(`### ${numberPrefix}${status} ${c.author.name} (${c.author.email})`);
+              if (c.selectedText) {
+                lines.push(`> **Selected:** "${c.selectedText}"`);
+                lines.push(`> *In:* "${c.elementText}"`);
+              } else {
+                lines.push(`> "${c.elementText}"`);
+              }
               lines.push("");
               lines.push(c.comment);
               lines.push("");
@@ -2593,7 +2652,7 @@ Thank you. Questions?
         const text = commentText.value.trim();
         if (!text || !currentCommentTarget) return;
         try {
-          await addComment(currentCommentTarget, text);
+          await addComment(currentCommentTarget, text, currentSelectedText);
           closeCommentPopover();
         } catch {}
       });
@@ -2613,12 +2672,44 @@ Thank you. Questions?
         }
       });
 
+      // Handle text selection in review mode
+      document.addEventListener("mouseup", (event) => {
+        if (!isReviewMode) return;
+        if (event.target.closest(".comment-popover, .comment-sidebar, .identity-modal")) return;
+
+        const selection = window.getSelection();
+        const selectedText = selection?.toString().trim();
+
+        if (selectedText && selectedText.length > 0) {
+          // Find the commentable element containing the selection
+          const range = selection.getRangeAt(0);
+          const container = range.commonAncestorContainer;
+          const element = container.nodeType === Node.TEXT_NODE
+            ? container.parentElement
+            : container;
+          const target = element?.closest(commentableSelectors);
+
+          if (target) {
+            event.preventDefault();
+            event.stopPropagation();
+            currentSelectedText = selectedText.length > 100
+              ? selectedText.slice(0, 100) + "..."
+              : selectedText;
+            const rect = range.getBoundingClientRect();
+            openCommentPopover(target, rect);
+            return;
+          }
+        }
+      });
+
       document.addEventListener("click", (event) => {
         if (!isReviewMode) return;
         const target = event.target.closest(".commentable");
         if (!target) return;
         if (event.target.closest(".comment-popover, .comment-sidebar, .identity-modal")) return;
 
+        // Clear any text selection when clicking (not selecting)
+        currentSelectedText = null;
         event.preventDefault();
         event.stopPropagation();
         const rect = target.getBoundingClientRect();

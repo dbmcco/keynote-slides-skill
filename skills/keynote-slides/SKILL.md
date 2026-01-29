@@ -39,6 +39,21 @@ scripts/new-deck.sh example-pitch --entity northwind --title "Example Pitch" --t
 - `decks/<deck-id>/resources/assets/` holds logos, images, and media inputs.
 - `decks/<deck-id>/resources/materials/` holds briefs, pricing docs, P&L inputs, and outlines.
 
+### PMF Panel Integration
+
+Export PMF Panel findings as deck input materials:
+
+```bash
+# From pmf-panel directory
+.claude/export-deck-brief.sh <scenario-id>
+
+# Copy to deck materials
+cp scenarios/<scenario-id>/deck-brief.md \
+   ../keynote-slides-skill/decks/<deck-id>/resources/materials/pmf-brief.md
+```
+
+The brief includes diagnosis, scenarios, 30/60/90 plan, and specialist perspectives ready for narrative engine ingestion.
+
 ## Collaboration
 
 - Co-author the narrative: propose headlines, POV, and slide ordering based on `deckType` and entity preferences.
@@ -104,7 +119,7 @@ Then open `http://<tailscale-ip>:8921/decks/<deck-id>/index.html`.
 
 ## Animation + SVG
 
-- Use `data-anim` for lightweight animations (fade, slide-up, slide-left, slide-right, scale-in).
+- Use `data-anim` for lightweight entrance animations (fade, slide-up, slide-left, slide-right, scale-in).
 - Set `--anim-delay` to stagger; avoid mixing with `reveal` on the same element.
 - Disable animation with `?motion=off` or rely on `prefers-reduced-motion`.
 - Inline SVG diagrams use `.diagram` and `data-media="svg"`:
@@ -115,6 +130,43 @@ Then open `http://<tailscale-ip>:8921/decks/<deck-id>/index.html`.
   - `data-gen` = Gemini only (optional `data-media="gemini"`).
   - Inline SVG = no `data-gen`.
   - Static images/videos = no `data-gen`.
+
+### Micro Animations
+
+Micro animations are **small decorative accent elements** that add subtle motion to slides without distracting from content.
+
+**What micro animations ARE:**
+- Small accent lines that expand/draw next to headlines
+- Subtle decorative strokes or shapes that pulse gently
+- Tiny visual flourishes positioned near text (not on text)
+- CSS-driven, lightweight, and unobtrusive
+
+**What micro animations are NOT:**
+- Large SVG graphics or overlays covering slide areas
+- Animations applied directly to text (no flashing, glowing, or bouncing text)
+- Complex particle systems or heavy motion graphics
+- Anything that competes with or obscures content
+
+**Implementation:**
+```html
+<!-- Accent line after a headline -->
+<h1 class="title">Your headline here</h1>
+<span class="accent-line"></span>
+```
+
+**Available classes:**
+- `.accent-line` — 80px amber line that expands from left, then pulses
+- `.accent-line.long` — 120px version for major headlines
+
+**Behavior:**
+- Line draws in from left (0.8s ease-out) when slide becomes active
+- Then gently pulses (opacity + slight scale) on a 4s cycle
+- Respects `prefers-reduced-motion` and `?motion=off`
+
+**When to use:**
+- Title slides (layout-title) to add visual interest
+- Key message slides where you want emphasis
+- Sparingly — 3-4 slides per deck maximum
 
 ## Copy editor
 
@@ -155,10 +207,11 @@ Enable reviewers to leave comments on deck elements for collaborative feedback.
 ### Adding Comments
 
 1. In review mode, hover over elements to see them highlighted
-2. Click any commentable element (titles, text, cards, metrics, media frames)
-3. First-time commenters enter name and email (stored in session)
-4. Type feedback in the popover and click "Add Comment"
-5. A badge appears on commented elements showing comment count
+2. **Click** any commentable element (titles, text, cards, metrics, media frames)
+3. **Or select text** within an element to comment on specific wording/typos
+4. First-time commenters enter name and email (stored in session)
+5. Type feedback in the popover and click "Add Comment"
+6. A numbered badge (①②③) appears on commented elements for easy reference
 
 ### Viewing Comments
 
@@ -192,13 +245,16 @@ Comments are stored in localStorage keyed by deck ID. Export structure:
 ```json
 {
   "deckId": "example-pitch",
+  "nextNumber": 4,
   "comments": [
     {
       "id": "c_1706123456789_abc123",
+      "number": 1,
       "slideIndex": 2,
       "slideTitle": "Our Solution",
       "elementSelector": "[data-comment-target='headline']",
       "elementText": "First 50 chars of element...",
+      "selectedText": "specific phrase",
       "comment": "This needs more specificity",
       "author": {
         "name": "Sarah Chen",
@@ -210,6 +266,9 @@ Comments are stored in localStorage keyed by deck ID. Export structure:
   ]
 }
 ```
+
+- `number`: Sequential comment number (①②③) for easy reference in feedback
+- `selectedText`: If reviewer selected specific text, captures that selection (null otherwise)
 
 ### Element Targeting
 
