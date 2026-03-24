@@ -38,13 +38,14 @@ That's it. One HTML file. AI-generated infographics. Brand tokens applied automa
 | 47 files per deck | One portable HTML file |
 | Manual consistency checks | Automated layout + narrative review |
 | Start from blank slide | Start from storytelling framework |
+| Hope your stats are right | Content Database blocks unapproved claims |
 
 ---
 
 ## The Workflow
 
 ```
-Brief → Framework Match → Slide Generation → AI Visuals → Review Panel → Ship
+Brief → Framework Match → Slide Generation → AI Visuals → Content DB Check → Review Panel → Ship
 ```
 
 ### 1. Narrative Engine matches your content to structure
