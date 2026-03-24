@@ -14,6 +14,8 @@ description: Build Keynote-style single-file HTML slide decks with brand-ready t
 
 ## Workflow
 
+0. **Resolve entity + detect content-db.** Read `deck.json` → `entity` field; fall back to `<section data-entity="...">` on the active slide; then to `brands.js` default entity (the entity whose export key is `"default"`, or the single entity in the file). Check whether `content-db/<entity>/` exists alongside `brands.js`. If it does and is well-formed, content-db mode is active — load relevant atoms before generating any content. If it does not exist or is malformed, proceed normally with no message. See the [Content Database](#content-database) section for the full protocol.
+
 1. Run the deck bootstrap to create a deck folder:
 ```bash
 scripts/new-deck.sh example-pitch --entity northwind --title "Example Pitch" --type pitch
@@ -65,6 +67,7 @@ The brief includes diagnosis, scenarios, 30/60/90 plan, and specialist perspecti
 - Use the Chrome Devtools MCP tools to capture a snapshot/screenshot and review layout.
 - Check hierarchy, alignment, spacing rhythm, and contrast; then adjust copy and spacing.
 - Use the generator panel for brand-aware media, then re-check balance and whitespace.
+- **Register new content-db atoms (if active).** After review, write new atoms to `content-db/<entity>/` for any claims (`cl###`), copy strings (`cp###`), or assets (`as###`) introduced during the build. Run `node content-db/validate.js` (or equivalent). The output package is not complete until validation exits 0. Do not modify existing atoms — add a `vl###` validation record and mark the original `status: disputed` if wording conflicts.
 
 ## Templates
 
@@ -300,9 +303,10 @@ For content-driven deck creation, use the Narrative Engine workflow that matches
 
 1. **Ingest resources:** Run `node scripts/ingest-resources.js decks/<deck-id>` to read all materials
    - Or use `node scripts/narrative-build.js decks/<deck-id>` to prepare model-mediated prompts
+1a. **Load content-db atoms (if active).** If content-db mode is active, pull `copy.md` and `claims.md` atoms for the resolved entity. Filter atoms by `audience` tag if present. Surface any atom with a non-null `gate` value before proceeding — do not include gated content without user confirmation. If content-db is not active, skip this step.
 2. **Focal discovery + discovery:** Align on the one point, then answer 5 questions (audience, purpose, content type, tone, reveal)
 3. **Density + framework match:** Choose density mode, then get 2-3 recommendations with content mapped to structure
-4. **Deck generation:** Build slides with source attribution tags
+4. **Deck generation:** Build slides with source attribution tags. If content-db is active: use each claim's exact approved text — do not paraphrase. For any claim or copy string not found in the db, pause and ask: *"That claim isn't in `content-db/<entity>/claims.md` — want me to register it as unverified, or use the closest approved atom?"* Do not silently include or skip unapproved content.
 5. **Review panel:** 5 agents + Director synthesize feedback
 
 ### Discovery Questions
@@ -373,3 +377,86 @@ The Director triages findings into **Must Fix**, **Should Fix**, and **Could Fix
 - **Metaphor family:** One per deck (journey OR ecology OR weather, etc.)
 
 See `/docs/integrated-architecture.md` for full technical details.
+
+---
+
+## Content Database
+
+A modular, approved-content management layer for any project using keynote-slides. When a `content-db/<entity>/` directory exists alongside `brands.js`, agents automatically load and enforce approved atoms. When it does not exist, the skill runs exactly as before — no config, no warnings.
+
+### Directory Structure
+
+```
+<deck-repo>/
+├── brands.js                  ← entity source of truth (unchanged)
+├── content-db/
+│   └── <entity>/              ← one directory per entity
+│       ├── README.md          ← schema reference + agent protocol
+│       ├── claims.md          ← cl### atoms — stats, benchmarks, data points
+│       ├── validation.md      ← vl### atoms — experimental evidence blocks
+│       ├── assets.md          ← as### atoms — images, video, SVG with provenance
+│       ├── copy.md            ← cp### atoms — approved text passages
+│       ├── brand.md           ← br### atoms — color tokens, typography
+│       └── layouts.md         ← ly### atoms — approved slide structures
+└── <deck-id>/                 ← decks alongside (unchanged)
+```
+
+`content-db/` always lives next to `brands.js`. Multi-entity repos have one subdirectory per entity.
+
+### Entity Resolution
+
+Resolve the active entity in this order:
+
+1. `deck.json` → `entity` field
+2. `<section data-entity="...">` on the active slide
+3. `brands.js` → the entity whose export key is `"default"`, or the single entity in the file. If multiple entities exist without a `"default"` key, surface the ambiguity — do not guess.
+
+### Detection
+
+```
+resolve entity
+→ content-db/<entity>/ exists and is well-formed?
+  → YES: load relevant atom files, activate compliance
+  → MALFORMED: log warning, proceed without compliance
+  → NO: proceed as normal, no message
+```
+
+| Operation | Atom files loaded |
+|-----------|------------------|
+| Narrative planning | `copy.md`, `claims.md` |
+| Full build | all six files |
+| Targeted edit | only types relevant to the change |
+
+### Compliance Rules
+
+1. **Read before write.** Load relevant atoms before generating content. Never re-derive brand colors or claim text if an atom already exists.
+2. **Surface unapproved content (Build and Edit only — not planning).** If a claim or copy string is not in the db (different number, source, or framing = new claim; minor rewording = same), pause: *"That claim isn't in `content-db/<entity>/claims.md` — want me to register it as unverified, or use the closest approved atom?"*
+3. **Register new atoms.** After any build or edit, write atoms for all claims (`cl###`), copy strings (`cp###`), and assets (`as###`) introduced. Run `node content-db/validate.js`. Output is not complete until exit 0.
+4. **Never modify existing atoms.** If content conflicts with an existing atom, add a `vl###` validation record and update `status: disputed` in the original. Surface the conflict to the user.
+
+### Atom Prefixes
+
+All new atoms use a two-letter prefix + zero-padded three-digit number. Existing atoms with single-letter prefixes are grandfathered.
+
+| File | Prefix | Contents |
+|------|--------|----------|
+| `claims.md` | `cl###` | Stats, benchmarks — `status: validated \| disputed \| unverified` |
+| `validation.md` | `vl###` | Experimental evidence — `experiment_type`, `result`, `institution` |
+| `assets.md` | `as###` | Images, video, SVG — `file`, `deck`, `type`, `used_in` |
+| `copy.md` | `cp###` | Approved text passages — `concept`, `audience_level`, `tone`, `variants` |
+| `brand.md` | `br###` | Color tokens, typography — `element`, `css_var`, `value`, `usage_rules` |
+| `layouts.md` | `ly###` | Slide structures — `slide_type`, `css_classes`, `js_required`, `data_density` |
+
+Each atom is a `## <id>` heading with bullet-field body. Full schema in `content-db/<entity>/README.md`.
+
+### Bootstrap
+
+The skill does not scaffold a content-db unprompted. If a user asks why content-db is not active, explain the directory is absent and offer to create it. Only scaffold if the user says yes.
+
+Bootstrap steps (when approved):
+1. Create `content-db/<entity>/` directory
+2. Create six empty atom files with schema header comments
+3. Create `README.md` with schema reference and compliance rules
+4. Offer (separately) to extract initial atoms from existing deck HTML
+
+If the user declines, proceed in no-compliance mode and do not raise the topic again in the same session.

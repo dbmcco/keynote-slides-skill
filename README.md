@@ -115,6 +115,19 @@ Add notes to any slide without affecting layout. Toggle the notes panel during p
 | Open by default | Add `?notes=1` to URL |
 | Export all notes | Click **Export notes** → downloads markdown |
 
+### 6. Content Database enforces approved content
+
+When `content-db/<entity>/` exists alongside `brands.js`, agents automatically load approved atoms before every build and flag anything not in the database:
+
+| Atom type | Prefix | Contents |
+|-----------|--------|----------|
+| Claims | `cl###` | Validated stats, benchmarks, data points |
+| Copy | `cp###` | Approved text passages with audience and tone tags |
+| Assets | `as###` | Images and video with provenance |
+| Brand | `br###` | Color tokens and typography rules |
+
+No `content-db/` directory? Skill runs exactly as before — no config, no warnings.
+
 ---
 
 ## Model-Mediated Architecture
