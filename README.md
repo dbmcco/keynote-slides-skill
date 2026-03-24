@@ -116,19 +116,6 @@ Add notes to any slide without affecting layout. Toggle the notes panel during p
 | Open by default | Add `?notes=1` to URL |
 | Export all notes | Click **Export notes** → downloads markdown |
 
-### 6. Content Database enforces approved content
-
-When `content-db/<entity>/` exists alongside `brands.js`, agents automatically load approved atoms before every build and flag anything not in the database:
-
-| Atom type | Prefix | Contents |
-|-----------|--------|----------|
-| Claims | `cl###` | Validated stats, benchmarks, data points |
-| Copy | `cp###` | Approved text passages with audience and tone tags |
-| Assets | `as###` | Images and video with provenance |
-| Brand | `br###` | Color tokens and typography rules |
-
-No `content-db/` directory? Skill runs exactly as before — no config, no warnings.
-
 ---
 
 ## Model-Mediated Architecture
@@ -150,6 +137,58 @@ Artifacts you can audit:
 - `resources/materials/work-runs/*.json`
 
 If we keep heuristics temporarily, they are logged in `docs/model-mediated-deviation-register.md`.
+
+---
+
+## Content Database — Approved Content Governance
+
+AI slide generation has a silent failure mode: the model confidently drops in a statistic, a brand claim, or a product description that is slightly wrong, outdated, or legally unvetted. You catch it in the final review — or you don't.
+
+The Content Database solves this at the architecture level. It is an entity-scoped library of **approved atoms** that agents load before they generate anything. If a claim, copy string, or asset isn't in the database, the agent stops and asks — it does not silently include or skip it.
+
+### How it works
+
+Drop a `content-db/<entity>/` directory alongside `brands.js`. That's the entire activation step. When it exists and is well-formed, compliance mode activates automatically. When it doesn't exist, the skill behaves exactly as before — no config, no warnings.
+
+```
+resolve entity
+→ content-db/<entity>/ exists?
+  → YES  — load approved atoms, activate compliance
+  → NO   — proceed normally, no message
+```
+
+The agent resolves the active entity from `deck.json`, then a slide-level `data-entity` attribute, then the `brands.js` default — so compliance follows the brand context automatically.
+
+### The atom schema
+
+Six files, one directory per entity. Every atom is a `## id` heading with bullet-field body.
+
+| File | Prefix | Contents |
+|------|--------|----------|
+| `claims.md` | `cl###` | Stats, benchmarks, data points — each with `status: validated \| disputed \| unverified` |
+| `validation.md` | `vl###` | Experimental evidence — experiment type, result, institution |
+| `assets.md` | `as###` | Images, video, SVG — file path, deck, type, provenance |
+| `copy.md` | `cp###` | Approved text passages — concept, audience level, tone, variants |
+| `brand.md` | `br###` | Color tokens, typography — CSS var, value, usage rules |
+| `layouts.md` | `ly###` | Approved slide structures — CSS classes, data density |
+
+### What agents do with it
+
+- **Before generating**: load `claims.md` and `copy.md` for narrative planning; all six files for a full build.
+- **During generation**: use each claim's exact approved text — no paraphrasing. For any claim not found, pause and ask: *"That claim isn't in `content-db/<entity>/claims.md` — register as unverified, or use the closest approved atom?"*
+- **After review**: register new atoms for every claim, copy string, and asset introduced. Run `node content-db/validate.js`. Output is not complete until it exits 0.
+- **Conflicts**: never modify existing atoms. Add a `vl###` validation record and mark the original `status: disputed`. Surface the conflict explicitly.
+
+### Bootstrap
+
+The skill never scaffolds a content-db unprompted. To create one:
+
+```bash
+mkdir -p content-db/<entity>
+# Claude will scaffold the six atom files and README when asked
+```
+
+Or ask Claude: *"Set up a content database for `<entity>`"* — it will create the directory structure and offer to extract initial atoms from existing deck HTML.
 
 ---
 
