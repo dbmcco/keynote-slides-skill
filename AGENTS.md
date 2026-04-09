@@ -38,16 +38,14 @@ Open `http://<tailscale-ip>:8921/decks/my-pitch/index.html`.
 
 ## Issue Tracking
 
-This project uses **bd** (beads). Run `bd onboard` to get started.
+This project does not use beads. If this repo adopts `.workgraph/`, use Workgraph and `speedriftd`; otherwise track deck work in repo docs and GitHub.
 
 ## Quick Reference
 
 ```bash
-bd ready              # Find available work
-bd show <id>          # View issue details
-bd update <id> --status in_progress  # Claim work
-bd close <id>         # Complete work
-bd sync               # Sync with git
+git status            # Check local repo state
+git pull --rebase     # Refresh before landing changes
+git push              # Publish deck/template changes
 ```
 
 ## Landing the Plane (Session Completion)
@@ -62,7 +60,6 @@ bd sync               # Sync with git
 4. **PUSH TO REMOTE** - This is MANDATORY:
    ```bash
    git pull --rebase
-   bd sync
    git push
    git status  # MUST show "up to date with origin"
    ```
