@@ -18,6 +18,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { execFileSync } = require('child_process');
 const readline = require('readline');
 
 // ============================================================================
@@ -618,6 +619,10 @@ async function main() {
     // Create deck directory
     fs.mkdirSync(path.join(deckDir, 'resources', 'assets'), { recursive: true });
     fs.mkdirSync(path.join(deckDir, 'resources', 'materials'), { recursive: true });
+    execFileSync('node', [path.join(repoRoot, 'scripts', 'sync-model-routes.js')], {
+      cwd: repoRoot,
+      stdio: 'inherit',
+    });
 
     // Generate slides.md
     const slidesMd = generateSlidesMarkdown(context, slides);

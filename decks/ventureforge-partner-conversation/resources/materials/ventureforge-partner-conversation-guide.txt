@@ -1,0 +1,144 @@
+﻿VentureForge — Partner Conversation Guide
+For Justin, Brendan, and consulting partners. Read this in 5 minutes, use it in your next meeting.
+
+
+The 30-Second Explanation
+
+
+"Our AI partner, LightForge Works, has an analysis platform called VentureForge. You give them your data — whatever you've got, system extracts, spreadsheets, the problems you've been wrestling with — and they run it through their platform. One week later you get a report: problems identified, opportunities quantified, a clear case for what to solve and what it's worth. It's free. They do it for free because they're confident the analysis will show something worth building."
+
+
+That's it. If the client leans in, go to the data ask. If they ask why it's free, see the FAQ below.
+
+
+What to Ask the Client For
+
+
+Don't wait for the client to figure out what to send. Be specific. Ask for any combination of these:
+
+
+Data extracts
+
+
+SAP / ERP exception reports or scheduling extracts
+CRM data (accounts, reps, activity history)
+Any spreadsheet they're using to manually track something
+Job boards, order systems, inventory reports — whatever runs their operations
+
+
+Problem context (any format works)
+
+
+The PowerPoint from the last board meeting
+A list of the 3 things that keep them up at night
+Process docs, SOPs, flowcharts
+A voice memo — literally just them talking about what's broken
+
+
+The two questions that matter
+
+
+1. "What do you personally want to get out of this?" (stakeholder win)
+2. "What is the organization struggling with that your boss or board keeps bringing up?" (organizational win)
+
+
+You don't need all of this. You need enough that Braydon can say "we've got what we need." If it's thin, send what you have and Braydon will tell you if more is needed before the clock starts.
+
+
+How the Handoff Works
+
+
+1. You explain VentureForge in a conversation
+2. Client says yes, they're interested
+3. Client signs an NDA (LFW provides, or use theirs — either works)
+4. Client sends data and problem context to you
+5. You forward to Braydon
+6. Braydon confirms "we have what we need" — this starts the one-week clock
+7. One week later: Braydon delivers the VentureForge report
+8. You walk through it with the client
+9. If there's a compelling case → move to scoping (existing ForgeWorks process)
+   If not → honest conversation, no harm done
+
+
+Key point: you own the relationship. Braydon runs the analysis and produces the report. You deliver it and lead the conversation about next steps. Braydon can join that call if it's helpful.
+
+
+What the Client Gets
+
+
+A VentureForge report with:
+
+
+Problems identified — what the data reveals, ranked by impact
+Opportunities quantified — what the gaps cost and what solving them is worth
+ROE framework — the before-and-after case, with baselines where possible
+Honest recommendation — which problems are worth solving, which aren't a fit
+
+
+The report format is evolving. The content is what matters.
+
+
+FAQ for Client Conversations
+
+
+"Why is it free?"
+"Because they're confident in what the analysis shows. If it reveals something worth solving, the path forward is obvious. If it doesn't, they tell you that honestly."
+
+
+"What's the catch?"
+"There isn't one. You sign an NDA to protect your data. That's the only document before you'd choose to move forward with anything."
+
+
+"What if the report says there's nothing there?"
+"Then you got a free analysis of your operations. That's useful on its own. And they'll tell you that honestly — they don't benefit from finding problems that aren't there."
+
+
+"Do I have to buy software after?"
+"No. The analysis is independent. If the report shows a clear case, you can decide to move forward. If it doesn't, you owe nothing."
+
+
+"What kind of data do you need?"
+"Whatever you've got. System extracts, spreadsheets, process documents, even a description of what's bothering you. They'll tell you if it's enough before the clock starts."
+
+
+"How long does it take?"
+"One week from when they confirm they have enough to work with."
+
+
+"Who sees my data?"
+"Only the LFW analysis team. Covered under the NDA. Your data is not shared, stored beyond the analysis, or used for anything else."
+
+
+When to Bring It Up
+
+
+VentureForge is most useful when:
+
+
+A client knows something's wrong but can't quantify it
+A client has organizational buy-in problems (their boss needs numbers, not feelings)
+A client is evaluating whether to invest in software at all
+You're trying to get to the CFO or VP level, not just the department champion
+A deal is stalled because the justification isn't strong enough
+
+
+It's least useful when:
+
+
+The client already has a clearly scoped, well-justified project (skip straight to ForgeWorks)
+The client doesn't have access to any operational data
+
+
+After the Report
+
+
+If the report shows a compelling case, the next step is the existing ForgeWorks process:
+
+
+1. Four discovery sessions (you're in the room)
+2. Mockups before any contract
+3. 30 days to working software
+4. Fixed scope, fixed price ($2,500/month)
+
+
+You already know this part. VentureForge just adds a front door.

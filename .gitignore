@@ -6,3 +6,4 @@ lib/media/__pycache__/
 .env
 node_modules/
 .env.local
+decks/model-routes.js

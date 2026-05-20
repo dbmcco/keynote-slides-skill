@@ -99,6 +99,7 @@ fi
 
 rm -rf "$deck_dir"
 mkdir -p "$deck_dir/resources/assets" "$deck_dir/resources/materials"
+node "${repo_root}/scripts/sync-model-routes.js"
 cp "$template_path" "$deck_dir/index.html"
 cp "$editor_template_path" "$deck_dir/editor.html"
 

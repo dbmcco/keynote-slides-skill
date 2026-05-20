@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Generate images using Gemini nano banana (gemini-2.5-flash-image)
+ * Generate images using the central Keynote image-generation route.
  *
  * Usage:
  *   GEMINI_API_KEY=xxx node scripts/generate-image.js "prompt" output.png
@@ -9,9 +9,10 @@
 
 const fs = require('fs');
 const path = require('path');
+const { ROUTES, modelForRoute } = require('./model-routes');
 
 const API_BASE = 'https://generativelanguage.googleapis.com/v1beta';
-const IMAGE_MODEL = 'gemini-2.5-flash-image'; // nano banana - Gemini with image output
+const IMAGE_MODEL = modelForRoute(ROUTES.imageGeneration);
 
 // Brand-aware prompt prefix
 const BRAND_PREFIX = 'Generate an image: Editorial illustration style, warm parchment palette with orange and sage accents, crisp linework, minimal shadows, clean modern aesthetic.';

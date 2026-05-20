@@ -11,7 +11,18 @@ import urllib.request
 import urllib.error
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Optional, Literal
+from typing import Optional
+
+from .model_routes import (
+    KEYNOTE_KIE_VEO_FAST_ROUTE,
+    KEYNOTE_KIE_VEO_QUALITY_ROUTE,
+    model_for_route,
+)
+
+
+VEO_QUALITY_MODEL = model_for_route(KEYNOTE_KIE_VEO_QUALITY_ROUTE)
+VEO_FAST_MODEL = model_for_route(KEYNOTE_KIE_VEO_FAST_ROUTE)
+VeoModel = str
 
 
 def _load_api_key() -> str:
@@ -63,8 +74,8 @@ class VeoClient:
     def generate_video(
         self,
         prompt: str,
-        model: Literal["veo3", "veo3_fast"] = "veo3",
-        aspect_ratio: Literal["16:9", "9:16", "1:1"] = "16:9",
+        model: VeoModel = VEO_QUALITY_MODEL,
+        aspect_ratio: str = "16:9",
         wait: bool = True,
         timeout: int = 600,
         poll_interval: int = 10,
@@ -74,7 +85,7 @@ class VeoClient:
 
         Args:
             prompt: Text description of the video
-            model: "veo3" (quality) or "veo3_fast" (speed)
+            model: concrete Kie.ai model resolved from the central registry
             aspect_ratio: "16:9", "9:16", or "1:1"
             wait: Whether to wait for completion
             timeout: Max seconds to wait
@@ -108,8 +119,8 @@ class VeoClient:
         self,
         prompt: str,
         image_path: Path | str,
-        model: Literal["veo3", "veo3_fast"] = "veo3",
-        aspect_ratio: Literal["16:9", "9:16", "1:1"] = "16:9",
+        model: VeoModel = VEO_QUALITY_MODEL,
+        aspect_ratio: str = "16:9",
         wait: bool = True,
         timeout: int = 600,
         poll_interval: int = 10,
@@ -120,7 +131,7 @@ class VeoClient:
         Args:
             prompt: Text description of the video motion/content
             image_path: Path to the reference image
-            model: "veo3" (quality) or "veo3_fast" (speed)
+            model: concrete Kie.ai model resolved from the central registry
             aspect_ratio: "16:9", "9:16", or "1:1"
             wait: Whether to wait for completion
             timeout: Max seconds to wait
@@ -302,8 +313,8 @@ class VeoClient:
 def generate_video(
     prompt: str,
     output_path: Optional[Path | str] = None,
-    model: Literal["veo3", "veo3_fast"] = "veo3",
-    aspect_ratio: Literal["16:9", "9:16", "1:1"] = "16:9",
+    model: VeoModel = VEO_QUALITY_MODEL,
+    aspect_ratio: str = "16:9",
 ) -> VideoResult:
     """
     Convenience function to generate a video.
@@ -311,7 +322,7 @@ def generate_video(
     Args:
         prompt: Text description of the video
         output_path: Optional path to download the video
-        model: "veo3" (quality) or "veo3_fast" (speed)
+        model: concrete Kie.ai model resolved from the central registry
         aspect_ratio: "16:9", "9:16", or "1:1"
 
     Returns:
@@ -330,8 +341,8 @@ def generate_video_from_image(
     prompt: str,
     image_path: Path | str,
     output_path: Optional[Path | str] = None,
-    model: Literal["veo3", "veo3_fast"] = "veo3",
-    aspect_ratio: Literal["16:9", "9:16", "1:1"] = "16:9",
+    model: VeoModel = VEO_QUALITY_MODEL,
+    aspect_ratio: str = "16:9",
 ) -> VideoResult:
     """
     Convenience function to generate video from image.
@@ -340,7 +351,7 @@ def generate_video_from_image(
         prompt: Text description of the video motion/content
         image_path: Path to reference image
         output_path: Optional path to download the video
-        model: "veo3" (quality) or "veo3_fast" (speed)
+        model: concrete Kie.ai model resolved from the central registry
         aspect_ratio: "16:9", "9:16", or "1:1"
 
     Returns:

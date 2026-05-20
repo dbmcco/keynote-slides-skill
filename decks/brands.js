@@ -3,6 +3,38 @@
 
 // These are example brand profiles. Replace with your own brand identities.
 window.KEYNOTE_BRANDS = {
+  lightforge: {
+    label: "LightForge Works",
+    tokens: {
+      "brand-ink": "#121317",
+      "brand-ink-soft": "#23262d",
+      "brand-paper": "#fbfaf6",
+      "brand-paper-deep": "#eef1ed",
+      "brand-accent": "#d2472f",
+      "brand-accent-strong": "#a93825",
+      "brand-sage": "#4b7f71",
+      "brand-slate": "#4a5358",
+      "brand-line": "rgba(18, 19, 23, 0.13)",
+      "brand-glow": "rgba(210, 71, 47, 0.28)",
+    },
+    fonts: {
+      display: "\"Fraunces\", \"Iowan Old Style\", \"Palatino\", serif",
+      body: "\"Space Grotesk\", \"Avenir Next\", \"Gill Sans\", sans-serif",
+    },
+    fontLabel: "Display: Fraunces. Body: Space Grotesk.",
+    mediaPromptPrefix: "practical operating model visuals, warm white paper, charcoal ink, ember red accents, clean workshop lighting",
+    defaultDeckType: "partner",
+    deckPreferences: {
+      partner: {
+        voice: "practical, partner-aware, evidence-led",
+        headlineStyle: "plain-language business value with a clear next action",
+        narrative: ["Situation", "Front door", "Data ask", "Report", "ForgeWorks path", "Decision"],
+        density: "medium",
+        visualFocus: "process maps, handoff diagrams, concise operating artifacts",
+        avoid: ["AI as the main argument", "generic transformation language", "overclaiming"],
+      },
+    },
+  },
   northwind: {
     label: "Northwind Labs",
     tokens: {

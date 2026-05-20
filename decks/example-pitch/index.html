@@ -867,7 +867,7 @@
       </label>
       <label>
         Image model (nano banana)
-        <input id="gen-image-model" type="text" inputmode="text" placeholder="gemini-2.5-flash-image" />
+        <input id="gen-image-model" type="text" inputmode="text" placeholder="keynote.image_generation" />
       </label>
       <label>
         Base image (optional for i2i/i2v)
@@ -876,8 +876,8 @@
       <label>
         Video model
         <select id="gen-video-model">
-          <option value="veo-3.1-generate-preview">veo-3.1-generate-preview</option>
-          <option value="veo-3.0-generate-preview">veo-3.0-generate-preview</option>
+          <option value="keynote.gemini_video_primary">Primary video route</option>
+          <option value="keynote.gemini_video_secondary">Secondary video route</option>
         </select>
       </label>
       <div class="gen-actions">
@@ -946,6 +946,7 @@
     </template>
 
     <script src="../brands.js"></script>
+    <script src="../model-routes.js"></script>
     <script src="./deck-config.js"></script>
     <script>
       const slides = Array.from(document.querySelectorAll(".slide"));
@@ -973,9 +974,10 @@
       const genVideoModel = document.getElementById("gen-video-model");
 
       const apiBase = "https://generativelanguage.googleapis.com/v1beta";
-      const defaultImageModel = "gemini-2.5-flash-image";
+      const defaultImageRoute = "keynote.image_generation";
       const keyStorage = "GEMINI_API_KEY";
       const imageModelStorage = "KEYNOTE_IMAGE_MODEL";
+      const modelRoutes = window.KEYNOTE_MODEL_ROUTES || {};
       const deckConfig = window.KEYNOTE_DECK || {};
       const deckId =
         typeof deckConfig.id === "string" && deckConfig.id.trim()
@@ -1078,13 +1080,21 @@
         }
       };
 
+      const resolveModelValue = (value) => {
+        const normalized = (value || "").trim();
+        if (!normalized) return "";
+        const route = modelRoutes[normalized];
+        if (route?.model) return route.model;
+        return normalized;
+      };
+
       const resolveImageModel = () => {
         const fromInput = genImageModel?.value?.trim();
-        return (
+        return resolveModelValue(
           fromInput ||
           localStorage.getItem("NANO_BANANA_IMAGE_MODEL") ||
           localStorage.getItem(imageModelStorage) ||
-          defaultImageModel
+          defaultImageRoute
         );
       };
 
@@ -1331,6 +1341,7 @@
       const startVideoTask = async (prompt, inputImage, model) => {
         const key = resolveKey();
         if (!key) throw new Error("Missing API key.");
+        const resolvedModel = resolveModelValue(model);
         const instance = { prompt };
         if (inputImage) {
           instance.image = {
@@ -1339,7 +1350,7 @@
           };
         }
         const data = await postJson(
-          `${apiBase}/models/${encodeURIComponent(model)}:predictLongRunning`,
+          `${apiBase}/models/${encodeURIComponent(resolvedModel)}:predictLongRunning`,
           {
             instances: [instance],
             parameters: {

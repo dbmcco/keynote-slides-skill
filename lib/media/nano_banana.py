@@ -1,4 +1,4 @@
-# ABOUTME: Gemini image generation client (nano-banana / gemini-2.5-flash-image).
+# ABOUTME: Gemini image generation client for Keynote image routes.
 # ABOUTME: Supports text-to-image and image-to-image generation.
 
 from __future__ import annotations
@@ -11,6 +11,8 @@ import urllib.error
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
+
+from .model_routes import KEYNOTE_IMAGE_GENERATION_ROUTE, model_for_route
 
 
 def _load_api_key() -> str:
@@ -68,7 +70,7 @@ class NanoBananaClient:
     """Client for Gemini image generation (nano-banana)."""
 
     BASE_URL = "https://generativelanguage.googleapis.com/v1beta/models"
-    DEFAULT_MODEL = "gemini-2.5-flash-image"
+    DEFAULT_MODEL = model_for_route(KEYNOTE_IMAGE_GENERATION_ROUTE)
 
     def __init__(
         self,

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Keynote Slides Skill Demo</title>
+    <title>VentureForge Partner Conversation</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400,600,700&family=Space+Grotesk:wght@400;500;600&display=swap");
 
@@ -208,15 +208,15 @@
       .metric {
         border: 1px solid var(--brand-line);
         border-radius: 18px;
-        padding: 18px;
+        padding: 14px 16px;
         text-align: left;
         background: rgba(255, 255, 255, 0.65);
       }
 
       .metric-number {
         font-family: var(--font-display);
-        font-size: 2.4rem;
-        margin-bottom: 8px;
+        font-size: 2.1rem;
+        margin-bottom: 6px;
       }
 
       .metric-label {
@@ -289,6 +289,220 @@
 
       .theme-ink .quote-meta {
         color: rgba(247, 241, 232, 0.7);
+      }
+
+      .vf-kicker {
+        display: inline-flex;
+        width: fit-content;
+        padding: 8px 12px;
+        border: 1px solid var(--brand-line);
+        border-radius: 999px;
+        color: var(--brand-accent);
+        background: rgba(255, 255, 255, 0.48);
+        font-size: 0.78rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+      }
+
+      .vf-stack {
+        display: grid;
+        gap: 14px;
+      }
+
+      .vf-card-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .vf-process {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        align-items: stretch;
+      }
+
+      .vf-step {
+        border: 1px solid var(--brand-line);
+        border-radius: 16px;
+        padding: 16px;
+        background: rgba(255, 255, 255, 0.62);
+        min-height: 132px;
+      }
+
+      .theme-ink .vf-step {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.14);
+      }
+
+      .vf-step-num {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        color: var(--brand-accent);
+        margin-bottom: 8px;
+      }
+
+      .vf-step-title {
+        font-weight: 650;
+        margin-bottom: 6px;
+      }
+
+      .vf-step-copy {
+        color: var(--brand-slate);
+        font-size: 0.88rem;
+        line-height: 1.45;
+      }
+
+      .theme-ink .vf-step-copy {
+        color: rgba(247, 241, 232, 0.72);
+      }
+
+      .vf-ledger {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .vf-ledger .card {
+        min-height: 190px;
+      }
+
+      .vf-source {
+        color: var(--brand-slate);
+        font-size: 0.74rem;
+        line-height: 1.35;
+        margin-top: 6px;
+      }
+
+      .theme-ink .vf-source {
+        color: rgba(247, 241, 232, 0.58);
+      }
+
+      .vf-report {
+        display: grid;
+        grid-template-columns: 0.85fr 1.15fr;
+        gap: 22px;
+        align-items: center;
+      }
+
+      .vf-report-sheet {
+        border: 1px solid var(--brand-line);
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 14px 36px rgba(18, 19, 23, 0.1);
+      }
+
+      .vf-report-line {
+        height: 10px;
+        border-radius: 999px;
+        background: var(--brand-paper-deep);
+        margin: 12px 0;
+      }
+
+      .vf-report-line.hot {
+        background: var(--brand-accent);
+        width: 62%;
+      }
+
+      .vf-report-line.sage {
+        background: var(--brand-sage);
+        width: 78%;
+      }
+
+      .vf-report-line.short {
+        width: 48%;
+      }
+
+      .vf-mini-label {
+        font-size: 0.78rem;
+        color: var(--brand-slate);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-weight: 650;
+      }
+
+      .vf-visual {
+        border: 1px solid var(--brand-line);
+        border-radius: 16px;
+        padding: 18px;
+        background: rgba(255, 255, 255, 0.62);
+        min-height: 310px;
+        display: grid;
+        align-items: center;
+      }
+
+      .theme-ink .vf-visual {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.14);
+      }
+
+      .vf-visual svg {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .vf-diagram-label {
+        font-family: var(--font-body);
+        font-size: 14px;
+        font-weight: 650;
+        fill: var(--brand-ink);
+      }
+
+      .theme-ink .vf-diagram-label {
+        fill: var(--brand-paper);
+      }
+
+      .vf-diagram-small {
+        font-family: var(--font-body);
+        font-size: 11px;
+        fill: var(--brand-slate);
+      }
+
+      .theme-ink .vf-diagram-small {
+        fill: rgba(247, 241, 232, 0.72);
+      }
+
+      .vf-pill {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        border: 1px solid var(--brand-line);
+        border-radius: 999px;
+        padding: 8px 12px;
+        color: var(--brand-slate);
+        font-size: 0.84rem;
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+      .theme-ink .vf-pill {
+        color: rgba(247, 241, 232, 0.74);
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.14);
+      }
+
+      .vf-decision-stack {
+        display: grid;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      @media (max-width: 900px) {
+        .vf-card-grid,
+        .vf-ledger,
+        .vf-report {
+          grid-template-columns: 1fr;
+        }
+
+        .vf-process {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .vf-visual {
+          min-height: 220px;
+        }
       }
 
       .swatch-row {
@@ -582,49 +796,6 @@
         transition: none;
         transform: none;
         opacity: 1;
-      }
-
-      /* Decorative accent animations */
-      @keyframes line-expand {
-        from { transform: scaleX(0); }
-        to { transform: scaleX(1); }
-      }
-
-      @keyframes line-pulse {
-        0%, 100% { opacity: 0.6; transform: scaleX(1); }
-        50% { opacity: 1; transform: scaleX(1.02); }
-      }
-
-      .accent-line {
-        display: block;
-        width: 80px;
-        height: 3px;
-        background: var(--brand-accent);
-        margin-top: 8px;
-        margin-bottom: 8px;
-        transform-origin: left;
-        border-radius: 2px;
-        transform: scaleX(0);
-      }
-
-      .slide.is-active .accent-line {
-        animation: line-expand 0.8s ease-out 0.3s forwards, line-pulse 4s ease-in-out 1.1s infinite;
-      }
-
-      .accent-line.long {
-        width: 120px;
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .accent-line {
-          animation: none !important;
-          transform: scaleX(1);
-        }
-      }
-
-      body[data-motion="off"] .accent-line {
-        animation: none !important;
-        transform: scaleX(1);
       }
 
       @page {
@@ -959,7 +1130,7 @@
       }
 
       .comment-item.is-resolved {
-        opacity: 0.7;
+        opacity: 0.5;
       }
 
       .comment-item-header {
@@ -986,16 +1157,16 @@
         flex: 1;
       }
 
-      .comment-item-time {
-        font-size: 0.75rem;
-        color: rgba(247, 241, 232, 0.5);
-      }
-
       .selection-label {
         color: var(--brand-accent);
         font-size: 0.75rem;
         text-transform: uppercase;
         letter-spacing: 0.5px;
+      }
+
+      .comment-item-time {
+        font-size: 0.75rem;
+        color: rgba(247, 241, 232, 0.5);
       }
 
       .comment-item-context {
@@ -1070,299 +1241,333 @@
   </head>
   <body>
     <main class="deck" id="deck" aria-live="polite">
-      <!-- Slide 1: HOOK (Change) -->
-      <section class="slide theme-ink is-active" data-title="AI Shift">
+      <section class="slide theme-ivory is-active" data-title="VentureForge">
         <div class="slide-inner layout-title">
-          <div class="eyebrow" data-anim="slide-up" style="--anim-delay: 0.05s">The Shift</div>
-          <h1 class="title" data-anim="slide-up" style="--anim-delay: 0.15s">AI flipped what presentations demand</h1>
-          <span class="accent-line long"></span>
-          <p class="subtitle" data-anim="fade" style="--anim-delay: 0.25s">
-            Not design skills. Prompting skills. The tools that dominated for decades now feel like drawing with a mouse.
+          <div class="vf-kicker reveal" style="--reveal-index: 1">LightForge Works partner deck</div>
+          <h1 class="title reveal" style="--reveal-index: 2">A decision-ready report before anyone scopes software.</h1>
+          <p class="subtitle reveal" style="--reveal-index: 3">
+            VentureForge gives partners a clean next move when a client has operational pain, scattered data, and no quantified case yet.
           </p>
+          <div class="chip-row reveal" style="--reveal-index: 4">
+            <div class="chip">Partner-owned relationship</div>
+            <div class="chip">One-week analysis</div>
+            <div class="chip">ForgeWorks front door</div>
+          </div>
+          <aside class="slide-notes">
+            Open by positioning VentureForge as a conversation tool, not a platform pitch. The deck is for partners who need to explain the offer quickly and move to the next client step.
+          </aside>
         </div>
-        <aside class="slide-notes">
-Open with the disruption. Pause after "AI flipped" to let it land.
-
-The key tension: PowerPoint and Keynote ruled for 30 years because design skills were the bottleneck. Now the bottleneck is knowing what to ask for.
-
-If presenting to skeptics, acknowledge that AI hype is real—but this is about workflow, not magic.
-        </aside>
       </section>
 
-      <!-- Slide 2: STAKES (The Cost) -->
-      <section class="slide theme-ivory" data-title="The Cost">
+      <section class="slide theme-ink" data-title="Thirty Second Explanation">
         <div class="slide-inner layout-split">
           <div>
-            <div class="eyebrow" data-anim="fade" style="--anim-delay: 0.05s">The Cost</div>
-            <h2 class="section-title" data-anim="slide-left" style="--anim-delay: 0.1s">Eight hours vanish into formatting—not thinking</h2>
-            <p class="body-text" data-anim="fade" style="--anim-delay: 0.15s">
-              The average professional spends a full workday on each deck. Most of that time? Alignment, colors, exports. The story gets whatever's left.
-            </p>
+            <div class="eyebrow reveal" style="--reveal-index: 1">Thirty second explanation</div>
+            <h2 class="section-title reveal" style="--reveal-index: 2">Give LFW the data and context. One week later, the client gets the case for what is worth solving.</h2>
+            <p class="body-text reveal" style="--reveal-index: 3">The value is the report and the decision it enables. Do not lead with "AI-powered"; lead with evidence.</p>
           </div>
-          <div class="media-frame" data-anim="slide-right" style="--anim-delay: 0.1s" data-ready="true">
-            <img class="gen-media" src="resources/assets/workflow-diagram.png" alt="Time lost to formatting visualized" style="opacity: 1;" />
+          <div class="vf-visual reveal" style="--reveal-index: 2">
+            <svg class="diagram" data-media="svg" viewBox="0 0 760 360" role="img" aria-label="VentureForge flow from client context to decision-ready report">
+              <defs>
+                <marker id="vf-arrow-flow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#ff6b35"></path>
+                </marker>
+              </defs>
+              <rect x="28" y="90" width="176" height="132" rx="18" fill="rgba(255,255,255,0.08)" stroke="rgba(247,241,232,0.26)"></rect>
+              <text x="116" y="138" text-anchor="middle" class="vf-diagram-label">Client context</text>
+              <text x="116" y="170" text-anchor="middle" class="vf-diagram-small">extracts, spreadsheets,</text>
+              <text x="116" y="190" text-anchor="middle" class="vf-diagram-small">docs, voice memo</text>
+              <line x1="214" y1="156" x2="302" y2="156" stroke="#ff6b35" stroke-width="4" marker-end="url(#vf-arrow-flow)"></line>
+              <rect x="312" y="70" width="168" height="172" rx="22" fill="rgba(196,166,107,0.16)" stroke="rgba(247,241,232,0.26)"></rect>
+              <text x="396" y="132" text-anchor="middle" class="vf-diagram-label">LFW analysis</text>
+              <text x="396" y="164" text-anchor="middle" class="vf-diagram-small">rank problems, quantify</text>
+              <text x="396" y="184" text-anchor="middle" class="vf-diagram-small">opportunity, recommend</text>
+              <line x1="490" y1="156" x2="578" y2="156" stroke="#ff6b35" stroke-width="4" marker-end="url(#vf-arrow-flow)"></line>
+              <rect x="588" y="90" width="144" height="132" rx="18" fill="rgba(255,107,53,0.16)" stroke="rgba(247,241,232,0.26)"></rect>
+              <text x="660" y="138" text-anchor="middle" class="vf-diagram-label">Report</text>
+              <text x="660" y="170" text-anchor="middle" class="vf-diagram-small">decision-ready</text>
+              <text x="660" y="190" text-anchor="middle" class="vf-diagram-small">next step</text>
+            </svg>
           </div>
+          <aside class="slide-notes">
+            The primary source gives a conversational 30-second explanation. This slide condenses it into the repeatable partner message: data in, report out, clear case for what to solve and what it is worth. Avoid leading with "AI-powered"; the value is the report and the decision it enables.
+          </aside>
         </div>
-        <aside class="slide-notes">
-This is the pain point everyone recognizes. Ask the audience: "How many hours did your last deck take?"
-
-The 8-hour stat comes from internal surveys at consulting firms. Adjust if you have your own data.
-
-Point to the visual: most of that time is mechanical—alignment, color matching, exporting assets. The actual thinking gets compressed into whatever time remains.
-        </aside>
       </section>
 
-      <!-- Slide 3: CONTRAST (Winners) -->
-      <section class="slide theme-ivory" data-title="Early Adopters">
+      <section class="slide theme-ivory" data-title="Why It Exists">
         <div class="slide-inner layout-split">
           <div>
-            <div class="eyebrow" data-anim="fade" style="--anim-delay: 0.05s">The Contrast</div>
-            <h2 class="section-title" data-anim="slide-left" style="--anim-delay: 0.1s">Early adopters ship decks in minutes</h2>
-            <p class="body-text" data-anim="fade" style="--anim-delay: 0.15s">
-              Same quality. Fraction of time. They stopped fighting tools and started describing what they need.
+            <div class="eyebrow reveal" style="--reveal-index: 1">Situation and complication</div>
+            <h2 class="section-title reveal" style="--reveal-index: 2">A client can feel the operational pain before they can justify a project.</h2>
+            <p class="body-text reveal" style="--reveal-index: 2">
+              That gap stalls good conversations: the pain is real, but the case is not ready for a scope, budget, or board-level decision.
             </p>
-            <div class="chip-row" data-anim="slide-up" style="--anim-delay: 0.2s">
-              <div class="chip">Describe</div>
-              <div class="chip">Generate</div>
-              <div class="chip">Ship</div>
+            <div class="chip-row reveal" style="--reveal-index: 3">
+              <div class="chip">Symptoms before proof</div>
+              <div class="chip">Data before decision</div>
+              <div class="chip">Partner trust preserved</div>
             </div>
           </div>
-          <div class="media-frame" data-anim="slide-right" style="--anim-delay: 0.1s" data-ready="true">
-            <img class="gen-media" src="resources/assets/cli-workflow.png" alt="Clean prompt interface vs cluttered toolbar" style="opacity: 1;" />
+          <div class="card reveal" style="--reveal-index: 2">
+            <div class="card-title">The missing artifact</div>
+            <div class="card-caption">A trusted problem/opportunity report that shows what is worth solving, what it may be worth, and whether ForgeWorks should be the next step.</div>
+            <div class="vf-source">Aligned to Folio North Star: LFW partner channel growth and delivery scaling.</div>
           </div>
+          <aside class="slide-notes">
+            Use this slide to make the business reason clear. VentureForge is not a replacement for ForgeWorks; it is the front door that helps a client decide whether ForgeWorks is justified.
+          </aside>
         </div>
-        <aside class="slide-notes">
-Contrast slide: set up the "haves vs have-nots" dynamic.
-
-Emphasize the three-step workflow: Describe, Generate, Ship. This becomes a refrain—repeat it in the CTA.
-
-The visual shows the difference: cluttered toolbars vs. a clean prompt interface. Let the image make the argument.
-        </aside>
       </section>
 
-      <!-- Slide 4: PROMISED LAND -->
-      <section class="slide theme-ink" data-title="Promised Land">
-        <div class="slide-inner layout-title">
-          <div class="eyebrow" data-anim="fade" style="--anim-delay: 0.05s">The Destination</div>
-          <h1 class="title" data-anim="slide-up" style="--anim-delay: 0.15s">One file. AI visuals. Brand-perfect.</h1>
-          <span class="accent-line long"></span>
-          <p class="subtitle" data-anim="fade" style="--anim-delay: 0.35s">
-            Describe your diagram. Watch it appear. Switch brands with a URL parameter. Export to PDF. Ship.
-          </p>
-        </div>
-        <aside class="slide-notes">
-This is the promise slide. Slow down and let each phrase land:
-- "One file" = portability, no dependency hell
-- "AI visuals" = no more stock photo hunting or Illustrator
-- "Brand-perfect" = consistency without a design system degree
-
-The dark theme signals a shift—we're moving from problem to solution. Everything after this is "how."
-        </aside>
-      </section>
-
-      <!-- Slide 5: GIFT 1 (Text-to-Image) -->
-      <section class="slide theme-ivory" data-title="AI Generation">
+      <section class="slide theme-ivory" data-title="When To Use It">
         <div class="slide-inner layout-split">
           <div>
-            <div class="eyebrow" data-anim="fade" style="--anim-delay: 0.05s">Capability</div>
-            <h2 class="section-title" data-anim="slide-up" style="--anim-delay: 0.1s">Gemini generates infographics while you outline</h2>
-            <p class="body-text" data-anim="fade" style="--anim-delay: 0.2s">
-              Add a prompt to any image tag. Press G. Diagrams, charts, and illustrations materialize in your brand's colors.
-            </p>
-            <div class="card" data-anim="slide-up" style="--anim-delay: 0.3s">
-              <div class="card-title">Example prompt</div>
-              <div class="card-caption" style="font-family: monospace; font-size: 0.85rem;">data-prompt="Flowchart: brief to ship"</div>
+            <div class="eyebrow reveal" style="--reveal-index: 1">Qualification</div>
+            <h2 class="section-title reveal" style="--reveal-index: 2">Bring it up when the client needs numbers, not just instincts.</h2>
+            <p class="body-text reveal" style="--reveal-index: 3">The partner test is simple: does the client need an evidence artifact before the sales motion can advance?</p>
+            <div class="vf-decision-stack reveal" style="--reveal-index: 4">
+              <div class="vf-pill">Use: pain is clear, value is unquantified.</div>
+              <div class="vf-pill">Use: a leader needs the business case.</div>
+              <div class="vf-pill">Skip: the project is already scoped.</div>
             </div>
           </div>
-          <div class="media-frame" data-anim="scale-in" style="--anim-delay: 0.15s" data-ready="true">
-            <img class="gen-media" src="resources/assets/text-to-image-demo.png" alt="Generated infographic example" style="opacity: 1;" />
+          <div class="vf-visual reveal" style="--reveal-index: 2">
+            <svg class="diagram" data-media="svg" viewBox="0 0 700 430" role="img" aria-label="Qualification matrix for when to use VentureForge">
+              <line x1="118" y1="338" x2="612" y2="338" stroke="#343a40" stroke-width="2"></line>
+              <line x1="118" y1="338" x2="118" y2="78" stroke="#343a40" stroke-width="2"></line>
+              <text x="366" y="384" text-anchor="middle" class="vf-diagram-small">Amount of usable data/context</text>
+              <text x="45" y="210" text-anchor="middle" class="vf-diagram-small" transform="rotate(-90 45 210)">Need for quantified proof</text>
+              <rect x="142" y="94" width="196" height="104" rx="16" fill="rgba(255,107,53,0.16)" stroke="#ff6b35"></rect>
+              <text x="240" y="139" text-anchor="middle" class="vf-diagram-label">Coach</text>
+              <text x="240" y="166" text-anchor="middle" class="vf-diagram-small">get enough context first</text>
+              <rect x="366" y="94" width="196" height="104" rx="16" fill="rgba(196,166,107,0.22)" stroke="#c4a66b"></rect>
+              <text x="464" y="139" text-anchor="middle" class="vf-diagram-label">Run VentureForge</text>
+              <text x="464" y="166" text-anchor="middle" class="vf-diagram-small">proof needed, inputs exist</text>
+              <rect x="142" y="224" width="196" height="92" rx="16" fill="rgba(255,255,255,0.58)" stroke="rgba(18,19,23,0.16)"></rect>
+              <text x="240" y="262" text-anchor="middle" class="vf-diagram-label">Wait</text>
+              <text x="240" y="288" text-anchor="middle" class="vf-diagram-small">no case and no inputs</text>
+              <rect x="366" y="224" width="196" height="92" rx="16" fill="rgba(142,155,130,0.2)" stroke="#8e9b82"></rect>
+              <text x="464" y="262" text-anchor="middle" class="vf-diagram-label">Go ForgeWorks</text>
+              <text x="464" y="288" text-anchor="middle" class="vf-diagram-small">scope is already clear</text>
+            </svg>
           </div>
+          <aside class="slide-notes">
+            This is a partner judgment slide. The useful distinction is whether the client needs a report before a scope. If the problem and justification are already clear, do not slow the sale down.
+          </aside>
         </div>
-        <aside class="slide-notes">
-First capability: AI image generation. This is the "wow" moment for most audiences.
-
-Demo opportunity: If presenting live, press G to open the generator panel and show the workflow. Generate something simple like a flowchart.
-
-Key point: The prompt includes brand context automatically—you don't have to specify colors every time.
-        </aside>
       </section>
 
-      <!-- Slide 6: GIFT 2 (Brand System) -->
-      <section class="slide theme-ivory" data-title="Brand System">
-        <div class="slide-inner layout-split" style="grid-template-columns: 0.9fr 1.1fr;">
-          <div class="media-frame" data-anim="slide-right" style="--anim-delay: 0.1s" data-ready="true">
-            <img class="gen-media" src="resources/assets/brand-system.png" alt="Three brand treatments of the same content" style="opacity: 1;" />
-          </div>
-          <div>
-            <div class="eyebrow" data-anim="fade" style="--anim-delay: 0.05s">Capability</div>
-            <h2 class="section-title" data-anim="slide-left" style="--anim-delay: 0.15s">One template adapts to any brand in seconds</h2>
-            <p class="body-text" data-anim="fade" style="--anim-delay: 0.25s">
-              Three identities ship in the box. Add yours in brands.js. Switch with a URL parameter.
-            </p>
-            <div class="card" data-anim="slide-up" style="--anim-delay: 0.35s">
-              <div class="card-caption" style="font-family: monospace;">?entity=northwind</div>
-              <div class="card-caption" style="font-family: monospace;">?entity=apex</div>
-              <div class="card-caption" style="font-family: monospace;">?entity=coastal</div>
-            </div>
-          </div>
-        </div>
-        <aside class="slide-notes">
-Second capability: Multi-brand theming.
-
-Demo opportunity: Add ?entity=apex to the URL and watch the whole deck transform. Great for agencies or consultants who serve multiple clients.
-
-The image shows the same content in three brand treatments. Point out: colors, typography, and even the AI prompt prefixes change automatically.
-        </aside>
-      </section>
-
-      <!-- Slide 7: GIFT 3 (Narrative Engine) -->
-      <section class="slide theme-ivory" data-title="Narrative Engine">
+      <section class="slide theme-ivory" data-title="What To Ask For">
         <div class="slide-inner layout-split">
           <div>
-            <div class="eyebrow" data-anim="fade" style="--anim-delay: 0.05s">Capability</div>
-            <h2 class="section-title" data-anim="slide-up" style="--anim-delay: 0.1s">Seventeen frameworks structure your story</h2>
-            <p class="body-text" data-anim="fade" style="--anim-delay: 0.2s">
-              Answer five questions. Get matched to The Prestige, The Heist, Hero's Journey—whichever fits your content.
-            </p>
-            <div class="chip-row" data-anim="slide-up" style="--anim-delay: 0.3s">
-              <div class="chip">Audience</div>
-              <div class="chip">Purpose</div>
-              <div class="chip">Content</div>
-              <div class="chip">Tone</div>
-              <div class="chip">Reveal</div>
+            <div class="eyebrow reveal" style="--reveal-index: 1">Data ask</div>
+            <h2 class="section-title reveal" style="--reveal-index: 2">Ask for what they already have.</h2>
+            <p class="body-text reveal" style="--reveal-index: 3">The client does not need a perfect package. They need enough signal for Braydon to confirm the analysis can start.</p>
+            <div class="vf-decision-stack reveal" style="--reveal-index: 4">
+              <div class="vf-pill">What do you personally want from this?</div>
+              <div class="vf-pill">What does the organization keep struggling with?</div>
             </div>
           </div>
-          <div class="media-frame" data-anim="scale-in" style="--anim-delay: 0.15s" data-ready="true">
-            <img class="gen-media" src="resources/assets/template-preview.png" alt="Framework selection flowchart" style="opacity: 1;" />
+          <div class="vf-visual reveal" style="--reveal-index: 2">
+            <svg class="diagram" data-media="svg" viewBox="0 0 720 430" role="img" aria-label="Inputs that feed the VentureForge analysis">
+              <defs>
+                <marker id="vf-arrow-dark" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#343a40"></path>
+                </marker>
+              </defs>
+              <rect x="42" y="58" width="190" height="70" rx="14" fill="rgba(255,107,53,0.12)" stroke="#ff6b35"></rect>
+              <text x="137" y="100" text-anchor="middle" class="vf-diagram-label">System extracts</text>
+              <rect x="42" y="150" width="190" height="70" rx="14" fill="rgba(196,166,107,0.18)" stroke="#c4a66b"></rect>
+              <text x="137" y="192" text-anchor="middle" class="vf-diagram-label">Spreadsheets</text>
+              <rect x="42" y="242" width="190" height="70" rx="14" fill="rgba(142,155,130,0.2)" stroke="#8e9b82"></rect>
+              <text x="137" y="284" text-anchor="middle" class="vf-diagram-label">Process context</text>
+              <rect x="42" y="334" width="190" height="56" rx="14" fill="rgba(18,19,23,0.06)" stroke="rgba(18,19,23,0.16)"></rect>
+              <text x="137" y="368" text-anchor="middle" class="vf-diagram-label">Voice memo</text>
+              <line x1="248" y1="94" x2="392" y2="204" stroke="#343a40" stroke-width="2" marker-end="url(#vf-arrow-dark)"></line>
+              <line x1="248" y1="185" x2="392" y2="214" stroke="#343a40" stroke-width="2" marker-end="url(#vf-arrow-dark)"></line>
+              <line x1="248" y1="277" x2="392" y2="224" stroke="#343a40" stroke-width="2" marker-end="url(#vf-arrow-dark)"></line>
+              <line x1="248" y1="362" x2="392" y2="234" stroke="#343a40" stroke-width="2" marker-end="url(#vf-arrow-dark)"></line>
+              <rect x="404" y="154" width="236" height="122" rx="22" fill="#fff" stroke="rgba(18,19,23,0.16)"></rect>
+              <text x="522" y="203" text-anchor="middle" class="vf-diagram-label">Enough signal</text>
+              <text x="522" y="232" text-anchor="middle" class="vf-diagram-small">to rank, quantify, and recommend</text>
+            </svg>
           </div>
+          <aside class="slide-notes">
+            The source says to be specific and not wait for the client to figure out what to send. The two questions matter because they separate the stakeholder win from the organizational win.
+          </aside>
         </div>
-        <aside class="slide-notes">
-Third capability: Narrative Engine from Noah Raford's framework library.
-
-The five questions: Audience, Purpose, Content type, Tone, and Reveal structure. Based on answers, the system recommends frameworks like:
-- The Prestige (surprise ending)
-- The Heist (strategic roadmap)
-- Hero's Journey (transformation story)
-
-This deck uses a modified "Gift" structure—problem, promise, then capabilities as gifts.
-        </aside>
       </section>
 
-      <!-- Slide 8: GIFT 4 (Review Panel) -->
-      <section class="slide theme-ink" data-title="Review Panel">
-        <div class="slide-inner layout-title">
-          <div class="eyebrow" data-anim="fade" style="--anim-delay: 0.05s">Capability</div>
-          <h1 class="title" data-anim="slide-up" style="--anim-delay: 0.1s">Five agents challenge every claim before you present</h1>
-          <span class="accent-line"></span>
-          <p class="subtitle" data-anim="fade" style="--anim-delay: 0.2s">
-            Audience Advocate. Comms Specialist. Visual Designer. Critic. Content Expert. They argue. You get prioritized fixes.
-          </p>
-        </div>
-        <aside class="slide-notes">
-Fourth capability: AI review panel. This is the "antagonistic agents" system.
-
-Walk through each agent briefly:
-- Audience Advocate: "Does this land for YOUR specific audience?"
-- Comms Specialist: "Is the headline bulletproof?"
-- Visual Designer: "What visual makes this unforgettable?"
-- Critic: "What's the weakest slide? Cut it."
-- Content Expert: "Can you defend every claim?"
-
-They debate. You get a prioritized fix list. Much faster than waiting for human reviewers.
-        </aside>
-      </section>
-
-      <!-- Slide 9: GIFT 5 (Review Mode) -->
-      <section class="slide theme-ivory" data-title="Review Mode">
+      <section class="slide theme-ink" data-title="Handoff Model">
         <div class="slide-inner layout-split">
           <div>
-            <div class="eyebrow" data-anim="fade" style="--anim-delay: 0.05s">Capability</div>
-            <h2 class="section-title" data-anim="slide-left" style="--anim-delay: 0.1s">Reviewers leave numbered feedback directly on slides</h2>
-            <p class="body-text" data-anim="fade" style="--anim-delay: 0.15s">
-              Press R to enter review mode. Click elements or select specific text to comment. Each comment gets a number (①②③) for easy reference. Export to JSON or markdown.
+            <div class="eyebrow reveal" style="--reveal-index: 1">Operating model</div>
+            <h2 class="section-title reveal" style="--reveal-index: 2">The partner owns the relationship. LFW owns the analysis.</h2>
+            <p class="body-text reveal" style="--reveal-index: 3">This is the trust move: the partner stays the lead, while LFW supplies the artifact the partner can walk through.</p>
+          </div>
+          <div class="vf-visual reveal" style="--reveal-index: 2">
+            <svg class="diagram" data-media="svg" viewBox="0 0 760 430" role="img" aria-label="Partner and LFW handoff swimlane">
+              <defs>
+                <marker id="vf-arrow-hand" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+                  <path d="M0,0 L0,6 L9,3 z" fill="#ff6b35"></path>
+                </marker>
+              </defs>
+              <rect x="40" y="72" width="680" height="108" rx="18" fill="rgba(255,255,255,0.05)" stroke="rgba(247,241,232,0.16)"></rect>
+              <rect x="40" y="226" width="680" height="108" rx="18" fill="rgba(255,255,255,0.05)" stroke="rgba(247,241,232,0.16)"></rect>
+              <text x="82" y="130" class="vf-diagram-label">Partner</text>
+              <text x="82" y="284" class="vf-diagram-label">LFW</text>
+              <circle cx="226" cy="126" r="30" fill="rgba(255,107,53,0.22)" stroke="#ff6b35"></circle>
+              <text x="226" y="132" text-anchor="middle" class="vf-diagram-label">1</text>
+              <text x="226" y="170" text-anchor="middle" class="vf-diagram-small">introduce</text>
+              <circle cx="370" cy="126" r="30" fill="rgba(196,166,107,0.22)" stroke="#c4a66b"></circle>
+              <text x="370" y="132" text-anchor="middle" class="vf-diagram-label">2</text>
+              <text x="370" y="170" text-anchor="middle" class="vf-diagram-small">NDA + ask</text>
+              <circle cx="514" cy="280" r="30" fill="rgba(196,166,107,0.22)" stroke="#c4a66b"></circle>
+              <text x="514" y="286" text-anchor="middle" class="vf-diagram-label">3</text>
+              <text x="514" y="324" text-anchor="middle" class="vf-diagram-small">analyze</text>
+              <circle cx="640" cy="126" r="30" fill="rgba(142,155,130,0.28)" stroke="#8e9b82"></circle>
+              <text x="640" y="132" text-anchor="middle" class="vf-diagram-label">4</text>
+              <text x="640" y="170" text-anchor="middle" class="vf-diagram-small">walkthrough</text>
+              <path d="M256 126 H340" stroke="#ff6b35" stroke-width="3" fill="none" marker-end="url(#vf-arrow-hand)"></path>
+              <path d="M400 126 C448 126 446 280 484 280" stroke="#ff6b35" stroke-width="3" fill="none" marker-end="url(#vf-arrow-hand)"></path>
+              <path d="M544 280 C592 280 588 126 610 126" stroke="#ff6b35" stroke-width="3" fill="none" marker-end="url(#vf-arrow-hand)"></path>
+            </svg>
+          </div>
+          <aside class="slide-notes">
+            Make the boundary explicit. This protects the partner relationship while making LFW's role concrete. Braydon can join the client walkthrough when helpful, but the partner remains the relationship lead.
+          </aside>
+        </div>
+      </section>
+
+      <section class="slide theme-ivory" data-title="Report Contents">
+        <div class="slide-inner vf-report">
+          <div>
+            <div class="eyebrow reveal" style="--reveal-index: 1">Client artifact</div>
+            <h2 class="section-title reveal" style="--reveal-index: 2">The report answers four questions.</h2>
+            <p class="body-text reveal" style="--reveal-index: 2">
+              The format can evolve. The client-facing job is stable: show what the data says, what it is worth, and what should happen next.
             </p>
-            <div class="chip-row" data-anim="slide-up" style="--anim-delay: 0.2s">
-              <div class="chip">Press R</div>
-              <div class="chip">Click or select text</div>
-              <div class="chip">Numbered ①②③</div>
-              <div class="chip">Export</div>
+          </div>
+          <div class="vf-report-sheet reveal" style="--reveal-index: 3" aria-label="VentureForge report mockup">
+            <div class="vf-mini-label">VentureForge report</div>
+            <div class="vf-report-line hot"></div>
+            <div class="vf-report-line sage"></div>
+            <div class="vf-report-line"></div>
+            <div class="vf-card-grid" style="margin-top: 18px">
+              <div class="card">
+                <div class="card-title">Problems identified</div>
+                <div class="card-caption">Ranked by likely impact.</div>
+              </div>
+              <div class="card">
+                <div class="card-title">Opportunities quantified</div>
+                <div class="card-caption">What the gaps cost and what solving them is worth.</div>
+              </div>
+              <div class="card">
+                <div class="card-title">ROE frame</div>
+                <div class="card-caption">Before/after case with baselines where possible.</div>
+              </div>
+              <div class="card">
+                <div class="card-title">Honest recommendation</div>
+                <div class="card-caption">What is worth solving, and what is not a fit.</div>
+              </div>
+            </div>
+            <div class="vf-report-line short"></div>
+          </div>
+          <aside class="slide-notes">
+            This is the core value artifact. The report should help the client decide whether there is a compelling case for software. Do not overspecify the report format; the source says the format is evolving.
+          </aside>
+        </div>
+      </section>
+
+      <section class="slide theme-ivory" data-title="Why Free">
+        <div class="slide-inner layout-split">
+          <div>
+            <div class="eyebrow reveal" style="--reveal-index: 1">Trust mechanics</div>
+            <h2 class="section-title reveal" style="--reveal-index: 2">Free works because the report earns the next step.</h2>
+            <p class="body-text reveal" style="--reveal-index: 2">
+              The client signs an NDA, sends usable context, and gets an independent read. If the case is not compelling, the client still learned something useful.
+            </p>
+          </div>
+          <div class="vf-stack">
+            <div class="card reveal" style="--reveal-index: 1">
+              <div class="card-title">The catch?</div>
+              <div class="card-caption">There is no purchase obligation. The NDA protects the data before any forward motion.</div>
+            </div>
+            <div class="card reveal" style="--reveal-index: 2">
+              <div class="card-title">Who sees the data?</div>
+              <div class="card-caption">Only the LFW analysis team, under the NDA and for the analysis purpose.</div>
+            </div>
+            <div class="card reveal" style="--reveal-index: 3">
+              <div class="card-title">How long?</div>
+              <div class="card-caption">One week from LFW confirming there is enough to work with.</div>
             </div>
           </div>
-          <div class="media-frame" data-anim="slide-right" style="--anim-delay: 0.1s">
-            <div class="media-placeholder">Review mode interface mockup</div>
-            <img
-              class="gen-media"
-              data-media="gemini"
-              data-gen="text-to-image"
-              data-prompt="Clean UI mockup showing a slide deck with review mode active: an element highlighted with an orange border showing a circled number 1 badge, a comment popover with 'Selected: specific phrase' label and text field. Second element has circled number 2 badge. Minimal, warm parchment palette, flat design, 16:9 aspect ratio."
-              alt="Review mode interface"
-            />
-          </div>
+          <aside class="slide-notes">
+            This slide should reduce skepticism. The source explicitly frames the analysis as free and independent. The safest phrasing is confidence, not pressure: LFW is confident the report will reveal whether there is a real case.
+          </aside>
         </div>
-        <aside class="slide-notes">
-Fifth capability: Human review mode with numbered comments and text selection.
-
-Demo opportunity: Press R right now to show review mode. Try two ways to comment:
-1. Click any element to comment on the whole thing
-2. Select specific text within an element to comment on that phrase (great for typos)
-
-Each comment gets a sequential number (①②③). Reviewers can say "fix issue 3" instead of describing location.
-
-Press C to show the sidebar with all comments grouped by slide. Export JSON or markdown to feed back to Claude for revisions.
-        </aside>
       </section>
 
-      <!-- Slide 10: PROOF (Metrics) -->
-      <section class="slide theme-ivory" data-title="Proof">
-        <div class="slide-inner layout-metrics">
-          <div class="metric" data-anim="scale-in" style="--anim-delay: 0.1s">
-            <div class="metric-number">12 min</div>
-            <div class="metric-label">Build time for this deck</div>
+      <section class="slide theme-ink" data-title="ForgeWorks Bridge">
+        <div class="slide-inner layout-split">
+          <div>
+            <div class="eyebrow reveal" style="--reveal-index: 1">After the report</div>
+            <h2 class="section-title reveal" style="--reveal-index: 2">When the case is compelling, VentureForge hands off to ForgeWorks.</h2>
+            <p class="body-text reveal" style="--reveal-index: 3">The report is not the end state. It is the bridge from fuzzy opportunity to a software delivery path.</p>
           </div>
-          <div class="metric" data-anim="scale-in" style="--anim-delay: 0.2s">
-            <div class="metric-number">11 slides</div>
-            <div class="metric-label">Framework-structured narrative</div>
+          <div class="vf-visual reveal" style="--reveal-index: 2">
+            <svg class="diagram" data-media="svg" viewBox="0 0 760 430" role="img" aria-label="Bridge from VentureForge report to ForgeWorks delivery">
+              <line x1="86" y1="214" x2="670" y2="214" stroke="rgba(247,241,232,0.28)" stroke-width="6" stroke-linecap="round"></line>
+              <circle cx="104" cy="214" r="34" fill="rgba(255,107,53,0.22)" stroke="#ff6b35"></circle>
+              <text x="104" y="220" text-anchor="middle" class="vf-diagram-label">1</text>
+              <text x="104" y="278" text-anchor="middle" class="vf-diagram-small">VentureForge report</text>
+              <circle cx="284" cy="214" r="34" fill="rgba(196,166,107,0.22)" stroke="#c4a66b"></circle>
+              <text x="284" y="220" text-anchor="middle" class="vf-diagram-label">2</text>
+              <text x="284" y="278" text-anchor="middle" class="vf-diagram-small">four discovery sessions</text>
+              <circle cx="464" cy="214" r="34" fill="rgba(196,166,107,0.22)" stroke="#c4a66b"></circle>
+              <text x="464" y="220" text-anchor="middle" class="vf-diagram-label">3</text>
+              <text x="464" y="278" text-anchor="middle" class="vf-diagram-small">mockups before contract</text>
+              <circle cx="644" cy="214" r="34" fill="rgba(142,155,130,0.3)" stroke="#8e9b82"></circle>
+              <text x="644" y="220" text-anchor="middle" class="vf-diagram-label">4</text>
+              <text x="644" y="278" text-anchor="middle" class="vf-diagram-small">30 days to software</text>
+              <text x="382" y="108" text-anchor="middle" class="vf-diagram-label">Report to implementation without reopening the whole question</text>
+              <text x="382" y="342" text-anchor="middle" class="vf-diagram-small">Fixed monthly scope follows when the report supports a real case.</text>
+            </svg>
           </div>
-          <div class="metric" data-anim="scale-in" style="--anim-delay: 0.3s">
-            <div class="metric-number">1 file</div>
-            <div class="metric-label">Portable HTML output</div>
-          </div>
+          <aside class="slide-notes">
+            Close the loop: VentureForge adds a front door to the existing ForgeWorks path. The price and sequence come from the primary guide. If this changes, update this slide directly from source.
+          </aside>
         </div>
-        <aside class="slide-notes">
-Proof slide: Make it concrete with numbers.
-
-- 12 minutes: From brief to finished deck. Compare to the 8 hours on slide 2.
-- 11 slides: Not a toy example—a real narrative arc with framework structure.
-- 1 file: No dependencies, no build step. Open in any browser, share via URL, print to PDF.
-
-Pause here. Let the contrast with the "8 hours" from earlier sink in.
-        </aside>
       </section>
 
-      <!-- Slide 11: CTA -->
-      <section class="slide theme-ink" data-title="Call to Action">
-        <div class="slide-inner layout-title">
-          <div class="eyebrow" data-anim="fade" style="--anim-delay: 0.05s">Start Now</div>
-          <h1 class="title" data-anim="slide-up" style="--anim-delay: 0.1s">Your next deck starts with a brief, not a blank slide</h1>
-          <span class="accent-line long"></span>
-          <p class="subtitle" data-anim="fade" style="--anim-delay: 0.2s">
-            Clone the repo. Drop your materials in resources/. Let the skill do the rest.
-          </p>
-          <div class="chip-row" data-anim="slide-up" style="--anim-delay: 0.25s">
-            <div class="chip">Clone</div>
-            <div class="chip">Brief</div>
-            <div class="chip">Ship</div>
+      <section class="slide theme-ivory" data-title="Next Decision">
+        <div class="slide-inner layout-split">
+          <div>
+            <div class="eyebrow reveal" style="--reveal-index: 1">Partner action</div>
+            <h2 class="section-title reveal" style="--reveal-index: 2">Pick one client and run the first VentureForge report.</h2>
+            <p class="body-text reveal" style="--reveal-index: 3">
+              The next decision is not a broad platform launch. It is a specific client, a specific data ask, and a clear owner for the follow-up conversation.
+            </p>
           </div>
+          <div class="vf-stack">
+            <div class="metric reveal" style="--reveal-index: 1">
+              <div class="metric-number">1</div>
+              <div class="metric-label">Partner names a client with unquantified operational pain.</div>
+            </div>
+            <div class="metric reveal" style="--reveal-index: 2">
+              <div class="metric-number">2</div>
+              <div class="metric-label">Partner makes the data/context ask and gets the NDA path moving.</div>
+            </div>
+            <div class="metric reveal" style="--reveal-index: 3">
+              <div class="metric-number">3</div>
+              <div class="metric-label">LFW confirms enough input and starts the one-week analysis clock.</div>
+            </div>
+          </div>
+          <aside class="slide-notes">
+            End with a concrete operating decision. This aligns with the North Star: partner development and deal movement are the real outcomes. Source discipline stays in the working provenance: known claims come from the guide, the deck frames those claims as a partner operating model, and the team should avoid generic AI language or overclaiming.
+          </aside>
         </div>
-        <aside class="slide-notes">
-Close with a clear call to action. Echo the "Describe, Generate, Ship" from slide 3, now as "Clone, Brief, Ship."
-
-The key reframe: You don't start with a blank slide anymore. You start with a brief—your raw materials, your messy notes, your half-formed ideas. The skill structures and visualizes.
-
-If Q&A follows: Be ready for "What about [PowerPoint/Keynote/Canva]?" Answer: Those are design tools. This is a thinking tool that happens to output slides.
-
-Thank you. Questions?
-        </aside>
       </section>
     </main>
 
@@ -1371,7 +1576,7 @@ Thank you. Questions?
       <div class="progress" aria-hidden="true">
         <div class="progress-bar" id="progress-bar"></div>
       </div>
-      <div id="progress-count">1 / 11</div>
+      <div id="progress-count">1 / 10</div>
       <button class="notes-toggle" id="notes-toggle" type="button">Notes</button>
       <button id="next-btn" type="button" aria-label="Next slide">&rarr;</button>
     </nav>
@@ -1384,45 +1589,6 @@ Thank you. Questions?
         <button id="notes-export" type="button">Export notes</button>
         <button id="notes-close" type="button">Close</button>
       </div>
-    </aside>
-
-    <button class="gen-toggle" id="gen-toggle" type="button">Gen</button>
-    <button class="review-toggle" id="review-toggle" type="button">Review</button>
-    <button class="sidebar-toggle" id="sidebar-toggle" type="button">
-      Comments <span class="comment-count" id="sidebar-count">0</span>
-    </button>
-    <aside class="gen-panel" id="gen-panel" aria-hidden="true">
-      <strong>Gemini Media Controls</strong>
-      <label>
-        API key (local only)
-        <input id="gen-key" type="password" placeholder="GEMINI_API_KEY" />
-      </label>
-      <label>
-        Entity profile
-        <select id="gen-entity"></select>
-      </label>
-      <label>
-        Image model (nano banana)
-        <input id="gen-image-model" type="text" inputmode="text" placeholder="keynote.image_generation" />
-      </label>
-      <label>
-        Base image (optional for i2i/i2v)
-        <input id="gen-base" type="file" accept="image/*" />
-      </label>
-      <label>
-        Video model
-        <select id="gen-video-model">
-          <option value="keynote.gemini_video_primary">Primary video route</option>
-          <option value="keynote.gemini_video_secondary">Secondary video route</option>
-        </select>
-      </label>
-      <div class="gen-actions">
-        <button id="gen-save" type="button">Save settings</button>
-        <button id="gen-slide" type="button">Generate slide</button>
-        <button id="gen-all" type="button">Generate all</button>
-        <button id="gen-close" type="button">Close</button>
-      </div>
-      <div class="gen-status" id="gen-status"></div>
     </aside>
 
     <template id="template-title">
@@ -1674,7 +1840,7 @@ Thank you. Questions?
       const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
       const setStatus = (message) => {
-        genStatus.textContent = message || "";
+        if (genStatus) genStatus.textContent = message || "";
       };
 
       const resolveKey = () =>
@@ -1929,11 +2095,6 @@ Thank you. Questions?
           event.preventDefault();
           showSlide(slides.length - 1);
         }
-        if (event.key.toLowerCase() === "g") {
-          event.preventDefault();
-          genPanel.classList.toggle("is-open");
-          genPanel.setAttribute("aria-hidden", String(!genPanel.classList.contains("is-open")));
-        }
         if (event.key.toLowerCase() === "n") {
           event.preventDefault();
           toggleNotesPanel();
@@ -1967,7 +2128,7 @@ Thank you. Questions?
           reader.readAsDataURL(file);
         });
 
-      genBase.addEventListener("change", async (event) => {
+      genBase?.addEventListener("change", async (event) => {
         const file = event.target.files[0];
         if (!file) return;
         try {
@@ -2109,7 +2270,7 @@ Thank you. Questions?
           element.parentElement.dataset.ready = "true";
         }
         if (mode === "text-to-video") {
-          const opName = await startVideoTask(prompt, null, genVideoModel.value);
+          const opName = await startVideoTask(prompt, null, genVideoModel?.value || "");
           const uri = await pollVideoTask(opName);
           const src = await fetchVideo(uri);
           element.src = src;
@@ -2118,7 +2279,7 @@ Thank you. Questions?
         }
         if (mode === "image-to-video") {
           if (!baseImage) throw new Error("Base image required for image-to-video.");
-          const opName = await startVideoTask(prompt, baseImage, genVideoModel.value);
+          const opName = await startVideoTask(prompt, baseImage, genVideoModel?.value || "");
           const uri = await pollVideoTask(opName);
           const src = await fetchVideo(uri);
           element.src = src;
@@ -2134,34 +2295,36 @@ Thank you. Questions?
         }
       };
 
-      genToggle.addEventListener("click", () => {
+      genToggle?.addEventListener("click", () => {
+        if (!genPanel) return;
         genPanel.classList.toggle("is-open");
         genPanel.setAttribute("aria-hidden", String(!genPanel.classList.contains("is-open")));
       });
 
-      genClose.addEventListener("click", () => {
+      genClose?.addEventListener("click", () => {
+        if (!genPanel) return;
         genPanel.classList.remove("is-open");
         genPanel.setAttribute("aria-hidden", "true");
       });
 
-      genSave.addEventListener("click", () => {
-        saveKey(genKey.value.trim());
-        saveImageModel(genImageModel.value.trim());
-        applyBrandProfile(genEntity.value, { persist: true });
+      genSave?.addEventListener("click", () => {
+        saveKey(genKey?.value?.trim() || "");
+        saveImageModel(genImageModel?.value?.trim() || "");
+        if (genEntity) applyBrandProfile(genEntity.value, { persist: true });
         setStatus("Saved settings to localStorage.");
       });
 
-      genEntity.addEventListener("change", () => {
+      genEntity?.addEventListener("change", () => {
         applyBrandProfile(genEntity.value, { persist: true });
         setStatus(`Entity set to ${genEntity.value}.`);
       });
 
-      genImageModel.addEventListener("change", () => {
+      genImageModel?.addEventListener("change", () => {
         saveImageModel(genImageModel.value.trim());
         setStatus("Image model saved.");
       });
 
-      genSlide.addEventListener("click", async () => {
+      genSlide?.addEventListener("click", async () => {
         try {
           await generateForSlide(slides[currentIndex]);
           setStatus("Slide generation complete.");
@@ -2170,7 +2333,7 @@ Thank you. Questions?
         }
       });
 
-      genAll.addEventListener("click", async () => {
+      genAll?.addEventListener("click", async () => {
         try {
           for (const slide of slides) {
             await generateForSlide(slide);
@@ -2189,8 +2352,8 @@ Thank you. Questions?
       populateEntitySelect();
       applyBrandProfile(currentEntity, { persist: false });
       if (genEntity) genEntity.value = currentEntity;
-      genKey.value = resolveKey();
-      genImageModel.value = resolveImageModel();
+      if (genKey) genKey.value = resolveKey();
+      if (genImageModel) genImageModel.value = resolveImageModel();
       updateProgress();
       gotoFromHash();
       applyEntityForSlide(slides[currentIndex]);
@@ -2372,8 +2535,8 @@ Thank you. Questions?
       const enterReviewMode = () => {
         isReviewMode = true;
         document.body.classList.add("review-mode");
-        reviewToggle.classList.add("is-active");
-        reviewToggle.textContent = "Exit Review";
+        reviewToggle?.classList.add("is-active");
+        if (reviewToggle) reviewToggle.textContent = "Exit Review";
 
         document.querySelectorAll(commentableSelectors).forEach((el) => {
           if (!el.closest(".slide-notes") && !el.closest("template")) {
@@ -2386,8 +2549,8 @@ Thank you. Questions?
       const exitReviewMode = () => {
         isReviewMode = false;
         document.body.classList.remove("review-mode");
-        reviewToggle.classList.remove("is-active");
-        reviewToggle.textContent = "Review";
+        reviewToggle?.classList.remove("is-active");
+        if (reviewToggle) reviewToggle.textContent = "Review";
 
         document.querySelectorAll(".commentable").forEach((el) => {
           el.classList.remove("commentable");
@@ -2521,7 +2684,7 @@ Thank you. Questions?
 
       const updateSidebarCount = () => {
         const unresolvedCount = commentsData.comments.filter((c) => !c.resolved).length;
-        sidebarCount.textContent = unresolvedCount;
+        if (sidebarCount) sidebarCount.textContent = unresolvedCount;
       };
 
       const openSidebar = () => {
@@ -2738,23 +2901,12 @@ Thank you. Questions?
             identityModal.classList.remove("is-open");
           }
         }
-        // Toggle review mode with 'r' key
-        if (event.key.toLowerCase() === "r" && !event.target.closest("input, textarea, select, [contenteditable]")) {
-          event.preventDefault();
-          toggleReviewMode();
-        }
         // Toggle sidebar with 'c' key in review mode
         if (event.key.toLowerCase() === "c" && isReviewMode && !event.target.closest("input, textarea, select, [contenteditable]")) {
           event.preventDefault();
           toggleSidebar();
         }
       });
-
-      // Check for review mode URL param
-      const reviewParam = urlParams.get("review");
-      if (reviewParam === "1" || reviewParam === "true") {
-        enterReviewMode();
-      }
 
       // Initialize comment system
       loadIdentity();

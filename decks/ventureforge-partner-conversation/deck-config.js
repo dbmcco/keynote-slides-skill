@@ -1,0 +1,30 @@
+// ABOUTME: Deck configuration for Keynote-style slides.
+// ABOUTME: Loaded before the main deck script.
+window.KEYNOTE_DECK = {
+  "id": "ventureforge-partner-conversation",
+  "title": "VentureForge Partner Conversation",
+  "entity": "lightforge",
+  "deckType": "partner",
+  "audience": "Justin, Brendan, and consulting partners",
+  "createdAt": "2026-05-08T18:18:50Z",
+  "updatedAt": "2026-05-08T18:55:00Z",
+  "preferences": {
+    "voice": "practical, partner-aware, customer-value first",
+    "headlineStyle": "short business claims with a concrete next decision",
+    "density": "medium-tight",
+    "visualMood": "operating model diagrams, report artifacts, warm paper and ember accents",
+    "narrativeFramework": "Trojan Horse plus SCQA: relatable partner pain, escalation, reframe, operating proof, next decision"
+  },
+  "resources": {
+    "assets": [],
+    "materials": [
+      "materials/brief.md",
+      "materials/source-provenance.md",
+      "materials/ventureforge-partner-conversation-guide.txt",
+      "materials/Amrish_LFW_VentureForge_Prompt_Packs.md"
+    ],
+    "notes": [
+      "slides.md"
+    ]
+  }
+};
