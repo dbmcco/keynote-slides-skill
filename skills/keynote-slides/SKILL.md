@@ -181,6 +181,24 @@ Micro animations are **small decorative accent elements** that add subtle motion
   ```
 - Edits are stored in localStorage; export JSON from the editor for handoff.
 
+## Edit mode
+
+- Use in-deck Edit mode for human slide polish after the agent has generated the deck.
+- Click the "Edit" button, press `e`, or add `?edit=1` to enter Edit mode.
+- Only bounded targets are editable: approved text/layout role classes or elements with `data-editable`, `data-edit-id`, `data-copy-id`, or `data-copy-role`.
+- Select an editable element to open the inspector. V1 supports text, font size, text color, fill/background color, X/Y offsets, width, and height where the element allows them.
+- Arrow keys nudge selected elements by 1px; Shift+Arrow nudges by 10px.
+- Draft edits are stored in localStorage under `KEYNOTE_EDIT_PATCH_<deck-id>`.
+- Use "Export patch" to download `edit-patch-<deck-id>.json` for agent handoff. The deck HTML remains the source of truth until an agent/script applies the patch.
+- Edit mode and Review mode are mutually exclusive; entering one exits the other.
+
+### Publish lock
+
+- Add `status: "published"` to both `deck.json` and `window.KEYNOTE_DECK` in `deck-config.js` when a deck is final.
+- Published decks hide Edit mode, ignore `?edit=1`, and do not apply local edit patches.
+- Published decks still allow presentation, notes, PDF export, and review comments.
+- The publish lock is a static workflow guard, not a security boundary. To revise a published deck, create a new version or change status back to `draft`.
+
 ## PDF export
 
 - Use the browser print dialog and "Save as PDF".
@@ -195,6 +213,7 @@ Micro animations are **small decorative accent elements** that add subtle motion
 
 - Arrow keys, PageUp/PageDown, Space.
 - Home/End for first or last slide.
+- Edit mode with `e`.
 - Use `#slide-title` hash navigation for direct jumps.
 
 ## Review Mode / Feedback System

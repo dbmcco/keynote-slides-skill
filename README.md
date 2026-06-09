@@ -300,6 +300,33 @@ open http://localhost:8921/decks/my-pitch/editor.html
 
 In the editor window, click "Open deck" to connect the live preview. Edits are saved in localStorage; export JSON to hand off changes.
 
+## Edit Mode (in-deck)
+
+Use Edit mode for final human polish directly inside the deck preview.
+
+| Action | How |
+|--------|-----|
+| Enter edit mode | Click **Edit**, press `e`, or add `?edit=1` |
+| Select an element | Click editable text, cards, metrics, chips, or media frames |
+| Change copy/style | Use the inspector for text, font size, text color, fill, offset, width, and height |
+| Nudge position | Arrow keys move 1px; Shift+Arrow moves 10px |
+| Save locally | Draft edits persist in `KEYNOTE_EDIT_PATCH_<deck-id>` localStorage |
+| Hand off edits | Click **Export patch** to download `edit-patch-<deck-id>.json` |
+
+Edit mode is intentionally bounded. Only approved slide elements are editable, or elements explicitly marked with `data-editable`, `data-edit-id`, `data-copy-id`, or `data-copy-role`.
+
+### Publish Lock
+
+Deck metadata can mark a deck as no longer editable:
+
+```json
+{
+  "status": "published"
+}
+```
+
+Set the same value in `deck-config.js` as `window.KEYNOTE_DECK.status`. When `status` is `published`, the deck hides Edit mode, ignores `?edit=1`, does not apply local edit patches, and shows a **Published** badge. Review comments, notes, presentation, and PDF export still work. This is a workflow lock for static files, not a security boundary.
+
 ## Speaker Notes
 
 Add notes per slide without affecting layout:
@@ -352,6 +379,7 @@ SVG diagrams are first-class:
 | `Home` / `End` | First / Last |
 | `g` | Generator panel |
 | `n` | Notes panel |
+| `e` | Toggle edit mode |
 | `r` | Toggle review mode |
 | `c` | Toggle comment sidebar (in review mode) |
 | `#slide-title` | Direct link |

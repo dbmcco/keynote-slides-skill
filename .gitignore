@@ -7,3 +7,4 @@ lib/media/__pycache__/
 node_modules/
 .env.local
 decks/model-routes.js
+.workgraph

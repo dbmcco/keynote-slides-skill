@@ -632,6 +632,9 @@
         .gen-toggle,
         .gen-panel,
         .notes-panel,
+        .edit-toggle,
+        .edit-panel,
+        .publish-status,
         .review-toggle,
         .comment-sidebar,
         .comment-popover,
@@ -705,6 +708,132 @@
       .review-toggle.is-active {
         background: var(--brand-accent);
         color: #fff;
+      }
+
+      .edit-toggle {
+        position: fixed;
+        bottom: 3vh;
+        left: calc(4vw + 142px);
+        border: none;
+        border-radius: 999px;
+        padding: 10px 16px;
+        background: rgba(13, 17, 23, 0.76);
+        color: #f7f1e8;
+        font-size: 0.9rem;
+        cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+      }
+
+      .edit-toggle.is-active {
+        background: var(--brand-sage);
+        color: #fff;
+      }
+
+      .publish-status {
+        position: fixed;
+        bottom: 3vh;
+        left: calc(4vw + 142px);
+        border-radius: 999px;
+        padding: 10px 16px;
+        background: rgba(13, 17, 23, 0.76);
+        color: #f7f1e8;
+        font-size: 0.9rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+        display: none;
+      }
+
+      .publish-status.is-visible {
+        display: inline-flex;
+      }
+
+      body.edit-mode .editable-target {
+        cursor: pointer;
+        transition: outline 0.15s ease, background 0.15s ease;
+      }
+
+      body.edit-mode .editable-target:hover {
+        outline: 2px solid var(--brand-sage);
+        outline-offset: 4px;
+        background: rgba(147, 167, 122, 0.1);
+      }
+
+      body.edit-mode .editable-target.is-edit-selected {
+        outline: 2px solid var(--brand-accent);
+        outline-offset: 4px;
+        background: rgba(255, 107, 53, 0.08);
+      }
+
+      body.edit-mode .editable-target[contenteditable="true"]:focus {
+        outline: 2px solid var(--brand-accent);
+        outline-offset: 4px;
+      }
+
+      .edit-panel {
+        position: fixed;
+        left: 4vw;
+        bottom: 9vh;
+        width: min(380px, 92vw);
+        background: rgba(13, 17, 23, 0.94);
+        color: #f7f1e8;
+        border-radius: 18px;
+        padding: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 20px 40px rgba(13, 17, 23, 0.4);
+        display: none;
+        gap: 12px;
+        z-index: 95;
+      }
+
+      .edit-panel.is-open {
+        display: grid;
+      }
+
+      .edit-panel label {
+        font-size: 0.8rem;
+        display: grid;
+        gap: 6px;
+      }
+
+      .edit-panel input,
+      .edit-panel textarea {
+        border-radius: 10px;
+        border: none;
+        padding: 8px 10px;
+        font-size: 0.9rem;
+        font-family: var(--font-body);
+      }
+
+      .edit-panel textarea {
+        min-height: 70px;
+        resize: vertical;
+      }
+
+      .edit-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .edit-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .edit-actions button {
+        border: none;
+        padding: 8px 12px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.12);
+        color: inherit;
+        cursor: pointer;
+      }
+
+      .edit-target-label {
+        font-size: 0.8rem;
+        color: rgba(247, 241, 232, 0.68);
       }
 
       .identity-modal {
@@ -1342,6 +1471,8 @@
 
     <button class="gen-toggle" id="gen-toggle" type="button">Gen</button>
     <button class="review-toggle" id="review-toggle" type="button">Review</button>
+    <button class="edit-toggle" id="edit-toggle" type="button">Edit</button>
+    <div class="publish-status" id="publish-status" aria-live="polite">Published</div>
     <button class="sidebar-toggle" id="sidebar-toggle" type="button">
       Comments <span class="comment-count" id="sidebar-count">0</span>
     </button>
@@ -1377,6 +1508,51 @@
         <button id="gen-close" type="button">Close</button>
       </div>
       <div class="gen-status" id="gen-status"></div>
+    </aside>
+
+    <aside class="edit-panel" id="edit-panel" aria-hidden="true">
+      <strong>Edit selected element</strong>
+      <div class="edit-target-label" id="edit-target-label">No element selected.</div>
+      <label>
+        Text
+        <textarea id="edit-text"></textarea>
+      </label>
+      <div class="edit-grid">
+        <label>
+          Font size
+          <input id="edit-font-size" type="number" min="8" max="160" step="1" />
+        </label>
+        <label>
+          Text color
+          <input id="edit-color" type="text" placeholder="#0f172a" />
+        </label>
+        <label>
+          Fill
+          <input id="edit-fill" type="text" placeholder="#ffffff" />
+        </label>
+        <label>
+          X offset
+          <input id="edit-offset-x" type="number" step="1" />
+        </label>
+        <label>
+          Y offset
+          <input id="edit-offset-y" type="number" step="1" />
+        </label>
+        <label>
+          Width
+          <input id="edit-width" type="text" placeholder="auto" />
+        </label>
+        <label>
+          Height
+          <input id="edit-height" type="text" placeholder="auto" />
+        </label>
+      </div>
+      <div class="edit-actions">
+        <button id="edit-reset-selected" type="button">Reset selected</button>
+        <button id="edit-reset-all" type="button">Reset all</button>
+        <button id="edit-export" type="button">Export patch</button>
+        <button id="edit-close" type="button">Close</button>
+      </div>
     </aside>
 
     <template id="template-title">
@@ -2713,6 +2889,461 @@
       // Initialize comment system
       loadIdentity();
       loadComments();
+
+      // ============================================
+      // Edit Mode / Patch System
+      // ============================================
+
+      (() => {
+        const editToggle = document.getElementById("edit-toggle");
+        const publishStatus = document.getElementById("publish-status");
+        const editPanel = document.getElementById("edit-panel");
+        const editTargetLabel = document.getElementById("edit-target-label");
+        const editText = document.getElementById("edit-text");
+        const editFontSize = document.getElementById("edit-font-size");
+        const editColor = document.getElementById("edit-color");
+        const editFill = document.getElementById("edit-fill");
+        const editOffsetX = document.getElementById("edit-offset-x");
+        const editOffsetY = document.getElementById("edit-offset-y");
+        const editWidth = document.getElementById("edit-width");
+        const editHeight = document.getElementById("edit-height");
+        const editResetSelected = document.getElementById("edit-reset-selected");
+        const editResetAll = document.getElementById("edit-reset-all");
+        const editExport = document.getElementById("edit-export");
+        const editClose = document.getElementById("edit-close");
+
+        const deckStatus = String(deckConfig.status || "draft").toLowerCase();
+        const isPublished = deckStatus === "published";
+        const editStorageKey = `KEYNOTE_EDIT_PATCH_${deckId}`;
+        const editableRoleClasses = [
+          "title",
+          "subtitle",
+          "section-title",
+          "body-text",
+          "card-title",
+          "card-caption",
+          "metric-number",
+          "metric-label",
+          "quote",
+          "quote-meta",
+          "chip",
+          "media-placeholder",
+          "metric",
+          "card",
+          "media-frame",
+        ];
+        const textRoles = new Set([
+          "title",
+          "subtitle",
+          "section-title",
+          "body-text",
+          "card-title",
+          "card-caption",
+          "metric-number",
+          "metric-label",
+          "quote",
+          "quote-meta",
+          "chip",
+          "media-placeholder",
+        ]);
+        const editableSelector = [
+          "[data-editable]",
+          "[data-edit-id]",
+          "[data-copy-id]",
+          "[data-copy-role]",
+          ...editableRoleClasses.map((role) => `.${role}`),
+        ].join(",");
+        const originalState = new Map();
+        let isEditMode = false;
+        let selectedEditElement = null;
+
+        const slugifyEdit = (value) =>
+          String(value || "slide")
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "");
+
+        const resolveEditRole = (element) => {
+          if (element.dataset.copyRole) return slugifyEdit(element.dataset.copyRole);
+          const roleClass = editableRoleClasses.find((role) => element.classList.contains(role));
+          return roleClass || "element";
+        };
+
+        const getEditableElements = () =>
+          slides.flatMap((slide) =>
+            Array.from(slide.querySelectorAll(editableSelector)).filter(
+              (element) =>
+                !element.closest("template") &&
+                !element.closest(".slide-notes") &&
+                !element.closest(".deck-nav, .gen-panel, .notes-panel, .edit-panel, .comment-sidebar, .comment-popover, .identity-modal")
+            )
+          );
+
+        const ensureEditIds = () => {
+          const used = new Set();
+          slides.forEach((slide, slideIndex) => {
+            const slideSlug = slugifyEdit(slide.dataset.title || `slide-${slideIndex + 1}`);
+            const roleCounts = {};
+            Array.from(slide.querySelectorAll(editableSelector)).forEach((element) => {
+              if (element.closest("template")) return;
+              const role = resolveEditRole(element);
+              roleCounts[role] = (roleCounts[role] || 0) + 1;
+              const baseId =
+                element.dataset.editId ||
+                element.dataset.copyId ||
+                element.dataset.commentTarget ||
+                `${slideSlug}-${role}-${roleCounts[role]}`;
+              let editId = baseId;
+              let count = 2;
+              while (used.has(editId)) {
+                editId = `${baseId}-${count}`;
+                count += 1;
+              }
+              used.add(editId);
+              element.dataset.editId = editId;
+              if (!originalState.has(editId)) {
+                originalState.set(editId, {
+                  text: element.textContent || "",
+                  style: {
+                    fontSize: element.style.fontSize,
+                    color: element.style.color,
+                    backgroundColor: element.style.backgroundColor,
+                    transform: element.style.transform,
+                    width: element.style.width,
+                    height: element.style.height,
+                  },
+                });
+              }
+            });
+          });
+        };
+
+        const buildEmptyPatch = () => ({
+          deckId,
+          deckStatusAtExport: deckStatus,
+          schemaVersion: 1,
+          exportedAt: new Date().toISOString(),
+          edits: {},
+        });
+
+        const getEditPatch = () => {
+          try {
+            const raw = localStorage.getItem(editStorageKey);
+            if (!raw) return buildEmptyPatch();
+            const parsed = JSON.parse(raw);
+            return {
+              ...buildEmptyPatch(),
+              ...parsed,
+              edits: parsed && typeof parsed.edits === "object" ? parsed.edits : {},
+            };
+          } catch {
+            return buildEmptyPatch();
+          }
+        };
+
+        const saveEditPatch = (patch) => {
+          const payload = {
+            ...patch,
+            deckId,
+            deckStatusAtExport: deckStatus,
+            schemaVersion: 1,
+            exportedAt: new Date().toISOString(),
+            edits: patch.edits || {},
+          };
+          localStorage.setItem(editStorageKey, JSON.stringify(payload));
+          return payload;
+        };
+
+        const normalizeSizeValue = (value) => {
+          const normalized = String(value || "").trim();
+          if (!normalized) return "";
+          return /^-?\d+(\.\d+)?$/.test(normalized) ? `${normalized}px` : normalized;
+        };
+
+        const getControls = (element) => {
+          const explicit = element.dataset.editControls;
+          if (explicit) return new Set(explicit.split(/\s+/).filter(Boolean));
+          const role = resolveEditRole(element);
+          if (textRoles.has(role)) return new Set(["text", "font-size", "color", "position"]);
+          if (element.classList.contains("media-frame")) return new Set(["position", "size"]);
+          return new Set(["position", "size", "fill"]);
+        };
+
+        const canUseControl = (element, control) => getControls(element).has(control);
+
+        const getElementByEditId = (editId) => document.querySelector(`[data-edit-id="${CSS.escape(editId)}"]`);
+
+        const applyEditToElement = (element, edit) => {
+          if (!element || !edit) return;
+          if (typeof edit.text === "string" && canUseControl(element, "text")) {
+            element.textContent = edit.text;
+          }
+          if (edit.style && typeof edit.style === "object") {
+            if (edit.style.fontSize !== undefined && canUseControl(element, "font-size")) {
+              element.style.fontSize = edit.style.fontSize || "";
+            }
+            if (edit.style.color !== undefined && canUseControl(element, "color")) {
+              element.style.color = edit.style.color || "";
+            }
+            if (edit.style.backgroundColor !== undefined && canUseControl(element, "fill")) {
+              element.style.backgroundColor = edit.style.backgroundColor || "";
+            }
+          }
+          if (edit.transform && typeof edit.transform === "object" && canUseControl(element, "position")) {
+            const x = Number(edit.transform.x || 0);
+            const y = Number(edit.transform.y || 0);
+            element.style.transform = x || y ? `translate(${x}px, ${y}px)` : "";
+          }
+          if (edit.size && typeof edit.size === "object" && canUseControl(element, "size")) {
+            if (edit.size.width !== undefined) element.style.width = edit.size.width || "";
+            if (edit.size.height !== undefined) element.style.height = edit.size.height || "";
+          }
+        };
+
+        const applyEditPatch = (patch) => {
+          Object.entries(patch.edits || {}).forEach(([editId, edit]) => {
+            const element = getElementByEditId(editId);
+            if (!element) {
+              console.warn(`Edit patch skipped missing element: ${editId}`);
+              return;
+            }
+            applyEditToElement(element, edit);
+          });
+        };
+
+        const restoreOriginalElement = (element) => {
+          const editId = element?.dataset?.editId;
+          const original = editId ? originalState.get(editId) : null;
+          if (!element || !original) return;
+          element.textContent = original.text;
+          element.style.fontSize = original.style.fontSize;
+          element.style.color = original.style.color;
+          element.style.backgroundColor = original.style.backgroundColor;
+          element.style.transform = original.style.transform;
+          element.style.width = original.style.width;
+          element.style.height = original.style.height;
+        };
+
+        const setEditPanelOpen = (isOpen) => {
+          editPanel?.classList.toggle("is-open", isOpen);
+          editPanel?.setAttribute("aria-hidden", String(!isOpen));
+        };
+
+        const syncInspectorFromElement = (element) => {
+          if (!element) return;
+          const controls = getControls(element);
+          const computed = getComputedStyle(element);
+          const patch = getEditPatch();
+          const edit = patch.edits[element.dataset.editId] || {};
+          editTargetLabel.textContent = `${resolveEditRole(element)} · ${element.dataset.editId}`;
+          editText.disabled = !controls.has("text");
+          editText.value = controls.has("text") ? element.textContent.trim() : "";
+          editFontSize.disabled = !controls.has("font-size");
+          editFontSize.value = parseFloat(edit.style?.fontSize || element.style.fontSize || computed.fontSize) || "";
+          editColor.disabled = !controls.has("color");
+          editColor.value = edit.style?.color || element.style.color || computed.color || "";
+          editFill.disabled = !controls.has("fill");
+          editFill.value = edit.style?.backgroundColor || element.style.backgroundColor || "";
+          editOffsetX.disabled = !controls.has("position");
+          editOffsetY.disabled = !controls.has("position");
+          editOffsetX.value = edit.transform?.x || 0;
+          editOffsetY.value = edit.transform?.y || 0;
+          editWidth.disabled = !controls.has("size");
+          editHeight.disabled = !controls.has("size");
+          editWidth.value = edit.size?.width || element.style.width || "";
+          editHeight.value = edit.size?.height || element.style.height || "";
+        };
+
+        const updateSelectedEdit = () => {
+          if (!selectedEditElement) return;
+          const controls = getControls(selectedEditElement);
+          const edit = {};
+          if (controls.has("text")) edit.text = editText.value;
+          const style = {};
+          if (controls.has("font-size")) style.fontSize = normalizeSizeValue(editFontSize.value);
+          if (controls.has("color")) style.color = editColor.value.trim();
+          if (controls.has("fill")) style.backgroundColor = editFill.value.trim();
+          if (Object.keys(style).length) edit.style = style;
+          if (controls.has("position")) {
+            edit.transform = {
+              x: Number(editOffsetX.value || 0),
+              y: Number(editOffsetY.value || 0),
+            };
+          }
+          if (controls.has("size")) {
+            edit.size = {
+              width: normalizeSizeValue(editWidth.value),
+              height: normalizeSizeValue(editHeight.value),
+            };
+          }
+          const patch = getEditPatch();
+          patch.edits[selectedEditElement.dataset.editId] = edit;
+          saveEditPatch(patch);
+          applyEditToElement(selectedEditElement, edit);
+        };
+
+        const selectEditElement = (element) => {
+          if (!element || !isEditMode) return;
+          selectedEditElement?.classList.remove("is-edit-selected");
+          selectedEditElement?.removeAttribute("contenteditable");
+          selectedEditElement = element;
+          selectedEditElement.classList.add("is-edit-selected");
+          if (canUseControl(selectedEditElement, "text")) {
+            selectedEditElement.setAttribute("contenteditable", "true");
+          }
+          syncInspectorFromElement(selectedEditElement);
+          setEditPanelOpen(true);
+        };
+
+        const clearEditSelection = () => {
+          selectedEditElement?.classList.remove("is-edit-selected");
+          selectedEditElement?.removeAttribute("contenteditable");
+          selectedEditElement = null;
+          if (editTargetLabel) editTargetLabel.textContent = "No element selected.";
+          setEditPanelOpen(false);
+        };
+
+        const enterEditMode = () => {
+          if (isPublished) return;
+          if (isReviewMode) exitReviewMode();
+          isEditMode = true;
+          document.body.classList.add("edit-mode");
+          editToggle?.classList.add("is-active");
+          editToggle.textContent = "Exit Edit";
+          getEditableElements().forEach((element) => element.classList.add("editable-target"));
+        };
+
+        const exitEditMode = () => {
+          isEditMode = false;
+          document.body.classList.remove("edit-mode");
+          editToggle?.classList.remove("is-active");
+          if (editToggle) editToggle.textContent = "Edit";
+          getEditableElements().forEach((element) => element.classList.remove("editable-target"));
+          clearEditSelection();
+        };
+
+        const toggleEditMode = () => {
+          if (isEditMode) exitEditMode();
+          else enterEditMode();
+        };
+
+        const resetSelectedEdit = () => {
+          if (!selectedEditElement) return;
+          const editId = selectedEditElement.dataset.editId;
+          const patch = getEditPatch();
+          delete patch.edits[editId];
+          saveEditPatch(patch);
+          restoreOriginalElement(selectedEditElement);
+          syncInspectorFromElement(selectedEditElement);
+        };
+
+        const resetAllEdits = () => {
+          getEditableElements().forEach(restoreOriginalElement);
+          saveEditPatch(buildEmptyPatch());
+          if (selectedEditElement) syncInspectorFromElement(selectedEditElement);
+        };
+
+        const exportEditPatch = () => {
+          const payload = saveEditPatch(getEditPatch());
+          const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = `edit-patch-${deckId}.json`;
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+          URL.revokeObjectURL(url);
+        };
+
+        const nudgeSelected = (dx, dy) => {
+          if (!selectedEditElement || !canUseControl(selectedEditElement, "position")) return;
+          editOffsetX.value = Number(editOffsetX.value || 0) + dx;
+          editOffsetY.value = Number(editOffsetY.value || 0) + dy;
+          updateSelectedEdit();
+        };
+
+        ensureEditIds();
+        if (isPublished) {
+          editToggle?.remove();
+          publishStatus?.classList.add("is-visible");
+          return;
+        }
+
+        applyEditPatch(getEditPatch());
+
+        editToggle?.addEventListener("click", toggleEditMode);
+        editClose?.addEventListener("click", exitEditMode);
+        editResetSelected?.addEventListener("click", resetSelectedEdit);
+        editResetAll?.addEventListener("click", resetAllEdits);
+        editExport?.addEventListener("click", exportEditPatch);
+
+        [editText, editFontSize, editColor, editFill, editOffsetX, editOffsetY, editWidth, editHeight].forEach((input) => {
+          input?.addEventListener("input", updateSelectedEdit);
+        });
+
+        document.addEventListener("input", (event) => {
+          if (event.target === selectedEditElement && canUseControl(selectedEditElement, "text")) {
+            editText.value = selectedEditElement.textContent || "";
+            updateSelectedEdit();
+          }
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!isEditMode) return;
+          if (event.target.closest(".edit-panel, .deck-nav, .gen-panel, .notes-panel, .comment-sidebar, .comment-popover, .identity-modal")) return;
+          const target = event.target.closest(".editable-target");
+          if (!target || !slides[currentIndex]?.contains(target)) return;
+          event.preventDefault();
+          event.stopPropagation();
+          selectEditElement(target);
+        }, true);
+
+        document.addEventListener("keydown", (event) => {
+          if (event.target.closest("input, textarea, select")) return;
+          if (event.key === "Escape" && isEditMode) {
+            event.preventDefault();
+            exitEditMode();
+            return;
+          }
+          if (event.key.toLowerCase() === "e") {
+            event.preventDefault();
+            toggleEditMode();
+            return;
+          }
+          if (event.key.toLowerCase() === "r" && isEditMode) {
+            exitEditMode();
+            return;
+          }
+          if (!isEditMode || !selectedEditElement) return;
+          const step = event.shiftKey ? 10 : 1;
+          if (event.key === "ArrowRight") {
+            event.preventDefault();
+            event.stopPropagation();
+            nudgeSelected(step, 0);
+          }
+          if (event.key === "ArrowLeft") {
+            event.preventDefault();
+            event.stopPropagation();
+            nudgeSelected(-step, 0);
+          }
+          if (event.key === "ArrowDown") {
+            event.preventDefault();
+            event.stopPropagation();
+            nudgeSelected(0, step);
+          }
+          if (event.key === "ArrowUp") {
+            event.preventDefault();
+            event.stopPropagation();
+            nudgeSelected(0, -step);
+          }
+        }, true);
+
+        const editParam = urlParams.get("edit");
+        if (editParam === "1" || editParam === "true") {
+          enterEditMode();
+        }
+      })();
     </script>
   </body>
 </html>
